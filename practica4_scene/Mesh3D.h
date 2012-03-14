@@ -9,6 +9,9 @@ class Mesh3D {
 // ESTO ES OTRO COMENTARIO, PERO ESTA VEZ DE GERARDO
 
 public:
+        int numVertices;
+        
+        int getNumVertices();
 
 
 
