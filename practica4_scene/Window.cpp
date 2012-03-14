@@ -42,9 +42,9 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 
         Camera3D * cam4 = new Camera3D();
         cam4->name = "Perspectiva";
-        cam4->eye->x = 70;
-        cam4->eye->y = 100;
-        cam4->eye->z = 80;
+        cam4->eye->x = 300;
+        cam4->eye->y = 400;
+        cam4->eye->z = 300;
         cam4->perspective = true;
         _scene->cameras->push_back(cam4);
 

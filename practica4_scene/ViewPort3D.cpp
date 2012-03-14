@@ -32,6 +32,9 @@ ViewPort3D::ViewPort3D(void * hWnd, int& width, int& height) {
 }
 
 void ViewPort3D::makeCurrent() {
+        glEnable(GL_DEPTH_TEST);
+
+
         if(wglMakeCurrent(_hdc, _hrc) == false)
                 ShowMessage("Could not make ViewPort3D current :·(");        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);                        }
 
@@ -55,7 +58,7 @@ void ViewPort3D::RecalculateViewport() {
 
 
         if (camera->perspective) {
-                glFrustum(L/10,R/10,B/10,T/10,10,20000);
+                glFrustum(L/64,R/64,B/64,T/64,10,20000);
         } else {
                 glOrtho(L, R, B, T, 0, 200000);
         }
