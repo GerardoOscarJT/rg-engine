@@ -3,8 +3,6 @@
 
 class Face3D {
 public:
-        int numVertices;
-        Face3D();
 
 
 
