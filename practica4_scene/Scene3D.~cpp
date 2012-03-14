@@ -90,8 +90,8 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
 
         glColor3f(0,0,1);
 
-        glBegin(GL_LINE_STRIP);
-//        glBegin(GL_POINTS);
+//        glBegin(GL_LINE_STRIP);
+        glBegin(GL_POINTS);
 
                 FrenetFrameEpitrochoid epi;
                 PV3D p;
@@ -100,9 +100,9 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
                 epi.b = 10;
                 epi.h = 20;
 
-                int n = 60;
+                int n = 360;
                 double pi = 4*atan(1);
-                int w = 16; // Número de vértices del polígono
+                int w = 6; // Número de vértices del polígono
                 double r = 5; // Radio del polígono
 
                 for (int i=0; i<=n; i++) {

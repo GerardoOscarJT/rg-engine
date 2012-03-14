@@ -8,7 +8,6 @@ public:
         double a;
         double b;
         double h;
-        PV3D center;
 
         FrenetFrameEpitrochoid();
 

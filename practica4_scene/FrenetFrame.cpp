@@ -17,6 +17,8 @@ PV3D FrenetFrame::transformPoint(PV3D p) {
         r.y = _N.y*p.x + _B.y*p.y + _T.y*p.z + p.t * c.y;
         r.z = _N.z*p.x + _B.z*p.y + _T.z*p.z + p.t * c.z;
 
+        r = r + center;
+
         return r;
 }
 

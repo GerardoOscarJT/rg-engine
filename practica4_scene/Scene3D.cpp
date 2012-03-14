@@ -99,6 +99,7 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
                 epi.a = 30;
                 epi.b = 10;
                 epi.h = 20;
+                epi.center.y  = 100;
 
                 int n = 360;
                 double pi = 4*atan(1);
