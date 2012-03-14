@@ -4,6 +4,10 @@
 class Face3D {
 public:
         int numVertices;
+<<<<<<< local
+=======
+        int faceSize;
+>>>>>>> other
         Face3D();
 
 
