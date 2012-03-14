@@ -3,10 +3,15 @@
 
 class Face3D {
 public:
+        int numVertices;
+        int faceSize;
+        Face3D();
 
 
 
 private:
+        String _name;
+        void resetFace();
 
 
 };
