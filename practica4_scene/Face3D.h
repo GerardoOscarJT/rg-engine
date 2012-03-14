@@ -12,6 +12,8 @@ private:
         String _name;
         void resetFace();
 
+        void newPrivateMethod(int with_very_fucking_results);
+
 
 };
 
