@@ -9,6 +9,8 @@ public:
 
 
 private:
+        String _name;
+        void resetFace();
 
 
 };
