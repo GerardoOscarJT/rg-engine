@@ -38,7 +38,7 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
         vp->makeCurrent();
         vp->RecalculateViewport();
 
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         DrawAxis();
 
@@ -102,8 +102,6 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
 
 
         glColor3f(0,0,1);
-
-
         _box->x = 100;
         _box->y = 10;
         _box->z = 100;
@@ -112,9 +110,24 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
 
 
         glColor3f(1,0,0);
-
         _box->x = 10;
         _box->y = 100;
+        _box->z = 100;
+        _box->RecalculateMesh();
+        _box->Repaint();
+
+
+        glColor3f(0,1,0);
+        _box->x = 10;
+        _box->y = -100;
+        _box->z = 100;
+        _box->RecalculateMesh();
+        _box->Repaint();
+
+
+        glColor3f(.5,.5,.5);
+        _box->x = -100;
+        _box->y = 10;
         _box->z = 100;
         _box->RecalculateMesh();
         _box->Repaint();
