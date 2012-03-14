@@ -7,6 +7,7 @@
 #include "ViewPort3D.h"
 
 #include "Epitrochoid.h"
+#include "Box3D.h"
 
 
 class Scene3D {
@@ -24,6 +25,8 @@ private:
 
         void RepaintViewPort(ViewPort3D*);
         //Epitrochoid _ep;
+
+        Box3D *_box;
 
 };
 

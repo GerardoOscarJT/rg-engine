@@ -13,6 +13,10 @@ USEUNIT("Epitrochoid.cpp");
 USEUNIT("FrenetFrameEpitrochoid.cpp");
 USEUNIT("Mesh3D.cpp");
 USEUNIT("Face3D.cpp");
+USEUNIT("Figure3D.cpp");
+USEUNIT("Vertex3D.cpp");
+USEUNIT("Color3D.cpp");
+USEUNIT("Box3D.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

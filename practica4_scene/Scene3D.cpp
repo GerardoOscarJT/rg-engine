@@ -8,6 +8,12 @@
 Scene3D::Scene3D() {
         cameras = new list<Camera3D*>();
         viewports = new list<ViewPort3D*>();
+
+
+        _box = new Box3D();
+
+
+
 }
 
 Scene3D::~Scene3D() {
@@ -15,6 +21,8 @@ Scene3D::~Scene3D() {
         // (primero viewports y después cámaras):
         delete viewports;
         delete cameras;
+
+        delete _box;
 }
 
 void Scene3D::Repaint() {
@@ -88,8 +96,31 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
 */
 
 
+
+
+
+
+
         glColor3f(0,0,1);
 
+
+        _box->x = 100;
+        _box->y = 10;
+        _box->z = 100;
+        _box->RecalculateMesh();
+        _box->Repaint();
+
+
+        glColor3f(1,0,0);
+
+        _box->x = 10;
+        _box->y = 100;
+        _box->z = 100;
+        _box->RecalculateMesh();
+        _box->Repaint();
+
+
+/*
 //        glBegin(GL_LINE_STRIP);
         glBegin(GL_POINTS);
 
@@ -127,6 +158,7 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
                 }
 
         glEnd();
+*/        
 
 
         glFlush();
