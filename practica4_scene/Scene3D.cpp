@@ -40,6 +40,36 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+
+
+
+        glClearColor(0.6,0.7,0.8,1.0);
+        glEnable(GL_LIGHTING);
+        glEnable(GL_LIGHT0);
+
+        //Luz0
+        glEnable(GL_LIGHT0);
+        GLfloat LuzDifusa[]={1.0,1.0,1.0,1.0};
+        glLightfv(GL_LIGHT0,GL_DIFFUSE,LuzDifusa);
+        GLfloat LuzAmbiente[]={0.3,0.3,0.3,1.0};
+        glLightfv(GL_LIGHT0,GL_AMBIENT,LuzAmbiente);
+        PosicionLuz0[0]=25.0; PosicionLuz0[1]=25.0;
+        PosicionLuz0[2]=0.0; PosicionLuz0[3]=1.0;
+        glLightfv(GL_LIGHT0, GL_POSITION, PosicionLuz0);
+
+        glEnable(GL_COLOR_MATERIAL);
+        glMaterialf(GL_FRONT, GL_SHININESS, 0.1);
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_NORMALIZE);
+        glShadeModel(GL_SMOOTH);   //Defecto
+
+        glLightfv(GL_LIGHT0,GL_POSITION,PosicionLuz0);
+
+
+
+
+
+
         DrawAxis();
 
 

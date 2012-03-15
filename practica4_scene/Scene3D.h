@@ -25,7 +25,7 @@ private:
 
         void RepaintViewPort(ViewPort3D*);
         //Epitrochoid _ep;
-
+        GLfloat PosicionLuz0[4];
         Box3D *_box;
 
 };
