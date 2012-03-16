@@ -38,7 +38,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         Camera3D * cam3 = new Camera3D();
         cam3->name = "Planta";
         cam3->eye->x = 0;
-        cam3->eye->y = 0;
+        cam3->eye->y = 0.1;
         cam3->eye->z = 100;
         _scene->cameras->push_back(cam3);
 
@@ -68,20 +68,25 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         _vp4->camera = cam4;
         _scene->viewports->push_back(_vp4);
 
-        
+
 
 
         _scene->Repaint();
         _last_viewport = _vp4;
+        Shape4->Pen->Color = clLime;
 
+
+        RecalculateGUI();
 }
 
 void __fastcall TForm1::FormDestroy(TObject *Sender) {
         delete _scene;
+        _scene = NULL;
 }
 
 void __fastcall TForm1::Button3Click(TObject *Sender) {
-        _scene->Repaint();
+        if (_scene != NULL)
+                _scene->Repaint();
 }
 void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift) {
 
@@ -133,12 +138,17 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                 }
                 _scene->Repaint();
         }
-}void __fastcall TForm1::FormPaint(TObject *Sender) {
-        _scene->Repaint();
+}
+
+void __fastcall TForm1::FormPaint(TObject *Sender) {
+        if (_scene != NULL)
+                _scene->Repaint();
 }
 
 void __fastcall TForm1::FormResize(TObject *Sender) {
-        _scene->Repaint();
+        RecalculateGUI();
+        if (_scene != NULL)
+                _scene->Repaint();
 }
 
 void __fastcall TForm1::PopupMenu1Popup(TObject *Sender) {
@@ -155,21 +165,53 @@ void __fastcall TForm1::PopupMenu1Popup(TObject *Sender) {
 
 void __fastcall TForm1::Panel1MouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y){
+
+        Shape1->Pen->Color = clGreen;
+        Shape2->Pen->Color = clGreen;
+        Shape3->Pen->Color = clGreen;
+        Shape4->Pen->Color = clGreen;
+
+        Shape1->Pen->Color = clLime;
+
         _last_viewport = _vp1;
 }
 
 void __fastcall TForm1::Panel2MouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y) {
+
+        Shape1->Pen->Color = clGreen;
+        Shape2->Pen->Color = clGreen;
+        Shape3->Pen->Color = clGreen;
+        Shape4->Pen->Color = clGreen;
+
+        Shape2->Pen->Color = clLime;
+
         _last_viewport = _vp2;
 }
 
 void __fastcall TForm1::Panel3MouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y) {
+
+        Shape1->Pen->Color = clGreen;
+        Shape2->Pen->Color = clGreen;
+        Shape3->Pen->Color = clGreen;
+        Shape4->Pen->Color = clGreen;
+
+        Shape3->Pen->Color = clLime;
+
         _last_viewport = _vp3;
 }
 
 void __fastcall TForm1::Panel4MouseDown(TObject *Sender,
       TMouseButton Button, TShiftState Shift, int X, int Y) {
+
+        Shape1->Pen->Color = clGreen;
+        Shape2->Pen->Color = clGreen;
+        Shape3->Pen->Color = clGreen;
+        Shape4->Pen->Color = clGreen;
+
+        Shape4->Pen->Color = clLime;
+
         _last_viewport = _vp4;
 }
 
@@ -188,4 +230,89 @@ void __fastcall TForm1::FormMouseWheelUp(TObject *Sender,
         _last_viewport->camera->eye->z /= 1.08;
         _scene->Repaint();
 }
+
+void __fastcall TForm1::RecalculateGUI() {
+
+        int margin = 2; //px
+
+        MainPanel->Top = 0;
+        MainPanel->Left = 0;
+        MainPanel->Width = Form1->ClientWidth;
+        MainPanel->Height = Form1->ClientHeight;
+
+        if (ToolBar->Visible) {
+                MainPanel->Top = ToolBar->Height;
+                MainPanel->Height -= ToolBar->Height;
+        }
+
+        if (StatusBar->Visible)
+                MainPanel->Height -= StatusBar->Height;
+
+        // Paneles interiores
+        RightPanel->Width = 300;
+        RightPanel->Top = 0;
+        RightPanel->Height = MainPanel->ClientHeight;
+        RightPanel->Left = MainPanel->ClientWidth - RightPanel->Width;
+
+        LeftPanel->Top = margin;
+        LeftPanel->Left = margin;
+        LeftPanel->Height = MainPanel->ClientHeight -  2*margin;
+        LeftPanel->Width = MainPanel->ClientWidth - RightPanel->Width - 2*margin;
+
+        // Viewports
+
+        int left = 300;
+
+        Shape1->Top = 0 + margin;
+        Shape1->Left = 0 + margin;
+        Shape1->Width = left - 2*margin;
+        Shape1->Height = LeftPanel->ClientHeight/3 - 2*margin;
+
+        Shape2->Top = LeftPanel->ClientHeight/3 + margin;
+        Shape2->Left = 0 + margin;
+        Shape2->Width = left - 2*margin;
+        Shape2->Height = LeftPanel->ClientHeight/3 - 2*margin;
+
+        Shape3->Top = LeftPanel->ClientHeight*2/3 + margin;
+        Shape3->Left = 0 + margin;
+        Shape3->Width = left - 2*margin;
+        Shape3->Height = LeftPanel->ClientHeight/3 - 2*margin;
+
+        Shape4->Top = LeftPanel->ClientHeight/3 + margin;
+        Shape4->Left = left + margin;
+        Shape4->Width = LeftPanel->ClientWidth - left - 2*margin ;
+        Shape4->Height = LeftPanel->ClientHeight*2/3 - 2*margin;
+
+
+        Panel1->Left = Shape1->Left + 1;
+        Panel1->Top = Shape1->Top + 1;
+        Panel1->Width = Shape1->Width - 2;
+        Panel1->Height = Shape1->Height - 2;
+
+        Panel2->Left = Shape2->Left + 1;
+        Panel2->Top = Shape2->Top + 1;
+        Panel2->Width = Shape2->Width - 2;
+        Panel2->Height = Shape2->Height - 2;
+
+        Panel3->Left = Shape3->Left + 1;
+        Panel3->Top = Shape3->Top + 1;
+        Panel3->Width = Shape3->Width - 2;
+        Panel3->Height = Shape3->Height - 2;
+
+        Panel4->Left = Shape4->Left + 1;
+        Panel4->Top = Shape4->Top + 1;
+        Panel4->Width = Shape4->Width - 2;
+        Panel4->Height = Shape4->Height - 2;
+
+
+
+
+
+
+}
+
+
+
+
+
 

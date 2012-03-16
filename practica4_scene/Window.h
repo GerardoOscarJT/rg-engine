@@ -10,17 +10,37 @@
 #include <ExtCtrls.hpp>
 #include "Scene3D.h"
 #include <Menus.hpp>
+#include <ComCtrls.hpp>
+#include <ToolWin.hpp>
 
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
+        TMainMenu *MainMenu1;
+        TMenuItem *Archivo1;
+        TMenuItem *Ayuda1;
+        TStatusBar *StatusBar;
+        TPopupMenu *PopupMenu1;
+        TMenuItem *Camaras1;
+        TPanel *MainPanel;
+        TToolBar *ToolBar;
+        TToolButton *ToolButton1;
+        TToolButton *ToolButton2;
+        TPanel *LeftPanel;
+        TScrollBox *RightPanel;
+        TButton *Button3;
         TPanel *Panel1;
         TPanel *Panel3;
         TPanel *Panel2;
         TPanel *Panel4;
-        TPopupMenu *PopupMenu1;
-        TMenuItem *Camaras1;
+        TListBox *ListBox1;
+        TShape *Shape1;
+        TShape *Shape2;
+        TShape *Shape3;
+        TShape *Shape4;
+        TPanel *Panel5;
+        TTreeView *TreeView1;
         void __fastcall FormCreate(TObject *Sender);
         void __fastcall FormDestroy(TObject *Sender);
         void __fastcall Button3Click(TObject *Sender);
@@ -51,6 +71,8 @@ private:	// User declarations
         ViewPort3D *_vp2;
         ViewPort3D *_vp3;
         ViewPort3D *_vp4;
+
+        void __fastcall RecalculateGUI();
 
 public:		// User declarations
     __fastcall TForm1(TComponent* Owner);
