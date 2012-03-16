@@ -16,7 +16,7 @@ public:
         list<Vertex3D*>* vertices;
         list<Face3D*>* faces;
 
-        void RecalculateNormals();
+        void RecalculateNormals(Face3D&);
 
         // Extiendo clase Figure3D
         void Repaint();

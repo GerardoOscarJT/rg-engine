@@ -9,6 +9,8 @@
 
 #pragma package(smart_init)
 
+//Y AQUI UNA DE CILINDROS!
+
 Cylinder3D::Cylinder3D(double _height, double _rad_top, double _rad_bottom) {
         height = _height;
         rad_top = _rad_top;
