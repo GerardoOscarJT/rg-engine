@@ -22,7 +22,18 @@ Scene3D::Scene3D() {
 Scene3D::~Scene3D() {
         // TODO: Eliminar también el contenido de las listas
         // (primero viewports y después cámaras):
+
+        list<ViewPort3D*>::iterator it_vp;
+        for (it_vp = viewports->begin(); it_vp != viewports->end(); it_vp++)
+                delete *it_vp;
+
         delete viewports;
+
+
+        list<Camera3D*>::iterator it_c;
+        for (it_c = cameras->begin(); it_c != cameras->end(); it_c++)
+                delete *it_c;
+
         delete cameras;
 
         delete _epi; // TODO: Es un STUB

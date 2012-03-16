@@ -56,10 +56,16 @@ void Epitrochoid3D::RecalculateMesh() {
 
         // Destruyo la estructura auxiliar V
         for (int i=0; i<nQ; i++) {
-                delete V[i];
+                delete[] V[i];
         }
-        delete V;
+        delete[] V;
 
 
         // TODO: Llamar a recalculate normals
 }
+
+
+String Epitrochoid3D::getName() {
+        return "Group";
+}
+

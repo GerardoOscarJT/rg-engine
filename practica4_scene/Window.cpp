@@ -18,6 +18,8 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         _last_viewport = NULL;
         _scene = new Scene3D();
 
+
+
         // Agregamos 4 vistas básicas de cámara:
         Camera3D * cam1 = new Camera3D();
         cam1->name = "Alzado";
@@ -65,6 +67,8 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         _vp4 = new ViewPort3D(Panel4->Handle, Panel4->Width, Panel4->Height);
         _vp4->camera = cam4;
         _scene->viewports->push_back(_vp4);
+
+        
 
 
         _scene->Repaint();
