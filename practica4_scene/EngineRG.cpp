@@ -18,6 +18,7 @@ USEUNIT("Color3D.cpp");
 USEUNIT("Box3D.cpp");
 USEUNIT("Cylinder3D.cpp");
 USEUNIT("Epitrochoid3D.cpp");
+USEUNIT("Group3D.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
