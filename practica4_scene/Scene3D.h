@@ -6,7 +6,7 @@
 #include <gl\glu.h>
 #include "ViewPort3D.h"
 
-#include "Epitrochoid.h"
+#include "Epitrochoid3D.h"
 #include "Box3D.h"
 
 
@@ -24,9 +24,10 @@ public:
 private:
 
         void RepaintViewPort(ViewPort3D*);
-        //Epitrochoid _ep;
         GLfloat PosicionLuz0[4];
-        Box3D *_box;
+
+        Epitrochoid3D * _epi;
+
 
 };
 
