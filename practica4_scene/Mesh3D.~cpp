@@ -103,9 +103,9 @@ void Mesh3D::Repaint() {
 
         for (it=faces->begin(); it != faces->end(); it++) {
                 face = *it;
-                //glBegin(GL_POLYGON);
+                glBegin(GL_POLYGON);
                 glBegin(GL_LINE_LOOP);
-                glColor3f(0,1,1);
+                //glColor3f(0,1,1);
                 list<Vertex3D*>::iterator itp;
                 Vertex3D *vertex;
                 for (itp = face->vertices->begin(); itp != face->vertices->end(); itp++) {
