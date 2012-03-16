@@ -10,13 +10,11 @@ Scene3D::Scene3D() {
         viewports = new list<ViewPort3D*>();
 
 
-        // TODO: Quitar stub:
+        // TODO: Quitar stubs:
         _epi = new Epitrochoid3D();
-        /*
-        _epi->a = 150;
-        _epi->b = 50;
-        _epi->h = 100;
-        */
+        _cylinder = new Cylinder3D(0,0,0);
+        _cylinder->RecalculateMesh();
+
 }
 
 Scene3D::~Scene3D() {
@@ -37,6 +35,7 @@ Scene3D::~Scene3D() {
         delete cameras;
 
         delete _epi; // TODO: Es un STUB
+        delete _cylinder;
 }
 
 void Scene3D::Repaint() {
@@ -138,11 +137,9 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
 
 
 
-        _cylinder = new Cylinder3D(0,0,0);
-        _cylinder->RecalculateMesh();
         _cylinder->Repaint();
 
-
+        _epi->Repaint();
 
 
 
