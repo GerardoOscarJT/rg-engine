@@ -10,13 +10,10 @@ Scene3D::Scene3D() {
         viewports = new list<ViewPort3D*>();
 
 
-        // TODO: Quitar stub:
-        _epi = new Epitrochoid3D();
-        /*
-        _epi->a = 150;
-        _epi->b = 50;
-        _epi->h = 100;
-        */
+        _box = new Box3D();
+
+
+
 }
 
 Scene3D::~Scene3D() {
@@ -25,7 +22,7 @@ Scene3D::~Scene3D() {
         delete viewports;
         delete cameras;
 
-        delete _epi; // TODO: Es un STUB
+        delete _box;
 }
 
 void Scene3D::Repaint() {
@@ -47,8 +44,6 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
 
 
         glClearColor(0.6,0.7,0.8,1.0);
-
-
         glEnable(GL_LIGHTING);
         glEnable(GL_LIGHT0);
 
@@ -71,11 +66,14 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
         glLightfv(GL_LIGHT0,GL_POSITION,PosicionLuz0);
 
 
+
+
+
+
         DrawAxis();
 
 
-        /*_epi->Repaint();
-
+/*
 
         GLUquadric *c = gluNewQuadric();
         gluQuadricDrawStyle(c, GLU_LINE);
@@ -122,11 +120,14 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
                 glVertex3f(150,50,50);
                 glVertex3f(100,0,50);
                 glVertex3f(100,50,50);
-        glEnd();  */
+        glEnd();
+
+
+*/
 
 
 
-
+        glColor3f(1,0,0);
         _cylinder = new Cylinder3D(0,0,0);
         _cylinder->RecalculateMesh();
         _cylinder->Repaint();
@@ -208,7 +209,6 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
 
         glEnd();
 */        
-
 
 
         glFlush();

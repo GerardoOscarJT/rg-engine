@@ -9,6 +9,8 @@
 
 class Cylinder3D : public Mesh3D{
 
+//YUJUUU, CILINDROS!!
+
 public:
         double height;
         double rad_top;
