@@ -9,17 +9,14 @@ FrenetFrame::FrenetFrame() {
 
 }
 
-PV3D FrenetFrame::transformPoint(PV3D p) {
-        PV3D r;
+void FrenetFrame::transformPoint(PV3D *p) {
+        double x=p->x, y=p->y, z=p->z;
+
         PV3D c = C(_t);
 
-        r.x = _N.x*p.x + _B.x*p.y + _T.x*p.z + p.t * c.x;
-        r.y = _N.y*p.x + _B.y*p.y + _T.y*p.z + p.t * c.y;
-        r.z = _N.z*p.x + _B.z*p.y + _T.z*p.z + p.t * c.z;
-
-        r = r + center;
-
-        return r;
+        p->x = _N.x*x + _B.x*y + _T.x*z + p->t * c.x;
+        p->y = _N.y*x + _B.y*y + _T.y*z + p->t * c.y;
+        p->z = _N.z*x + _B.z*y + _T.z*z + p->t * c.z;
 }
 
 void FrenetFrame::setT(double t) {  //T es el frame, me parece (NOOO t es el parámetro de la ecuación)

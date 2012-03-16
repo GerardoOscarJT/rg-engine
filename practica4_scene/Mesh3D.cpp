@@ -53,13 +53,25 @@ void Mesh3D::Repaint() {
         // TODO: completar esto
 
 
+        glPushMatrix();
+
+        glTranslated(translation->x, translation->y, translation->z);
+
+        glRotated(rotation->x, 1,0,0);
+        glRotated(rotation->y, 0,1,0);
+        glRotated(rotation->z, 0,0,1);
+
+
+
+
         list<Face3D*>::iterator it;
         Face3D *face;
 
         for (it=faces->begin(); it != faces->end(); it++) {
                 face = *it;
-
-                glBegin(GL_POLYGON);
+//            glBegin(GL_POLYGON);
+                glBegin(GL_LINE_LOOP);
+                glColor3f(0,1,1);
                 list<Vertex3D*>::iterator itp;
                 Vertex3D *vertex;
                 for (itp = face->vertices->begin(); itp != face->vertices->end(); itp++) {
@@ -72,6 +84,7 @@ void Mesh3D::Repaint() {
         }
 
 
+        glPopMatrix();
 
 }
 

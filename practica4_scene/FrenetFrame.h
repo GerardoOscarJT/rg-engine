@@ -8,7 +8,7 @@ public:
         FrenetFrame();
 
 
-        PV3D transformPoint(PV3D p);
+        void transformPoint(PV3D *p);
 
         void setT(double t);
         double getT();
