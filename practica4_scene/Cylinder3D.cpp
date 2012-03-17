@@ -11,25 +11,25 @@
 
 //Y AQUI UNA DE CILINDROS!
 
-Cylinder3D::Cylinder3D(double _height, double _rad_top, double _rad_bottom) {
+Cylinder3D::Cylinder3D(double _height, double _rad_top, double _rad_bottom, bool _top, bool _bottom) {
         height = _height;
         rad_top = _rad_top;
         rad_bottom = _rad_bottom;
+        top = _top;
+        bottom = _bottom;
 }
 
 void Cylinder3D::RecalculateMesh() {
         clearLists();
 
         double pi = 4*atan(1);
-        double r = 20;
         double ang;
-        //Para la prueba, que n = 5 (pentágono)
 
-        double inc_ang = 2*pi/5;
-        for(int i = 0; i < 5; i++) {
+        double inc_ang = 2*pi/NUM_LADOS;
+        for(int i = 0; i < NUM_LADOS; i++) {
                 ang = i*inc_ang;
-                Vertex3D* v = new Vertex3D(r*cos(ang), r*sin(ang),0);
-                Vertex3D* vsup = new Vertex3D(r*cos(ang), r*sin(ang),100); //altura (coord. z = 100)
+                Vertex3D* v = new Vertex3D(rad_bottom*cos(ang), rad_bottom*sin(ang),0);
+                Vertex3D* vsup = new Vertex3D(rad_top*cos(ang), rad_top*sin(ang),height); //altura (coord. z = 100)
                 vertices->push_back(v);
                 vertices->push_back(vsup);
         }
@@ -46,7 +46,7 @@ void Cylinder3D::RecalculateMesh() {
                 if(guarda && (i < 2)) {
                         aux[i] = *it_v;
                 }
-                else guarda = false; //Que guarrada
+                else guarda = false; //Que guarrada, pero bueno, me guardo los 2 primeros
 
                 if(i == 3) {
                         Face3D * f = new Face3D();
@@ -55,7 +55,7 @@ void Cylinder3D::RecalculateMesh() {
                         f->vertices->push_back(vect[2]);
                         f->vertices->push_back(vect[3]);
                         f->vertices->push_back(vect[1]);
-                        RecalculateNormals(*f);
+                        //RecalculateNormals(*f);
                         //f->normal->x;
                         //f->normal->x;
                         //f->normal->x;
@@ -75,6 +75,47 @@ void Cylinder3D::RecalculateMesh() {
         f->vertices->push_back(*it_v);
         f->vertices->push_back(aux[0]);
         f->vertices->push_back(aux[1]);
+
+
+
+        if(top) {
+                Face3D* top_face = new Face3D();
+                faces->push_back(top_face);
+                list<Vertex3D*>::iterator it_tf;
+                Vertex3D* v3d;
+                int i=0;
+                for(it_tf = vertices->begin(); it_tf != vertices->end(); it_tf++) {
+                        v3d = *it_tf;
+                        if(i%2 == 0) {
+                                top_face->vertices->push_back(v3d);
+                        }
+                        i++;
+                }
+
+        }
+
+
+
+        if(bottom) {
+                Face3D* top_face = new Face3D();
+                faces->push_back(top_face);
+                list<Vertex3D*>::reverse_iterator rit_tf;
+                Vertex3D* v3d;
+                int i=0;
+                for(rit_tf = vertices->rbegin(); rit_tf != vertices->rend(); rit_tf++) {
+                        v3d = *rit_tf;
+                        if(i%2 == 0) {
+                                top_face->vertices->push_back(v3d);
+                        }
+                        i++;
+                }
+
+        }
+
+
+
+
+
         
 }
 

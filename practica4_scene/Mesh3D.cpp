@@ -46,24 +46,39 @@ void Mesh3D::clearLists() {
 
 void Mesh3D::RecalculateNormals(Face3D &f) {
         // TODO: completar
-        /*int nx = 0, ny = 0, nz = 0; //Componentes del vector normal
+        int nx = 0, ny = 0, nz = 0; //Componentes del vector normal
 
-                for(int j = 0; j < 3; j++) {  //3 debería ser el número de vértices de la cara - 1
-
-                        //ind_vert es el índice del vértice en la posición j de _nv
-                        int ind_vert = j;
-                        //suc es el sucesor de ind_vert
-                        int suc = (j + 1)%4;
-
-                        /*nx = (vertices[ind_vert]->y - vertices[suc]->y)*(vertices[ind_vert]->z + vertices[suc]->z);
-                        ny = (vertices[ind_vert]->z - vertices[suc]->z)*(vertices[ind_vert]->x + vertices[suc]->x);
-                        nz = (vertices[ind_vert]->x - vertices[suc]->x)*(vertices[ind_vert]->y + vertices[suc]->y);
-
+                list<Vertex3D*>::iterator it;
+                Vertex3D* v3d, *suc_v3d;
+                //for(int j = 0; j < 3; j++) {  //3 debería ser el número de vértices - 1 de la cara
+                for(it = f.vertices->begin(); it != f.vertices->end(); it++) {
+                        v3d = *it;
+                        if(it != f.vertices->end()) {
+                                suc_v3d = *(it++);
+                        }
+                        else {
+                                suc_v3d = *(f.vertices->begin());
+                        }
+                        nx = (v3d->y - suc_v3d->y)*(v3d->z + suc_v3d->z);
+                        ny = (v3d->z - suc_v3d->z)*(v3d->x + suc_v3d->x);
+                        nz = (v3d->x - suc_v3d->x)*(v3d->y + suc_v3d->y);
                 }
 
-        PV3D res(nx, ny, nz);
+                        //ind_vert es el índice del vértice en la posición j de _nv
+                        //int ind_vert = j;
+                        //suc es el sucesor de ind_vert
+                        //int suc = (j + 1)%4;
+
+                        /*
+                        nx = (vertices[ind_vert]->y - vertices[suc]->y)*(vertices[ind_vert]->z + vertices[suc]->z);
+                        ny = (vertices[ind_vert]->z - vertices[suc]->z)*(vertices[ind_vert]->x + vertices[suc]->x);
+                        nz = (vertices[ind_vert]->x - vertices[suc]->x)*(vertices[ind_vert]->y + vertices[suc]->y);*/
+
+                //}
+
+        /*PV3D res(nx, ny, nz);
         res.normalize();
-        return res; */
+        return res;*/ 
 
 }
 
@@ -88,7 +103,7 @@ void Mesh3D::Repaint() {
 
         for (it=faces->begin(); it != faces->end(); it++) {
                 face = *it;
-            //glBegin(GL_POLYGON);
+                //glBegin(GL_POLYGON);
                 glBegin(GL_LINE_LOOP);
                 glColor3f(0,1,1);
                 list<Vertex3D*>::iterator itp;
