@@ -5,7 +5,7 @@
 #include <gl\gl.h>
 #include <gl\glu.h>
 #include "ViewPort3D.h"
-
+#include "Group3D.h";
 
 #include "Cylinder3D.h"
 
@@ -23,6 +23,8 @@ public:
 
         list<Camera3D*> *cameras;
         list<ViewPort3D*> *viewports;
+
+        Group3D * main_figure;
 
         void DrawAxis();
 private:

@@ -8,13 +8,16 @@ public:
         ~Figure3D();
 
         virtual void Repaint() = 0;
-        virtual String getName() = 0;
+        virtual String getName();
 
         PV3D *translation;
         PV3D *rotation;
 
+        AnsiString human_name;
+
 
 private:
+
 
 
 };
