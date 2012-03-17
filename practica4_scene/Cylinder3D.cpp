@@ -52,10 +52,10 @@ void Cylinder3D::RecalculateMesh() {
                         Face3D * f = new Face3D();
                         faces->push_back(f);
                         f->vertices->push_back(vect[0]);
-                        f->vertices->push_back(vect[2]);
-                        f->vertices->push_back(vect[3]);
                         f->vertices->push_back(vect[1]);
-                        //RecalculateNormals(*f);
+                        f->vertices->push_back(vect[3]);
+                        f->vertices->push_back(vect[2]);
+                        RecalculateNormals(*f);
                         //f->normal->x;
                         //f->normal->x;
                         //f->normal->x;
@@ -70,15 +70,17 @@ void Cylinder3D::RecalculateMesh() {
         Face3D *f = new Face3D();
         faces->push_back(f);
         it_v--;
-        f->vertices->push_back(*it_v);
         it_v--;
         f->vertices->push_back(*it_v);
-        f->vertices->push_back(aux[0]);
+        it_v++;
+        f->vertices->push_back(*it_v);
         f->vertices->push_back(aux[1]);
+        f->vertices->push_back(aux[0]);
 
 
 
-        if(top) {
+        //if(top) {
+        if(bottom) {
                 Face3D* top_face = new Face3D();
                 faces->push_back(top_face);
                 list<Vertex3D*>::iterator it_tf;
@@ -96,7 +98,8 @@ void Cylinder3D::RecalculateMesh() {
 
 
 
-        if(bottom) {
+        //if(bottom) {
+        if(top) {
                 Face3D* top_face = new Face3D();
                 faces->push_back(top_face);
                 list<Vertex3D*>::reverse_iterator rit_tf;

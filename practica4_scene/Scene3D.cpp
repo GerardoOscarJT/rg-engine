@@ -12,7 +12,7 @@ Scene3D::Scene3D() {
 
         // TODO: Quitar stubs:
         _epi = new Epitrochoid3D();
-        _cylinder = new Cylinder3D(150,30,30, false, false);
+        _cylinder = new Cylinder3D(150,30,30, true, false);
         _cylinder->RecalculateMesh();
 
 }

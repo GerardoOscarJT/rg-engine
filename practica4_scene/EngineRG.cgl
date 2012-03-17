@@ -1,29 +1,29 @@
 Functions called:
- vsnprintf (66 times)
- atan2l (33 times)
- sqrt (153 times)
- pow (546 times)
- sin (1873 times)
- cos (1873 times)
+ vsnprintf (88 times)
+ atan2l (44 times)
+ sqrt (663 times)
+ pow (2065 times)
+ sin (1884 times)
+ cos (1884 times)
  atan (2 times)
- delete (4140 times)
- SysReallocMem (3 times)
- SysFreeMem (587 times)
- SysGetMem (587 times)
+ delete (4147 times)
+ SysReallocMem (18 times)
+ SysFreeMem (1439 times)
+ SysGetMem (1439 times)
  realloc (1 times)
  memcpy (1 times)
  delete[] (63 times)
  free (26 times)
  new[] (75 times)
- new (4145 times)
+ new (4152 times)
  calloc (5 times)
  malloc (20 times)
 Resource types used:
  object array (75 allocs, 74 max)
- object (4145 allocs, 4109 max)
- memory block (613 allocs, 299 max)
+ object (4152 allocs, 4116 max)
+ memory block (1465 allocs, 520 max)
 Modules used:
- 00400000 03/16/2012 12:58:16 C:\Documents and
+ 00400000 03/17/2012 13:44:02 C:\Documents and
  Settings\RubenF\Escritorio\IGR\practica4_scene\EngineRG.exe
  092F0000 06/08/2005 10:11:18 C:\WINDOWS\system32\igldev32.dll
  0CD00000 01/31/2000 04:00:00 C:\Archivos de
