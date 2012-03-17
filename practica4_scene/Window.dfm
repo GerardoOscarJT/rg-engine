@@ -190,6 +190,7 @@ object Form1: TForm1
           Indent = 19
           ParentColor = True
           TabOrder = 0
+          TabStop = False
           Items.Data = {
             01000000200000000000000000000000FFFFFFFFFFFFFFFF0000000001000000
             076578616D706C651D0000000000000000000000FFFFFFFFFFFFFFFF00000000
