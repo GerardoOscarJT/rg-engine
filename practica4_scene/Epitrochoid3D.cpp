@@ -62,6 +62,14 @@ void Epitrochoid3D::RecalculateMesh() {
 
 
         // TODO: Llamar a recalculate normals
+
+        list<Face3D*>::iterator it_f;
+        Face3D* f;
+        for(it_f = faces->begin(); it_f != faces->end(); it_f++) {
+                f = *it_f;
+                RecalculateNormals(*f);
+        }
+
 }
 
 
