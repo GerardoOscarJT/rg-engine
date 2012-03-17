@@ -45,6 +45,8 @@ void Mesh3D::clearLists() {
 
 
 void Mesh3D::RecalculateNormals(Face3D &f) {
+
+        /*
         // TODO: completar
         int nx = 0, ny = 0, nz = 0; //Componentes del vector normal
 
@@ -71,6 +73,8 @@ void Mesh3D::RecalculateNormals(Face3D &f) {
         f.normal->z = nz;
         f.normal->normalize();
 
+        */
+
 }
 
 
@@ -96,7 +100,8 @@ void Mesh3D::Repaint() {
                 face = *it;
                 glBegin(GL_POLYGON);
                 //glBegin(GL_LINE_LOOP);
-                glColor3f(0,1,1);
+                if (color != NULL)
+                        glColor3f(color->r, color->g, color->b);
                 list<Vertex3D*>::iterator itp;
                 Vertex3D *vertex;
                 for (itp = face->vertices->begin(); itp != face->vertices->end(); itp++) {
