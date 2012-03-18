@@ -120,6 +120,6 @@ void Mesh3D::Repaint() {
 
 
 String Mesh3D::getName() {
-        return "Mesh3D";
+        return "Mesh";
 }
 

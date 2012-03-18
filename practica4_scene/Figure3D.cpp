@@ -10,6 +10,7 @@ Figure3D::Figure3D() {
 
         static int counter = 1;
 
+        counter++;
         human_name = getName() + " " + AnsiString(counter);        
 }
 

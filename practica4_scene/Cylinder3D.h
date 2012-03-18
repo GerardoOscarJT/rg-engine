@@ -24,6 +24,8 @@ public:
         Cylinder3D(double _height, double _rad_top, double _rad_bottom, bool _top, bool _bottom);
         void RecalculateMesh();
 
+        AnsiString getName();
+
 private:
 
 };

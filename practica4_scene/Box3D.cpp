@@ -61,3 +61,7 @@ void Box3D::RecalculateMesh() {
                 f1->vertices->push_back(v5);
 
 }
+
+AnsiString Box3D::getName() {
+        return "Box";
+}

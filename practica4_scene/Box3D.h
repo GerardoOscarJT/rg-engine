@@ -18,6 +18,8 @@ public:
 
         void RecalculateMesh();
 
+        AnsiString getName();
+
 
 
         /** OPCIONAL

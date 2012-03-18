@@ -147,6 +147,7 @@ object Form1: TForm1
           'dos'
           'tres')
         TabOrder = 4
+        Visible = False
       end
     end
     object RightPanel: TScrollBox
@@ -181,7 +182,7 @@ object Form1: TForm1
         Caption = 'Panel5'
         ParentColor = True
         TabOrder = 1
-        object TreeView1: TTreeView
+        object Structure: TTreeView
           Left = 8
           Top = 8
           Width = 265

@@ -74,6 +74,6 @@ void Epitrochoid3D::RecalculateMesh() {
 
 
 String Epitrochoid3D::getName() {
-        return "Group";
+        return "Epitrochoid";
 }
 
