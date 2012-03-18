@@ -122,4 +122,6 @@ void Cylinder3D::RecalculateMesh() {
         
 }
 
-
+AnsiString Cylinder3D::getName() {
+        return "Cylinder";
+}

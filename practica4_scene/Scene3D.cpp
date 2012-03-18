@@ -10,6 +10,7 @@ Scene3D::Scene3D() {
         viewports = new list<ViewPort3D*>();
 
         main_figure = new Group3D();
+        main_figure->human_name = "Escena principal";
 
         // TODO: Quitar stubs:
 }

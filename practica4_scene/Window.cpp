@@ -66,11 +66,19 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 
 
         // ESCENA 1 (coche + epitrocoide) //////////////////////////////////////
-
-
         _epicar = new EpiCar3D();
 
-        _scene->main_figure->elements->push_back(_epicar);
+
+
+        // Meto el epicar en la escena principal y recargo el panel de estructura
+                _scene->main_figure->elements->clear();
+                _scene->main_figure->elements->push_back(_epicar);
+                _scene->Repaint();
+
+                Structure->Items->Clear();
+                LoadStructure(_scene->main_figure, NULL);
+
+
 
 
         _scene->Repaint();
@@ -141,13 +149,52 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
         }
 
 
+
+        if (Key == 65) {
+                Structure->Items->Clear();
+                LoadStructure(_scene->main_figure, NULL);
+        }
+
         if (Key == 90) {
                 // Girar coche a la izquierda
-                _epicar->setTime(_epicar->getTime()-0.01);
+
+                if (Shift.Contains(ssShift)) {
+                        _epicar->setTime(_epicar->getTime()-0.002);
+                } else if (Shift.Contains(ssCtrl)) {
+                        _epicar->setTime(_epicar->getTime()-0.2);
+                } else {
+                        _epicar->setTime(_epicar->getTime()-0.02);
+                }
+
+                /*
+                _vp4->camera->look->x = _epicar->car->translation->x;
+                _vp4->camera->look->y = _epicar->car->translation->y;
+                _vp4->camera->look->z = _epicar->car->translation->z;
+                */
+
                 _scene->Repaint();
         } else if (Key == 88) {
                 // Girar coche a la derecha
-                _epicar->setTime(_epicar->getTime() + 0.01);
+                if (Shift.Contains(ssShift)) {
+                        _epicar->setTime(_epicar->getTime()+0.002);
+                } else if (Shift.Contains(ssCtrl)) {
+                        _epicar->setTime(_epicar->getTime()+0.2);
+                } else {
+                        _epicar->setTime(_epicar->getTime()+0.02);
+                }
+
+                /*
+                _vp4->camera->look->x = _epicar->car->translation->x;
+                _vp4->camera->look->y = _epicar->car->translation->y;
+                _vp4->camera->look->z = _epicar->car->translation->z;
+                */
+
+                _scene->Repaint();
+        }
+
+        if (Key == 67) {
+                _scene->main_figure->elements->clear();
+                _scene->main_figure->elements->push_back(_epicar);
                 _scene->Repaint();
         }
 }
@@ -241,6 +288,22 @@ void __fastcall TForm1::FormMouseWheelUp(TObject *Sender,
         _last_viewport->camera->eye->y /= 1.08;
         _last_viewport->camera->eye->z /= 1.08;
         _scene->Repaint();
+}
+
+void __fastcall TForm1::LoadStructure(Figure3D *figure, TTreeNode* node) {
+
+        TTreeNode *new_node = Structure->Items->AddChild(node, figure->human_name + " [" + figure->getName() + "]");
+
+        if (figure->getName() == "Group") {
+                Group3D * G = dynamic_cast<Group3D*>(figure);
+
+                list<Figure3D*>::iterator it;
+                Figure3D *F;
+                for (it = G->elements->begin(); it != G->elements->end(); it++) {
+                        F = *it;
+                        LoadStructure(F, new_node);
+                }
+        }
 }
 
 void __fastcall TForm1::RecalculateGUI() {

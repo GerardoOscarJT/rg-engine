@@ -41,7 +41,7 @@ __published:	// IDE-managed Components
         TShape *Shape3;
         TShape *Shape4;
         TPanel *Panel5;
-        TTreeView *TreeView1;
+        TTreeView *Structure;
         void __fastcall FormCreate(TObject *Sender);
         void __fastcall FormDestroy(TObject *Sender);
         void __fastcall Button3Click(TObject *Sender);
@@ -77,6 +77,8 @@ private:	// User declarations
 
 
         EpiCar3D *_epicar;
+
+        void __fastcall LoadStructure(Figure3D *figure, TTreeNode* node); 
 
 public:		// User declarations
     __fastcall TForm1(TComponent* Owner);
