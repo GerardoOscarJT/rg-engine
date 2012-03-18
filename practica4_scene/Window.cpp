@@ -16,8 +16,6 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         _last_viewport = NULL;
         _scene = new Scene3D();
 
-
-
         // Agregamos 4 vistas básicas de cámara:
         Camera3D * cam1 = new Camera3D();
         cam1->name = "Alzado";
@@ -70,123 +68,14 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         // ESCENA 1 (coche + epitrocoide) //////////////////////////////////////
 
 
-        _epi = new Epitrochoid3D();
+        _epicar = new EpiCar3D();
 
-        Group3D *rueda = new Group3D(); // Rueda completa (goma + tapacubos)
-                Cylinder3D * goma = new Cylinder3D(1, 3, 3, true, true);
-                        goma->human_name = "Goma";
-                        goma->color = new Color3D(.2, .2, .2);
-                        goma->RecalculateMesh();
-                rueda->elements->push_back(goma);
-
-                Cylinder3D * tapacubos = new Cylinder3D(0.2, 2, 2, true, true);
-                        tapacubos->human_name = "Tapacubos";
-                        tapacubos->color = new Color3D(1, .8, .8);
-                        tapacubos->RecalculateMesh();
-                        tapacubos->translation->z = 1;
-                rueda->elements->push_back(tapacubos);
-
-        Group3D* grupo1 = new Group3D(); // coche
-                grupo1->rotation->z = 20;
-                grupo1->color = new Color3D(0.8,0.2,0.2);
-                Group3D* grupo2 = new Group3D(); // grupo caja
-                        Box3D* box1 = new Box3D(); // Chasis
-                                box1->human_name = "Chasis";
-                                box1->x = 10;
-                                box1->y = 28;
-                                box1->z = 5;
-                                box1->translation->y = -14;
-                                box1->translation->x = -5;
-                                box1->translation->z = 1;
-                                box1->RecalculateMesh();
-                        grupo2->elements->push_back(box1);
-                        Box3D* box2 = new Box3D(); // Ventanas
-                                box2->human_name = "Ventanas";
-                                box2->x = 8;
-                                box2->y = 12;
-                                box2->z = 3;
-                                box2->translation->y = -8;
-                                box2->translation->x = -4;
-                                box2->translation->z = 6;
-                                box2->RecalculateMesh();
-                        grupo2->elements->push_back(box2);
-                grupo1->elements->push_back(grupo2);
-
-                Group3D* grupo3 = new Group3D(); // Grupo rueda delantera (izq)
-                Group3D* grupo4 = new Group3D(); // Grupo rueda delantera (der)
-                Group3D* grupo5 = new Group3D(); // Grupo rueda trasera (izq)
-                Group3D* grupo6 = new Group3D(); // Grupo rueda trasera (der)
-
-
-
-
-
-                        grupo3->elements->push_back(rueda);
-                                grupo3->translation->x = -5.1;
-                                grupo3->translation->y = 9;
-                                grupo3->translation->z = 2;
-                                grupo3->rotation->y = -90;
-                        grupo4->elements->push_back(rueda);
-                                grupo4->translation->x = 5.1;
-                                grupo4->translation->y = 9;
-                                grupo4->translation->z = 2;
-                                grupo4->rotation->y = 90;
-                        grupo5->elements->push_back(rueda);
-                                grupo5->translation->x = -5.1;
-                                grupo5->translation->y = -8;
-                                grupo5->translation->z = 2;
-                                grupo5->rotation->y = -90;
-                        grupo6->elements->push_back(rueda);
-                                grupo6->translation->x = 5.1;
-                                grupo6->translation->y = -8;
-                                grupo6->translation->z = 2;
-                                grupo6->rotation->y = 90;
-                grupo1->elements->push_back(grupo3);
-                grupo1->elements->push_back(grupo4);
-                grupo1->elements->push_back(grupo5);
-                grupo1->elements->push_back(grupo6);
-
-
-        _coche = grupo1;
-
-        _scene->main_figure->elements->push_back(_epi);
-        _scene->main_figure->elements->push_back(grupo1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        _scene->main_figure->elements->push_back(_epicar);
 
 
         _scene->Repaint();
         _last_viewport = _vp4;
         Shape4->Pen->Color = clLime;
-
 
         RecalculateGUI();
 }
@@ -253,16 +142,13 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
 
 
         if (Key == 90) {
-
-                // Girar coche a la izq
-                _a += 0.1;
-                PV3D p = _epi->_frenet_frame.C(_a);
-
-                _coche->translation->x = p.x;
-                _coche->translation->y = p.y;
-                _coche->translation->z = 20;
-        } else {
+                // Girar coche a la izquierda
+                _epicar->setTime(_epicar->getTime()-0.01);
+                _scene->Repaint();
+        } else if (Key == 88) {
                 // Girar coche a la derecha
+                _epicar->setTime(_epicar->getTime() + 0.01);
+                _scene->Repaint();
         }
 }
 
