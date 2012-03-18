@@ -37,6 +37,7 @@ Scene3D::~Scene3D() {
 }
 
 void Scene3D::Repaint() {
+
         list<ViewPort3D*>::iterator it;
         ViewPort3D * vp;
         for (it = viewports->begin(); it != viewports->end(); it++) {

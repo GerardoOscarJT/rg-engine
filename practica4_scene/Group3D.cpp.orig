@@ -7,37 +7,27 @@
 
 
 Group3D::Group3D() : Figure3D() {
+<<<<<<< local
+        figures = new list<Figure3D*>();
+=======
         elements = new list<Figure3D*>();
         color = NULL;
+>>>>>>> other
 }
 
 
 Group3D::~Group3D() {
+
         delete elements;
         if (color != NULL)
                 delete color;
-        /*Figure3D* f3d;
-        for(it_lf = figures->begin(); it_lf != figures->end(); it_lf) {
-                f3d = *it_lf;
-                delete f3d;
-        }
-
-        delete figures;*/
-
 }
 
-void Group3D::addFigure(Figure3D *&f) {
-        figures->push_back(f);
-}
+
+
 
 void Group3D::Repaint() {
         glPushMatrix();
-        //list<Figure3D*>::iterator it_lf;
-        //Figure3D* f3d;
-        /*for(it_lf = figures->begin(); it_lf != figures->end(); it_lf++) {
-                f3d = *it_lf;
-                f3d->Repaint();
-        }*/
 
         glTranslated(translation->x, translation->y, translation->z);
 
@@ -55,9 +45,7 @@ void Group3D::Repaint() {
         for (it = elements->begin(); it != elements->end(); it++) {
                 figure = *it;
                 figure->Repaint();
-        }
 
-        glPopMatrix();
 }
 
 
@@ -94,9 +82,20 @@ void Mesh3D::Repaint() {
 
 
 
+
 }
 */
 
+void Group3D::Repaint() {
+        //Que me corrija Gerardo
+        list<Figure3D*>::iterator it_lf;
+        Figure3D* f3d;
+        for(it_lf = figures->begin(); it_lf != figures->end(); it_lf) {
+                f3d = *it_lf;
+                f3d->Repaint();
+        }
+
+}
 
 
 String Group3D::getName() {

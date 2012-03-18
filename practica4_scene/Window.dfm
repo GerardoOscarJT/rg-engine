@@ -1,5 +1,5 @@
 object Form1: TForm1
-  Left = 266
+  Left = 46
   Top = 158
   AutoScroll = False
   Caption = 'cer'

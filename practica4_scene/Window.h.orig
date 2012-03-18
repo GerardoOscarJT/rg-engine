@@ -76,8 +76,12 @@ private:	// User declarations
         void __fastcall RecalculateGUI();
 
 
-        EpiCar3D *_epicar;
+<<<<<<< local
+        Epitrochoid3D *_epi;
         Cylinder3D *_cyl;
+=======
+        EpiCar3D *_epicar;
+>>>>>>> other
 
         void __fastcall LoadStructure(Figure3D *figure, TTreeNode* node); 
 

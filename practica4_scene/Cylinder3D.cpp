@@ -52,13 +52,10 @@ void Cylinder3D::RecalculateMesh() {
                         Face3D * f = new Face3D();
                         faces->push_back(f);
                         f->vertices->push_back(vect[0]);
-                        f->vertices->push_back(vect[1]);
-                        f->vertices->push_back(vect[3]);
                         f->vertices->push_back(vect[2]);
+                        f->vertices->push_back(vect[3]);
+                        f->vertices->push_back(vect[1]);
                         RecalculateNormals(*f);
-                        //f->normal->x;
-                        //f->normal->x;
-                        //f->normal->x;
                         vect[0] = vect[2];
                         vect[1] = vect[3];
                         i = 2;
@@ -72,48 +69,53 @@ void Cylinder3D::RecalculateMesh() {
         it_v--;
         it_v--;
         f->vertices->push_back(*it_v);
+        f->vertices->push_back(aux[0]);
+        f->vertices->push_back(aux[1]);
         it_v++;
         f->vertices->push_back(*it_v);
-        f->vertices->push_back(aux[1]);
-        f->vertices->push_back(aux[0]);
+        RecalculateNormals(*f);
 
 
+        //Tengo mis reservas. Si no funciona, cambiar
 
-        //if(top) {
         if(bottom) {
-                Face3D* top_face = new Face3D();
-                faces->push_back(top_face);
-                list<Vertex3D*>::iterator it_tf;
-                Vertex3D* v3d;
-                int i=0;
-                for(it_tf = vertices->begin(); it_tf != vertices->end(); it_tf++) {
-                        v3d = *it_tf;
-                        if(i%2 == 0) {
-                                top_face->vertices->push_back(v3d);
-                        }
-                        i++;
-                }
-
-        }
-
-
-
-        //if(bottom) {
-        if(top) {
                 Face3D* top_face = new Face3D();
                 faces->push_back(top_face);
                 list<Vertex3D*>::reverse_iterator rit_tf;
                 Vertex3D* v3d;
+                rit_tf = vertices->rbegin();
+                rit_tf++;
                 int i=0;
-                for(rit_tf = vertices->rbegin(); rit_tf != vertices->rend(); rit_tf++) {
+                for(; rit_tf != vertices->rend(); rit_tf++) {
                         v3d = *rit_tf;
                         if(i%2 == 0) {
                                 top_face->vertices->push_back(v3d);
                         }
                         i++;
                 }
-
+                RecalculateNormals(*f);
         }
+
+
+
+        if(top) {
+                Face3D* top_face = new Face3D();
+                faces->push_back(top_face);
+                list<Vertex3D*>::iterator it_tf;
+                Vertex3D* v3d;
+                it_tf = vertices->begin();
+                it_tf++;
+                int i=0;
+                for(; it_tf != vertices->end(); it_tf++) {
+                        v3d = *it_tf;
+                        if(i%2 == 0) {
+                                top_face->vertices->push_back(v3d);
+                        }
+                        i++;
+                }
+                RecalculateNormals(*f);
+        }
+
 
 
 
