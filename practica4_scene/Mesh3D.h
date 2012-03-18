@@ -17,6 +17,7 @@ public:
         list<Face3D*>* faces;
 
         void RecalculateNormals(Face3D&);
+        void drawNormals();
 
         // Extiendo clase Figure3D
         void Repaint();

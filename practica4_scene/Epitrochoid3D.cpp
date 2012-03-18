@@ -19,8 +19,6 @@ Epitrochoid3D::Epitrochoid3D() : Mesh3D() {
 }
 
 
-
-
 void Epitrochoid3D::RecalculateMesh() {
         clearLists();
 
