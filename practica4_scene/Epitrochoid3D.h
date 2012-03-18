@@ -23,9 +23,12 @@ public:
 
         // Le cambio el nombre:
         String getName();
-                
-private:
+
+
         FrenetFrameEpitrochoid _frenet_frame;
+                        
+private:
+
 
 
 

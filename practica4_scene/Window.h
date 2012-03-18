@@ -74,6 +74,12 @@ private:	// User declarations
 
         void __fastcall RecalculateGUI();
 
+
+        Epitrochoid3D *_epi;
+
+        Group3D *_coche;
+        double _a;        
+
 public:		// User declarations
     __fastcall TForm1(TComponent* Owner);
 };

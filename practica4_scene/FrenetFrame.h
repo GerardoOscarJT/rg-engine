@@ -16,11 +16,12 @@ public:
         PV3D center;
 
 
-protected:
         virtual PV3D C(double theta) = 0;
         virtual PV3D C1(double theta) = 0;
         virtual PV3D C2(double theta) = 0;
 
+protected:
+        
         double _t;
 
         PV3D _T;
