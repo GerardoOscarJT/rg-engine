@@ -12,11 +12,11 @@ public:
         FrenetFrameEpitrochoid();
 
 
-private:
         PV3D C(double theta);
         PV3D C1(double theta);
         PV3D C2(double theta);
 
+private:
 
 
 

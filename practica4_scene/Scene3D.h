@@ -32,11 +32,6 @@ private:
         void RepaintViewPort(ViewPort3D*);
         GLfloat PosicionLuz0[4];
 
-        Box3D *_box;
-        Cylinder3D* _cylinder;
-
-
-        Epitrochoid3D * _epi;
 
 
 
