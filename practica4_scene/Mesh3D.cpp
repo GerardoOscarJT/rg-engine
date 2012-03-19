@@ -5,6 +5,8 @@
 
 
 Mesh3D::Mesh3D() {
+        showNormals = false;
+        filled = true;
         color = NULL;
         mode = 2;
         vertices = new list<Vertex3D*>();
@@ -46,9 +48,9 @@ void Mesh3D::clearLists() {
 
 void Mesh3D::RecalculateNormals(Face3D &f) {
 
-        /*
+        
         // TODO: completar
-        int nx = 0, ny = 0, nz = 0; //Componentes del vector normal
+        double nx = 0, ny = 0, nz = 0; //Componentes del vector normal
 
         list<Vertex3D*>::iterator it;
         Vertex3D* v3d, *suc_v3d;
@@ -73,9 +75,56 @@ void Mesh3D::RecalculateNormals(Face3D &f) {
         f.normal->z = nz;
         f.normal->normalize();
 
-        */
+        
 
 }
+
+
+
+void Mesh3D::drawNormals() {
+
+        list<Face3D*>::iterator it;
+        Face3D* f;
+        for(it = faces->begin(); it != faces->end(); it++) {
+                f = *it;
+                //Obtenemos el tamaño de la lista de vértices
+                //Debería ser menor que 200, ¿no?
+                int tam = (int)f->vertices->size();
+                //Creamos la lista de los vértices
+                Vertex3D** aux = new Vertex3D*[tam];
+                int i = 0;
+
+                double posX = 0, posY = 0, posZ = 0;
+
+
+
+                list<Vertex3D*>::iterator it_v;
+                for(it_v = f->vertices->begin(); it_v != f->vertices->end(); it_v++) {
+                        aux[i] = *it_v;
+                        posX = posX + aux[i]->x;
+                        posY = posY + aux[i]->y;
+                        posZ = posZ + aux[i]->z;
+                        i++;
+                }
+
+                //Cálculo del punto medio de la cara
+                posX /= tam;
+                posY /= tam;
+                posZ /= tam;
+
+                delete aux;
+
+                //Dibujo del vector normal
+                glBegin(GL_LINES);
+                glVertex3f(posX, posY, posZ);
+                glVertex3f(posX + 20*f->normal->x,
+                           posY + 20*f->normal->y,
+                           posZ + 20*f->normal->z);
+                glEnd();
+        }
+
+}
+
 
 
 void Mesh3D::Repaint() {
@@ -98,8 +147,12 @@ void Mesh3D::Repaint() {
 
         for (it=faces->begin(); it != faces->end(); it++) {
                 face = *it;
-                //glBegin(GL_POLYGON);
-                glBegin(GL_LINE_LOOP);
+                if(filled) {
+                        glBegin(GL_POLYGON);
+                }
+                else {
+                        glBegin(GL_LINE_LOOP);
+                }
                 if (color != NULL)
                         glColor3f(color->r, color->g, color->b);
                 list<Vertex3D*>::iterator itp;
@@ -111,6 +164,10 @@ void Mesh3D::Repaint() {
 
                 }
                 glEnd();
+        }
+
+        if(showNormals) {
+                drawNormals();
         }
 
 
