@@ -74,15 +74,9 @@ void Mesh3D::RecalculateNormals(Face3D &f) {
         f.normal->y = ny;
         f.normal->z = nz;
         f.normal->normalize();
-
-        
-
 }
 
-
-
 void Mesh3D::drawNormals() {
-
         list<Face3D*>::iterator it;
         Face3D* f;
         for(it = faces->begin(); it != faces->end(); it++) {
@@ -95,8 +89,6 @@ void Mesh3D::drawNormals() {
                 int i = 0;
 
                 double posX = 0, posY = 0, posZ = 0;
-
-
 
                 list<Vertex3D*>::iterator it_v;
                 for(it_v = f->vertices->begin(); it_v != f->vertices->end(); it_v++) {
@@ -130,7 +122,6 @@ void Mesh3D::drawNormals() {
 void Mesh3D::Repaint() {
         // TODO: completar esto
 
-
         glPushMatrix();
 
         glTranslated(translation->x, translation->y, translation->z);
@@ -138,9 +129,6 @@ void Mesh3D::Repaint() {
         glRotated(rotation->x, 1,0,0);
         glRotated(rotation->y, 0,1,0);
         glRotated(rotation->z, 0,0,1);
-
-
-
 
         list<Face3D*>::iterator it;
         Face3D *face;
