@@ -18,7 +18,7 @@ public:
         bool showNormals;
         bool filled;
 
-        void RecalculateNormals(Face3D&);
+        void RecalculateNormals();
         void drawNormals();
 
         // Extiendo clase Figure3D

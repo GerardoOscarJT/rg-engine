@@ -1,12 +1,12 @@
-Error 00096. 0x300010 (Thread 0x0244):
+Error 00096. 0x300010 (Thread 0x0B28):
 Resource leak: The object (0x9D4C2C8) was never deleted
 
 The object (0x09D4C2C8) [size: 44 bytes] was created with new
 Call Tree:
-   0x00412084(=EngineRG.exe:0x01:011084) C:\Documents and Settings\RubenF\Escritorio\IGR\practica4_scene\Face3D.cpp#11
-   0x00415417(=EngineRG.exe:0x01:014417) C:\Documents and Settings\RubenF\Escritorio\IGR\practica4_scene\Epitrochoid3D.cpp#47
-   0x00417B9A(=EngineRG.exe:0x01:016B9A) C:\Documents and Settings\RubenF\Escritorio\IGR\practica4_scene\EpiCar3D.cpp#120
-   0x0040250B(=EngineRG.exe:0x01:00150B) C:\Documents and Settings\RubenF\Escritorio\IGR\practica4_scene\Window.cpp#69
+   0x00417D44(=EngineRG.exe:0x01:016D44) C:\Documents and Settings\RubenF\Escritorio\IGR\practica4_scene\Face3D.cpp#11
+   0x0041B053(=EngineRG.exe:0x01:01A053) C:\Documents and Settings\RubenF\Escritorio\IGR\practica4_scene\Epitrochoid3D.cpp#47
+   0x0041D7D6(=EngineRG.exe:0x01:01C7D6) C:\Documents and Settings\RubenF\Escritorio\IGR\practica4_scene\EpiCar3D.cpp#120
+   0x0040256D(=EngineRG.exe:0x01:00156D) C:\Documents and Settings\RubenF\Escritorio\IGR\practica4_scene\Window.cpp#72
    0x40053323(=VCL50.BPL:0x01:052323)
    0x4005301F(=VCL50.BPL:0x01:05201F)
 

@@ -236,7 +236,6 @@ object Form1: TForm1
     end
     object Copa1: TMenuItem
       Caption = 'Copa'
-      OnClick = Copa1Click
     end
     object Ayuda1: TMenuItem
       Caption = 'Ayuda'

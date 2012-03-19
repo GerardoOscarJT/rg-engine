@@ -54,6 +54,7 @@ void Revolution3D::RecalculateMesh() {
                         F->vertices->push_back(V[i+1][j]);
                 }
         }
+        RecalculateNormals();
 
         // Destruyo la estructura auxiliar V
         for (int i=0; i<np; i++) {

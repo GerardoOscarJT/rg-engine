@@ -55,7 +55,7 @@ void Cylinder3D::RecalculateMesh() {
                         f->vertices->push_back(vect[2]);
                         f->vertices->push_back(vect[3]);
                         f->vertices->push_back(vect[1]);
-                        RecalculateNormals(*f);
+                        //RecalculateNormals();
                         vect[0] = vect[2];
                         vect[1] = vect[3];
                         i = 2;
@@ -73,7 +73,7 @@ void Cylinder3D::RecalculateMesh() {
         f->vertices->push_back(aux[1]);
         it_v++;
         f->vertices->push_back(*it_v);
-        RecalculateNormals(*f);
+        //RecalculateNormals();
 
 
         //Tengo mis reservas. Si no funciona, cambiar
@@ -93,7 +93,7 @@ void Cylinder3D::RecalculateMesh() {
                         }
                         i++;
                 }
-                RecalculateNormals(*f);
+                //RecalculateNormals();
         }
 
 
@@ -113,10 +113,10 @@ void Cylinder3D::RecalculateMesh() {
                         }
                         i++;
                 }
-                RecalculateNormals(*f);
+                //RecalculateNormals();
         }
 
-
+        RecalculateNormals();
 
 
 

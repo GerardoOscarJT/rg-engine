@@ -46,36 +46,44 @@ void Mesh3D::clearLists() {
 }
 
 
-void Mesh3D::RecalculateNormals(Face3D &f) {
+void Mesh3D::RecalculateNormals() {
 
         
         // TODO: completar
-        double nx = 0, ny = 0, nz = 0; //Componentes del vector normal
 
-        list<Vertex3D*>::iterator it;
-        Vertex3D* v3d, *suc_v3d;
-        //for(int j = 0; j < 3; j++) {  //3 debería ser el número de vértices - 1 de la cara
-        for(it = f.vertices->begin(); it != f.vertices->end(); it++) {
-                v3d = *it;
-                if(++it != f.vertices->end()) {
-                        suc_v3d = *(it); //Le doy el siguiente
-                        it--; //Pero una vez lo tengo, vuelvo a dejar donde estaba
+        list<Face3D*>::iterator it_f;
+        Face3D *f;
+        for(it_f = faces->begin(); it_f != faces->end(); it_f++) {
+                f = *it_f;
+                double nx = 0, ny = 0, nz = 0; //Componentes del vector normal
+
+                list<Vertex3D*>::iterator it;
+                Vertex3D* v3d, *suc_v3d;
+                //for(int j = 0; j < 3; j++) {  //3 debería ser el número de vértices - 1 de la cara
+                for(it = f->vertices->begin(); it != f->vertices->end(); it++) {
+                        v3d = *it;
+                        if(++it != f->vertices->end()) {
+                                suc_v3d = *(it); //Le doy el siguiente
+                                it--; //Pero una vez lo tengo, vuelvo a dejar donde estaba
+                        }
+                        else {
+                                it--;
+                                suc_v3d = *(f->vertices->begin());
+                        }
+                        nx += (v3d->y - suc_v3d->y)*(v3d->z + suc_v3d->z);
+                        ny += (v3d->z - suc_v3d->z)*(v3d->x + suc_v3d->x);
+                        nz += (v3d->x - suc_v3d->x)*(v3d->y + suc_v3d->y);
                 }
-                else {
-                        it--;
-                        suc_v3d = *(f.vertices->begin());
-                }
-                nx += (v3d->y - suc_v3d->y)*(v3d->z + suc_v3d->z);
-                ny += (v3d->z - suc_v3d->z)*(v3d->x + suc_v3d->x);
-                nz += (v3d->x - suc_v3d->x)*(v3d->y + suc_v3d->y);
-        }
 
-        f.normal->x = nx;
-        f.normal->y = ny;
-        f.normal->z = nz;
-        f.normal->normalize();
+                f->normal->x = nx;
+                f->normal->y = ny;
+                f->normal->z = nz;
+                f->normal->normalize();
 
-        
+        } 
+
+
+
 
 }
 
