@@ -234,6 +234,10 @@ object Form1: TForm1
     object Archivo1: TMenuItem
       Caption = 'Archivo'
     end
+    object Copa1: TMenuItem
+      Caption = 'Copa'
+      OnClick = Copa1Click
+    end
     object Ayuda1: TMenuItem
       Caption = 'Ayuda'
     end

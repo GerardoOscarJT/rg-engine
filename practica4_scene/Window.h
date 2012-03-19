@@ -10,6 +10,7 @@
 #include <ExtCtrls.hpp>
 #include "Scene3D.h"
 #include "EpiCar3D.h"
+#include "Glass3D.h"
 #include <Menus.hpp>
 #include <ComCtrls.hpp>
 #include <ToolWin.hpp>
@@ -20,7 +21,6 @@ class TForm1 : public TForm
 __published:	// IDE-managed Components
         TMainMenu *MainMenu1;
         TMenuItem *Archivo1;
-        TMenuItem *Ayuda1;
         TStatusBar *StatusBar;
         TPopupMenu *PopupMenu1;
         TMenuItem *Camaras1;
@@ -42,6 +42,8 @@ __published:	// IDE-managed Components
         TShape *Shape4;
         TPanel *Panel5;
         TTreeView *Structure;
+        TMenuItem *Copa1;
+        TMenuItem *Ayuda1;
         void __fastcall FormCreate(TObject *Sender);
         void __fastcall FormDestroy(TObject *Sender);
         void __fastcall Button3Click(TObject *Sender);
@@ -62,6 +64,7 @@ __published:	// IDE-managed Components
           TShiftState Shift, TPoint &MousePos, bool &Handled);
         void __fastcall FormMouseWheelUp(TObject *Sender,
           TShiftState Shift, TPoint &MousePos, bool &Handled);
+        void __fastcall Copa1Click(TObject *Sender);
 private:	// User declarations
 
         Scene3D *_scene;
@@ -78,6 +81,8 @@ private:	// User declarations
 
         EpiCar3D *_epicar;
         Cylinder3D *_cyl;
+        Glass3D *_glass;
+        bool _showGlass;
 
         void __fastcall LoadStructure(Figure3D *figure, TTreeNode* node); 
 

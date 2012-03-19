@@ -67,6 +67,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 
         // ESCENA 1 (coche + epitrocoide) //////////////////////////////////////
         _epicar = new EpiCar3D();
+        _glass = new Glass3D();
 
         //_cyl = new Cylinder3D(150, 30, 30, true, true);
         //_cyl->RecalculateMesh();
@@ -74,9 +75,21 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 
 
         // Meto el epicar en la escena principal y recargo el panel de estructura
+                /*
                 _scene->main_figure->elements->clear();
                 _scene->main_figure->elements->push_back(_epicar);
+                _scene->Repaint();*/
+
+
+
+                _scene->main_figure->elements->clear();
+                _scene->main_figure->elements->push_back(_glass);
+                _glass->RecalculateMesh();
                 _scene->Repaint();
+                
+
+
+                //_glass->Repaint();
 
                 Structure->Items->Clear();
                 LoadStructure(_scene->main_figure, NULL);
@@ -213,11 +226,13 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
 
         if(Key == 71 || Key == 103) {
                 _epicar->epi->filled = false;
+                _glass->filled = false;
                 _scene->Repaint();
         }
 
         if(Key == 72 || Key == 104) {
                 _epicar->epi->filled = true;
+                _glass->filled = true;
                 _scene->Repaint();
         }
 
@@ -414,4 +429,12 @@ void __fastcall TForm1::RecalculateGUI() {
 
 
 
+
+
+
+void __fastcall TForm1::Copa1Click(TObject *Sender)
+{
+        _showGlass = true;        
+}
+//---------------------------------------------------------------------------
 
