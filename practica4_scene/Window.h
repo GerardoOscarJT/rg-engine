@@ -15,6 +15,7 @@
 #include <ToolWin.hpp>
 #include <map.h>
 #include "Revolution3D.h"
+#include <ImgList.hpp>
 
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
@@ -44,6 +45,10 @@ __published:	// IDE-managed Components
         TShape *Shape4;
         TPanel *Panel5;
         TTreeView *Structure;
+        TImageList *ImageList1;
+        TToolButton *ToolButton3;
+        TToolButton *ToolButton4;
+        TToolButton *ToolButton5;
         void __fastcall FormCreate(TObject *Sender);
         void __fastcall FormDestroy(TObject *Sender);
         void __fastcall Button3Click(TObject *Sender);
@@ -65,6 +70,10 @@ __published:	// IDE-managed Components
         void __fastcall FormMouseWheelUp(TObject *Sender,
           TShiftState Shift, TPoint &MousePos, bool &Handled);
         void __fastcall StructureClick(TObject *Sender);
+        void __fastcall ToolButton1Click(TObject *Sender);
+        void __fastcall ToolButton2Click(TObject *Sender);
+        void __fastcall ToolButton4Click(TObject *Sender);
+        void __fastcall ToolButton5Click(TObject *Sender);
 private:	// User declarations
 
         Scene3D *_scene;
