@@ -1,5 +1,5 @@
 object Form1: TForm1
-  Left = 266
+  Left = 46
   Top = 158
   AutoScroll = False
   Caption = 'cer'
@@ -233,6 +233,10 @@ object Form1: TForm1
     Top = 32
     object Archivo1: TMenuItem
       Caption = 'Archivo'
+    end
+    object Copa1: TMenuItem
+      Caption = 'Copa'
+      OnClick = Copa1Click
     end
     object Ayuda1: TMenuItem
       Caption = 'Ayuda'
