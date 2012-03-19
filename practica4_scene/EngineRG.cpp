@@ -21,6 +21,7 @@ USEUNIT("Epitrochoid3D.cpp");
 USEUNIT("Group3D.cpp");
 USEUNIT("Group3Delement.cpp");
 USEUNIT("EpiCar3D.cpp");
+USEUNIT("Glass3D.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

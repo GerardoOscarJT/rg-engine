@@ -1,75 +1,13 @@
-Functions called:
- vsnprintf (1232 times)
- atan2l (616 times)
- sqrt (1245 times)
- pow (3239 times)
- sin (2379 times)
- cos (2379 times)
- atan (2 times)
- delete (4244 times)
- SysReallocMem (18 times)
- SysFreeMem (2577 times)
- SysGetMem (2577 times)
- realloc (1 times)
- memcpy (1 times)
- delete[] (63 times)
- free (26 times)
- new[] (75 times)
- new (4249 times)
- calloc (5 times)
- malloc (20 times)
-Resource types used:
- object array (75 allocs, 74 max)
- object (4249 allocs, 4213 max)
- memory block (2603 allocs, 520 max)
-Modules used:
- 00400000 03/17/2012 19:39:12 C:\Documents and
- Settings\RubenF\Escritorio\IGR\practica4_scene\EngineRG.exe
- 092F0000 06/08/2005 10:11:18 C:\WINDOWS\system32\igldev32.dll
- 0CD00000 01/31/2000 04:00:00 C:\Archivos de
- programa\Borland\CBuilder5\Bin\CG32.DLL
- 10000000 06/08/2005 10:09:28 C:\WINDOWS\system32\iglicd32.dll
- 32500000 01/31/2000 04:00:00 C:\Archivos de
- programa\Borland\CBuilder5\Bin\CC3250MT.DLL
- 40000000 01/24/2000 04:01:00 C:\WINDOWS\system32\VCL50.BPL
- 41000000 01/31/2000 04:00:00 C:\Archivos de
- programa\Borland\CBuilder5\Bin\BORLNDMM.DLL
- 58C30000 08/20/2004 11:00:00 C:\WINDOWS\system32\comctl32.dll
- 5B150000 08/20/2004 11:00:00 C:\WINDOWS\system32\uxtheme.dll
- 5F120000 08/20/2004 11:00:00 C:\WINDOWS\system32\OPENGL32.dll
- 5FEA0000 08/20/2004 11:00:00 C:\WINDOWS\system32\GLU32.DLL
- 63000000 10/08/2004 13:44:16 C:\WINDOWS\system32\SynTPFcs.dll
- 64D00000 02/23/2012 17:23:20 C:\Archivos de programa\Alwil
- Software\Avast5\snxhk.dll
- 67320000 04/01/2005 19:26:06
- C:\ARCHIV~1\ARCHIV~1\SYMANT~1\ANTISPAM\asOEHook.dll
- 71A20000 08/20/2004 11:00:00 C:\WINDOWS\system32\WS2HELP.dll
- 71A30000 08/20/2004 11:00:00 C:\WINDOWS\system32\WS2_32.dll
- 71A50000 08/20/2004 11:00:00 C:\WINDOWS\system32\wsock32.dll
- 71AA0000 08/20/2004 11:00:00 C:\WINDOWS\system32\mpr.dll
- 72F80000 08/20/2004 11:00:00 C:\WINDOWS\system32\winspool.drv
- 736E0000 08/20/2004 11:00:00 C:\WINDOWS\system32\DDRAW.dll
- 73B40000 08/20/2004 11:00:00 C:\WINDOWS\system32\DCIMAN32.dll
- 746B0000 08/20/2004 11:00:00 C:\WINDOWS\system32\MSCTF.dll
- 74CC0000 08/20/2004 11:00:00 C:\WINDOWS\system32\oledlg.dll
- 75160000 02/27/2009 06:07:36 C:\WINDOWS\system32\msctfime.ime
- 76340000 08/20/2004 11:00:00 C:\WINDOWS\system32\IMM32.DLL
- 76360000 08/20/2004 11:00:00 C:\WINDOWS\system32\comdlg32.dll
- 770F0000 08/20/2004 11:00:00 C:\WINDOWS\system32\oleaut32.dll
- 773A0000 08/20/2004 11:00:00
- C:\WINDOWS\WinSxS\x86_Microsoft.Windows.Common-Controls_6595b64144ccf1df_6.0.
-2600.2180_x-ww_a84f1ff9\comctl32.dll
- 774B0000 03/09/2005 08:18:28 C:\WINDOWS\system32\ole32.dll
- 77BD0000 08/20/2004 11:00:00 C:\WINDOWS\system32\version.dll
- 77BE0000 08/20/2004 11:00:00 C:\WINDOWS\system32\msvcrt.dll
- 77D10000 08/20/2004 11:00:00 C:\WINDOWS\system32\user32.dll
- 77DA0000 02/09/2009 11:03:22 C:\WINDOWS\system32\advapi32.dll
- 77E50000 04/15/2009 16:17:26 C:\WINDOWS\system32\RPCRT4.dll
- 77EF0000 10/23/2008 14:00:06 C:\WINDOWS\system32\GDI32.dll
- 77F40000 02/26/2010 07:12:10 C:\WINDOWS\system32\SHLWAPI.dll
- 77FC0000 06/25/2009 09:18:20 C:\WINDOWS\system32\Secur32.dll
- 7C340000 02/21/2003 19:42:22 C:\WINDOWS\system32\MSVCR71.dll
- 7C800000 03/21/2009 15:20:08 C:\WINDOWS\system32\kernel32.dll
- 7C910000 02/09/2009 11:03:22 C:\WINDOWS\system32\ntdll.dll
- 7E6A0000 07/03/2008 14:15:12 C:\WINDOWS\system32\SHELL32.dll
-==========================================
+Error 00096. 0x300010 (Thread 0x0244):
+Resource leak: The object (0x9D4C2C8) was never deleted
+
+The object (0x09D4C2C8) [size: 44 bytes] was created with new
+Call Tree:
+   0x00412084(=EngineRG.exe:0x01:011084) C:\Documents and Settings\RubenF\Escritorio\IGR\practica4_scene\Face3D.cpp#11
+   0x00415417(=EngineRG.exe:0x01:014417) C:\Documents and Settings\RubenF\Escritorio\IGR\practica4_scene\Epitrochoid3D.cpp#47
+   0x00417B9A(=EngineRG.exe:0x01:016B9A) C:\Documents and Settings\RubenF\Escritorio\IGR\practica4_scene\EpiCar3D.cpp#120
+   0x0040250B(=EngineRG.exe:0x01:00150B) C:\Documents and Settings\RubenF\Escritorio\IGR\practica4_scene\Window.cpp#69
+   0x40053323(=VCL50.BPL:0x01:052323)
+   0x4005301F(=VCL50.BPL:0x01:05201F)
+
+------------------------------------------
