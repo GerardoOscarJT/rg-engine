@@ -72,7 +72,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         _epicar = new EpiCar3D();
 
 
-        // ESCENA 2 (coa) //////////////////////////////////////////////////////
+        // ESCENA 2 (copa) /////////////////////////////////////////////////////
         _copa = new Revolution3D();
 
         _copa->color = new Color3D(1,1,1);
@@ -91,33 +91,13 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 
         _copa->RecalculateMesh();
 
-
-        // Meto el epicar en la escena principal
-        _scene->main_figure->elements->clear();
-
-
-
-
-
-
-
-
-
-
-        _scene->main_figure->elements->push_back(_copa);
-
-
         // recargo el panel de estructura
         Structure->Items->Clear();
         LoadStructure(_scene->main_figure, NULL);
 
-
-
-
         _scene->Repaint();
         _last_viewport = _vp4;
         Shape4->Pen->Color = clLime;
-
 
         WindowState = wsMaximized;
 
@@ -184,13 +164,6 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                 _scene->Repaint();
         }
 
-
-
-        if (Key == 65) {
-                Structure->Items->Clear();
-                LoadStructure(_scene->main_figure, NULL);
-        }
-
         if (Key == 90) {
                 // Girar coche a la izquierda
 
@@ -228,16 +201,7 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                 _scene->Repaint();
         }
 
-        if (Key == 67) {
-                _scene->main_figure->elements->clear();
-                _scene->main_figure->elements->push_back(_epicar);
-                _scene->Repaint();
-        }
-        if (Key == 86) {
-                _scene->main_figure->elements->clear();
-                _scene->main_figure->elements->push_back(_copa);
-                _scene->Repaint();
-        }
+
 }
 
 void __fastcall TForm1::FormPaint(TObject *Sender) {
@@ -430,7 +394,36 @@ void __fastcall TForm1::RecalculateGUI() {
 }
 
 void __fastcall TForm1::StructureClick(TObject *Sender){
-        TTreeNode *sel = Structure->Selected;
-
+        //TTreeNode *sel = Structure->Selected;
 }
+
+void __fastcall TForm1::ToolButton1Click(TObject *Sender) {
+        _scene->main_figure->elements->clear();
+        _scene->main_figure->elements->push_back(_copa);
+        _scene->Repaint();
+        Structure->Items->Clear();
+        LoadStructure(_scene->main_figure, NULL);
+}
+
+void __fastcall TForm1::ToolButton2Click(TObject *Sender) {
+        _scene->main_figure->elements->clear();
+        _scene->main_figure->elements->push_back(_epicar);
+        _scene->Repaint();
+        Structure->Items->Clear();
+        LoadStructure(_scene->main_figure, NULL);
+}
+
+void __fastcall TForm1::ToolButton4Click(TObject *Sender) {
+                _epicar->epi->filled = !ToolButton4->Down;
+                _copa->filled = !ToolButton4->Down;
+                _scene->Repaint();
+}
+
+void __fastcall TForm1::ToolButton5Click(TObject *Sender)
+{
+        _epicar->epi->showNormals = ToolButton5->Down;
+        _copa->showNormals = ToolButton5->Down;
+        _scene->Repaint();
+}
+//---------------------------------------------------------------------------
 
