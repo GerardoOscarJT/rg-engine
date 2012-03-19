@@ -5,6 +5,8 @@
 
 
 Mesh3D::Mesh3D() {
+        showNormals = false;
+        filled = true;
         color = NULL;
         mode = 2;
         vertices = new list<Vertex3D*>();
@@ -112,6 +114,7 @@ void Mesh3D::drawNormals() {
 
                 delete aux;
 
+                //Dibujo del vector normal
                 glBegin(GL_LINES);
                 glVertex3f(posX, posY, posZ);
                 glVertex3f(posX + 20*f->normal->x,
@@ -144,8 +147,12 @@ void Mesh3D::Repaint() {
 
         for (it=faces->begin(); it != faces->end(); it++) {
                 face = *it;
-                glBegin(GL_POLYGON);
-                //glBegin(GL_LINE_LOOP);
+                if(filled) {
+                        glBegin(GL_POLYGON);
+                }
+                else {
+                        glBegin(GL_LINE_LOOP);
+                }
                 if (color != NULL)
                         glColor3f(color->r, color->g, color->b);
                 list<Vertex3D*>::iterator itp;
@@ -159,7 +166,9 @@ void Mesh3D::Repaint() {
                 glEnd();
         }
 
-        drawNormals();
+        if(showNormals) {
+                drawNormals();
+        }
 
 
         glPopMatrix();

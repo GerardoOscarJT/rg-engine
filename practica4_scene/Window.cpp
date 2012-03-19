@@ -200,6 +200,27 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                 _scene->main_figure->elements->push_back(_epicar);
                 _scene->Repaint();
         }
+
+        if(Key == 74 || Key == 106) {
+                _epicar->epi->showNormals = true;
+                _scene->Repaint();
+        }
+
+        if(Key == 75 || Key == 107) {
+                _epicar->epi->showNormals = false;
+                _scene->Repaint();
+        }
+
+        if(Key == 71 || Key == 103) {
+                _epicar->epi->filled = false;
+                _scene->Repaint();
+        }
+
+        if(Key == 72 || Key == 104) {
+                _epicar->epi->filled = true;
+                _scene->Repaint();
+        }
+
 }
 
 void __fastcall TForm1::FormPaint(TObject *Sender) {

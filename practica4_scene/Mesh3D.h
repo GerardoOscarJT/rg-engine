@@ -15,6 +15,8 @@ public:
         int mode;
         list<Vertex3D*>* vertices;
         list<Face3D*>* faces;
+        bool showNormals;
+        bool filled;
 
         void RecalculateNormals(Face3D&);
         void drawNormals();
