@@ -89,7 +89,6 @@ void Glass3D::RecalculateMesh() {
                                 f->vertices->push_back(aux[6*k + (l+6)]);
                                 f->vertices->push_back(aux[6*k + (l+7)]);
                                 f->vertices->push_back(aux[6*k + (l+1)]);
-                                RecalculateNormals(*f);
                         }
 
                         if(k == 18) {
@@ -101,7 +100,6 @@ void Glass3D::RecalculateMesh() {
                                         f->vertices->push_back(aux[l]);
                                         f->vertices->push_back(aux[l+1]);
                                         f->vertices->push_back(aux[6*k + (l+1)]);
-                                        RecalculateNormals(*f);
                                 }
                         }
 
