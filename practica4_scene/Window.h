@@ -13,6 +13,8 @@
 #include <Menus.hpp>
 #include <ComCtrls.hpp>
 #include <ToolWin.hpp>
+#include <map.h>
+#include "Revolution3D.h"
 
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
@@ -62,6 +64,7 @@ __published:	// IDE-managed Components
           TShiftState Shift, TPoint &MousePos, bool &Handled);
         void __fastcall FormMouseWheelUp(TObject *Sender,
           TShiftState Shift, TPoint &MousePos, bool &Handled);
+        void __fastcall StructureClick(TObject *Sender);
 private:	// User declarations
 
         Scene3D *_scene;
@@ -78,7 +81,13 @@ private:	// User declarations
 
         EpiCar3D *_epicar;
 
-        void __fastcall LoadStructure(Figure3D *figure, TTreeNode* node); 
+        map<TTreeNode*, Figure3D*> *_editable_figures;
+
+        Revolution3D *_copa;
+
+
+
+        void __fastcall LoadStructure(Figure3D *figure, TTreeNode* node);
 
 public:		// User declarations
     __fastcall TForm1(TComponent* Owner);

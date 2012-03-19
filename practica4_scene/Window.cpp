@@ -1,7 +1,6 @@
 #include <vcl.h>
 #pragma hdrstop
 #include "Window.h"
-//---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TForm1 *Form1;
@@ -15,6 +14,10 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 
         _last_viewport = NULL;
         _scene = new Scene3D();
+
+        _editable_figures = new map<TTreeNode*, Figure3D*>() ;
+
+
 
         // Agregamos 4 vistas básicas de cámara:
         Camera3D * cam1 = new Camera3D();
@@ -69,14 +72,44 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         _epicar = new EpiCar3D();
 
 
+        // ESCENA 2 (coa) //////////////////////////////////////////////////////
+        _copa = new Revolution3D();
 
-        // Meto el epicar en la escena principal y recargo el panel de estructura
-                _scene->main_figure->elements->clear();
-                _scene->main_figure->elements->push_back(_epicar);
-                _scene->Repaint();
+        _copa->color = new Color3D(1,1,1);
 
-                Structure->Items->Clear();
-                LoadStructure(_scene->main_figure, NULL);
+        _copa->n = 64;
+
+        _copa->points->push_back(new PV3D(0,0,8));
+        _copa->points->push_back(new PV3D(50,0,0));
+        _copa->points->push_back(new PV3D(50,0,2));
+        _copa->points->push_back(new PV3D(4,0,10));
+        _copa->points->push_back(new PV3D(4,0,100));
+        _copa->points->push_back(new PV3D(100,0,200));
+        _copa->points->push_back(new PV3D(99,0,201));
+        _copa->points->push_back(new PV3D(98,0,200));
+        _copa->points->push_back(new PV3D(0,0,102));
+
+        _copa->RecalculateMesh();
+
+
+        // Meto el epicar en la escena principal
+        _scene->main_figure->elements->clear();
+
+
+
+
+
+
+
+
+
+
+        _scene->main_figure->elements->push_back(_copa);
+
+
+        // recargo el panel de estructura
+        Structure->Items->Clear();
+        LoadStructure(_scene->main_figure, NULL);
 
 
 
@@ -84,6 +117,9 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         _scene->Repaint();
         _last_viewport = _vp4;
         Shape4->Pen->Color = clLime;
+
+
+        WindowState = wsMaximized;
 
         RecalculateGUI();
 }
@@ -197,6 +233,11 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                 _scene->main_figure->elements->push_back(_epicar);
                 _scene->Repaint();
         }
+        if (Key == 86) {
+                _scene->main_figure->elements->clear();
+                _scene->main_figure->elements->push_back(_copa);
+                _scene->Repaint();
+        }
 }
 
 void __fastcall TForm1::FormPaint(TObject *Sender) {
@@ -294,6 +335,8 @@ void __fastcall TForm1::LoadStructure(Figure3D *figure, TTreeNode* node) {
 
         TTreeNode *new_node = Structure->Items->AddChild(node, figure->human_name + " [" + figure->getName() + "]");
 
+        _editable_figures->insert(map<TTreeNode*, Figure3D*>::value_type(new_node, figure));        
+
         if (figure->getName() == "Group") {
                 Group3D * G = dynamic_cast<Group3D*>(figure);
 
@@ -386,8 +429,8 @@ void __fastcall TForm1::RecalculateGUI() {
 
 }
 
+void __fastcall TForm1::StructureClick(TObject *Sender){
+        TTreeNode *sel = Structure->Selected;
 
-
-
-
+}
 
