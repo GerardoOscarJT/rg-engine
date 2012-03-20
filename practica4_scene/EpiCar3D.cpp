@@ -116,7 +116,8 @@ EpiCar3D::EpiCar3D() {
         // Monto la epitrocoide
         epi = new Epitrochoid3D();
         epi->human_name = "Epitrocoide";
-        epi->nQ = 180;
+        epi->nQ = 720;
+        epi->nP = 64;
         epi->RecalculateMesh();
         epi->color = new Color3D(.1, 1, 1);
         elements->push_back(epi);
