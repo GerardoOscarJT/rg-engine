@@ -12,6 +12,9 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 }
 void __fastcall TForm1::FormCreate(TObject *Sender) {
 
+
+        _selected_figure = NULL;
+
         _last_viewport = NULL;
         _scene = new Scene3D();
 
@@ -394,7 +397,35 @@ void __fastcall TForm1::RecalculateGUI() {
 }
 
 void __fastcall TForm1::StructureClick(TObject *Sender){
-        //TTreeNode *sel = Structure->Selected;
+        TTreeNode *sel = Structure->Selected;
+
+        map<TTreeNode*, Figure3D*>::iterator it;
+
+        it = _editable_figures->find(sel);
+
+        AnsiString name = it->second->getName();
+
+        _selected_figure = it->second;
+
+        if (name == "Box") {
+                // Montar paneles de caja, etc.
+
+                Box3D *box = dynamic_cast<Box3D*>(it->second);
+
+                if (box->color == NULL)
+                        box->color = new Color3D();
+
+                box->color->r = 1;
+                box->color->g = 0;
+                box->color->b = 0;
+
+
+
+
+        }
+
+
+        _scene->Repaint();
 }
 
 void __fastcall TForm1::ToolButton1Click(TObject *Sender) {
@@ -424,6 +455,167 @@ void __fastcall TForm1::ToolButton5Click(TObject *Sender)
         _epicar->epi->showNormals = ToolButton5->Down;
         _copa->showNormals = ToolButton5->Down;
         _scene->Repaint();
+}
+//---------------------------------------------------------------------------
+
+
+
+
+
+void __fastcall TForm1::TrackBar1Change(TObject *Sender) {
+        TrackBar1->SelStart = min(0, TrackBar1->Position);
+        TrackBar1->SelEnd = max(0, TrackBar1->Position);
+
+
+        if (_selected_figure != NULL) {
+                _selected_figure->translation->x += TrackBar1->Position - TrackBar1->Tag;
+                TrackBar1->Tag = TrackBar1->Position;
+                Label6->Caption = "Delta X "+AnsiString(TrackBar1->Position);
+                _scene->Repaint();
+        }
+}
+//---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+void __fastcall TForm1::TrackBar1Enter(TObject *Sender)
+{
+        TrackBar1->Position = 0;
+        TrackBar1->Tag = 0;
+}
+
+void __fastcall TForm1::TrackBar1Exit(TObject *Sender)
+{
+        TrackBar1->Tag = 0;
+        TrackBar1->Position = 0;
+}
+
+void __fastcall TForm1::TrackBar2Change(TObject *Sender) {
+        TrackBar2->SelStart = min(0, TrackBar2->Position);
+        TrackBar2->SelEnd = max(0, TrackBar2->Position);
+
+        if (_selected_figure != NULL) {
+                _selected_figure->translation->y += TrackBar2->Position - TrackBar2->Tag;
+                TrackBar2->Tag = TrackBar2->Position;
+                Label6->Caption = "Delta Y "+AnsiString(TrackBar2->Position);
+                _scene->Repaint();
+        }
+}
+
+void __fastcall TForm1::TrackBar2Enter(TObject *Sender) {
+        TrackBar2->Position = 0;
+        TrackBar2->Tag = 0;
+}
+
+void __fastcall TForm1::TrackBar2Exit(TObject *Sender) {
+        TrackBar2->Tag = 0;
+        TrackBar2->Position = 0;
+}
+
+void __fastcall TForm1::TrackBar3Change(TObject *Sender) {
+        TrackBar3->SelStart = min(0, TrackBar3->Position);
+        TrackBar3->SelEnd = max(0, TrackBar3->Position);
+
+        if (_selected_figure != NULL) {
+                _selected_figure->translation->z += TrackBar3->Position - TrackBar3->Tag;
+                TrackBar3->Tag = TrackBar3->Position;
+                Label6->Caption = "Delta Z "+AnsiString(TrackBar3->Position);
+                _scene->Repaint();
+        }
+}
+
+void __fastcall TForm1::TrackBar3Enter(TObject *Sender) {
+        TrackBar3->Position = 0;
+        TrackBar3->Tag = 0;
+}
+
+void __fastcall TForm1::TrackBar3Exit(TObject *Sender) {
+        TrackBar3->Tag = 0;
+        TrackBar3->Position = 0;
+}
+
+void __fastcall TForm1::TrackBar4Change(TObject *Sender)
+{
+        TrackBar4->SelStart = min(0, TrackBar4->Position);
+        TrackBar4->SelEnd = max(0, TrackBar4->Position);
+
+        if (_selected_figure != NULL) {
+                _selected_figure->rotation->x += TrackBar4->Position - TrackBar4->Tag;
+                TrackBar4->Tag = TrackBar4->Position;
+                Label12->Caption = "Delta X "+AnsiString(TrackBar4->Position)+"º";
+                _scene->Repaint();
+        }
+}
+
+void __fastcall TForm1::TrackBar4Enter(TObject *Sender) {
+        TrackBar4->Position = 0;
+        TrackBar4->Tag = 0;
+}
+
+void __fastcall TForm1::TrackBar4Exit(TObject *Sender) {
+        TrackBar4->Tag = 0;
+        TrackBar4->Position = 0;
+}
+
+void __fastcall TForm1::TrackBar5Change(TObject *Sender)
+{
+        TrackBar5->SelStart = min(0, TrackBar5->Position);
+        TrackBar5->SelEnd = max(0, TrackBar5->Position);
+
+        if (_selected_figure != NULL) {
+                _selected_figure->rotation->y += TrackBar5->Position - TrackBar5->Tag;
+                TrackBar5->Tag = TrackBar5->Position;
+                Label12->Caption = "Delta Y "+AnsiString(TrackBar5->Position)+"º";
+                _scene->Repaint();
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar6Change(TObject *Sender)
+{
+        TrackBar6->SelStart = min(0, TrackBar6->Position);
+        TrackBar6->SelEnd = max(0, TrackBar6->Position);
+
+        if (_selected_figure != NULL) {
+                _selected_figure->rotation->z += TrackBar6->Position - TrackBar6->Tag;
+                TrackBar6->Tag = TrackBar6->Position;
+                Label12->Caption = "Delta Z "+AnsiString(TrackBar6->Position)+"º";
+                _scene->Repaint();
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar5Enter(TObject *Sender)
+{
+        TrackBar5->Position = 0;
+        TrackBar5->Tag = 0;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar5Exit(TObject *Sender) {
+        TrackBar5->Tag = 0;
+        TrackBar5->Position = 0;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar6Enter(TObject *Sender)
+{
+        TrackBar6->Position = 0;
+        TrackBar6->Tag = 0;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar6Exit(TObject *Sender)
+{
+        TrackBar6->Tag = 0;
+        TrackBar6->Position = 0;
 }
 //---------------------------------------------------------------------------
 

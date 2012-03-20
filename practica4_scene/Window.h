@@ -33,7 +33,6 @@ __published:	// IDE-managed Components
         TToolButton *ToolButton2;
         TPanel *LeftPanel;
         TScrollBox *RightPanel;
-        TButton *Button3;
         TPanel *Panel1;
         TPanel *Panel3;
         TPanel *Panel2;
@@ -49,6 +48,31 @@ __published:	// IDE-managed Components
         TToolButton *ToolButton3;
         TToolButton *ToolButton4;
         TToolButton *ToolButton5;
+        TMenuItem *Salir1;
+        TPanel *Panel6;
+        TGroupBox *GroupBox1;
+        TPanel *Panel7;
+        TLabel *Label1;
+        TLabel *Label2;
+        TTrackBar *TrackBar1;
+        TTrackBar *TrackBar2;
+        TLabel *Label3;
+        TLabel *Label4;
+        TTrackBar *TrackBar3;
+        TLabel *Label5;
+        TLabel *Label6;
+        TPanel *Panel8;
+        TGroupBox *GroupBox2;
+        TLabel *Label7;
+        TLabel *Label8;
+        TPanel *Panel9;
+        TLabel *Label9;
+        TLabel *Label10;
+        TLabel *Label11;
+        TTrackBar *TrackBar4;
+        TTrackBar *TrackBar5;
+        TTrackBar *TrackBar6;
+        TLabel *Label12;
         void __fastcall FormCreate(TObject *Sender);
         void __fastcall FormDestroy(TObject *Sender);
         void __fastcall Button3Click(TObject *Sender);
@@ -74,6 +98,24 @@ __published:	// IDE-managed Components
         void __fastcall ToolButton2Click(TObject *Sender);
         void __fastcall ToolButton4Click(TObject *Sender);
         void __fastcall ToolButton5Click(TObject *Sender);
+        void __fastcall TrackBar1Change(TObject *Sender);
+        void __fastcall TrackBar1Enter(TObject *Sender);
+        void __fastcall TrackBar1Exit(TObject *Sender);
+        void __fastcall TrackBar2Change(TObject *Sender);
+        void __fastcall TrackBar2Enter(TObject *Sender);
+        void __fastcall TrackBar2Exit(TObject *Sender);
+        void __fastcall TrackBar3Change(TObject *Sender);
+        void __fastcall TrackBar3Enter(TObject *Sender);
+        void __fastcall TrackBar3Exit(TObject *Sender);
+        void __fastcall TrackBar4Change(TObject *Sender);
+        void __fastcall TrackBar4Enter(TObject *Sender);
+        void __fastcall TrackBar4Exit(TObject *Sender);
+        void __fastcall TrackBar5Change(TObject *Sender);
+        void __fastcall TrackBar6Change(TObject *Sender);
+        void __fastcall TrackBar5Enter(TObject *Sender);
+        void __fastcall TrackBar5Exit(TObject *Sender);
+        void __fastcall TrackBar6Enter(TObject *Sender);
+        void __fastcall TrackBar6Exit(TObject *Sender);
 private:	// User declarations
 
         Scene3D *_scene;
@@ -94,6 +136,7 @@ private:	// User declarations
 
         Revolution3D *_copa;
 
+        Figure3D* _selected_figure;
 
 
         void __fastcall LoadStructure(Figure3D *figure, TTreeNode* node);
