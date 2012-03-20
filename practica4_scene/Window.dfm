@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 335
   Top = 131
   AutoScroll = False
-  Caption = 'cer'
+  Caption = 'Engine RG'
   ClientHeight = 635
   ClientWidth = 990
   Color = clBtnFace
@@ -161,32 +161,30 @@ object Form1: TForm1
       VertScrollBar.Tracking = True
       Anchors = []
       BorderStyle = bsNone
-      Color = 8192
+      Color = clBtnFace
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMenuText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
       ParentColor = False
+      ParentFont = False
       TabOrder = 1
-      object Button3: TButton
-        Left = 48
-        Top = 696
-        Width = 113
-        Height = 249
-        Caption = 'Button3'
-        TabOrder = 0
-        TabStop = False
-      end
       object Panel5: TPanel
         Left = 0
         Top = -1
         Width = 281
-        Height = 306
+        Height = 298
         BevelOuter = bvNone
         Caption = 'Panel5'
         ParentColor = True
-        TabOrder = 1
+        TabOrder = 0
         object Structure: TTreeView
           Left = 8
           Top = 8
           Width = 265
           Height = 281
+          BorderStyle = bsNone
           Indent = 19
           ParentColor = True
           TabOrder = 0
@@ -196,6 +194,282 @@ object Form1: TForm1
             01000000200000000000000000000000FFFFFFFFFFFFFFFF0000000001000000
             076578616D706C651D0000000000000000000000FFFFFFFFFFFFFFFF00000000
             00000000046F74726F}
+        end
+      end
+      object Panel6: TPanel
+        Left = 0
+        Top = 296
+        Width = 281
+        Height = 153
+        BevelOuter = bvNone
+        Caption = 'Panel6'
+        ParentColor = True
+        TabOrder = 1
+        object GroupBox1: TGroupBox
+          Left = 8
+          Top = 0
+          Width = 265
+          Height = 145
+          Caption = ' Position '
+          TabOrder = 0
+          object Label1: TLabel
+            Left = 8
+            Top = 16
+            Width = 25
+            Height = 13
+            Alignment = taCenter
+            AutoSize = False
+            Caption = 'Abs'
+          end
+          object Label2: TLabel
+            Left = 40
+            Top = 16
+            Width = 25
+            Height = 13
+            Alignment = taCenter
+            AutoSize = False
+            Caption = 'Rel'
+            Color = clLime
+            ParentColor = False
+          end
+          object Label6: TLabel
+            Left = 254
+            Top = 16
+            Width = 3
+            Height = 13
+            Alignment = taRightJustify
+          end
+          object Panel7: TPanel
+            Left = 8
+            Top = 32
+            Width = 249
+            Height = 105
+            TabOrder = 0
+            object Label3: TLabel
+              Left = 16
+              Top = 13
+              Width = 7
+              Height = 13
+              Caption = 'X'
+            end
+            object Label4: TLabel
+              Left = 16
+              Top = 45
+              Width = 7
+              Height = 13
+              Caption = 'Y'
+            end
+            object Label5: TLabel
+              Left = 16
+              Top = 77
+              Width = 7
+              Height = 13
+              Caption = 'Z'
+            end
+            object TrackBar1: TTrackBar
+              Left = 24
+              Top = 8
+              Width = 217
+              Height = 25
+              BorderWidth = 1
+              LineSize = 0
+              Max = 100
+              Min = -100
+              Orientation = trHorizontal
+              PageSize = 1
+              Frequency = 1
+              Position = 0
+              SelEnd = 0
+              SelStart = 0
+              TabOrder = 0
+              TickMarks = tmBottomRight
+              TickStyle = tsAuto
+              OnChange = TrackBar1Change
+              OnEnter = TrackBar1Enter
+              OnExit = TrackBar1Exit
+            end
+            object TrackBar2: TTrackBar
+              Left = 24
+              Top = 40
+              Width = 217
+              Height = 25
+              BorderWidth = 1
+              LineSize = 0
+              Max = 100
+              Min = -100
+              Orientation = trHorizontal
+              PageSize = 1
+              Frequency = 1
+              Position = 0
+              SelEnd = 0
+              SelStart = 0
+              TabOrder = 1
+              TickMarks = tmBottomRight
+              TickStyle = tsAuto
+              OnChange = TrackBar2Change
+              OnEnter = TrackBar2Enter
+              OnExit = TrackBar2Exit
+            end
+            object TrackBar3: TTrackBar
+              Left = 24
+              Top = 72
+              Width = 217
+              Height = 25
+              BorderWidth = 1
+              LineSize = 0
+              Max = 100
+              Min = -100
+              Orientation = trHorizontal
+              PageSize = 1
+              Frequency = 1
+              Position = 0
+              SelEnd = 0
+              SelStart = 0
+              TabOrder = 2
+              TickMarks = tmBottomRight
+              TickStyle = tsAuto
+              OnChange = TrackBar3Change
+              OnEnter = TrackBar3Enter
+              OnExit = TrackBar3Exit
+            end
+          end
+        end
+      end
+      object Panel8: TPanel
+        Left = 0
+        Top = 446
+        Width = 281
+        Height = 193
+        BevelOuter = bvNone
+        TabOrder = 2
+        object GroupBox2: TGroupBox
+          Left = 8
+          Top = 8
+          Width = 265
+          Height = 145
+          Caption = 'Rotation'
+          TabOrder = 0
+          object Label7: TLabel
+            Left = 8
+            Top = 16
+            Width = 25
+            Height = 13
+            Alignment = taCenter
+            AutoSize = False
+            Caption = 'Abs'
+          end
+          object Label8: TLabel
+            Left = 40
+            Top = 16
+            Width = 25
+            Height = 13
+            Alignment = taCenter
+            AutoSize = False
+            Caption = 'Rel'
+            Color = clLime
+            ParentColor = False
+          end
+          object Label12: TLabel
+            Left = 254
+            Top = 16
+            Width = 3
+            Height = 13
+            Alignment = taRightJustify
+          end
+          object Panel9: TPanel
+            Left = 8
+            Top = 32
+            Width = 249
+            Height = 105
+            TabOrder = 0
+            object Label9: TLabel
+              Left = 16
+              Top = 13
+              Width = 7
+              Height = 13
+              Caption = 'X'
+            end
+            object Label10: TLabel
+              Left = 16
+              Top = 45
+              Width = 7
+              Height = 13
+              Caption = 'Y'
+            end
+            object Label11: TLabel
+              Left = 16
+              Top = 77
+              Width = 7
+              Height = 13
+              Caption = 'Z'
+            end
+            object TrackBar4: TTrackBar
+              Left = 24
+              Top = 8
+              Width = 217
+              Height = 25
+              BorderWidth = 1
+              LineSize = 0
+              Max = 360
+              Min = -360
+              Orientation = trHorizontal
+              PageSize = 1
+              Frequency = 1
+              Position = 0
+              SelEnd = 0
+              SelStart = 0
+              TabOrder = 0
+              TickMarks = tmBottomRight
+              TickStyle = tsAuto
+              OnChange = TrackBar4Change
+              OnEnter = TrackBar4Enter
+              OnExit = TrackBar4Exit
+            end
+            object TrackBar5: TTrackBar
+              Left = 24
+              Top = 40
+              Width = 217
+              Height = 25
+              BorderWidth = 1
+              LineSize = 0
+              Max = 360
+              Min = -360
+              Orientation = trHorizontal
+              PageSize = 1
+              Frequency = 1
+              Position = 0
+              SelEnd = 0
+              SelStart = 0
+              TabOrder = 1
+              TickMarks = tmBottomRight
+              TickStyle = tsAuto
+              OnChange = TrackBar5Change
+              OnEnter = TrackBar5Enter
+              OnExit = TrackBar5Exit
+            end
+            object TrackBar6: TTrackBar
+              Left = 24
+              Top = 72
+              Width = 217
+              Height = 25
+              BorderWidth = 1
+              LineSize = 0
+              Max = 360
+              Min = -360
+              Orientation = trHorizontal
+              PageSize = 1
+              Frequency = 1
+              Position = 0
+              SelEnd = 0
+              SelStart = 0
+              TabOrder = 2
+              TickMarks = tmBottomRight
+              TickStyle = tsAuto
+              OnChange = TrackBar6Change
+              OnEnter = TrackBar6Enter
+              OnExit = TrackBar6Exit
+            end
+          end
         end
       end
     end
@@ -259,13 +533,13 @@ object Form1: TForm1
     Left = 40
     Top = 32
     object Archivo1: TMenuItem
-      Caption = 'Archivo'
-    end
-    object Copa1: TMenuItem
-      Caption = 'Copa'
+      Caption = '&Archivo'
+      object Salir1: TMenuItem
+        Caption = 'Salir'
+      end
     end
     object Ayuda1: TMenuItem
-      Caption = 'Ayuda'
+      Caption = 'A&yuda'
     end
   end
   object PopupMenu1: TPopupMenu
@@ -279,7 +553,7 @@ object Form1: TForm1
     Left = 168
     Top = 32
     Bitmap = {
-      494C010104000900040010001000FFFFFFFFFF00FFFFFFFFFFFFFFFF424D3600
+      494C010104000900040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000003000000001002000000000000030
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -679,6 +953,7 @@ object Form1: TForm1
       FE7FFBDF5FD7DFEFFE7FF7EF6FDBEF77FE7FEFF777DDF77BFE7FEFF77800FB7D
       FE7FEFF77BDEFC00FE7FDFFB7BDEFF7FFE7FBFFD7BDEFF7FFC3F7FFE7BDEFF7F
       F81F7FFE001EFF7FF00F7FFEBBEEFF7FE0077FFEDBF6FD5FC003BFFDEBFAFE3F
-      8001DE7BF3FCFF7FFFFFE187F800FFFF}
+      8001DE7BF3FCFF7FFFFFE187F800FFFF00000000000000000000000000000000
+      000000000000}
   end
 end
