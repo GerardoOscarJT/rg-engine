@@ -26,6 +26,8 @@ ViewPort3D::ViewPort3D(void * hWnd, int& width, int& height) {
                 0,0,0
         };
 
+        pfd.iLayerType = PFD_MAIN_PLANE;
+
         SetPixelFormat(_hdc, ChoosePixelFormat(_hdc, &pfd), &pfd);        
         _hrc = wglCreateContext(_hdc);
 
