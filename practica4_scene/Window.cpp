@@ -14,6 +14,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 
 
         _selected_figure = NULL;
+        _selected_epitrochoid = NULL;        
 
         _last_viewport = NULL;
         _scene = new Scene3D();
@@ -399,6 +400,8 @@ void __fastcall TForm1::RecalculateGUI() {
 void __fastcall TForm1::StructureClick(TObject *Sender){
         TTreeNode *sel = Structure->Selected;
 
+        if (sel != NULL) {
+
         map<TTreeNode*, Figure3D*>::iterator it;
 
         it = _editable_figures->find(sel);
@@ -409,23 +412,25 @@ void __fastcall TForm1::StructureClick(TObject *Sender){
 
         if (name == "Box") {
                 // Montar paneles de caja, etc.
-
                 Box3D *box = dynamic_cast<Box3D*>(it->second);
+        }
 
-                if (box->color == NULL)
-                        box->color = new Color3D();
-
-                box->color->r = 1;
-                box->color->g = 0;
-                box->color->b = 0;
-
-
-
-
+        if (name == "Epitrochoid") {
+                // Montar paneles de caja, etc.
+                Epitrochoid3D *epitrochoid = dynamic_cast<Epitrochoid3D*>(it->second);
+                _selected_epitrochoid = epitrochoid;
+                TrackBar7->Position = epitrochoid->a;
+                Panel10->Visible = true;
+        } else {
+                _selected_epitrochoid = NULL;
+                Panel10->Visible = false;
         }
 
 
+
+
         _scene->Repaint();
+        }
 }
 
 void __fastcall TForm1::ToolButton1Click(TObject *Sender) {
@@ -616,6 +621,55 @@ void __fastcall TForm1::TrackBar6Exit(TObject *Sender)
 {
         TrackBar6->Tag = 0;
         TrackBar6->Position = 0;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar7Chage(TObject *Sender)
+{
+        Label13->Caption = "A: "+AnsiString(TrackBar7->Position);
+
+        if (_selected_epitrochoid != NULL) {
+                _selected_epitrochoid->a = TrackBar7->Position;
+                _selected_epitrochoid->RecalculateMesh();
+                _scene->Repaint();
+        }
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::TrackBar12Change(TObject *Sender)
+{
+        Label18->Caption = "nR: "+AnsiString(TrackBar12->Position);
+
+        if (_selected_epitrochoid != NULL) {
+                _selected_epitrochoid->nP = TrackBar12->Position;
+                _selected_epitrochoid->RecalculateMesh();
+                _scene->Repaint();
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar13Change(TObject *Sender)
+{
+        Label19->Caption = "nQ: "+AnsiString(TrackBar13->Position);
+
+        if (_selected_epitrochoid != NULL) {
+                _selected_epitrochoid->nQ = TrackBar13->Position;
+                _selected_epitrochoid->RecalculateMesh();
+                _scene->Repaint();
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar11Change(TObject *Sender)
+{
+        Label17->Caption = "R: "+AnsiString(TrackBar11->Position);
+
+        if (_selected_epitrochoid != NULL) {
+                _selected_epitrochoid->r = TrackBar11->Position;
+                _selected_epitrochoid->RecalculateMesh();
+                _scene->Repaint();
+        }
 }
 //---------------------------------------------------------------------------
 

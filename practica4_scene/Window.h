@@ -73,6 +73,20 @@ __published:	// IDE-managed Components
         TTrackBar *TrackBar5;
         TTrackBar *TrackBar6;
         TLabel *Label12;
+        TPanel *Panel10;
+        TGroupBox *GroupBox3;
+        TTrackBar *TrackBar7;
+        TLabel *Label13;
+        TLabel *Label15;
+        TTrackBar *TrackBar9;
+        TLabel *Label16;
+        TTrackBar *TrackBar10;
+        TLabel *Label17;
+        TTrackBar *TrackBar11;
+        TLabel *Label18;
+        TTrackBar *TrackBar12;
+        TLabel *Label19;
+        TTrackBar *TrackBar13;
         void __fastcall FormCreate(TObject *Sender);
         void __fastcall FormDestroy(TObject *Sender);
         void __fastcall Button3Click(TObject *Sender);
@@ -116,6 +130,10 @@ __published:	// IDE-managed Components
         void __fastcall TrackBar5Exit(TObject *Sender);
         void __fastcall TrackBar6Enter(TObject *Sender);
         void __fastcall TrackBar6Exit(TObject *Sender);
+        void __fastcall TrackBar7Chage(TObject *Sender);
+        void __fastcall TrackBar12Change(TObject *Sender);
+        void __fastcall TrackBar13Change(TObject *Sender);
+        void __fastcall TrackBar11Change(TObject *Sender);
 private:	// User declarations
 
         Scene3D *_scene;
@@ -137,6 +155,7 @@ private:	// User declarations
         Revolution3D *_copa;
 
         Figure3D* _selected_figure;
+        Epitrochoid3D *_selected_epitrochoid;
 
 
         void __fastcall LoadStructure(Figure3D *figure, TTreeNode* node);
