@@ -120,7 +120,7 @@ void Mesh3D::drawNormals() {
                 posY /= tam;
                 posZ /= tam;
 
-                delete aux;
+                delete[] aux;
 
                 //Dibujo del vector normal
                 glBegin(GL_LINES);
