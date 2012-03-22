@@ -44,11 +44,27 @@ void Epitrochoid3D::RecalculateMesh() {
         // Genero todas las caras utilizando V
         for (int i=0; i<nQ; i++) {
                 for (int j=0; j<nP; j++) {
-                        Face3D* F = new Face3D(); faces->push_back(F);
+                        /*Face3D* F = new Face3D(); faces->push_back(F);
                         F->vertices->push_back(V[i][(j+1)%nP]);
                         F->vertices->push_back(V[i][j]);
                         F->vertices->push_back(V[(i+1)%nQ][j]);
-                        F->vertices->push_back(V[(i+1)%nQ][(j+1)%nP]);
+                        F->vertices->push_back(V[(i+1)%nQ][(j+1)%nP]);*/
+
+
+
+                        Face3D* F1, *F2;
+                        F1 = new Face3D();
+                        F2 = new Face3D();
+                        faces->push_back(F1);
+                        faces->push_back(F2);
+
+                        F1->vertices->push_back(V[i][j]);
+                        F1->vertices->push_back(V[(i+1)%nQ][j]);
+                        F1->vertices->push_back(V[(i+1)%nQ][(j+1)%nP]);
+
+                        F2->vertices->push_back(V[i][(j+1)%nP]);
+                        F2->vertices->push_back(V[i][j]);
+                        F2->vertices->push_back(V[(i+1)%nQ][(j+1)%nP]);
                 }
         }
 

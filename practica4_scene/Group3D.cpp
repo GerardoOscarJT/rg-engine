@@ -16,10 +16,16 @@ Group3D::~Group3D() {
         delete elements;
         if (color != NULL)
                 delete color;
-        /*Figure3D* f3d;
-        for(it_lf = figures->begin(); it_lf != figures->end(); it_lf) {
-                f3d = *it_lf;
-                delete f3d;
+        //Figure3D* f3d;
+
+        /*if(elements->size() > 0) {
+                list<Figure3D*>::iterator it_lf;
+                Figure3D* f3d;
+
+                for(it_lf = elements->begin(); it_lf != elements->end(); it_lf++) {
+                        f3d = *it_lf;
+                        delete f3d;
+                }
         }
 
         delete figures;*/
