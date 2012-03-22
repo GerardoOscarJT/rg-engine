@@ -29,7 +29,7 @@ public:
                         
 private:
 
-
+        Vertex3D* newVertex(Vertex3D &p1, Vertex3D &p2, Vertex3D &p3, Vertex3D &p4);
 
 
 };
