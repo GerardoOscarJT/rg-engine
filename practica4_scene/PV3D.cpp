@@ -32,9 +32,14 @@ double PV3D::len() {
 
 void PV3D::normalize() {
         double l = len();
-        x/=l;
-        y/=l;
-        z/=l;
+        if(l != 0) {
+                x/=l;
+                y/=l;
+                z/=l;
+        }
+        else {
+                int x = 8;
+        }
 }
 
 PV3D PV3D::operator+(const PV3D &v) {
@@ -58,6 +63,7 @@ PV3D PV3D::crossProduct(const PV3D &v) {
 
         return PV3D(cpx, cpy, cpz);
 }
+
 
 
 /*
