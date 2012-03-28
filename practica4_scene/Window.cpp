@@ -82,15 +82,20 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         _copa->color = new Color3D(1,1,1);
 
         _copa->n = 64;
+        //_copa->n = 2;
 
+        _copa->points->push_back(new PV3D(0,0,8));
+        _copa->points->push_back(new PV3D(0,0,8));
         _copa->points->push_back(new PV3D(0,0,8));
         _copa->points->push_back(new PV3D(50,0,0));
         _copa->points->push_back(new PV3D(50,0,2));
         _copa->points->push_back(new PV3D(4,0,10));
         _copa->points->push_back(new PV3D(4,0,100));
+        _copa->points->push_back(new PV3D(4,0,100));
         _copa->points->push_back(new PV3D(100,0,200));
         _copa->points->push_back(new PV3D(99,0,201));
         _copa->points->push_back(new PV3D(98,0,200));
+        _copa->points->push_back(new PV3D(0,0,102));
         _copa->points->push_back(new PV3D(0,0,102));
 
         _copa->RecalculateMesh();
