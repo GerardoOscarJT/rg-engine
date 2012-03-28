@@ -22,7 +22,11 @@ public:
 
 private:
 
+        list<PV3D*> *npoints; //nueva lista que contendrá puntos de la bspline
 
+        void RepaintBSpline3(list<PV3D*>*);
+        void BSpline3Segment(PV3D* p1, PV3D* p2, PV3D* p3, PV3D* p4, list<PV3D*> *line, bool first);
+        bool exist(list<PV3D*>*, PV3D*);
 
 
 };
