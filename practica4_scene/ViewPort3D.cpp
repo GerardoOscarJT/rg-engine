@@ -36,7 +36,7 @@ ViewPort3D::ViewPort3D(void * hWnd, int& width, int& height) {
 void ViewPort3D::makeCurrent() {
         glEnable(GL_DEPTH_TEST);
 
-        glDisable(GL_FRONT_AND_BACK);
+        glEnable(GL_FRONT_AND_BACK);
 
 
         if(wglMakeCurrent(_hdc, _hrc) == false)
