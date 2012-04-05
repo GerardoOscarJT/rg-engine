@@ -53,7 +53,7 @@ void Epitrochoid3D::RecalculateMesh() {
 
 
 
-                        /*Face3D* F1, *F2;
+                        Face3D* F1, *F2;
                         F1 = new Face3D();
                         F2 = new Face3D();
                         faces->push_back(F1);
@@ -65,9 +65,9 @@ void Epitrochoid3D::RecalculateMesh() {
 
                         F2->vertices->push_back(V[i][(j+1)%nP]);
                         F2->vertices->push_back(V[i][j]);
-                        F2->vertices->push_back(V[(i+1)%nQ][(j+1)%nP]);*/
+                        F2->vertices->push_back(V[(i+1)%nQ][(j+1)%nP]);
 
-                        Vertex3D *nv = newVertex(*(V[i][(j+1)%nP]), *(V[i][j]), *(V[(i + 1)%nQ][j]), *(V[(i + 1)%nQ][(j+1)%nP]));
+                        /*Vertex3D *nv = newVertex(*(V[i][(j+1)%nP]), *(V[i][j]), *(V[(i + 1)%nQ][j]), *(V[(i + 1)%nQ][(j+1)%nP]));
                         vertices->push_back(nv);
                         Face3D *F1, *F2, *F3, *F4;
                         F1 = new Face3D();
@@ -94,7 +94,7 @@ void Epitrochoid3D::RecalculateMesh() {
 
                         F4->vertices->push_back(V[i][(j+1)%nP]);
                         F4->vertices->push_back(V[i][j]);
-                        F4->vertices->push_back(nv);
+                        F4->vertices->push_back(nv);       */
                         
 
 
