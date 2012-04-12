@@ -14,7 +14,8 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 
 
         _selected_figure = NULL;
-        _selected_epitrochoid = NULL;        
+        _selected_epitrochoid = NULL;
+        _selected_box = NULL;  
 
         _last_viewport = NULL;
         _scene = new Scene3D();
@@ -418,14 +419,25 @@ void __fastcall TForm1::StructureClick(TObject *Sender){
         if (name == "Box") {
                 // Montar paneles de caja, etc.
                 Box3D *box = dynamic_cast<Box3D*>(it->second);
+                _selected_box = box;
+                //Hacemos visible el panel de la caja
+                TrackBar8->Position = box->x;
+                TrackBar14->Position = box->y;
+                TrackBar15->Position = box->z;
+                Panel10->Visible = true;
+                GroupBox3->Visible = false;
+                GroupBox4->Visible = true;
         }
 
-        if (name == "Epitrochoid") {
+        else if (name == "Epitrochoid") {
                 // Montar paneles de caja, etc.
                 Epitrochoid3D *epitrochoid = dynamic_cast<Epitrochoid3D*>(it->second);
                 _selected_epitrochoid = epitrochoid;
                 TrackBar7->Position = epitrochoid->a;
                 Panel10->Visible = true;
+                //Hacemos visible el panel de la epitrocoide
+                GroupBox3->Visible = true;
+                GroupBox4->Visible = false;
         } else {
                 _selected_epitrochoid = NULL;
                 Panel10->Visible = false;
@@ -675,6 +687,44 @@ void __fastcall TForm1::TrackBar11Change(TObject *Sender)
                 _selected_epitrochoid->RecalculateMesh();
                 _scene->Repaint();
         }
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TForm1::TrackBar8Change(TObject *Sender)
+{
+        Label14->Caption = "W: " + AnsiString(TrackBar8->Position);
+
+        if (_selected_box != NULL) {
+                _selected_box->x = TrackBar8->Position;
+                _selected_box->RecalculateMesh();
+                _scene->Repaint();
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar14Change(TObject *Sender)
+{
+        Label20->Caption = "L: " + AnsiString(TrackBar14->Position);
+
+        if (_selected_box != NULL) {
+                _selected_box->y = TrackBar14->Position;
+                _selected_box->RecalculateMesh();
+                _scene->Repaint();
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar15Change(TObject *Sender)
+{
+        Label21->Caption = "H: " + AnsiString(TrackBar15->Position);
+
+        if (_selected_box != NULL) {
+                _selected_box->z = TrackBar15->Position;
+                _selected_box->RecalculateMesh();
+                _scene->Repaint();
+        }        
 }
 //---------------------------------------------------------------------------
 

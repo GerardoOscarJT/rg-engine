@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 253
-  Top = 133
+  Left = 5
+  Top = 9
   AutoScroll = False
   Caption = 'Engine RG'
   ClientHeight = 635
@@ -156,6 +156,7 @@ object Form1: TForm1
       Width = 300
       Height = 530
       HorzScrollBar.Visible = False
+      VertScrollBar.Position = 403
       VertScrollBar.Smooth = True
       VertScrollBar.Style = ssFlat
       VertScrollBar.Tracking = True
@@ -172,7 +173,7 @@ object Form1: TForm1
       TabOrder = 1
       object Panel5: TPanel
         Left = 0
-        Top = -1
+        Top = -404
         Width = 281
         Height = 298
         BevelOuter = bvNone
@@ -198,7 +199,7 @@ object Form1: TForm1
       end
       object Panel6: TPanel
         Left = 0
-        Top = 296
+        Top = -107
         Width = 281
         Height = 153
         BevelOuter = bvNone
@@ -337,7 +338,7 @@ object Form1: TForm1
       end
       object Panel8: TPanel
         Left = 0
-        Top = 446
+        Top = 43
         Width = 281
         Height = 160
         BevelOuter = bvNone
@@ -474,7 +475,7 @@ object Form1: TForm1
       end
       object Panel10: TPanel
         Left = 0
-        Top = 603
+        Top = 200
         Width = 281
         Height = 330
         BevelOuter = bvNone
@@ -623,6 +624,84 @@ object Form1: TForm1
             TickMarks = tmBottomRight
             TickStyle = tsAuto
             OnChange = TrackBar13Change
+          end
+        end
+        object GroupBox4: TGroupBox
+          Left = 8
+          Top = 0
+          Width = 265
+          Height = 145
+          Caption = 'Box'
+          TabOrder = 1
+          Visible = False
+          object Label14: TLabel
+            Left = 16
+            Top = 32
+            Width = 11
+            Height = 13
+            Caption = 'W'
+          end
+          object Label20: TLabel
+            Left = 16
+            Top = 72
+            Width = 6
+            Height = 13
+            Caption = 'L'
+          end
+          object Label21: TLabel
+            Left = 16
+            Top = 112
+            Width = 8
+            Height = 13
+            Caption = 'H'
+          end
+          object TrackBar8: TTrackBar
+            Left = 40
+            Top = 24
+            Width = 209
+            Height = 25
+            Max = 500
+            Orientation = trHorizontal
+            Frequency = 1
+            Position = 0
+            SelEnd = 0
+            SelStart = 0
+            TabOrder = 0
+            TickMarks = tmBottomRight
+            TickStyle = tsAuto
+            OnChange = TrackBar8Change
+          end
+          object TrackBar14: TTrackBar
+            Left = 40
+            Top = 64
+            Width = 209
+            Height = 25
+            Max = 500
+            Orientation = trHorizontal
+            Frequency = 1
+            Position = 0
+            SelEnd = 0
+            SelStart = 0
+            TabOrder = 1
+            TickMarks = tmBottomRight
+            TickStyle = tsAuto
+            OnChange = TrackBar14Change
+          end
+          object TrackBar15: TTrackBar
+            Left = 40
+            Top = 104
+            Width = 209
+            Height = 25
+            Max = 500
+            Orientation = trHorizontal
+            Frequency = 1
+            Position = 0
+            SelEnd = 0
+            SelStart = 0
+            TabOrder = 2
+            TickMarks = tmBottomRight
+            TickStyle = tsAuto
+            OnChange = TrackBar15Change
           end
         end
       end
