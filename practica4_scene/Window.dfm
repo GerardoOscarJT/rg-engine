@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 5
-  Top = 9
+  Left = 11
+  Top = 115
   AutoScroll = False
   Caption = 'Engine RG'
   ClientHeight = 635
@@ -702,6 +702,84 @@ object Form1: TForm1
             TickMarks = tmBottomRight
             TickStyle = tsAuto
             OnChange = TrackBar15Change
+          end
+        end
+        object GroupBox5: TGroupBox
+          Left = 8
+          Top = 0
+          Width = 265
+          Height = 145
+          Caption = 'Cylinder'
+          TabOrder = 2
+          Visible = False
+          object Label22: TLabel
+            Left = 8
+            Top = 32
+            Width = 8
+            Height = 13
+            Caption = 'H'
+          end
+          object Label23: TLabel
+            Left = 8
+            Top = 72
+            Width = 15
+            Height = 13
+            Caption = 'RT'
+          end
+          object Label24: TLabel
+            Left = 8
+            Top = 112
+            Width = 15
+            Height = 13
+            Caption = 'RB'
+          end
+          object TrackBar16: TTrackBar
+            Left = 40
+            Top = 24
+            Width = 209
+            Height = 25
+            Max = 500
+            Orientation = trHorizontal
+            Frequency = 1
+            Position = 0
+            SelEnd = 0
+            SelStart = 0
+            TabOrder = 0
+            TickMarks = tmBottomRight
+            TickStyle = tsAuto
+            OnChange = TrackBar16Change
+          end
+          object TrackBar17: TTrackBar
+            Left = 40
+            Top = 64
+            Width = 209
+            Height = 25
+            Max = 500
+            Orientation = trHorizontal
+            Frequency = 1
+            Position = 0
+            SelEnd = 0
+            SelStart = 0
+            TabOrder = 1
+            TickMarks = tmBottomRight
+            TickStyle = tsAuto
+            OnChange = TrackBar17Change
+          end
+          object TrackBar18: TTrackBar
+            Left = 40
+            Top = 104
+            Width = 209
+            Height = 25
+            Max = 500
+            Orientation = trHorizontal
+            Frequency = 1
+            Position = 0
+            SelEnd = 0
+            SelStart = 0
+            TabOrder = 2
+            TickMarks = tmBottomRight
+            TickStyle = tsAuto
+            OnChange = TrackBar18Change
           end
         end
       end

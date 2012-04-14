@@ -427,6 +427,18 @@ void __fastcall TForm1::StructureClick(TObject *Sender){
                 Panel10->Visible = true;
                 GroupBox3->Visible = false;
                 GroupBox4->Visible = true;
+                GroupBox5->Visible = false;
+        }
+        else if(name == "Cylinder") {
+                Cylinder3D *cylinder = dynamic_cast<Cylinder3D*>(it->second);
+                _selected_cylinder = cylinder;
+                TrackBar16->Position = cylinder->height;
+                TrackBar17->Position = cylinder->rad_top;
+                TrackBar18->Position = cylinder->rad_bottom;
+                Panel10->Visible = true;
+                GroupBox3->Visible = false;
+                GroupBox4->Visible = false;
+                GroupBox5->Visible = true;
         }
 
         else if (name == "Epitrochoid") {
@@ -438,6 +450,7 @@ void __fastcall TForm1::StructureClick(TObject *Sender){
                 //Hacemos visible el panel de la epitrocoide
                 GroupBox3->Visible = true;
                 GroupBox4->Visible = false;
+                GroupBox5->Visible = false;
         } else {
                 _selected_epitrochoid = NULL;
                 Panel10->Visible = false;
@@ -495,6 +508,7 @@ void __fastcall TForm1::TrackBar1Change(TObject *Sender) {
                 Label6->Caption = "Delta X "+AnsiString(TrackBar1->Position);
                 _scene->Repaint();
         }
+        FocusControl(TrackBar1);
 }
 //---------------------------------------------------------------------------
 
@@ -529,6 +543,7 @@ void __fastcall TForm1::TrackBar2Change(TObject *Sender) {
                 Label6->Caption = "Delta Y "+AnsiString(TrackBar2->Position);
                 _scene->Repaint();
         }
+        FocusControl(TrackBar2);
 }
 
 void __fastcall TForm1::TrackBar2Enter(TObject *Sender) {
@@ -551,6 +566,7 @@ void __fastcall TForm1::TrackBar3Change(TObject *Sender) {
                 Label6->Caption = "Delta Z "+AnsiString(TrackBar3->Position);
                 _scene->Repaint();
         }
+        FocusControl(TrackBar3);
 }
 
 void __fastcall TForm1::TrackBar3Enter(TObject *Sender) {
@@ -574,6 +590,7 @@ void __fastcall TForm1::TrackBar4Change(TObject *Sender)
                 Label12->Caption = "Delta X "+AnsiString(TrackBar4->Position)+"º";
                 _scene->Repaint();
         }
+        FocusControl(TrackBar4);
 }
 
 void __fastcall TForm1::TrackBar4Enter(TObject *Sender) {
@@ -597,6 +614,7 @@ void __fastcall TForm1::TrackBar5Change(TObject *Sender)
                 Label12->Caption = "Delta Y "+AnsiString(TrackBar5->Position)+"º";
                 _scene->Repaint();
         }
+        FocusControl(TrackBar5);
 }
 //---------------------------------------------------------------------------
 
@@ -611,6 +629,7 @@ void __fastcall TForm1::TrackBar6Change(TObject *Sender)
                 Label12->Caption = "Delta Z "+AnsiString(TrackBar6->Position)+"º";
                 _scene->Repaint();
         }
+        FocusControl(TrackBar6);
 }
 //---------------------------------------------------------------------------
 
@@ -724,7 +743,43 @@ void __fastcall TForm1::TrackBar15Change(TObject *Sender)
                 _selected_box->z = TrackBar15->Position;
                 _selected_box->RecalculateMesh();
                 _scene->Repaint();
-        }        
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar16Change(TObject *Sender)
+{
+        Label22->Caption = "H: " + AnsiString(TrackBar16->Position);
+
+        if (_selected_cylinder != NULL) {
+                _selected_cylinder->height = TrackBar16->Position;
+                _selected_cylinder->RecalculateMesh();
+                _scene->Repaint();
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar17Change(TObject *Sender)
+{
+        Label23->Caption = "RT: " + AnsiString(TrackBar17->Position);
+
+        if (_selected_cylinder != NULL) {
+                _selected_cylinder->rad_top = TrackBar17->Position;
+                _selected_cylinder->RecalculateMesh();
+                _scene->Repaint();
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar18Change(TObject *Sender)
+{
+        Label24->Caption = "RB: " + AnsiString(TrackBar18->Position);
+
+        if (_selected_cylinder != NULL) {
+                _selected_cylinder->rad_bottom = TrackBar18->Position;
+                _selected_cylinder->RecalculateMesh();
+                _scene->Repaint();
+        }
 }
 //---------------------------------------------------------------------------
 
