@@ -37,9 +37,6 @@ void PV3D::normalize() {
                 y/=l;
                 z/=l;
         }
-        else {
-                int x = 8;
-        }
 }
 
 PV3D PV3D::operator+(const PV3D &v) {
@@ -48,6 +45,14 @@ PV3D PV3D::operator+(const PV3D &v) {
 
 PV3D PV3D::operator-(const PV3D &v) {
         return PV3D(x-v.x, y-v.y, z-v.z, t-v.t);
+}
+
+bool PV3D::operator!=(const PV3D &v) {
+        bool resp = true;
+        if(x == v.x && y == v.y && z == v.z) {
+                resp = false;
+        }
+        return resp;
 }
 
 double PV3D::dotProduct(const PV3D &v) {
@@ -63,6 +68,8 @@ PV3D PV3D::crossProduct(const PV3D &v) {
 
         return PV3D(cpx, cpy, cpz);
 }
+
+
 
 
 

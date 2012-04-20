@@ -25,32 +25,44 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 
 
         // Agregamos 4 vistas básicas de cámara:
-        Camera3D * cam1 = new Camera3D();
+        PV3D eye(0, 100, 0);
+        PV3D look(0, 0, -1);
+        PV3D up(0, 0, 1, 0);
+        Camera3D * cam1 = new Camera3D(Panel1->Width, Panel1->Height, eye, look, up);
         cam1->name = "Alzado";
-        cam1->eye->x = 0;
+        /*cam1->eye->x = 0;
         cam1->eye->y = 100;
-        cam1->eye->z = 0;
+        cam1->eye->z = 0;*/
         _scene->cameras->push_back(cam1);
 
-        Camera3D * cam2 = new Camera3D();
+        eye.x=100;
+        eye.y = 0;
+        eye.z = 0; 
+        Camera3D * cam2 = new Camera3D(Panel1->Width, Panel1->Height, eye, look, up);
         cam2->name = "Perfil";
-        cam2->eye->x = 100;
+        /*cam2->eye->x = 100;
         cam2->eye->y = 0;
-        cam2->eye->z = 0;
+        cam2->eye->z = 0;*/
         _scene->cameras->push_back(cam2);
 
-        Camera3D * cam3 = new Camera3D();
+        eye.x = 0;
+        eye.y = 0.1;
+        eye.z = 100;
+        Camera3D * cam3 = new Camera3D(Panel1->Width, Panel1->Height, eye, look, up);
         cam3->name = "Planta";
-        cam3->eye->x = 0;
+        /*cam3->eye->x = 0;
         cam3->eye->y = 0.1;
-        cam3->eye->z = 100;
+        cam3->eye->z = 100;*/
         _scene->cameras->push_back(cam3);
 
-        Camera3D * cam4 = new Camera3D();
+        eye.x = 300;
+        eye.y = 400;
+        eye.z = 300;
+        Camera3D * cam4 = new Camera3D(Panel1->Width, Panel1->Height, eye, look, up);
         cam4->name = "Perspectiva";
-        cam4->eye->x = 300;
+        /*cam4->eye->x = 300;
         cam4->eye->y = 400;
-        cam4->eye->z = 300;
+        cam4->eye->z = 300;*/
         cam4->perspective = true;
         _scene->cameras->push_back(cam4);
 
@@ -142,21 +154,29 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
 
                 switch (Key) {
                         case 37:
-                                angle -= 0.1;
+                                if(!Structure->Focused()) {
+                                        angle -= 0.1;
 
-                                _last_viewport->camera->eye->x = module_xy*sin(angle);
-                                _last_viewport->camera->eye->y = module_xy*cos(angle);
+                                        _last_viewport->camera->eye->x = module_xy*sin(angle);
+                                        _last_viewport->camera->eye->y = module_xy*cos(angle);
+                                }
                                 break;
                         case 39:
-                                angle += 0.1;
-                                _last_viewport->camera->eye->x = module_xy*sin(angle);
-                                _last_viewport->camera->eye->y = module_xy*cos(angle);
+                                if(!Structure->Focused()) {
+                                        angle += 0.1;
+                                        _last_viewport->camera->eye->x = module_xy*sin(angle);
+                                        _last_viewport->camera->eye->y = module_xy*cos(angle);
+                                }
                                 break;
                         case 38:
-                                _last_viewport->camera->eye->z += 10;
+                                if(!Structure->Focused()) {
+                                        _last_viewport->camera->eye->z += 10;
+                                }
                                 break;
                         case 40:
-                                _last_viewport->camera->eye->z -= 10;
+                                if(!Structure->Focused()) {
+                                        _last_viewport->camera->eye->z -= 10;
+                                }
                                 break;
 
                         case 187: // mas
@@ -169,7 +189,13 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                                 _last_viewport->camera->eye->y *= 1.02;
                                 _last_viewport->camera->eye->z *= 1.02;
                                 break;
-
+                        case 85:
+                                _last_viewport->camera->roll(10);
+                                break;
+                        /*case 79: //o
+                                _last_viewport->camera->perspective = 2;
+                                _last_viewport->RecalculateViewport();
+                                break;*/
                 }
                 _scene->Repaint();
         }
@@ -404,9 +430,12 @@ void __fastcall TForm1::RecalculateGUI() {
 }
 
 void __fastcall TForm1::StructureClick(TObject *Sender){
+
         TTreeNode *sel = Structure->Selected;
 
         if (sel != NULL) {
+
+        Structure->SetFocus();
 
         map<TTreeNode*, Figure3D*>::iterator it;
 
@@ -498,6 +527,7 @@ void __fastcall TForm1::ToolButton5Click(TObject *Sender)
 
 
 void __fastcall TForm1::TrackBar1Change(TObject *Sender) {
+        FocusControl(TrackBar1);
         TrackBar1->SelStart = min(0, TrackBar1->Position);
         TrackBar1->SelEnd = max(0, TrackBar1->Position);
 
@@ -782,4 +812,41 @@ void __fastcall TForm1::TrackBar18Change(TObject *Sender)
         }
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TForm1::Panel4MouseMove(TObject *Sender, TShiftState Shift,
+      int X, int Y)
+{
+        /*if(_last_viewport == _vp4) {
+                Panel4->SetFocus();
+        }*/
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Panel1MouseMove(TObject *Sender, TShiftState Shift,
+      int X, int Y)
+{
+        /*if(_last_viewport == _vp1) {
+                Panel1->SetFocus();
+        }*/
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Panel2MouseMove(TObject *Sender, TShiftState Shift,
+      int X, int Y)
+{
+        /*if(_last_viewport == _vp2) {
+                Panel2->SetFocus();
+        }*/
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Panel3MouseMove(TObject *Sender, TShiftState Shift,
+      int X, int Y)
+{
+        /*if(_last_viewport == _vp3) {
+                Panel3->SetFocus();
+        }*/
+}
+//---------------------------------------------------------------------------
+
 

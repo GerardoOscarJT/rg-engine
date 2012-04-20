@@ -154,6 +154,14 @@ __published:	// IDE-managed Components
         void __fastcall TrackBar16Change(TObject *Sender);
         void __fastcall TrackBar17Change(TObject *Sender);
         void __fastcall TrackBar18Change(TObject *Sender);
+        void __fastcall Panel4MouseMove(TObject *Sender, TShiftState Shift,
+          int X, int Y);
+        void __fastcall Panel1MouseMove(TObject *Sender, TShiftState Shift,
+          int X, int Y);
+        void __fastcall Panel2MouseMove(TObject *Sender, TShiftState Shift,
+          int X, int Y);
+        void __fastcall Panel3MouseMove(TObject *Sender, TShiftState Shift,
+          int X, int Y);
 private:	// User declarations
 
         Scene3D *_scene;
