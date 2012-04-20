@@ -19,6 +19,7 @@ public:
         void normalize();
         PV3D operator+(const PV3D &v);
         PV3D operator-(const PV3D &v);
+        bool operator!=(const PV3D &v);
         double dotProduct(const PV3D &v);
         PV3D crossProduct(const PV3D &v);
 

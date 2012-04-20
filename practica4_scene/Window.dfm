@@ -105,6 +105,7 @@ object Form1: TForm1
         Caption = 'Panel1'
         TabOrder = 0
         OnMouseDown = Panel1MouseDown
+        OnMouseMove = Panel1MouseMove
       end
       object Panel3: TPanel
         Left = 24
@@ -114,6 +115,7 @@ object Form1: TForm1
         Caption = 'Panel3'
         TabOrder = 1
         OnMouseDown = Panel3MouseDown
+        OnMouseMove = Panel3MouseMove
       end
       object Panel2: TPanel
         Left = 24
@@ -123,6 +125,7 @@ object Form1: TForm1
         Caption = 'Panel2'
         TabOrder = 2
         OnMouseDown = Panel2MouseDown
+        OnMouseMove = Panel2MouseMove
       end
       object Panel4: TPanel
         Left = 120
@@ -132,6 +135,7 @@ object Form1: TForm1
         Caption = 'Panel4'
         TabOrder = 3
         OnMouseDown = Panel4MouseDown
+        OnMouseMove = Panel4MouseMove
       end
       object ListBox1: TListBox
         Left = 528
@@ -156,7 +160,7 @@ object Form1: TForm1
       Width = 300
       Height = 530
       HorzScrollBar.Visible = False
-      VertScrollBar.Position = 403
+      VertScrollBar.Position = 186
       VertScrollBar.Smooth = True
       VertScrollBar.Style = ssFlat
       VertScrollBar.Tracking = True
@@ -173,7 +177,7 @@ object Form1: TForm1
       TabOrder = 1
       object Panel5: TPanel
         Left = 0
-        Top = -404
+        Top = -187
         Width = 281
         Height = 298
         BevelOuter = bvNone
@@ -199,7 +203,7 @@ object Form1: TForm1
       end
       object Panel6: TPanel
         Left = 0
-        Top = -107
+        Top = 110
         Width = 281
         Height = 153
         BevelOuter = bvNone
@@ -338,7 +342,7 @@ object Form1: TForm1
       end
       object Panel8: TPanel
         Left = 0
-        Top = 43
+        Top = 260
         Width = 281
         Height = 160
         BevelOuter = bvNone
@@ -475,7 +479,7 @@ object Form1: TForm1
       end
       object Panel10: TPanel
         Left = 0
-        Top = 200
+        Top = 417
         Width = 281
         Height = 330
         BevelOuter = bvNone
