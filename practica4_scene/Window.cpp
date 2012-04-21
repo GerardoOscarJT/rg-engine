@@ -192,6 +192,12 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                         case 85:
                                 _last_viewport->camera->roll(10);
                                 break;
+                        case 78:
+                                _last_viewport->camera->pitch(10);
+                                break;
+                        case 74:
+                                _last_viewport->camera->yaw(10);
+                                break;
                         /*case 79: //o
                                 _last_viewport->camera->perspective = 2;
                                 _last_viewport->RecalculateViewport();

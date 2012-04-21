@@ -59,10 +59,36 @@ void Camera3D::roll(double ang) {
 }
 
 void Camera3D::yaw(double ang) {
+        //ang en grados
+        double c = cos((pi/180)*ang);
+        double s = sin((pi/180)*ang);
+        PV3D t;
+        t.x = n->x; t.y = n->y; t.z = n->z;
+
+        n->x = c*t.x + s*u->x;
+        n->y = c*t.y + s*u->y;
+        n->z = c*t.z + s*u->z;
+
+        u->x = c*u->x - s*t.x;
+        u->y = c*u->y - s*t.y;
+        u->z = c*u->z - s*t.z;
+
 }
 
 void Camera3D::pitch(double ang) {
+        //ang en grados
+        double c = cos((pi/180)*ang);
+        double s = sin((pi/180)*ang);
+        PV3D t;
+        t.x = v->x; t.y = v->y; t.z = v->z;
 
+        v->x = c*t.x - s*n->x;
+        v->y = c*t.y - s*n->y;
+        v->z = c*t.z - s*n->z;
+
+        n->x = s*t.x + c*n->x;
+        n->y = s*t.y + c*n->y;
+        n->z = s*t.z + c*n->z;
 }
 
 void Camera3D::setModelViewMatrix() {
