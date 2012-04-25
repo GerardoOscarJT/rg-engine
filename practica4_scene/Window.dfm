@@ -1,11 +1,6 @@
 object Form1: TForm1
-<<<<<<< local
-  Left = 528
-  Top = 150
-=======
-  Left = 11
-  Top = 115
->>>>>>> other
+  Left = 340
+  Top = 123
   AutoScroll = False
   Caption = 'Engine RG'
   ClientHeight = 635
@@ -142,21 +137,52 @@ object Form1: TForm1
         OnMouseDown = Panel4MouseDown
         OnMouseMove = Panel4MouseMove
       end
-      object ListBox1: TListBox
-        Left = 528
-        Top = 8
-        Width = 105
-        Height = 57
-        TabStop = False
-        BorderStyle = bsNone
+      object Panel11: TPanel
+        Left = 304
+        Top = 16
+        Width = 281
+        Height = 145
+        BevelOuter = bvNone
         Color = clBlack
-        ItemHeight = 13
-        Items.Strings = (
-          'uno'
-          'dos'
-          'tres')
         TabOrder = 4
         Visible = False
+        object ListBox1: TListBox
+          Left = 176
+          Top = 8
+          Width = 105
+          Height = 57
+          TabStop = False
+          BorderStyle = bsNone
+          Color = 25098
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ItemHeight = 13
+          Items.Strings = (
+            'uno'
+            'dos'
+            'tres')
+          ParentFont = False
+          TabOrder = 0
+        end
+        object Edit1: TEdit
+          Left = 32
+          Top = 72
+          Width = 249
+          Height = 21
+          BorderStyle = bsNone
+          Color = 25600
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = []
+          ParentFont = False
+          TabOrder = 1
+          Text = 'Edit1'
+        end
       end
     end
     object RightPanel: TScrollBox
@@ -165,7 +191,6 @@ object Form1: TForm1
       Width = 300
       Height = 530
       HorzScrollBar.Visible = False
-      VertScrollBar.Position = 186
       VertScrollBar.Smooth = True
       VertScrollBar.Style = ssFlat
       VertScrollBar.Tracking = True
@@ -182,7 +207,7 @@ object Form1: TForm1
       TabOrder = 1
       object Panel5: TPanel
         Left = 0
-        Top = -187
+        Top = -1
         Width = 281
         Height = 298
         BevelOuter = bvNone
@@ -208,7 +233,7 @@ object Form1: TForm1
       end
       object Panel6: TPanel
         Left = 0
-        Top = 110
+        Top = 296
         Width = 281
         Height = 153
         BevelOuter = bvNone
@@ -347,7 +372,7 @@ object Form1: TForm1
       end
       object Panel8: TPanel
         Left = 0
-        Top = 260
+        Top = 446
         Width = 281
         Height = 160
         BevelOuter = bvNone
@@ -484,7 +509,7 @@ object Form1: TForm1
       end
       object Panel10: TPanel
         Left = 0
-        Top = 417
+        Top = 603
         Width = 281
         Height = 330
         BevelOuter = bvNone

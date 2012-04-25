@@ -4,9 +4,6 @@
 #pragma package(smart_init)
 
 
-
-
-
 Revolution3D::Revolution3D() : Mesh3D() {
         points = new list<PV3D*>();
         npoints = new list<PV3D*>();
@@ -93,24 +90,26 @@ void Revolution3D::RepaintBSpline3(list<PV3D*>* points) {
         list<PV3D*>::iterator it;
         PV3D *pv;
 
+        PV3D * p1;
+        PV3D * p2;
+        PV3D * p3;
 
-        PV3D *p1, *pp1;
-	PV3D *p2, *pp2;
-	PV3D *p3, *pp3;
+        PV3D * pp1;
+        PV3D * pp2;
+        PV3D * pp3;
+
+
 	PV3D *p4;
 
         it = points->begin();
 
 	p1 = *it;
-	pp1 = p1;
         if (it != points->end()) it++;
 
 	p2 = *it;
-	pp2 = p2;
         if (it != points->end()) it++;
 
 	p3 = *it;
-	pp3 = p3;
         if (it != points->end()) it++;
 
 	double t;
