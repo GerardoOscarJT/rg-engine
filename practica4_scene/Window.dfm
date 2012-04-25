@@ -1,6 +1,11 @@
 object Form1: TForm1
-  Left = 253
-  Top = 133
+<<<<<<< local
+  Left = 528
+  Top = 150
+=======
+  Left = 11
+  Top = 115
+>>>>>>> other
   AutoScroll = False
   Caption = 'Engine RG'
   ClientHeight = 635
@@ -480,154 +485,6 @@ object Form1: TForm1
       object Panel10: TPanel
         Left = 0
         Top = 417
-        Width = 281
-        Height = 330
-        BevelOuter = bvNone
-        TabOrder = 3
-        object GroupBox3: TGroupBox
-          Left = 8
-          Top = 0
-          Width = 265
-          Height = 225
-          Caption = 'Epitrocoide'
-          TabOrder = 0
-          object Label13: TLabel
-            Left = 8
-            Top = 32
-            Width = 7
-            Height = 13
-            Caption = 'A'
-          end
-          object Label15: TLabel
-            Left = 8
-            Top = 64
-            Width = 7
-            Height = 13
-            Caption = 'B'
-          end
-          object Label16: TLabel
-            Left = 8
-            Top = 96
-            Width = 8
-            Height = 13
-            Caption = 'H'
-          end
-          object Label17: TLabel
-            Left = 8
-            Top = 128
-            Width = 8
-            Height = 13
-            Caption = 'R'
-          end
-          object Label18: TLabel
-            Left = 8
-            Top = 160
-            Width = 14
-            Height = 13
-            Caption = 'nR'
-          end
-          object Label19: TLabel
-            Left = 8
-            Top = 192
-            Width = 14
-            Height = 13
-            Caption = 'nQ'
-          end
-          object TrackBar7: TTrackBar
-            Left = 48
-            Top = 24
-            Width = 209
-            Height = 25
-            Max = 500
-            Orientation = trHorizontal
-            Frequency = 1
-            Position = 0
-            SelEnd = 0
-            SelStart = 0
-            TabOrder = 0
-            TickMarks = tmBottomRight
-            TickStyle = tsAuto
-            OnChange = TrackBar7Chage
-          end
-          object TrackBar9: TTrackBar
-            Left = 48
-            Top = 56
-            Width = 209
-            Height = 25
-            Max = 500
-            Orientation = trHorizontal
-            Frequency = 1
-            Position = 0
-            SelEnd = 0
-            SelStart = 0
-            TabOrder = 1
-            TickMarks = tmBottomRight
-            TickStyle = tsAuto
-            OnChange = TrackBar7Chage
-          end
-          object TrackBar10: TTrackBar
-            Left = 48
-            Top = 88
-            Width = 209
-            Height = 25
-            Max = 500
-            Orientation = trHorizontal
-            Frequency = 1
-            Position = 0
-            SelEnd = 0
-            SelStart = 0
-            TabOrder = 2
-            TickMarks = tmBottomRight
-            TickStyle = tsAuto
-            OnChange = TrackBar7Chage
-          end
-          object TrackBar11: TTrackBar
-            Left = 48
-            Top = 120
-            Width = 209
-            Height = 25
-            Max = 500
-            Orientation = trHorizontal
-            Frequency = 1
-            Position = 0
-            SelEnd = 0
-            SelStart = 0
-            TabOrder = 3
-            TickMarks = tmBottomRight
-            TickStyle = tsAuto
-            OnChange = TrackBar11Change
-          end
-          object TrackBar12: TTrackBar
-            Left = 48
-            Top = 152
-            Width = 209
-            Height = 25
-            Max = 500
-            Orientation = trHorizontal
-            Frequency = 1
-            Position = 0
-            SelEnd = 0
-            SelStart = 0
-            TabOrder = 4
-            TickMarks = tmBottomRight
-            TickStyle = tsAuto
-            OnChange = TrackBar12Change
-          end
-          object TrackBar13: TTrackBar
-            Left = 48
-            Top = 184
-            Width = 209
-            Height = 25
-            Max = 500
-            Orientation = trHorizontal
-            Frequency = 1
-            Position = 0
-            SelEnd = 0
-            SelStart = 0
-            TabOrder = 5
-            TickMarks = tmBottomRight
-            TickStyle = tsAuto
-            OnChange = TrackBar13Change
         Width = 281
         Height = 330
         BevelOuter = bvNone
