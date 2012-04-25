@@ -13,6 +13,13 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 void __fastcall TForm1::FormCreate(TObject *Sender) {
 
 
+        // TODO: borrar event_stack en el destructor
+        list<Event*> * event_stack = new list<Event*>();
+
+        event_stack->push_front(EventFactory::createEvent("roll"));
+
+
+
         _selected_figure = NULL;
         _selected_epitrochoid = NULL;
         _selected_box = NULL;  
@@ -137,6 +144,14 @@ void __fastcall TForm1::Button3Click(TObject *Sender) {
 }
 void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift) {
 
+        if (Key == 27) {
+                Panel11->Visible = !Panel11->Visible;
+                if (Panel11->Visible) {
+                        Edit1->Text = "";
+                        Edit1->SetFocus();
+                        // TODO: Obtener lista de nombres y filtrar
+                }
+        }
 
 
 
@@ -431,6 +446,21 @@ void __fastcall TForm1::RecalculateGUI() {
         Panel4->Width = Shape4->Width - 2;
         Panel4->Height = Shape4->Height - 2;
 
+
+        Panel11->Top = Shape1->Top;
+        Panel11->Left = Shape4->Left;
+        Panel11->Height = Shape1->Height;
+        Panel11->Width = Shape4->Width;
+
+        Edit1->Top = 0;
+        Edit1->Left = 0;
+        Edit1->Width = Panel11->Width;
+
+
+        ListBox1->Top = Edit1->Height;
+        ListBox1->Left = 0;
+        ListBox1->Width = Panel11->Width;
+        ListBox1->Height = Panel11->Height - Edit1->Height;
 
 
 
@@ -750,8 +780,6 @@ void __fastcall TForm1::TrackBar11Change(TObject *Sender)
 
 
 
-<<<<<<< local
-=======
 void __fastcall TForm1::TrackBar8Change(TObject *Sender)
 {
         Label14->Caption = "W: " + AnsiString(TrackBar8->Position);
@@ -861,4 +889,3 @@ void __fastcall TForm1::Panel3MouseMove(TObject *Sender, TShiftState Shift,
 //---------------------------------------------------------------------------
 
 
->>>>>>> other

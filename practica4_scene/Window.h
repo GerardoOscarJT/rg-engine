@@ -16,6 +16,7 @@
 #include <map.h>
 #include "Revolution3D.h"
 #include <ImgList.hpp>
+#include "EventFactory.h"
 
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
@@ -37,7 +38,6 @@ __published:	// IDE-managed Components
         TPanel *Panel3;
         TPanel *Panel2;
         TPanel *Panel4;
-        TListBox *ListBox1;
         TShape *Shape1;
         TShape *Shape2;
         TShape *Shape3;
@@ -101,6 +101,9 @@ __published:	// IDE-managed Components
         TLabel *Label22;
         TLabel *Label23;
         TLabel *Label24;
+        TPanel *Panel11;
+        TListBox *ListBox1;
+        TEdit *Edit1;
         void __fastcall FormCreate(TObject *Sender);
         void __fastcall FormDestroy(TObject *Sender);
         void __fastcall Button3Click(TObject *Sender);

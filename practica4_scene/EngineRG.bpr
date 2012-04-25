@@ -8,7 +8,7 @@
       FrenetFrame.obj FrenetFrameEpitrochoid.obj Mesh3D.obj Face3D.obj 
       Figure3D.obj Vertex3D.obj Color3D.obj Box3D.obj Cylinder3D.obj 
       Epitrochoid3D.obj Group3D.obj Group3Delement.obj EpiCar3D.obj 
-      Revolution3D.obj Glass3D.obj"/>
+      Revolution3D.obj Glass3D.obj Event.obj EventRoll.obj EventFactory.obj"/>
     <RESFILES value="EngineRG.res"/>
     <DEFFILE value=""/>
     <RESDEPEN value="$(RESFILES) Window.dfm"/>
