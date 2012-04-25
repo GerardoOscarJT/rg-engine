@@ -137,6 +137,9 @@ void __fastcall TForm1::Button3Click(TObject *Sender) {
 }
 void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shift) {
 
+
+
+
         if (_last_viewport != NULL) {
                                 PV3D look_eye(
                                         _last_viewport->camera->eye->x - _last_viewport->camera->look->x,
@@ -243,7 +246,7 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                 _scene->Repaint();
         }
 
-
+        Key = 0;
 }
 
 void __fastcall TForm1::FormPaint(TObject *Sender) {
