@@ -750,6 +750,8 @@ void __fastcall TForm1::TrackBar11Change(TObject *Sender)
 
 
 
+<<<<<<< local
+=======
 void __fastcall TForm1::TrackBar8Change(TObject *Sender)
 {
         Label14->Caption = "W: " + AnsiString(TrackBar8->Position);
@@ -859,3 +861,4 @@ void __fastcall TForm1::Panel3MouseMove(TObject *Sender, TShiftState Shift,
 //---------------------------------------------------------------------------
 
 
+>>>>>>> other
