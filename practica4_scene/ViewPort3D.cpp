@@ -51,7 +51,20 @@ void ViewPort3D::swapBuffers(){
 }
 
 void ViewPort3D::RecalculateViewport() {
+        //camera->recalculateCamera();        //projection();        //view();        camera->recalculateCamera(*_width, *_height);        // Puerto de vista        glViewport(0, 0, *_width, *_height);
+}
 
+/*
+void ViewPort3D::view() {
+        glMatrixMode(GL_MODELVIEW);
+
+	glLoadIdentity();
+
+        gluLookAt(
+                camera->eye->x, camera->eye->y, camera->eye->z,                camera->look->x, camera->look->y, camera->look->z,                camera->up->x, camera->up->y, camera->up->z                );
+}
+
+void ViewPort3D::projection() {
         glMatrixMode(GL_PROJECTION);
 
 	glLoadIdentity();
@@ -66,9 +79,5 @@ void ViewPort3D::RecalculateViewport() {
         } else {
                 glOrtho(L, R, B, T, 0, 200000);
         }
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-        gluLookAt(
-                camera->eye->x, camera->eye->y, camera->eye->z,                camera->look->x, camera->look->y, camera->look->z,                camera->up->x, camera->up->y, camera->up->z                );        // Puerto de vista        glViewport(0, 0, *_width, *_height);
 }
+*/

@@ -24,6 +24,9 @@ private:
         HGLRC _hrc;
         int *_width;
         int *_height;
+
+        void view();
+        void projection();
 };
 
 

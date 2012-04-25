@@ -14,7 +14,8 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 
 
         _selected_figure = NULL;
-        _selected_epitrochoid = NULL;        
+        _selected_epitrochoid = NULL;
+        _selected_box = NULL;  
 
         _last_viewport = NULL;
         _scene = new Scene3D();
@@ -24,32 +25,44 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 
 
         // Agregamos 4 vistas básicas de cámara:
-        Camera3D * cam1 = new Camera3D();
+        PV3D eye(0, 100, 0);
+        PV3D look(0, 0, -1);
+        PV3D up(0, 0, 1, 0);
+        Camera3D * cam1 = new Camera3D(Panel1->Width, Panel1->Height, eye, look, up);
         cam1->name = "Alzado";
-        cam1->eye->x = 0;
+        /*cam1->eye->x = 0;
         cam1->eye->y = 100;
-        cam1->eye->z = 0;
+        cam1->eye->z = 0;*/
         _scene->cameras->push_back(cam1);
 
-        Camera3D * cam2 = new Camera3D();
+        eye.x=100;
+        eye.y = 0;
+        eye.z = 0; 
+        Camera3D * cam2 = new Camera3D(Panel1->Width, Panel1->Height, eye, look, up);
         cam2->name = "Perfil";
-        cam2->eye->x = 100;
+        /*cam2->eye->x = 100;
         cam2->eye->y = 0;
-        cam2->eye->z = 0;
+        cam2->eye->z = 0;*/
         _scene->cameras->push_back(cam2);
 
-        Camera3D * cam3 = new Camera3D();
+        eye.x = 0;
+        eye.y = 0.1;
+        eye.z = 100;
+        Camera3D * cam3 = new Camera3D(Panel1->Width, Panel1->Height, eye, look, up);
         cam3->name = "Planta";
-        cam3->eye->x = 0;
+        /*cam3->eye->x = 0;
         cam3->eye->y = 0.1;
-        cam3->eye->z = 100;
+        cam3->eye->z = 100;*/
         _scene->cameras->push_back(cam3);
 
-        Camera3D * cam4 = new Camera3D();
+        eye.x = 300;
+        eye.y = 400;
+        eye.z = 300;
+        Camera3D * cam4 = new Camera3D(Panel1->Width, Panel1->Height, eye, look, up);
         cam4->name = "Perspectiva";
-        cam4->eye->x = 300;
+        /*cam4->eye->x = 300;
         cam4->eye->y = 400;
-        cam4->eye->z = 300;
+        cam4->eye->z = 300;*/
         cam4->perspective = true;
         _scene->cameras->push_back(cam4);
 
@@ -144,21 +157,29 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
 
                 switch (Key) {
                         case 37:
-                                angle -= 0.1;
+                                if(!Structure->Focused()) {
+                                        angle -= 0.1;
 
-                                _last_viewport->camera->eye->x = module_xy*sin(angle);
-                                _last_viewport->camera->eye->y = module_xy*cos(angle);
+                                        _last_viewport->camera->eye->x = module_xy*sin(angle);
+                                        _last_viewport->camera->eye->y = module_xy*cos(angle);
+                                }
                                 break;
                         case 39:
-                                angle += 0.1;
-                                _last_viewport->camera->eye->x = module_xy*sin(angle);
-                                _last_viewport->camera->eye->y = module_xy*cos(angle);
+                                if(!Structure->Focused()) {
+                                        angle += 0.1;
+                                        _last_viewport->camera->eye->x = module_xy*sin(angle);
+                                        _last_viewport->camera->eye->y = module_xy*cos(angle);
+                                }
                                 break;
                         case 38:
-                                _last_viewport->camera->eye->z += 10;
+                                if(!Structure->Focused()) {
+                                        _last_viewport->camera->eye->z += 10;
+                                }
                                 break;
                         case 40:
-                                _last_viewport->camera->eye->z -= 10;
+                                if(!Structure->Focused()) {
+                                        _last_viewport->camera->eye->z -= 10;
+                                }
                                 break;
 
                         case 187: // mas
@@ -171,7 +192,19 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                                 _last_viewport->camera->eye->y *= 1.02;
                                 _last_viewport->camera->eye->z *= 1.02;
                                 break;
-
+                        case 85:
+                                _last_viewport->camera->roll(10);
+                                break;
+                        case 78:
+                                _last_viewport->camera->pitch(10);
+                                break;
+                        case 74:
+                                _last_viewport->camera->yaw(10);
+                                break;
+                        /*case 79: //o
+                                _last_viewport->camera->perspective = 2;
+                                _last_viewport->RecalculateViewport();
+                                break;*/
                 }
                 _scene->Repaint();
         }
@@ -406,9 +439,12 @@ void __fastcall TForm1::RecalculateGUI() {
 }
 
 void __fastcall TForm1::StructureClick(TObject *Sender){
+
         TTreeNode *sel = Structure->Selected;
 
         if (sel != NULL) {
+
+        Structure->SetFocus();
 
         map<TTreeNode*, Figure3D*>::iterator it;
 
@@ -421,14 +457,38 @@ void __fastcall TForm1::StructureClick(TObject *Sender){
         if (name == "Box") {
                 // Montar paneles de caja, etc.
                 Box3D *box = dynamic_cast<Box3D*>(it->second);
+                _selected_box = box;
+                //Hacemos visible el panel de la caja
+                TrackBar8->Position = box->x;
+                TrackBar14->Position = box->y;
+                TrackBar15->Position = box->z;
+                Panel10->Visible = true;
+                GroupBox3->Visible = false;
+                GroupBox4->Visible = true;
+                GroupBox5->Visible = false;
+        }
+        else if(name == "Cylinder") {
+                Cylinder3D *cylinder = dynamic_cast<Cylinder3D*>(it->second);
+                _selected_cylinder = cylinder;
+                TrackBar16->Position = cylinder->height;
+                TrackBar17->Position = cylinder->rad_top;
+                TrackBar18->Position = cylinder->rad_bottom;
+                Panel10->Visible = true;
+                GroupBox3->Visible = false;
+                GroupBox4->Visible = false;
+                GroupBox5->Visible = true;
         }
 
-        if (name == "Epitrochoid") {
+        else if (name == "Epitrochoid") {
                 // Montar paneles de caja, etc.
                 Epitrochoid3D *epitrochoid = dynamic_cast<Epitrochoid3D*>(it->second);
                 _selected_epitrochoid = epitrochoid;
                 TrackBar7->Position = epitrochoid->a;
                 Panel10->Visible = true;
+                //Hacemos visible el panel de la epitrocoide
+                GroupBox3->Visible = true;
+                GroupBox4->Visible = false;
+                GroupBox5->Visible = false;
         } else {
                 _selected_epitrochoid = NULL;
                 Panel10->Visible = false;
@@ -476,6 +536,7 @@ void __fastcall TForm1::ToolButton5Click(TObject *Sender)
 
 
 void __fastcall TForm1::TrackBar1Change(TObject *Sender) {
+        FocusControl(TrackBar1);
         TrackBar1->SelStart = min(0, TrackBar1->Position);
         TrackBar1->SelEnd = max(0, TrackBar1->Position);
 
@@ -486,6 +547,7 @@ void __fastcall TForm1::TrackBar1Change(TObject *Sender) {
                 Label6->Caption = "Delta X "+AnsiString(TrackBar1->Position);
                 _scene->Repaint();
         }
+        FocusControl(TrackBar1);
 }
 //---------------------------------------------------------------------------
 
@@ -520,6 +582,7 @@ void __fastcall TForm1::TrackBar2Change(TObject *Sender) {
                 Label6->Caption = "Delta Y "+AnsiString(TrackBar2->Position);
                 _scene->Repaint();
         }
+        FocusControl(TrackBar2);
 }
 
 void __fastcall TForm1::TrackBar2Enter(TObject *Sender) {
@@ -542,6 +605,7 @@ void __fastcall TForm1::TrackBar3Change(TObject *Sender) {
                 Label6->Caption = "Delta Z "+AnsiString(TrackBar3->Position);
                 _scene->Repaint();
         }
+        FocusControl(TrackBar3);
 }
 
 void __fastcall TForm1::TrackBar3Enter(TObject *Sender) {
@@ -565,6 +629,7 @@ void __fastcall TForm1::TrackBar4Change(TObject *Sender)
                 Label12->Caption = "Delta X "+AnsiString(TrackBar4->Position)+"º";
                 _scene->Repaint();
         }
+        FocusControl(TrackBar4);
 }
 
 void __fastcall TForm1::TrackBar4Enter(TObject *Sender) {
@@ -588,6 +653,7 @@ void __fastcall TForm1::TrackBar5Change(TObject *Sender)
                 Label12->Caption = "Delta Y "+AnsiString(TrackBar5->Position)+"º";
                 _scene->Repaint();
         }
+        FocusControl(TrackBar5);
 }
 //---------------------------------------------------------------------------
 
@@ -602,6 +668,7 @@ void __fastcall TForm1::TrackBar6Change(TObject *Sender)
                 Label12->Caption = "Delta Z "+AnsiString(TrackBar6->Position)+"º";
                 _scene->Repaint();
         }
+        FocusControl(TrackBar6);
 }
 //---------------------------------------------------------------------------
 
@@ -681,5 +748,114 @@ void __fastcall TForm1::TrackBar11Change(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+
+
+void __fastcall TForm1::TrackBar8Change(TObject *Sender)
+{
+        Label14->Caption = "W: " + AnsiString(TrackBar8->Position);
+
+        if (_selected_box != NULL) {
+                _selected_box->x = TrackBar8->Position;
+                _selected_box->RecalculateMesh();
+                _scene->Repaint();
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar14Change(TObject *Sender)
+{
+        Label20->Caption = "L: " + AnsiString(TrackBar14->Position);
+
+        if (_selected_box != NULL) {
+                _selected_box->y = TrackBar14->Position;
+                _selected_box->RecalculateMesh();
+                _scene->Repaint();
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar15Change(TObject *Sender)
+{
+        Label21->Caption = "H: " + AnsiString(TrackBar15->Position);
+
+        if (_selected_box != NULL) {
+                _selected_box->z = TrackBar15->Position;
+                _selected_box->RecalculateMesh();
+                _scene->Repaint();
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar16Change(TObject *Sender)
+{
+        Label22->Caption = "H: " + AnsiString(TrackBar16->Position);
+
+        if (_selected_cylinder != NULL) {
+                _selected_cylinder->height = TrackBar16->Position;
+                _selected_cylinder->RecalculateMesh();
+                _scene->Repaint();
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar17Change(TObject *Sender)
+{
+        Label23->Caption = "RT: " + AnsiString(TrackBar17->Position);
+
+        if (_selected_cylinder != NULL) {
+                _selected_cylinder->rad_top = TrackBar17->Position;
+                _selected_cylinder->RecalculateMesh();
+                _scene->Repaint();
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar18Change(TObject *Sender)
+{
+        Label24->Caption = "RB: " + AnsiString(TrackBar18->Position);
+
+        if (_selected_cylinder != NULL) {
+                _selected_cylinder->rad_bottom = TrackBar18->Position;
+                _selected_cylinder->RecalculateMesh();
+                _scene->Repaint();
+        }
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Panel4MouseMove(TObject *Sender, TShiftState Shift,
+      int X, int Y)
+{
+        /*if(_last_viewport == _vp4) {
+                Panel4->SetFocus();
+        }*/
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Panel1MouseMove(TObject *Sender, TShiftState Shift,
+      int X, int Y)
+{
+        /*if(_last_viewport == _vp1) {
+                Panel1->SetFocus();
+        }*/
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Panel2MouseMove(TObject *Sender, TShiftState Shift,
+      int X, int Y)
+{
+        /*if(_last_viewport == _vp2) {
+                Panel2->SetFocus();
+        }*/
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Panel3MouseMove(TObject *Sender, TShiftState Shift,
+      int X, int Y)
+{
+        /*if(_last_viewport == _vp3) {
+                Panel3->SetFocus();
+        }*/
+}
+//---------------------------------------------------------------------------
 
 
