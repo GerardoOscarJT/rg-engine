@@ -9,7 +9,7 @@ const double pi = 4*atan(1);
 
 class Camera3D {
 public:
-        Camera3D(int, int, PV3D&, PV3D&, PV3D&);
+        Camera3D();
         ~Camera3D();
 
         PV3D* look;
@@ -24,28 +24,44 @@ public:
         float fovy;
         float proportion;
 
+        GLfloat mm[16]; //mm es la matriz de vista nueva
         GLfloat m[16]; //Para guardar la matriz de vista inversa
-
-        GLfloat miVM[16]; //mi matriz de MODELVIEW
-        GLfloat ordVM[16]; //matriz MODELVIEW de OpenGL
+        double module_xy;
 
         //int perspective;
-        bool perspective;
+        int perspective;
         AnsiString name;
 
         void roll(double ang);
         void yaw(double ang);
         void pitch(double ang);
 
-        void oblique(PV3D* p, double, double, double, double);
+        void inicializa(int, int);
+        void oblique(PV3D& p);
         void recalculateCamera(int, int);
+        void move(PV3D&);
+        void alongAxis(int, double);
+        void corner();
+
+        //void changeAtrib(int, int, int);
+
+
+        void zoomIn(bool);
+        void zoomOut(bool);
+
+        void xyRotate(bool);
+        void zRotate(bool);
+        void turnX(bool);
+        void turnY(bool);
+        //Lo que debería ser turnZ es xyRotate
 
 private:
 
-        void setView1(PV3D& , PV3D& , PV3D& );
+        void setModelViewMatrix();
+        void recalculateCameraAxis();
+        void setView1();
         void setView();
         void setProjection(int, int);
-        void setModelViewMatrix();
         void setM();
 
 
