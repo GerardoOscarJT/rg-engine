@@ -177,6 +177,8 @@ private:	// User declarations
 
 
         EpiCar3D *_epicar;
+        //Borrar al terminar de experimentar
+        Box3D *box;
 
         map<TTreeNode*, Figure3D*> *_editable_figures;
 
