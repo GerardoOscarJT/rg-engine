@@ -16,6 +16,8 @@ public:
         double y;
         double z;
 
+        double separacion;
+
         void RecalculateMesh();
 
         AnsiString getName();

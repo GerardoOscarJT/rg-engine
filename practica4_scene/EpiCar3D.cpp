@@ -81,7 +81,7 @@ EpiCar3D::EpiCar3D() {
                         box1->z = 5;
                         box1->translation->y = -14;
                         box1->translation->x = -5;
-                        box1->translation->z = 1;
+                        box1->translation->z = 1; 
                         box1->RecalculateMesh();
                 _chassis->elements->push_back(box1);
                 Box3D* box2 = new Box3D(); // Ventanas
