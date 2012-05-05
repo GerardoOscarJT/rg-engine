@@ -78,7 +78,8 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 
 
         // ESCENA 1 (coche + epitrocoide) //////////////////////////////////////
-        _epicar = new EpiCar3D();
+        //_epicar = new EpiCar3D();
+        _leftRoomFurn = new LeftRoomFurn();
 
 
         // ESCENA 2 (copa) /////////////////////////////////////////////////////
@@ -537,7 +538,8 @@ void __fastcall TForm1::ToolButton1Click(TObject *Sender) {
 
 void __fastcall TForm1::ToolButton2Click(TObject *Sender) {
         _scene->main_figure->elements->clear();
-        _scene->main_figure->elements->push_back(_epicar);
+        //_scene->main_figure->elements->push_back(_epicar);
+        _scene->main_figure->elements->push_back(_leftRoomFurn);
         _scene->Repaint();
         Structure->Items->Clear();
         LoadStructure(_scene->main_figure, NULL);
