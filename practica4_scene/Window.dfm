@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 7
   Top = 49
   AutoScroll = False
-  Caption = 'Engine RG'
+  Caption = 'EngineRG'
   ClientHeight = 635
   ClientWidth = 990
   Color = clBtnFace

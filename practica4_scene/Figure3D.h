@@ -12,6 +12,7 @@ public:
 
         PV3D *translation;
         PV3D *rotation;
+        PV3D *scale;
 
         AnsiString human_name;
 

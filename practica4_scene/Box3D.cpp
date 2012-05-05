@@ -14,10 +14,15 @@ Box3D::Box3D() : Mesh3D() {
 void Box3D::RecalculateMesh() {
         clearLists();
 
+        double divX = x/10;
+        double divY = y/10;
+        double divZ = z/10;
+        double separacion;
+
         Vertex3D * v1 = new Vertex3D(x,0,z); vertices->push_back(v1);
 
         Vertex3D **v12 = new Vertex3D*[9];
-        separacion = y/10;
+        separacion = divY;
         for(int i = 1; i < 10; i++) {
                 v12[i-1] = new Vertex3D(x,i*separacion,z);
                 vertices->push_back(v12[i-1]);
@@ -26,7 +31,7 @@ void Box3D::RecalculateMesh() {
         Vertex3D * v2 = new Vertex3D(x,y,z); vertices->push_back(v2);
 
         Vertex3D **v23 = new Vertex3D*[9];
-        separacion = x/10;
+        separacion = divX;
         for(int i = 8; i >= 0; i--) {
                 v23[i] = new Vertex3D((i+1)*separacion,y,z);
                 vertices->push_back(v23[i]);
@@ -35,7 +40,7 @@ void Box3D::RecalculateMesh() {
         Vertex3D * v3 = new Vertex3D(0,y,z);vertices->push_back(v3);
 
         Vertex3D **v34 = new Vertex3D*[9];
-        separacion = y/10;
+        separacion = divY;
         for(int i = 8; i >= 0; i--) {
                 v34[i] = new Vertex3D(0,(i+1)*separacion,z);
                 vertices->push_back(v34[i]);
@@ -44,7 +49,7 @@ void Box3D::RecalculateMesh() {
         Vertex3D * v4 = new Vertex3D(0,0,z); vertices->push_back(v4);
 
         Vertex3D **v41 = new Vertex3D*[9];
-        separacion = x/10;
+        separacion = divX;
         for(int i = 1; i < 10; i++) {
                 v41[i-1] = new Vertex3D(i*separacion,0,z);
                 vertices->push_back(v41[i-1]);
@@ -53,7 +58,7 @@ void Box3D::RecalculateMesh() {
         Vertex3D * v5 = new Vertex3D(x,0,0); vertices->push_back(v5);
 
         Vertex3D **v56 = new Vertex3D*[9];
-        separacion = y/10;
+        separacion = divY;
         for(int i = 1; i < 10; i++) {
                 v56[i-1] = new Vertex3D(x,i*separacion,0);
                 vertices->push_back(v56[i-1]);
@@ -62,7 +67,7 @@ void Box3D::RecalculateMesh() {
         Vertex3D * v6 = new Vertex3D(x,y,0); vertices->push_back(v6);
 
         Vertex3D **v67 = new Vertex3D*[9];
-        separacion = x/10; //v[7]->x = 0, v6->x - 0 = v6->x
+        separacion = divX; //v[7]->x = 0, v6->x - 0 = v6->x
         for(int i = 8; i >= 0; i--) {
                 v67[i] = new Vertex3D((i+1)*separacion,y,0);
                 vertices->push_back(v67[i]);
@@ -71,7 +76,7 @@ void Box3D::RecalculateMesh() {
         Vertex3D * v7 = new Vertex3D(0,y,0);vertices->push_back(v7);
 
         Vertex3D **v78 = new Vertex3D*[9];
-        separacion = y/10;
+        separacion = divY;
         for(int i = 8; i >= 0; i--) {
                 v78[i] = new Vertex3D(0,(i+1)*separacion,0);
                 vertices->push_back(v78[i]);
@@ -80,7 +85,7 @@ void Box3D::RecalculateMesh() {
         Vertex3D * v8 = new Vertex3D(0,0,0); vertices->push_back(v8);
 
         Vertex3D **v85 = new Vertex3D*[9];
-        separacion = x/10;
+        separacion = divX;
         for(int i = 1; i < 10; i++) {
                 v85[i-1] = new Vertex3D(i*separacion,0,0);
                 vertices->push_back(v85[i-1]);
@@ -88,28 +93,28 @@ void Box3D::RecalculateMesh() {
 
         //División de la dimensión z
         Vertex3D **v51 = new Vertex3D*[9];
-        separacion = z/10;
+        separacion = divZ;
         for(int i = 8; i >= 0; i--) {
                 v51[i] = new Vertex3D(x,0,(i+1)*separacion);
                 vertices->push_back(v51[i]);
         }
 
         Vertex3D **v62 = new Vertex3D*[9];
-        separacion = z/10;
+        separacion = divZ;
         for(int i = 8; i >= 0; i--) {
                 v62[i] = new Vertex3D(x,y,(i+1)*separacion);
                 vertices->push_back(v62[i]);
         }
 
         Vertex3D **v73 = new Vertex3D*[9];
-        separacion = z/10;
+        separacion = divZ;
         for(int i = 8; i >= 0; i--) {
                 v73[i] = new Vertex3D(0,y,(i+1)*separacion);
                 vertices->push_back(v73[i]);
         }
 
         Vertex3D **v84 = new Vertex3D*[9];
-        separacion = z/10;
+        separacion = divZ;
         for(int i = 8; i >= 0; i--) {
                 v84[i] = new Vertex3D(0,0,(i+1)*separacion);
                 vertices->push_back(v84[i]);
@@ -119,8 +124,8 @@ void Box3D::RecalculateMesh() {
 
         //------------Caras Laterales Derechas-------------------------------
         //Genero los vértices intermedios de la cara por filas
-        double espacioDerY = y/10;
-        double espacioDerZ = z/10;
+        double espacioDerY = divY;
+        double espacioDerZ = divZ;
         double posDerZ = 0;
         Vertex3D ***mDerAux;
         mDerAux = new Vertex3D**[9];
@@ -235,8 +240,8 @@ void Box3D::RecalculateMesh() {
         //------------Caras frontales-------------------------------
 
         //Genero los vértices intermedios de la cara por filas
-        double espacioFronX = x/10;
-        double espacioFronZ = z/10;
+        double espacioFronX = divX;
+        double espacioFronZ = divZ;
         double posFronZ = 0;
         Vertex3D ***mFronAux;
         mFronAux = new Vertex3D**[9];
@@ -351,8 +356,8 @@ void Box3D::RecalculateMesh() {
         //------------Caras Laterales Izquierdas-------------------------------
 
          //Genero los vértices intermedios de la cara por filas
-        double espacioIzqY = y/10;
-        double espacioIzqZ = z/10;
+        double espacioIzqY = divY;
+        double espacioIzqZ = divZ;
         double posIzqZ = 0;
         Vertex3D ***mIzqAux;
         mIzqAux = new Vertex3D**[9];
@@ -467,8 +472,8 @@ void Box3D::RecalculateMesh() {
         //------------Cara Posterior-------------------------------
 
          //Genero los vértices intermedios de la cara por filas
-        double espacioPostX = x/10;
-        double espacioPostZ = z/10;
+        double espacioPostX = divX;
+        double espacioPostZ = divZ;
         double posPostZ = 0;
         Vertex3D ***mPostAux;
         mPostAux = new Vertex3D**[9];
@@ -583,8 +588,8 @@ void Box3D::RecalculateMesh() {
         //------------Cara Superior-------------------------------
 
                 //Genero los vértices intermedios de la cara por filas
-                double espacioY = y/10;
-                double espacioX = x/10;
+                double espacioY = divY;
+                double espacioX = divX;
                 double posY = 0;
                 Vertex3D ***m1Aux;
                 m1Aux = new Vertex3D**[9];
@@ -699,8 +704,8 @@ void Box3D::RecalculateMesh() {
         //------------Cara Inferior-------------------------------
 
                 //Genero los vértices intermedios de la cara por filas
-                double espacioInfY = y/10;
-                double espacioInfX = x/10;
+                double espacioInfY = divY;
+                double espacioInfX = divX;
                 double posInfY = 0;
                 Vertex3D ***mInfAux;
                 mInfAux = new Vertex3D**[9];

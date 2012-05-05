@@ -51,6 +51,8 @@ void Group3D::Repaint() {
         glRotated(rotation->y, 0,1,0);
         glRotated(rotation->z, 0,0,1);
 
+        glScaled(scale->x, scale->y, scale->z);
+
 
         if (color != NULL)
                 glColor3f(color->r, color->g, color->b);

@@ -23,6 +23,8 @@ USEUNIT("Group3Delement.cpp");
 USEUNIT("EpiCar3D.cpp");
 USEUNIT("Revolution3D.cpp");
 USEUNIT("Glass3D.cpp");
+USEUNIT("LeftRoomFurn.cpp");
+USEUNIT("Disk3D.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

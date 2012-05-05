@@ -16,6 +16,7 @@
 #include <map.h>
 #include "Revolution3D.h"
 #include <ImgList.hpp>
+#include "LeftRoomFurn.h"
 
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
@@ -177,8 +178,9 @@ private:	// User declarations
 
 
         EpiCar3D *_epicar;
+        LeftRoomFurn *_leftRoomFurn;
         //Borrar al terminar de experimentar
-        Box3D *box;
+        //Box3D *box;
 
         map<TTreeNode*, Figure3D*> *_editable_figures;
 
