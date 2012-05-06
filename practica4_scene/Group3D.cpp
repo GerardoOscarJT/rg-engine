@@ -32,9 +32,11 @@ Group3D::~Group3D() {
 
 }
 
+/*
 void Group3D::addFigure(Figure3D *&f) {
         figures->push_back(f);
 }
+*/
 
 void Group3D::Repaint() {
         glPushMatrix();

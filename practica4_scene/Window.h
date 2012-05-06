@@ -19,6 +19,7 @@
 #include <List.h>
 #include "EventFactory.h"
 #include "LeftRoomFurn.h"
+#include "Help.h"
 
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
@@ -106,6 +107,9 @@ __published:	// IDE-managed Components
         TPanel *Panel11;
         TListBox *ListBox1;
         TEdit *Edit1;
+        TMenuItem *Manualdeayuda1;
+        TMenuItem *Acercade1;
+        TMenuItem *N1;
         void __fastcall FormCreate(TObject *Sender);
         void __fastcall FormDestroy(TObject *Sender);
         void __fastcall Button3Click(TObject *Sender);
@@ -169,6 +173,8 @@ __published:	// IDE-managed Components
           int X, int Y);
         void __fastcall Edit1KeyUp(TObject *Sender, WORD &Key,
           TShiftState Shift);
+        void __fastcall Manualdeayuda1Click(TObject *Sender);
+        void __fastcall Acercade1Click(TObject *Sender);
 private:	// User declarations
 
         Scene3D *_scene;
@@ -185,8 +191,6 @@ private:	// User declarations
 
         EpiCar3D *_epicar;
         LeftRoomFurn *_leftRoomFurn;
-        //Borrar al terminar de experimentar
-        //Box3D *box;
 
         map<TTreeNode*, Figure3D*> *_editable_figures;
 
@@ -196,6 +200,10 @@ private:	// User declarations
         Epitrochoid3D *_selected_epitrochoid;
         Box3D* _selected_box;
         Cylinder3D *_selected_cylinder;
+
+        list<Event*> * _events;
+
+        Event* __fastcall SearchEvent(String name);
 
 
         void __fastcall LoadStructure(Figure3D *figure, TTreeNode* node);

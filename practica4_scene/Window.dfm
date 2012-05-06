@@ -160,10 +160,6 @@ object Form1: TForm1
           Font.Name = 'MS Sans Serif'
           Font.Style = []
           ItemHeight = 13
-          Items.Strings = (
-            'uno'
-            'dos'
-            'tres')
           ParentFont = False
           TabOrder = 0
         end
@@ -886,6 +882,18 @@ object Form1: TForm1
     end
     object Ayuda1: TMenuItem
       Caption = 'A&yuda'
+      object Manualdeayuda1: TMenuItem
+        Caption = 'Manual de ayuda'
+        ShortCut = 112
+        OnClick = Manualdeayuda1Click
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object Acercade1: TMenuItem
+        Caption = 'Acerca de...'
+        OnClick = Acercade1Click
+      end
     end
   end
   object PopupMenu1: TPopupMenu

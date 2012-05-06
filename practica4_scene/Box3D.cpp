@@ -4,12 +4,21 @@
 #pragma package(smart_init)
 
 
-/*
+
 Box3D::Box3D() : Mesh3D() {
+        x = 1;
+        y = 1;
+        z = 1;
+        x_div = 2;
+        y_div = 2;
+        z_div = 2;
+
+        RecalculateMesh();
+}
+
+Box3D::~Box3D(){
 
 }
-*/
-
 
 void Box3D::RecalculateMesh() {
         clearLists();

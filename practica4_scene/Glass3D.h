@@ -6,7 +6,7 @@
 
 #include "Revolution3D.h"
 
-class Glass3D {//: public Mesh3D {
+class Glass3D:public Mesh3D {
 
 public:
 

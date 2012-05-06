@@ -28,6 +28,12 @@ USEUNIT("EventRoll.cpp");
 USEUNIT("EventFactory.cpp");
 USEUNIT("LeftRoomFurn.cpp");
 USEUNIT("Disk3D.cpp");
+USEUNIT("EventGlass.cpp");
+USEFORM("Help.cpp", Form2);
+USEUNIT("EventPitch.cpp");
+USEUNIT("EventYaw.cpp");
+USEUNIT("EventHouse.cpp");
+USEUNIT("EventZoom.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -35,6 +41,7 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     {
          Application->Initialize();
          Application->CreateForm(__classid(TForm1), &Form1);
+                 Application->CreateForm(__classid(TForm2), &Form2);
                  Application->Run();
     }
     catch (Exception &exception)

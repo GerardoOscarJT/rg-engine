@@ -1,12 +1,10 @@
 #include <vcl.h>
 #pragma hdrstop
-
-#include "EventRoll.h"
-
-
+#include "EventYaw.h"
 #pragma package(smart_init)
 
-bool EventRoll::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift) {
+
+bool EventYaw::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift) {
 
         if (type == "KeyDown") {
 
@@ -18,15 +16,15 @@ bool EventRoll::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD 
                         velocity = 0.1; // Velocidad lenta
                 }
 
-                if (key == 37) {
-                        // Flecha izquierda
-                        _viewport->camera->roll(-velocity);
+                if (key == 39) {
+                        // Flecha derecha
+                        _viewport->camera->yaw(-velocity);
                         _scene->Repaint();
                         return true;
                 }
-                if (key == 39) {
-                        // Flecha derecha
-                        _viewport->camera->roll(velocity);
+                if (key == 37) {
+                        // Flecha izquierda
+                        _viewport->camera->yaw(velocity);
                         _scene->Repaint();
                         return true;
                 }
@@ -34,8 +32,6 @@ bool EventRoll::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD 
 
         return false;
 }
-
-String EventRoll::getName() {
-        return "roll";
+String EventYaw::getName() {
+        return "yaw";
 }
-

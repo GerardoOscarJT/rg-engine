@@ -10,13 +10,38 @@ __fastcall TForm1::TForm1(TComponent* Owner)
     : TForm(Owner)
 {
 }
+
+Event* __fastcall TForm1::SearchEvent(String name) {
+        list<Event*>::iterator it;
+        Event *e = NULL;
+
+        for (it = _events->begin(); it!=_events->end(); it++) {
+                if (name == (*it)->getName()) {
+                        e = *it;
+                }
+        }
+
+        if (e == NULL) {
+                // Creo el evento y lo coloco al principio de la cola de eventos
+                e = EventFactory::createEvent(name);
+                _events->push_front(e);
+        } else {
+                // Quito el evento y lo coloco al principio de la cola de eventos
+                _events->remove(e);
+                _events->push_front(e);
+        }
+
+        e->top(_last_viewport, _scene);
+
+        return e;
+}
+
+
 void __fastcall TForm1::FormCreate(TObject *Sender) {
+        // TODO: borrar _events en el destructor
+        _events = new list<Event*>();
 
 
-        // TODO: borrar event_stack en el destructor
-        list<Event*> * event_stack = new list<Event*>();
-
-        event_stack->push_front(EventFactory::createEvent("roll"));
 
 
 
@@ -84,6 +109,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         _scene->viewports->push_back(_vp4);
 
 
+/*
         // ESCENA 1 (coche + epitrocoide) //////////////////////////////////////
         //_epicar = new EpiCar3D();
         _leftRoomFurn = new LeftRoomFurn();
@@ -112,6 +138,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         _copa->points->push_back(new PV3D(0,0,102));
 
         _copa->RecalculateMesh();
+        */
 
         // recargo el panel de estructura
         Structure->Items->Clear();
@@ -142,10 +169,26 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                 if (Panel11->Visible) {
                         Edit1->Text = "";
                         Edit1->SetFocus();
-                        // TODO: Obtener lista de nombres y filtrar
                 }
         }
 
+        if (Panel11->Visible) {
+                // Estoy en modo línea de comandos, cancelo propagación de eventos
+                Key = 0;
+        } else {
+                // Estoy en modo editor, propago eventos
+
+                list<Event*>::iterator it;
+                it = _events->begin();
+
+                while (it != _events->end() && !(*it)->event(_last_viewport, _scene, "KeyDown", Key, Shift)) {
+                        it++;
+                }
+                if (it != _events->end())
+                        Key = 0;
+        }
+
+/*
 
 
         if (_last_viewport != NULL) {
@@ -269,12 +312,6 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                         _epicar->setTime(_epicar->getTime()-0.02);
                 }
 
-                /*
-                _vp4->camera->look->x = _epicar->car->translation->x;
-                _vp4->camera->look->y = _epicar->car->translation->y;
-                _vp4->camera->look->z = _epicar->car->translation->z;
-                */
-
                 _scene->Repaint();
         } else if (Key == 88) {
                 // Girar coche a la derecha
@@ -285,17 +322,12 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                 } else {
                         _epicar->setTime(_epicar->getTime()+0.02);
                 }
-
-                /*
-                _vp4->camera->look->x = _epicar->car->translation->x;
-                _vp4->camera->look->y = _epicar->car->translation->y;
-                _vp4->camera->look->z = _epicar->car->translation->z;
-                */
-
                 _scene->Repaint();
         }
 
-        Key = 0;
+
+        */
+
 }
 
 void __fastcall TForm1::FormPaint(TObject *Sender) {
@@ -941,7 +973,18 @@ void __fastcall TForm1::Edit1KeyUp(TObject *Sender, WORD &Key,
         if (ListBox1->Items->Count == 1) {
                 // TODO: buscar last_string en la pila, si no existe crearlo
                 // y colocar last_string en la cima de la pila
+                SearchEvent(last_string);
                 Panel11->Visible = false;
         }
 
 }
+void __fastcall TForm1::Manualdeayuda1Click(TObject *Sender)
+{
+        Form2->ShowModal();
+}
+
+void __fastcall TForm1::Acercade1Click(TObject *Sender)
+{
+        ShowMessage("TODO ABOUT BOX");
+}
+

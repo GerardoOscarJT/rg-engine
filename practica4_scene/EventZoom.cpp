@@ -1,12 +1,11 @@
 #include <vcl.h>
 #pragma hdrstop
 
-#include "EventRoll.h"
-
-
+#include "EventZoom.h"
 #pragma package(smart_init)
 
-bool EventRoll::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift) {
+
+bool EventZoom::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift) {
 
         if (type == "KeyDown") {
 
@@ -18,15 +17,17 @@ bool EventRoll::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD 
                         velocity = 0.1; // Velocidad lenta
                 }
 
-                if (key == 37) {
-                        // Flecha izquierda
-                        _viewport->camera->roll(-velocity);
+                if (key == 187) {
+                        // + (acercar zoom)
+                        //_viewport->camera->z(-velocity);
+                        _viewport->camera->zoomIn(true);
                         _scene->Repaint();
                         return true;
                 }
-                if (key == 39) {
-                        // Flecha derecha
-                        _viewport->camera->roll(velocity);
+                if (key == 189) {
+                        // - (alejar zoom)
+                        //_viewport->camera->roll(velocity);
+                        _viewport->camera->zoomOut(true);                        
                         _scene->Repaint();
                         return true;
                 }
@@ -35,7 +36,6 @@ bool EventRoll::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD 
         return false;
 }
 
-String EventRoll::getName() {
-        return "roll";
+String EventZoom::getName() {
+        return "zoom";
 }
-

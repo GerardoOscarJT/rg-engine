@@ -1,12 +1,15 @@
-#ifndef EventRollH
-#define EventRollH
+#ifndef EventZoomH
+#define EventZoomH
 
 #include "Event.h"
 
-class EventRoll : public Event {
+class EventZoom:public Event {
 public:
+
         bool event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift);
         String getName();
 };
+
+
 
 #endif

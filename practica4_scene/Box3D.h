@@ -5,10 +5,8 @@
 class Box3D : public Mesh3D {
 public:
 
-/*
         Box3D();
         ~Box3D();
-*/        
 
 
 
@@ -22,11 +20,10 @@ public:
 
 
 
-        /** OPCIONAL
         int x_div;
         int y_div;
         int z_div;
-         **/
+
 private:
 
 

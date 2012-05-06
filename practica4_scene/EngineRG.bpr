@@ -9,13 +9,14 @@
       Figure3D.obj Vertex3D.obj Color3D.obj Box3D.obj Cylinder3D.obj 
       Epitrochoid3D.obj Group3D.obj Group3Delement.obj EpiCar3D.obj 
       Revolution3D.obj Glass3D.obj Event.obj EventRoll.obj EventFactory.obj 
-      LeftRoomFurn.obj Disk3D.obj"/>
+      LeftRoomFurn.obj Disk3D.obj EventGlass.obj Help.obj EventPitch.obj 
+      EventYaw.obj EventHouse.obj EventZoom.obj"/>
     <RESFILES value="EngineRG.res"/>
     <DEFFILE value=""/>
-    <RESDEPEN value="$(RESFILES) Window.dfm"/>
+    <RESDEPEN value="$(RESFILES) Window.dfm Help.dfm"/>
     <LIBFILES value=""/>
     <LIBRARIES value=""/>
-    <SPARELIBS value="Vcl50.lib"/>
+    <SPARELIBS value="Vcl50.lib bcbie50.lib"/>
     <PACKAGES value="VCL50.bpi VCLX50.bpi VCLDB50.bpi VCLBDE50.bpi VCLDBX50.bpi TEEUI50.bpi 
       TEEDB50.bpi TEE50.bpi bcbsmp50.bpi QRPT50.bpi TEEQR50.bpi VCLIB50.bpi 
       bcbie50.bpi VCLIE50.bpi INETDB50.bpi INET50.bpi NMFAST50.bpi dclocx50.bpi 

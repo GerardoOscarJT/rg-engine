@@ -12,11 +12,11 @@
 class Group3D : public Figure3D {
 public:
 
-        list<Figure3D*>* figures; 
+//        list<Figure3D*>* figures;
 
         Group3D();
         ~Group3D();
-        void addFigure(Figure3D *&f);
+//        void addFigure(Figure3D *&f);
 
         // Extiendo clase Figure3D
         void Repaint();
