@@ -32,45 +32,37 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 
 
         // Agregamos 4 vistas básicas de cámara:
-        PV3D eye(0, 100, 0);
-        PV3D look(0, 0, -1);
-        PV3D up(0, 0, 1, 0);
-        Camera3D * cam1 = new Camera3D(Panel1->Width, Panel1->Height, eye, look, up);
+        Camera3D * cam1 = new Camera3D();
         cam1->name = "Alzado";
-        /*cam1->eye->x = 0;
+        cam1->eye->x = 0;
         cam1->eye->y = 100;
-        cam1->eye->z = 0;*/
+        cam1->eye->z = 0;
+        cam1->inicializa(Panel1->Width, Panel1->Height);
         _scene->cameras->push_back(cam1);
 
-        eye.x=100;
-        eye.y = 0;
-        eye.z = 0; 
-        Camera3D * cam2 = new Camera3D(Panel1->Width, Panel1->Height, eye, look, up);
+        Camera3D * cam2 = new Camera3D();
         cam2->name = "Perfil";
-        /*cam2->eye->x = 100;
+        cam2->eye->x = 100;
         cam2->eye->y = 0;
-        cam2->eye->z = 0;*/
+        cam2->eye->z = 0;
+        cam2->inicializa(Panel1->Width, Panel1->Height);
         _scene->cameras->push_back(cam2);
 
-        eye.x = 0;
-        eye.y = 0.1;
-        eye.z = 100;
-        Camera3D * cam3 = new Camera3D(Panel1->Width, Panel1->Height, eye, look, up);
+        Camera3D * cam3 = new Camera3D();
         cam3->name = "Planta";
-        /*cam3->eye->x = 0;
+        cam3->eye->x = 0;
         cam3->eye->y = 0.1;
-        cam3->eye->z = 100;*/
+        cam3->eye->z = 100;
+        cam3->inicializa(Panel1->Width, Panel1->Height);
         _scene->cameras->push_back(cam3);
 
-        eye.x = 300;
-        eye.y = 400;
-        eye.z = 300;
-        Camera3D * cam4 = new Camera3D(Panel1->Width, Panel1->Height, eye, look, up);
+        Camera3D * cam4 = new Camera3D();
         cam4->name = "Perspectiva";
-        /*cam4->eye->x = 300;
+        cam4->eye->x = 300;
         cam4->eye->y = 400;
-        cam4->eye->z = 300;*/
-        cam4->perspective = true;
+        cam4->eye->z = 300;
+        cam4->inicializa(Panel1->Width, Panel1->Height);
+        cam4->perspective = 0;
         _scene->cameras->push_back(cam4);
 
         // Agrego 4 puertos de vista vinculados con los 4 paneles
@@ -93,7 +85,8 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
 
 
         // ESCENA 1 (coche + epitrocoide) //////////////////////////////////////
-        _epicar = new EpiCar3D();
+        //_epicar = new EpiCar3D();
+        _leftRoomFurn = new LeftRoomFurn();
 
 
         // ESCENA 2 (copa) /////////////////////////////////////////////////////
@@ -156,56 +149,36 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
 
 
         if (_last_viewport != NULL) {
-                                PV3D look_eye(
-                                        _last_viewport->camera->eye->x - _last_viewport->camera->look->x,
-                                        _last_viewport->camera->eye->y - _last_viewport->camera->look->y,
-                                        _last_viewport->camera->eye->z - _last_viewport->camera->look->z,
-                                        0
-                                );
-                                double module_xy = sqrt(pow(_last_viewport->camera->eye->x,2)+pow(_last_viewport->camera->eye->y,2));
-                                //double module = look_eye.len();
-                                double angle = atan2l(
-                                        look_eye.x,
-                                        look_eye.y
-                                );
-                                Caption = AnsiString(Key);
+
+                Caption = AnsiString(Key);
 
                 switch (Key) {
                         case 37:
                                 if(!Structure->Focused()) {
-                                        angle -= 0.1;
-
-                                        _last_viewport->camera->eye->x = module_xy*sin(angle);
-                                        _last_viewport->camera->eye->y = module_xy*cos(angle);
+                                        _last_viewport->camera->xyRotate(false);
                                 }
                                 break;
                         case 39:
                                 if(!Structure->Focused()) {
-                                        angle += 0.1;
-                                        _last_viewport->camera->eye->x = module_xy*sin(angle);
-                                        _last_viewport->camera->eye->y = module_xy*cos(angle);
+                                        _last_viewport->camera->xyRotate(true);
                                 }
                                 break;
                         case 38:
                                 if(!Structure->Focused()) {
-                                        _last_viewport->camera->eye->z += 10;
+                                        _last_viewport->camera->zRotate(true);
                                 }
                                 break;
                         case 40:
                                 if(!Structure->Focused()) {
-                                        _last_viewport->camera->eye->z -= 10;
+                                        _last_viewport->camera->zRotate(false);
                                 }
                                 break;
 
                         case 187: // mas
-                                _last_viewport->camera->eye->x /= 1.02;
-                                _last_viewport->camera->eye->y /= 1.02;
-                                _last_viewport->camera->eye->z /= 1.02;
+                                _last_viewport->camera->zoomIn(true);
                                 break;
                         case 189: // menos
-                                _last_viewport->camera->eye->x *= 1.02;
-                                _last_viewport->camera->eye->y *= 1.02;
-                                _last_viewport->camera->eye->z *= 1.02;
+                                _last_viewport->camera->zoomOut(true);
                                 break;
                         case 85:
                                 _last_viewport->camera->roll(10);
@@ -216,10 +189,71 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                         case 74:
                                 _last_viewport->camera->yaw(10);
                                 break;
-                        /*case 79: //o
+                        case 70: //Con estos casos movemos el ojo de la cámara
+                                //f
+                                _last_viewport->camera->alongAxis(1,-10);
+                                break;
+                        case 68: //d
+                                _last_viewport->camera->alongAxis(1,10);
+                                break;
+                        case 69:
+                                //e
+                                _last_viewport->camera->alongAxis(0,10);
+                                break;
+                        case 82:
+                                //r
+                                _last_viewport->camera->alongAxis(0,-10);
+                                break;
+                        case 67:
+                                //c
+                                _last_viewport->camera->alongAxis(2,10);
+                                break;
+                        case 86:
+                                //v
+                                _last_viewport->camera->alongAxis(2,-10);
+                                break;
+                        case 79: //o
+                                _last_viewport->camera->perspective = 1;
+                                break;
+                        case 80: //p
+                                _last_viewport->camera->perspective = 0;
+                                break;
+                        case 76: //l
+                                _last_viewport->camera->move(PV3D(0,10,0));
+                                break;
+                        case 192: //ñ
+                                _last_viewport->camera->move(PV3D(0,-10,0));
+                                break;
+                        case 65: //a
+                                _last_viewport->camera->move(PV3D(10,0,0));
+                                break;
+                        case 83: //s
+                                _last_viewport->camera->move(PV3D(-10,0,0));
+                                break;
+                        case 81: //q
+                                _last_viewport->camera->move(PV3D(0,0,10));
+                                break;
+                        case 87: //w
+                                _last_viewport->camera->move(PV3D(0,0,-10));
+                                break;
+                        case 49: //1
+                                _last_viewport->camera->turnX(false);
+                                break;
+                        case 50: //2
+                                _last_viewport->camera->turnX(true);
+                                break;
+                        case 51: //3
+                                _last_viewport->camera->turnY(false);
+                                break;
+                        case 52: //4
+                                _last_viewport->camera->turnY(true);
+                                break;
+                        case 48: //0
                                 _last_viewport->camera->perspective = 2;
-                                _last_viewport->RecalculateViewport();
-                                break;*/
+                                break;
+                        case 53: //5
+                                _last_viewport->camera->corner();
+                                break;
                 }
                 _scene->Repaint();
         }
@@ -341,17 +375,13 @@ void __fastcall TForm1::Panel4MouseDown(TObject *Sender,
 
 void __fastcall TForm1::FormMouseWheelDown(TObject *Sender,
       TShiftState Shift, TPoint &MousePos, bool &Handled) {
-      _last_viewport->camera->eye->x *= 1.08;
-      _last_viewport->camera->eye->y *= 1.08;
-      _last_viewport->camera->eye->z *= 1.08;
+      _last_viewport->camera->zoomIn(false);
       _scene->Repaint();
 }
 
 void __fastcall TForm1::FormMouseWheelUp(TObject *Sender,
       TShiftState Shift, TPoint &MousePos, bool &Handled) {
-        _last_viewport->camera->eye->x /= 1.08;
-        _last_viewport->camera->eye->y /= 1.08;
-        _last_viewport->camera->eye->z /= 1.08;
+        _last_viewport->camera->zoomOut(false);
         _scene->Repaint();
 }
 
@@ -541,7 +571,8 @@ void __fastcall TForm1::ToolButton1Click(TObject *Sender) {
 
 void __fastcall TForm1::ToolButton2Click(TObject *Sender) {
         _scene->main_figure->elements->clear();
-        _scene->main_figure->elements->push_back(_epicar);
+        //_scene->main_figure->elements->push_back(_epicar);
+        _scene->main_figure->elements->push_back(_leftRoomFurn);
         _scene->Repaint();
         Structure->Items->Clear();
         LoadStructure(_scene->main_figure, NULL);
@@ -868,8 +899,6 @@ void __fastcall TForm1::Panel1MouseMove(TObject *Sender, TShiftState Shift,
                 Panel1->SetFocus();
         }*/
 }
-//---------------------------------------------------------------------------
-
 void __fastcall TForm1::Panel2MouseMove(TObject *Sender, TShiftState Shift,
       int X, int Y)
 {
@@ -877,7 +906,6 @@ void __fastcall TForm1::Panel2MouseMove(TObject *Sender, TShiftState Shift,
                 Panel2->SetFocus();
         }*/
 }
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::Panel3MouseMove(TObject *Sender, TShiftState Shift,
       int X, int Y)
@@ -886,6 +914,34 @@ void __fastcall TForm1::Panel3MouseMove(TObject *Sender, TShiftState Shift,
                 Panel3->SetFocus();
         }*/
 }
-//---------------------------------------------------------------------------
 
+void __fastcall TForm1::Edit1KeyUp(TObject *Sender, WORD &Key,
+      TShiftState Shift)
+{
+        ListBox1->Clear();
 
+        list<String> *comandos = EventFactory::getEvents();
+
+        list<String>::iterator it;
+        String s;
+
+        String last_string = "";
+
+        String se = Edit1->Text;  // Search String
+        int len = se.Length();
+
+        for (it = comandos->begin(); it!=comandos->end(); it++) {
+                s = *it;
+                if (s.SubString(1,len) == se) {
+                        ListBox1->Items->Add(s);
+                        last_string = s;
+                }
+        }
+
+        if (ListBox1->Items->Count == 1) {
+                // TODO: buscar last_string en la pila, si no existe crearlo
+                // y colocar last_string en la cima de la pila
+                Panel11->Visible = false;
+        }
+
+}

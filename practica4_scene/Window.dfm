@@ -1,8 +1,8 @@
 object Form1: TForm1
-  Left = 340
-  Top = 123
+  Left = 585
+  Top = 113
   AutoScroll = False
-  Caption = 'Engine RG'
+  Caption = 'EngineRG'
   ClientHeight = 635
   ClientWidth = 990
   Color = clBtnFace
@@ -182,6 +182,7 @@ object Form1: TForm1
           ParentFont = False
           TabOrder = 1
           Text = 'Edit1'
+          OnKeyUp = Edit1KeyUp
         end
       end
     end

@@ -8,7 +8,7 @@
 
 bool EventRoll::event() {
 
-        
+        return false;        
 }
 
 String EventRoll::getName() {

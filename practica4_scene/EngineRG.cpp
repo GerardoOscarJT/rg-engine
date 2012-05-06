@@ -26,6 +26,8 @@ USEUNIT("Glass3D.cpp");
 USEUNIT("Event.cpp");
 USEUNIT("EventRoll.cpp");
 USEUNIT("EventFactory.cpp");
+USEUNIT("LeftRoomFurn.cpp");
+USEUNIT("Disk3D.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
