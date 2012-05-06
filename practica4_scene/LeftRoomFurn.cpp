@@ -22,6 +22,7 @@ LeftRoomFurn::LeftRoomFurn() {
                 tabl_mesa->translation->x = -10;
                 tabl_mesa->translation->y = -10;
                 tabl_mesa->translation->z = 10;
+                tabl_mesa->divisiones = 10;
                 tabl_mesa->RecalculateMesh();
 
         Cylinder3D *pata = new Cylinder3D(10, 2, 2, false, true);
@@ -46,6 +47,7 @@ LeftRoomFurn::LeftRoomFurn() {
                         respaldo->z = 12;
                         respaldo->translation->y = 10;
                         respaldo->translation->z = 8;
+                        respaldo->divisiones = 10;
                         respaldo->RecalculateMesh();
                 _chair->elements->push_back(respaldo);
 
@@ -56,6 +58,7 @@ LeftRoomFurn::LeftRoomFurn() {
                         asiento->z = 1;
                         asiento->translation->y = 12;
                         asiento->translation->z = 7; //asiento->showNormals = true;
+                        asiento->divisiones = 10;
                         asiento->RecalculateMesh();
                 _chair->elements->push_back(asiento);
 
@@ -175,6 +178,7 @@ LeftRoomFurn::LeftRoomFurn() {
                         servilleta->translation->x = -2;
                         servilleta->translation->y = -1;
                         servilleta->translation->z = 12.3;
+                        servilleta->divisiones = 10;
                         servilleta->RecalculateMesh();
                 _napkin->elements->push_back(servilleta);
                 Cylinder3D *pal_izq = new Cylinder3D(4,0.05,0.05,true,true);
@@ -195,22 +199,19 @@ LeftRoomFurn::LeftRoomFurn() {
                 _napkin->elements->push_back(pal_der);
                 Revolution3D *copa = new Revolution3D();
                         copa->color = new Color3D(1,1,1);
-                        copa->points->push_back(new PV3D(0,0,8));
-                        copa->points->push_back(new PV3D(0,0,8));
-                        copa->points->push_back(new PV3D(0,0,8));
-                        copa->points->push_back(new PV3D(50,0,0));
-                        copa->points->push_back(new PV3D(50,0,2));
-                        copa->points->push_back(new PV3D(4,0,10));
-                        copa->points->push_back(new PV3D(4,0,100));
-                        copa->points->push_back(new PV3D(4,0,100));
-                        copa->points->push_back(new PV3D(100,0,200));
-                        copa->points->push_back(new PV3D(99,0,201));
-                        copa->points->push_back(new PV3D(98,0,200));
-                        copa->points->push_back(new PV3D(0,0,102));
-                        copa->points->push_back(new PV3D(0,0,102));
-                        copa->scale->x = 0.01;
-                        copa->scale->y = 0.01;
-                        copa->scale->z = 0.01;
+                        copa->points->push_back(new PV3D(0,0,0.08));
+                        copa->points->push_back(new PV3D(0,0,0.08));
+                        copa->points->push_back(new PV3D(0,0,0.08));
+                        copa->points->push_back(new PV3D(0.5,0,0));
+                        copa->points->push_back(new PV3D(0.5,0,0.02));
+                        copa->points->push_back(new PV3D(0.04,0,0.1));
+                        copa->points->push_back(new PV3D(0.04,0,1));
+                        copa->points->push_back(new PV3D(0.04,0,1));
+                        copa->points->push_back(new PV3D(1,0,2));
+                        copa->points->push_back(new PV3D(0.99,0,2.01));
+                        copa->points->push_back(new PV3D(0.98,0,2));
+                        copa->points->push_back(new PV3D(0,0,1.02));
+                        copa->points->push_back(new PV3D(0,0,1.02));
                         copa->translation->x = 0;//1;
                         copa->translation->y = 9;
                         copa->translation->z = 12.2;
