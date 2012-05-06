@@ -14,108 +14,108 @@ Box3D::Box3D() : Mesh3D() {
 void Box3D::RecalculateMesh() {
         clearLists();
 
-        double divX = x/10;
-        double divY = y/10;
-        double divZ = z/10;
+        double divX = x/divisiones;
+        double divY = y/divisiones;
+        double divZ = z/divisiones;
         double separacion;
 
         Vertex3D * v1 = new Vertex3D(x,0,z); vertices->push_back(v1);
 
-        Vertex3D **v12 = new Vertex3D*[9];
+        Vertex3D **v12 = new Vertex3D*[divisiones-1];
         separacion = divY;
-        for(int i = 1; i < 10; i++) {
+        for(int i = 1; i < divisiones; i++) {
                 v12[i-1] = new Vertex3D(x,i*separacion,z);
                 vertices->push_back(v12[i-1]);
         }
 
         Vertex3D * v2 = new Vertex3D(x,y,z); vertices->push_back(v2);
 
-        Vertex3D **v23 = new Vertex3D*[9];
+        Vertex3D **v23 = new Vertex3D*[divisiones-1];
         separacion = divX;
-        for(int i = 8; i >= 0; i--) {
+        for(int i = divisiones-2; i >= 0; i--) {
                 v23[i] = new Vertex3D((i+1)*separacion,y,z);
                 vertices->push_back(v23[i]);
         }
 
         Vertex3D * v3 = new Vertex3D(0,y,z);vertices->push_back(v3);
 
-        Vertex3D **v34 = new Vertex3D*[9];
+        Vertex3D **v34 = new Vertex3D*[divisiones-1];
         separacion = divY;
-        for(int i = 8; i >= 0; i--) {
+        for(int i = divisiones-2; i >= 0; i--) {
                 v34[i] = new Vertex3D(0,(i+1)*separacion,z);
                 vertices->push_back(v34[i]);
         }
 
         Vertex3D * v4 = new Vertex3D(0,0,z); vertices->push_back(v4);
 
-        Vertex3D **v41 = new Vertex3D*[9];
+        Vertex3D **v41 = new Vertex3D*[divisiones-1];
         separacion = divX;
-        for(int i = 1; i < 10; i++) {
+        for(int i = 1; i < divisiones; i++) {
                 v41[i-1] = new Vertex3D(i*separacion,0,z);
                 vertices->push_back(v41[i-1]);
         }
 
         Vertex3D * v5 = new Vertex3D(x,0,0); vertices->push_back(v5);
 
-        Vertex3D **v56 = new Vertex3D*[9];
+        Vertex3D **v56 = new Vertex3D*[divisiones-1];
         separacion = divY;
-        for(int i = 1; i < 10; i++) {
+        for(int i = 1; i < divisiones; i++) {
                 v56[i-1] = new Vertex3D(x,i*separacion,0);
                 vertices->push_back(v56[i-1]);
         }
 
         Vertex3D * v6 = new Vertex3D(x,y,0); vertices->push_back(v6);
 
-        Vertex3D **v67 = new Vertex3D*[9];
+        Vertex3D **v67 = new Vertex3D*[divisiones-1];
         separacion = divX; //v[7]->x = 0, v6->x - 0 = v6->x
-        for(int i = 8; i >= 0; i--) {
+        for(int i = divisiones-2; i >= 0; i--) {
                 v67[i] = new Vertex3D((i+1)*separacion,y,0);
                 vertices->push_back(v67[i]);
         }
 
         Vertex3D * v7 = new Vertex3D(0,y,0);vertices->push_back(v7);
 
-        Vertex3D **v78 = new Vertex3D*[9];
+        Vertex3D **v78 = new Vertex3D*[divisiones-1];
         separacion = divY;
-        for(int i = 8; i >= 0; i--) {
+        for(int i = divisiones-2; i >= 0; i--) {
                 v78[i] = new Vertex3D(0,(i+1)*separacion,0);
                 vertices->push_back(v78[i]);
         }
 
         Vertex3D * v8 = new Vertex3D(0,0,0); vertices->push_back(v8);
 
-        Vertex3D **v85 = new Vertex3D*[9];
+        Vertex3D **v85 = new Vertex3D*[divisiones-1];
         separacion = divX;
-        for(int i = 1; i < 10; i++) {
+        for(int i = 1; i < divisiones; i++) {
                 v85[i-1] = new Vertex3D(i*separacion,0,0);
                 vertices->push_back(v85[i-1]);
         }
 
         //División de la dimensión z
-        Vertex3D **v51 = new Vertex3D*[9];
+        Vertex3D **v51 = new Vertex3D*[divisiones-1];
         separacion = divZ;
-        for(int i = 8; i >= 0; i--) {
+        for(int i = divisiones-2; i >= 0; i--) {
                 v51[i] = new Vertex3D(x,0,(i+1)*separacion);
                 vertices->push_back(v51[i]);
         }
 
-        Vertex3D **v62 = new Vertex3D*[9];
+        Vertex3D **v62 = new Vertex3D*[divisiones-1];
         separacion = divZ;
-        for(int i = 8; i >= 0; i--) {
+        for(int i = divisiones-2; i >= 0; i--) {
                 v62[i] = new Vertex3D(x,y,(i+1)*separacion);
                 vertices->push_back(v62[i]);
         }
 
-        Vertex3D **v73 = new Vertex3D*[9];
+        Vertex3D **v73 = new Vertex3D*[divisiones-1];
         separacion = divZ;
-        for(int i = 8; i >= 0; i--) {
+        for(int i = divisiones-2; i >= 0; i--) {
                 v73[i] = new Vertex3D(0,y,(i+1)*separacion);
                 vertices->push_back(v73[i]);
         }
 
-        Vertex3D **v84 = new Vertex3D*[9];
+        Vertex3D **v84 = new Vertex3D*[divisiones-1];
         separacion = divZ;
-        for(int i = 8; i >= 0; i--) {
+        for(int i = divisiones-2; i >= 0; i--) {
                 v84[i] = new Vertex3D(0,0,(i+1)*separacion);
                 vertices->push_back(v84[i]);
         }
@@ -128,12 +128,12 @@ void Box3D::RecalculateMesh() {
         double espacioDerZ = divZ;
         double posDerZ = 0;
         Vertex3D ***mDerAux;
-        mDerAux = new Vertex3D**[9];
-        for(int i = 0; i < 9; i++) {
-                mDerAux[i] = new Vertex3D*[9];
+        mDerAux = new Vertex3D**[divisiones-1];
+        for(int i = 0; i < divisiones-1; i++) {
+                mDerAux[i] = new Vertex3D*[divisiones-1];
                 posDerZ += espacioDerZ;
                 double posDerY = 0;
-                for(int j = 0; j < 9; j++) {
+                for(int j = 0; j < divisiones-1; j++) {
                         posDerY += espacioDerY;
                         mDerAux[i][j] = new Vertex3D(x, posDerY, posDerZ);
                         vertices->push_back(mDerAux[i][j]);
@@ -145,18 +145,18 @@ void Box3D::RecalculateMesh() {
          fDerSupIzq->normal->x = 1;
          fDerSupIzq->normal->t = 0;
          fDerSupIzq->vertices->push_back(v2);
-         fDerSupIzq->vertices->push_back(v12[8]);
-         fDerSupIzq->vertices->push_back(mDerAux[8][8]);
-         fDerSupIzq->vertices->push_back(v62[8]);
+         fDerSupIzq->vertices->push_back(v12[divisiones-2]);
+         fDerSupIzq->vertices->push_back(mDerAux[divisiones-2][divisiones-2]);
+         fDerSupIzq->vertices->push_back(v62[divisiones-2]);
 
-         for(int i = 0; i < 8; i++) {
+         for(int i = 0; i < divisiones-2; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->x = 1;
                 f->normal->t = 0;
                 f->vertices->push_back(v12[i+1]);
                 f->vertices->push_back(v12[i]);
-                f->vertices->push_back(mDerAux[8][i]);
-                f->vertices->push_back(mDerAux[8][i+1]);
+                f->vertices->push_back(mDerAux[divisiones-2][i]);
+                f->vertices->push_back(mDerAux[divisiones-2][i+1]);
          }
 
          //Columna Derecha
@@ -164,11 +164,11 @@ void Box3D::RecalculateMesh() {
          fDerSupDer->normal->x = 1;
          fDerSupDer->normal->t = 0;
          fDerSupDer->vertices->push_back(v1);
-         fDerSupDer->vertices->push_back(v51[8]);
-         fDerSupDer->vertices->push_back(mDerAux[8][0]);
+         fDerSupDer->vertices->push_back(v51[divisiones-2]);
+         fDerSupDer->vertices->push_back(mDerAux[divisiones-2][0]);
          fDerSupDer->vertices->push_back(v12[0]);
 
-         for(int i = 0; i < 8; i++) {
+         for(int i = 0; i < divisiones-2; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->x = 1;
                 f->normal->t = 0;
@@ -179,8 +179,8 @@ void Box3D::RecalculateMesh() {
          }
 
          //Entramado
-         for(int i = 0; i < 8; i++) {
-                for(int j = 0; j < 8; j++) {
+         for(int i = 0; i < divisiones-2; i++) {
+                for(int j = 0; j < divisiones-2; j++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->x = 1;
                         f->normal->t = 0;
@@ -192,7 +192,7 @@ void Box3D::RecalculateMesh() {
          }
 
          //Fila Inferior
-         for(int i = 0; i < 8; i++) {
+         for(int i = 0; i < divisiones-2; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->x = 1;
                 f->normal->t = 0;
@@ -207,18 +207,18 @@ void Box3D::RecalculateMesh() {
          fDerInfIzq->normal->t = 0;
          fDerInfIzq->vertices->push_back(v6);
          fDerInfIzq->vertices->push_back(v62[0]);
-         fDerInfIzq->vertices->push_back(mDerAux[0][8]);
-         fDerInfIzq->vertices->push_back(v56[8]);
+         fDerInfIzq->vertices->push_back(mDerAux[0][divisiones-2]);
+         fDerInfIzq->vertices->push_back(v56[divisiones-2]);
 
          //Columna Izquierda
-         for(int i = 0; i < 8; i++) {
+         for(int i = 0; i < divisiones-2; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->x = 1;
                 f->normal->t = 0;
                 f->vertices->push_back(v62[i]);
                 f->vertices->push_back(v62[i+1]);
-                f->vertices->push_back(mDerAux[i+1][8]);
-                f->vertices->push_back(mDerAux[i][8]);
+                f->vertices->push_back(mDerAux[i+1][divisiones-2]);
+                f->vertices->push_back(mDerAux[i][divisiones-2]);
          }
 
          Face3D *fDerInfDer = new Face3D(); faces->push_back(fDerInfDer);
@@ -230,7 +230,7 @@ void Box3D::RecalculateMesh() {
          fDerInfDer->vertices->push_back(v51[0]);
 
 
-         for(int i = 0; i < 9; i++) {
+         for(int i = 0; i < divisiones-1; i++) {
                 delete[] mDerAux[i];
          }
          delete[] mDerAux;
@@ -244,12 +244,12 @@ void Box3D::RecalculateMesh() {
         double espacioFronZ = divZ;
         double posFronZ = 0;
         Vertex3D ***mFronAux;
-        mFronAux = new Vertex3D**[9];
-        for(int i = 0; i < 9; i++) {
-                mFronAux[i] = new Vertex3D*[9];
+        mFronAux = new Vertex3D**[divisiones-1];
+        for(int i = 0; i < divisiones-1; i++) {
+                mFronAux[i] = new Vertex3D*[divisiones-1];
                 posFronZ += espacioFronZ;
                 double posFronX = 0;
-                for(int j = 0; j < 9; j++) {
+                for(int j = 0; j < divisiones-1; j++) {
                         posFronX += espacioFronX;
                         mFronAux[i][j] = new Vertex3D(posFronX, y, posFronZ);
                         vertices->push_back(mFronAux[i][j]);
@@ -262,17 +262,17 @@ void Box3D::RecalculateMesh() {
          fFronSupIzq->normal->t = 0;
          fFronSupIzq->vertices->push_back(v3);
          fFronSupIzq->vertices->push_back(v23[0]);
-         fFronSupIzq->vertices->push_back(mFronAux[8][0]);
-         fFronSupIzq->vertices->push_back(v73[8]);
+         fFronSupIzq->vertices->push_back(mFronAux[divisiones-2][0]);
+         fFronSupIzq->vertices->push_back(v73[divisiones-2]);
 
-         for(int i = 0; i < 8; i++) {
+         for(int i = 0; i < divisiones-2; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->y = 1;
                 f->normal->t = 0;
                 f->vertices->push_back(v23[i]);
                 f->vertices->push_back(v23[i+1]);
-                f->vertices->push_back(mFronAux[8][i+1]);
-                f->vertices->push_back(mFronAux[8][i]);
+                f->vertices->push_back(mFronAux[divisiones-2][i+1]);
+                f->vertices->push_back(mFronAux[divisiones-2][i]);
          }
 
          //Columna Derecha
@@ -280,23 +280,23 @@ void Box3D::RecalculateMesh() {
          fFronSupDer->normal->y = 1;
          fFronSupDer->normal->t = 0;
          fFronSupDer->vertices->push_back(v2);
-         fFronSupDer->vertices->push_back(v62[8]);
-         fFronSupDer->vertices->push_back(mFronAux[8][8]);
-         fFronSupDer->vertices->push_back(v23[8]);
+         fFronSupDer->vertices->push_back(v62[divisiones-2]);
+         fFronSupDer->vertices->push_back(mFronAux[divisiones-2][divisiones-2]);
+         fFronSupDer->vertices->push_back(v23[divisiones-2]);
 
-         for(int i = 0; i < 8; i++) {
+         for(int i = 0; i < divisiones-2; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->y = 1;
                 f->normal->t = 0;
                 f->vertices->push_back(v62[i+1]);
                 f->vertices->push_back(v62[i]);
-                f->vertices->push_back(mFronAux[i][8]);
-                f->vertices->push_back(mFronAux[i+1][8]);
+                f->vertices->push_back(mFronAux[i][divisiones-2]);
+                f->vertices->push_back(mFronAux[i+1][divisiones-2]);
          }
 
          //Entramado
-         for(int i = 0; i < 8; i++) {
-                for(int j = 0; j < 8; j++) {
+         for(int i = 0; i < divisiones-2; i++) {
+                for(int j = 0; j < divisiones-2; j++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->y = 1;
                         f->normal->t = 0;
@@ -308,7 +308,7 @@ void Box3D::RecalculateMesh() {
          }
 
          //Fila Inferior
-         for(int i = 0; i < 8; i++) {
+         for(int i = 0; i < divisiones-2; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->y = 1;
                 f->normal->t = 0;
@@ -327,7 +327,7 @@ void Box3D::RecalculateMesh() {
          fFronInfIzq->vertices->push_back(v67[0]);
 
          //Columna Izquierda
-         for(int i = 0; i < 8; i++) {
+         for(int i = 0; i < divisiones-2; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->y = 1;
                 f->normal->t = 0;
@@ -341,12 +341,12 @@ void Box3D::RecalculateMesh() {
          fFronInfDer->normal->y = 1;
          fFronInfDer->normal->t = 0;
          fFronInfDer->vertices->push_back(v6);
-         fFronInfDer->vertices->push_back(v67[8]);
-         fFronInfDer->vertices->push_back(mFronAux[0][8]);
+         fFronInfDer->vertices->push_back(v67[divisiones-2]);
+         fFronInfDer->vertices->push_back(mFronAux[0][divisiones-2]);
          fFronInfDer->vertices->push_back(v62[0]);
 
 
-         for(int i = 0; i < 9; i++) {
+         for(int i = 0; i < divisiones-1; i++) {
                 delete[] mFronAux[i];
          }
          delete[] mFronAux;
@@ -360,12 +360,12 @@ void Box3D::RecalculateMesh() {
         double espacioIzqZ = divZ;
         double posIzqZ = 0;
         Vertex3D ***mIzqAux;
-        mIzqAux = new Vertex3D**[9];
-        for(int i = 0; i < 9; i++) {
-                mIzqAux[i] = new Vertex3D*[9];
+        mIzqAux = new Vertex3D**[divisiones-1];
+        for(int i = 0; i < divisiones-1; i++) {
+                mIzqAux[i] = new Vertex3D*[divisiones-1];
                 posIzqZ += espacioIzqZ;
                 double posIzqY = 0;
-                for(int j = 0; j < 9; j++) {
+                for(int j = 0; j < divisiones-1; j++) {
                         posIzqY += espacioIzqY;
                         mIzqAux[i][j] = new Vertex3D(0, posIzqY, posIzqZ);
                         vertices->push_back(mIzqAux[i][j]);
@@ -377,18 +377,18 @@ void Box3D::RecalculateMesh() {
          fIzqSupIzq->normal->x = -1;
          fIzqSupIzq->normal->t = 0;
          fIzqSupIzq->vertices->push_back(v3);
-         fIzqSupIzq->vertices->push_back(v34[8]);
-         fIzqSupIzq->vertices->push_back(mIzqAux[8][8]);
-         fIzqSupIzq->vertices->push_back(v73[8]);
+         fIzqSupIzq->vertices->push_back(v34[divisiones-2]);
+         fIzqSupIzq->vertices->push_back(mIzqAux[divisiones-2][divisiones-2]);
+         fIzqSupIzq->vertices->push_back(v73[divisiones-2]);
 
-         for(int i = 0; i < 8; i++) {
+         for(int i = 0; i < divisiones-2; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->x = -1;
                 f->normal->t = 0;
                 f->vertices->push_back(v34[i+1]);
                 f->vertices->push_back(v34[i]);
-                f->vertices->push_back(mIzqAux[8][i]);
-                f->vertices->push_back(mIzqAux[8][i+1]);
+                f->vertices->push_back(mIzqAux[divisiones-2][i]);
+                f->vertices->push_back(mIzqAux[divisiones-2][i+1]);
          }
 
          //Columna Derecha
@@ -396,11 +396,11 @@ void Box3D::RecalculateMesh() {
          fIzqSupDer->normal->x = -1;
          fIzqSupDer->normal->t = 0;
          fIzqSupDer->vertices->push_back(v4);
-         fIzqSupDer->vertices->push_back(v84[8]);
-         fIzqSupDer->vertices->push_back(mIzqAux[8][0]);
+         fIzqSupDer->vertices->push_back(v84[divisiones-2]);
+         fIzqSupDer->vertices->push_back(mIzqAux[divisiones-2][0]);
          fIzqSupDer->vertices->push_back(v34[0]);
 
-         for(int i = 0; i < 8; i++) {
+         for(int i = 0; i < divisiones-2; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->x = -1;
                 f->normal->t = 0;
@@ -411,8 +411,8 @@ void Box3D::RecalculateMesh() {
          }
 
          //Entramado
-         for(int i = 0; i < 8; i++) {
-                for(int j = 0; j < 8; j++) {
+         for(int i = 0; i < divisiones-2; i++) {
+                for(int j = 0; j < divisiones-2; j++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->x = -1;
                         f->normal->t = 0;
@@ -424,7 +424,7 @@ void Box3D::RecalculateMesh() {
          }
 
          //Fila Inferior
-         for(int i = 0; i < 8; i++) {
+         for(int i = 0; i < divisiones-2; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->x = -1;
                 f->normal->t = 0;
@@ -439,18 +439,18 @@ void Box3D::RecalculateMesh() {
          fIzqInfIzq->normal->t = 0;
          fIzqInfIzq->vertices->push_back(v7);
          fIzqInfIzq->vertices->push_back(v73[0]);
-         fIzqInfIzq->vertices->push_back(mIzqAux[0][8]);
-         fIzqInfIzq->vertices->push_back(v78[8]);
+         fIzqInfIzq->vertices->push_back(mIzqAux[0][divisiones-2]);
+         fIzqInfIzq->vertices->push_back(v78[divisiones-2]);
 
          //Columna Izquierda
-         for(int i = 0; i < 8; i++) {
+         for(int i = 0; i < divisiones-2; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->x = -1;
                 f->normal->t = 0;
                 f->vertices->push_back(v73[i]);
                 f->vertices->push_back(v73[i+1]);
-                f->vertices->push_back(mIzqAux[i+1][8]);
-                f->vertices->push_back(mIzqAux[i][8]);
+                f->vertices->push_back(mIzqAux[i+1][divisiones-2]);
+                f->vertices->push_back(mIzqAux[i][divisiones-2]);
          }
 
          Face3D *fIzqInfDer = new Face3D(); faces->push_back(fIzqInfDer);
@@ -462,7 +462,7 @@ void Box3D::RecalculateMesh() {
          fIzqInfDer->vertices->push_back(v84[0]);
 
 
-         for(int i = 0; i < 9; i++) {
+         for(int i = 0; i < divisiones-1; i++) {
                 delete[] mIzqAux[i];
          }
          delete[] mIzqAux;
@@ -476,12 +476,12 @@ void Box3D::RecalculateMesh() {
         double espacioPostZ = divZ;
         double posPostZ = 0;
         Vertex3D ***mPostAux;
-        mPostAux = new Vertex3D**[9];
-        for(int i = 0; i < 9; i++) {
-                mPostAux[i] = new Vertex3D*[9];
+        mPostAux = new Vertex3D**[divisiones-1];
+        for(int i = 0; i < divisiones-1; i++) {
+                mPostAux[i] = new Vertex3D*[divisiones-1];
                 posPostZ += espacioPostZ;
                 double posPostX = 0;
-                for(int j = 0; j < 9; j++) {
+                for(int j = 0; j < divisiones-1; j++) {
                         posPostX += espacioPostX;
                         mPostAux[i][j] = new Vertex3D(posPostX, 0, posPostZ);
                         vertices->push_back(mPostAux[i][j]);
@@ -494,17 +494,17 @@ void Box3D::RecalculateMesh() {
          fPostSupIzq->normal->t = 0;
          fPostSupIzq->vertices->push_back(v4);
          fPostSupIzq->vertices->push_back(v41[0]);
-         fPostSupIzq->vertices->push_back(mPostAux[8][0]);
-         fPostSupIzq->vertices->push_back(v84[8]);
+         fPostSupIzq->vertices->push_back(mPostAux[divisiones-2][0]);
+         fPostSupIzq->vertices->push_back(v84[divisiones-2]);
 
-         for(int i = 0; i < 8; i++) {
+         for(int i = 0; i < divisiones-2; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->y = -1;
                 f->normal->t = 0;
                 f->vertices->push_back(v41[i]);
                 f->vertices->push_back(v41[i+1]);
-                f->vertices->push_back(mPostAux[8][i+1]);
-                f->vertices->push_back(mPostAux[8][i]);
+                f->vertices->push_back(mPostAux[divisiones-2][i+1]);
+                f->vertices->push_back(mPostAux[divisiones-2][i]);
          }
 
          //Columna Derecha
@@ -512,23 +512,23 @@ void Box3D::RecalculateMesh() {
          fPostSupDer->normal->y = -1;
          fPostSupDer->normal->t = 0;
          fPostSupDer->vertices->push_back(v1);
-         fPostSupDer->vertices->push_back(v51[8]);
-         fPostSupDer->vertices->push_back(mPostAux[8][8]);
-         fPostSupDer->vertices->push_back(v41[8]);
+         fPostSupDer->vertices->push_back(v51[divisiones-2]);
+         fPostSupDer->vertices->push_back(mPostAux[divisiones-2][divisiones-2]);
+         fPostSupDer->vertices->push_back(v41[divisiones-2]);
 
-         for(int i = 0; i < 8; i++) {
+         for(int i = 0; i < divisiones-2; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->y = -1;
                 f->normal->t = 0;
                 f->vertices->push_back(v51[i+1]);
                 f->vertices->push_back(v51[i]);
-                f->vertices->push_back(mPostAux[i][8]);
-                f->vertices->push_back(mPostAux[i+1][8]);
+                f->vertices->push_back(mPostAux[i][divisiones-2]);
+                f->vertices->push_back(mPostAux[i+1][divisiones-2]);
          }
 
          //Entramado
-         for(int i = 0; i < 8; i++) {
-                for(int j = 0; j < 8; j++) {
+         for(int i = 0; i < divisiones-2; i++) {
+                for(int j = 0; j < divisiones-2; j++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->y = -1;
                         f->normal->t = 0;
@@ -540,7 +540,7 @@ void Box3D::RecalculateMesh() {
          }
 
          //Fila Inferior
-         for(int i = 0; i < 8; i++) {
+         for(int i = 0; i < divisiones-2; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->y = -1;
                 f->normal->t = 0;
@@ -559,7 +559,7 @@ void Box3D::RecalculateMesh() {
          fPostInfIzq->vertices->push_back(v85[0]);
 
          //Columna Izquierda
-         for(int i = 0; i < 8; i++) {
+         for(int i = 0; i < divisiones-2; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->y = -1;
                 f->normal->t = 0;
@@ -573,12 +573,12 @@ void Box3D::RecalculateMesh() {
          fPostInfDer->normal->y = -1;
          fPostInfDer->normal->t = 0;
          fPostInfDer->vertices->push_back(v5);
-         fPostInfDer->vertices->push_back(v85[8]);
-         fPostInfDer->vertices->push_back(mPostAux[0][8]);
+         fPostInfDer->vertices->push_back(v85[divisiones-2]);
+         fPostInfDer->vertices->push_back(mPostAux[0][divisiones-2]);
          fPostInfDer->vertices->push_back(v51[0]);
 
 
-         for(int i = 0; i < 9; i++) {
+         for(int i = 0; i < divisiones-1; i++) {
                 delete[] mPostAux[i];
          }
          delete[] mPostAux;
@@ -592,12 +592,12 @@ void Box3D::RecalculateMesh() {
                 double espacioX = divX;
                 double posY = 0;
                 Vertex3D ***m1Aux;
-                m1Aux = new Vertex3D**[9];
-                for(int i = 0; i < 9; i++) {
-                        m1Aux[i] = new Vertex3D*[9];
+                m1Aux = new Vertex3D**[divisiones-1];
+                for(int i = 0; i < divisiones-1; i++) {
+                        m1Aux[i] = new Vertex3D*[divisiones-1];
                         posY += espacioY;
                         double posX = 0;
-                        for(int j = 0; j < 9; j++) {
+                        for(int j = 0; j < divisiones-1; j++) {
                                 posX += espacioX;
                                 m1Aux[i][j] = new Vertex3D(posX, posY, z);
                                 vertices->push_back(m1Aux[i][j]);
@@ -613,7 +613,7 @@ void Box3D::RecalculateMesh() {
                 fSupIzq->vertices->push_back(m1Aux[0][0]);
                 fSupIzq->vertices->push_back(v34[0]);
 
-                for(int i = 0; i < 8; i++) {
+                for(int i = 0; i < divisiones-2; i++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->z = 1;
                         f->normal->t = 0;
@@ -629,22 +629,22 @@ void Box3D::RecalculateMesh() {
                 fSupDer->normal->t = 0;
                 fSupDer->vertices->push_back(v1);
                 fSupDer->vertices->push_back(v12[0]);
-                fSupDer->vertices->push_back(m1Aux[0][8]);
-                fSupDer->vertices->push_back(v41[8]);
+                fSupDer->vertices->push_back(m1Aux[0][divisiones-2]);
+                fSupDer->vertices->push_back(v41[divisiones-2]);
 
-                for(int i = 0; i < 8; i++) {
+                for(int i = 0; i < divisiones-2; i++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->z = 1;
                         f->normal->t = 0;
                         f->vertices->push_back(v12[i]);
                         f->vertices->push_back(v12[i+1]);
-                        f->vertices->push_back(m1Aux[i+1][8]);
-                        f->vertices->push_back(m1Aux[i][8]);
+                        f->vertices->push_back(m1Aux[i+1][divisiones-2]);
+                        f->vertices->push_back(m1Aux[i][divisiones-2]);
                 }
 
                 //Entramado
-                for(int i = 0; i < 8; i++) {
-                        for(int j = 0; j < 8; j++) {
+                for(int i = 0; i < divisiones-2; i++) {
+                        for(int j = 0; j < divisiones-2; j++) {
                                 Face3D *f = new Face3D(); faces->push_back(f);
                                 f->normal->z = 1;
                                 f->normal->t = 0;
@@ -656,26 +656,26 @@ void Box3D::RecalculateMesh() {
                 }
 
                 //Fila Inferior
-                for(int i = 0; i < 8; i++) {
+                for(int i = 0; i < divisiones-2; i++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->z = 1;
                         f->normal->t = 0;
                         f->vertices->push_back(v23[i+1]);
                         f->vertices->push_back(v23[i]);
-                        f->vertices->push_back(m1Aux[8][i]);
-                        f->vertices->push_back(m1Aux[8][i+1]);
+                        f->vertices->push_back(m1Aux[divisiones-2][i]);
+                        f->vertices->push_back(m1Aux[divisiones-2][i+1]);
                 }
 
                 Face3D *fInfIzq = new Face3D(); faces->push_back(fInfIzq);
                 fInfIzq->normal->z = 1;
                 fInfIzq->normal->t = 0;
                 fInfIzq->vertices->push_back(v3);
-                fInfIzq->vertices->push_back(v34[8]);
-                fInfIzq->vertices->push_back(m1Aux[8][0]);
+                fInfIzq->vertices->push_back(v34[divisiones-2]);
+                fInfIzq->vertices->push_back(m1Aux[divisiones-2][0]);
                 fInfIzq->vertices->push_back(v23[0]);
 
                 //Columna Izquierda
-                for(int i = 0; i < 8; i++) {
+                for(int i = 0; i < divisiones-2; i++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->z = 1;
                         f->normal->t = 0;
@@ -689,12 +689,12 @@ void Box3D::RecalculateMesh() {
                 fInfDer->normal->z = 1;
                 fInfDer->normal->t = 0;
                 fInfDer->vertices->push_back(v2);
-                fInfDer->vertices->push_back(v23[8]);
-                fInfDer->vertices->push_back(m1Aux[8][8]);
-                fInfDer->vertices->push_back(v12[8]);
+                fInfDer->vertices->push_back(v23[divisiones-2]);
+                fInfDer->vertices->push_back(m1Aux[divisiones-2][divisiones-2]);
+                fInfDer->vertices->push_back(v12[divisiones-2]);
 
 
-                for(int i = 0; i < 9; i++) {
+                for(int i = 0; i < divisiones-1; i++) {
                         delete[] m1Aux[i];
                 }
                 delete[] m1Aux;
@@ -708,12 +708,12 @@ void Box3D::RecalculateMesh() {
                 double espacioInfX = divX;
                 double posInfY = 0;
                 Vertex3D ***mInfAux;
-                mInfAux = new Vertex3D**[9];
-                for(int i = 0; i < 9; i++) {
-                        mInfAux[i] = new Vertex3D*[9];
+                mInfAux = new Vertex3D**[divisiones-1];
+                for(int i = 0; i < divisiones-1; i++) {
+                        mInfAux[i] = new Vertex3D*[divisiones-1];
                         posInfY += espacioInfY;
                         double posInfX = 0;
-                        for(int j = 0; j < 9; j++) {
+                        for(int j = 0; j < divisiones-1; j++) {
                                 posInfX += espacioInfX;
                                 mInfAux[i][j] = new Vertex3D(posInfX, posInfY, 0);
                                 vertices->push_back(mInfAux[i][j]);
@@ -729,7 +729,7 @@ void Box3D::RecalculateMesh() {
                 fInfSupIzq->vertices->push_back(mInfAux[0][0]);
                 fInfSupIzq->vertices->push_back(v78[0]);
 
-                for(int i = 0; i < 8; i++) {
+                for(int i = 0; i < divisiones-2; i++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->z = -1;
                         f->normal->t = 0;
@@ -745,22 +745,22 @@ void Box3D::RecalculateMesh() {
                 fInfSupDer->normal->t = 0;
                 fInfSupDer->vertices->push_back(v5);
                 fInfSupDer->vertices->push_back(v56[0]);
-                fInfSupDer->vertices->push_back(mInfAux[0][8]);
-                fInfSupDer->vertices->push_back(v85[8]);
+                fInfSupDer->vertices->push_back(mInfAux[0][divisiones-2]);
+                fInfSupDer->vertices->push_back(v85[divisiones-2]);
 
-                for(int i = 0; i < 8; i++) {
+                for(int i = 0; i < divisiones-2; i++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->z = -1;
                         f->normal->t = 0;
                         f->vertices->push_back(v56[i]);
                         f->vertices->push_back(v56[i+1]);
-                        f->vertices->push_back(mInfAux[i+1][8]);
-                        f->vertices->push_back(mInfAux[i][8]);
+                        f->vertices->push_back(mInfAux[i+1][divisiones-2]);
+                        f->vertices->push_back(mInfAux[i][divisiones-2]);
                 }
 
                 //Entramado
-                for(int i = 0; i < 8; i++) {
-                        for(int j = 0; j < 8; j++) {
+                for(int i = 0; i < divisiones-2; i++) {
+                        for(int j = 0; j < divisiones-2; j++) {
                                 Face3D *f = new Face3D(); faces->push_back(f);
                                 f->normal->z = -1;
                                 f->normal->t = 0;
@@ -772,26 +772,26 @@ void Box3D::RecalculateMesh() {
                 }
 
                 //Fila Inferior
-                for(int i = 0; i < 8; i++) {
+                for(int i = 0; i < divisiones-2; i++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->z = -1;
                         f->normal->t = 0;
                         f->vertices->push_back(v67[i+1]);
                         f->vertices->push_back(v67[i]);
-                        f->vertices->push_back(mInfAux[8][i]);
-                        f->vertices->push_back(mInfAux[8][i+1]);
+                        f->vertices->push_back(mInfAux[divisiones-2][i]);
+                        f->vertices->push_back(mInfAux[divisiones-2][i+1]);
                 }
 
                 Face3D *fInfInfDer = new Face3D(); faces->push_back(fInfInfDer);
                 fInfInfDer->normal->z = -1;
                 fInfInfDer->normal->t = 0;
                 fInfInfDer->vertices->push_back(v6);
-                fInfInfDer->vertices->push_back(v67[8]);
-                fInfInfDer->vertices->push_back(mInfAux[8][8]);
-                fInfInfDer->vertices->push_back(v56[8]);
+                fInfInfDer->vertices->push_back(v67[divisiones-2]);
+                fInfInfDer->vertices->push_back(mInfAux[divisiones-2][divisiones-2]);
+                fInfInfDer->vertices->push_back(v56[divisiones-2]);
 
                 //Columna Izquierda
-                for(int i = 0; i < 8; i++) {
+                for(int i = 0; i < divisiones-2; i++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->z = -1;
                         f->normal->t = 0;
@@ -805,11 +805,11 @@ void Box3D::RecalculateMesh() {
                 fInfInfIzq->normal->z = -1;
                 fInfInfIzq->normal->t = 0;
                 fInfInfIzq->vertices->push_back(v7);
-                fInfInfIzq->vertices->push_back(v78[8]);
-                fInfInfIzq->vertices->push_back(mInfAux[8][0]);
+                fInfInfIzq->vertices->push_back(v78[divisiones-2]);
+                fInfInfIzq->vertices->push_back(mInfAux[divisiones-2][0]);
                 fInfInfIzq->vertices->push_back(v67[0]);
 
-                for(int i = 0; i < 9; i++) {
+                for(int i = 0; i < divisiones-1; i++) {
                         delete[] mInfAux[i];
                 }
                 delete[] mInfAux; 

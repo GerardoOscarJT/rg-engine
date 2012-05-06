@@ -28,15 +28,15 @@ Revolution3D::~Revolution3D() {
 void Revolution3D::RecalculateMesh() {
         clearLists();
 
-        //int np = points->size();
+        int np = points->size();
         double pi = 4*atan(1);
 
         //Le pido que calcule los puntos nuevos
         //Es decir: yo tengo una serie de puntos definidos en Window.cpp
         //Esta funcion, "RepaintBSpline3", lo que hace es meter en npoints los puntos
         //que resultan de obtener la bspline anterior
-        RepaintBSpline3(points);
-        int np = npoints->size();
+        //RepaintBSpline3(points);
+        //int np = npoints->size();
 
         // Genero todos los vértices en la estructura auxiliar V
         Vertex3D*** V = new Vertex3D**[np];
@@ -44,8 +44,8 @@ void Revolution3D::RecalculateMesh() {
         PV3D *point;
 
         int i = 0;
-        //for (it = points->begin(); it != points->end(); it++) {
-        for (it = npoints->begin(); it != npoints->end(); it++) {
+        for (it = points->begin(); it != points->end(); it++) {
+        //for (it = npoints->begin(); it != npoints->end(); it++) {
                 point = *it;
                 V[i] = new Vertex3D*[n];
                 double mod = sqrt(pow(point->x,2)+pow(point->y,2));
@@ -73,7 +73,6 @@ void Revolution3D::RecalculateMesh() {
                 delete[] V[i];
         }
         delete[] V;
-
 
 
 
