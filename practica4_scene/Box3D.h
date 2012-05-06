@@ -14,6 +14,8 @@ public:
         double y;
         double z;
 
+        int divisiones;
+
         void RecalculateMesh();
 
         AnsiString getName();
