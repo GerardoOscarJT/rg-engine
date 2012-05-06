@@ -608,7 +608,7 @@ void __fastcall TForm1::ToolButton2Click(TObject *Sender) {
         _scene->main_figure->elements->clear();
         //_scene->main_figure->elements->push_back(_epicar);
         //_scene->main_figure->elements->push_back(_leftRoomFurn);
-        _scene->main_figure->elements->push_back(sp);
+//        _scene->main_figure->elements->push_back(sp);
         _scene->Repaint();
         Structure->Items->Clear();
         LoadStructure(_scene->main_figure, NULL);
