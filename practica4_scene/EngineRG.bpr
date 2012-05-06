@@ -9,7 +9,7 @@
       Figure3D.obj Vertex3D.obj Color3D.obj Box3D.obj Cylinder3D.obj 
       Epitrochoid3D.obj Group3D.obj Group3Delement.obj EpiCar3D.obj 
       Revolution3D.obj Glass3D.obj Event.obj EventRoll.obj EventFactory.obj 
-      LeftRoomFurn.obj Disk3D.obj"/>
+      LeftRoomFurn.obj Disk3D.obj Sphere3D.obj"/>
     <RESFILES value="EngineRG.res"/>
     <DEFFILE value=""/>
     <RESDEPEN value="$(RESFILES) Window.dfm"/>

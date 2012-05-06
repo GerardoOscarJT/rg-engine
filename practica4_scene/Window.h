@@ -19,6 +19,7 @@
 #include <List.h>
 #include "EventFactory.h"
 #include "LeftRoomFurn.h"
+#include "Sphere3D.h"
 
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
@@ -186,7 +187,7 @@ private:	// User declarations
         EpiCar3D *_epicar;
         LeftRoomFurn *_leftRoomFurn;
         //Borrar al terminar de experimentar
-        //Box3D *box;
+        Sphere3D *sp;
 
         map<TTreeNode*, Figure3D*> *_editable_figures;
 
