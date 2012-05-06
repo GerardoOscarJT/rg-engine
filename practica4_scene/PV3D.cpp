@@ -66,7 +66,7 @@ PV3D PV3D::crossProduct(const PV3D &v) {
         cpy = z*(v.x) - (x*(v.z));
         cpz = x*(v.y) - (y*(v.x));
 
-        return PV3D(cpx, cpy, cpz);
+        return PV3D(cpx, cpy, cpz, 0);
 }
 
 

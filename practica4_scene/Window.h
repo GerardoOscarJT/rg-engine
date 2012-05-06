@@ -16,7 +16,9 @@
 #include <map.h>
 #include "Revolution3D.h"
 #include <ImgList.hpp>
+#include <List.h>
 #include "EventFactory.h"
+#include "LeftRoomFurn.h"
 
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
@@ -165,6 +167,8 @@ __published:	// IDE-managed Components
           int X, int Y);
         void __fastcall Panel3MouseMove(TObject *Sender, TShiftState Shift,
           int X, int Y);
+        void __fastcall Edit1KeyUp(TObject *Sender, WORD &Key,
+          TShiftState Shift);
 private:	// User declarations
 
         Scene3D *_scene;
@@ -180,6 +184,9 @@ private:	// User declarations
 
 
         EpiCar3D *_epicar;
+        LeftRoomFurn *_leftRoomFurn;
+        //Borrar al terminar de experimentar
+        //Box3D *box;
 
         map<TTreeNode*, Figure3D*> *_editable_figures;
 
