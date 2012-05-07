@@ -20,6 +20,20 @@ Event* EventFactory::createEvent(String name) {
                 return new EventSphere();
         if(name == "orthogonal")
                 return new EventOrthogonal();
+        if(name == "perspective")
+                return new EventPerspective();
+        if(name == "oblique")
+                return new EventOblique();
+        if(name == "along_axis")
+                return new EventAlongAxis();
+        if(name == "around_axis")
+                return new EventAroundAxis();
+        if(name == "move")
+                return new EventMoveCamera();
+        if(name == "z_rotate")
+                return new EventZRotate();
+        if(name == "corner")
+                return new EventCorner();
 
         return NULL;
 }
@@ -37,6 +51,13 @@ list<String>* EventFactory::getEvents() {
         registered_events->push_back("zoom");
         registered_events->push_back("sphere");
         registered_events->push_back("orthogonal");
+        registered_events->push_back("perspective");
+        registered_events->push_back("oblique");        
+        registered_events->push_back("along_axis");
+        registered_events->push_back("around_axis");
+        registered_events->push_back("move");
+        registered_events->push_back("z_rotate");
+        registered_events->push_back("corner");
         registered_events->sort();
 
         return registered_events;

@@ -10,6 +10,13 @@
 #include "EventZoom.h"
 #include "EventSphere.h"
 #include "EventOrthogonal.h"
+#include "EventAlongAxis.h"
+#include "EventPerspective.h"
+#include "EventOblique.h"
+#include "EventAroundAxis.h"
+#include "EventMoveCamera.h"
+#include "EventZRotate.h"
+#include "EventCorner.h"
 
 
 class EventFactory {
