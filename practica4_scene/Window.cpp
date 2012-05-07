@@ -191,6 +191,8 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                         Key = 0;
         }
 
+
+        Caption = AnsiString(Key);
 /*
 
 
@@ -606,9 +608,6 @@ void __fastcall TForm1::ToolButton1Click(TObject *Sender) {
 
 void __fastcall TForm1::ToolButton2Click(TObject *Sender) {
         _scene->main_figure->elements->clear();
-        //_scene->main_figure->elements->push_back(_epicar);
-        //_scene->main_figure->elements->push_back(_leftRoomFurn);
-//        _scene->main_figure->elements->push_back(sp);
         _scene->Repaint();
         Structure->Items->Clear();
         LoadStructure(_scene->main_figure, NULL);

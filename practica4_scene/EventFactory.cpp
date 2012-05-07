@@ -16,6 +16,10 @@ Event* EventFactory::createEvent(String name) {
                 return new EventHouse();
         if (name == "zoom")
                 return new EventZoom();
+        if (name == "sphere")
+                return new EventSphere();
+        if(name == "orthogonal")
+                return new EventOrthogonal();
 
         return NULL;
 }
@@ -31,6 +35,8 @@ list<String>* EventFactory::getEvents() {
         registered_events->push_back("glass");
         registered_events->push_back("house");
         registered_events->push_back("zoom");
+        registered_events->push_back("sphere");
+        registered_events->push_back("orthogonal");
         registered_events->sort();
 
         return registered_events;

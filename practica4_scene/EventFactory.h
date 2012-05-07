@@ -8,6 +8,8 @@
 #include "EventGlass.h"
 #include "EventHouse.h"
 #include "EventZoom.h"
+#include "EventSphere.h"
+#include "EventOrthogonal.h"
 
 
 class EventFactory {
