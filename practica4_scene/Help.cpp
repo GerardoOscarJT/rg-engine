@@ -15,11 +15,13 @@ __fastcall TForm2::TForm2(TComponent* Owner)
 
 void __fastcall TForm2::FormCreate(TObject *Sender)
 {
+        /*
         char buf[2000];
         getcwd(buf, sizeof(buf));
         String cwd = AnsiString(buf);
         String url = "file:///"+cwd+"/help/index.html";
         CppWebBrowser1->Navigate(WideString(url));
+        */
 }
 
 void __fastcall TForm2::FormResize(TObject *Sender)
@@ -28,7 +30,6 @@ void __fastcall TForm2::FormResize(TObject *Sender)
         CppWebBrowser1->Left = 0;
         CppWebBrowser1->Width = Form2->ClientWidth;
         CppWebBrowser1->Height = Form2->ClientHeight;
-
 }
 
 

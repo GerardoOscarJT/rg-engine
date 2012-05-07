@@ -37,6 +37,14 @@ USEUNIT("EventZoom.cpp");
 USEUNIT("Sphere3D.cpp");
 USEUNIT("EventSphere.cpp");
 USEUNIT("EventOrthogonal.cpp");
+USEUNIT("EventScam.cpp");
+USEUNIT("EventZRotate.cpp");
+USEUNIT("EventAlongAxis.cpp");
+USEUNIT("EventAroundAxis.cpp");
+USEUNIT("EventCorner.cpp");
+USEUNIT("EventMoveCamera.cpp");
+USEUNIT("EventOblique.cpp");
+USEUNIT("EventPerspective.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
