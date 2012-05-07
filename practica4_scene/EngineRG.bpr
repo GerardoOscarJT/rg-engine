@@ -10,7 +10,8 @@
       Epitrochoid3D.obj Group3D.obj Group3Delement.obj EpiCar3D.obj 
       Revolution3D.obj Glass3D.obj Event.obj EventRoll.obj EventFactory.obj 
       LeftRoomFurn.obj Disk3D.obj EventGlass.obj Help.obj EventPitch.obj 
-      EventYaw.obj EventHouse.obj EventZoom.obj"/>
+      EventYaw.obj EventHouse.obj EventZoom.obj Sphere3D.obj EventSphere.obj 
+      EventOrthogonal.obj"/>
     <RESFILES value="EngineRG.res"/>
     <DEFFILE value=""/>
     <RESDEPEN value="$(RESFILES) Window.dfm Help.dfm"/>

@@ -34,6 +34,9 @@ USEUNIT("EventPitch.cpp");
 USEUNIT("EventYaw.cpp");
 USEUNIT("EventHouse.cpp");
 USEUNIT("EventZoom.cpp");
+USEUNIT("Sphere3D.cpp");
+USEUNIT("EventSphere.cpp");
+USEUNIT("EventOrthogonal.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
