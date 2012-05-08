@@ -1,0 +1,19 @@
+* Guardar y cargar la escena completa en un archivo - Prioridad bastante alta (con xm)
+* Editar y componer los elementos de la escena de forma individual
+	* Para objetos figure: posición y rotación (ambos de forma absoluta y de forma relativa)
+	* Para objetos tipo mesh: color (y como curiosidad, ver el número de caras y de vértices)
+	* Para objetos de tipo group: poder añadir otros elementos
+	* Para epitrocoides: cambiar sus parámetros
+	* Para cajas: cambiar sus parámetros
+	* Para cilindros: cambiar sus parámetros
+* Visualizar el objeto seleccionado enmarcado en una caja.
+* Implementar cámaras como objetos figure (esto hace que se puedan crear cámaras en la escena)
+	* Poder editar sus propiedades: look, eye, up
+* Poder elegir cámaras en los viewports
+* Arreglar el zoom en los viewports ortogonales
+* Importar mallas desde archivos con el formato propio de opengl (investigar)
+* Corregir y mejorar el movimiento de cámara (ahora es todo provisional y funciona mal)
+* Guardar y cargar la posición de la ventana y las opciones por defecto en un archivo de configuración específico (con xm)
+* Diseñar una forma de heredar colores y algunas propiedades a la hora de pintar (por ejemplo utilizando una pila de pintado)
+* En el árbol de elementos, poder elegir el nodo que se visualiza y el que se edita.
+

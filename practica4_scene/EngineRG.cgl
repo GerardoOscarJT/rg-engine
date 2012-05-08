@@ -1,0 +1,13 @@
+Error 00096. 0x300010 (Thread 0x052C):
+Resource leak: The object (0xB6DC2C8) was never deleted
+
+The object (0x0B6DC2C8) [size: 44 bytes] was created with new
+Call Tree:
+   0x0041E224(=EngineRG.exe:0x01:01D224) C:\Documents and Settings\RubenF\Escritorio\IGR\practica4_scene\Face3D.cpp#11
+   0x0042633A(=EngineRG.exe:0x01:02533A) C:\Documents and Settings\RubenF\Escritorio\IGR\practica4_scene\Revolution3D.cpp#65
+   0x00403158(=EngineRG.exe:0x01:002158) C:\Documents and Settings\RubenF\Escritorio\IGR\practica4_scene\Window.cpp#116
+   0x40053323(=VCL50.BPL:0x01:052323)
+   0x4005301F(=VCL50.BPL:0x01:05201F)
+   0x4005ABFC(=VCL50.BPL:0x01:059BFC)
+
+------------------------------------------
