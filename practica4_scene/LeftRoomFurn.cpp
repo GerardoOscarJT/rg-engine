@@ -41,6 +41,7 @@ LeftRoomFurn::LeftRoomFurn() {
         _chair = new Group3D();
                 _chair->human_name = "Silla";
                 Box3D *respaldo = new Box3D();
+                        respaldo->human_name = "Respaldo";
                         respaldo->color = new Color3D(0.545, 0.27, 0.0745);
                         respaldo->x = 6;
                         respaldo->y = 2;
@@ -52,6 +53,7 @@ LeftRoomFurn::LeftRoomFurn() {
                 _chair->elements->push_back(respaldo);
 
                 Box3D *asiento = new Box3D();
+                        asiento->human_name = "asiento";
                         asiento->color = new Color3D(0.545, 0.27, 0.0745);
                         asiento->x = 6;
                         asiento->y = -8;
@@ -63,6 +65,7 @@ LeftRoomFurn::LeftRoomFurn() {
                 _chair->elements->push_back(asiento);
 
                 Cylinder3D *pata_del_der = new Cylinder3D(7, 1, 1, false, true);
+                        pata_del_der->human_name = "Pata delantera derecha";
                         pata_del_der->color = new Color3D(0.545, 0.27, 0.0745);
                         pata_del_der->translation->x = 1.5;
                         pata_del_der->translation->y = 5.5;
@@ -70,6 +73,7 @@ LeftRoomFurn::LeftRoomFurn() {
                 _chair->elements->push_back(pata_del_der);
 
                 Cylinder3D *pata_del_izq = new Cylinder3D(7, 1, 1, false, true);
+                        pata_del_izq->human_name = "Pata delantera izquierda";
                         pata_del_izq->color = new Color3D(0.545, 0.27, 0.0745);
                         pata_del_izq->translation->x = 4.5;
                         pata_del_izq->translation->y = 5.5;
@@ -77,6 +81,7 @@ LeftRoomFurn::LeftRoomFurn() {
                 _chair->elements->push_back(pata_del_izq);
 
                 Cylinder3D *pata_tras_der = new Cylinder3D(7, 1, 1, false, true);
+                        pata_tras_der->human_name = "Pata trasera derecha";
                         pata_tras_der->color = new Color3D(0.545, 0.27, 0.0745);
                         pata_tras_der->translation->x = 1.5;
                         pata_tras_der->translation->y = 10.5;
@@ -84,6 +89,7 @@ LeftRoomFurn::LeftRoomFurn() {
                 _chair->elements->push_back(pata_tras_der);
 
                 Cylinder3D *pata_tras_izq = new Cylinder3D(7, 1, 1, false, true);
+                        pata_tras_izq->human_name = "Pata trasera izquierda";
                         pata_tras_izq->color = new Color3D(0.545, 0.27, 0.0745);
                         pata_tras_izq->translation->x = 4.5;
                         pata_tras_izq->translation->y = 10.5;
@@ -132,6 +138,7 @@ LeftRoomFurn::LeftRoomFurn() {
                 plate->RecalculateMesh();
         grupoPlato->elements->push_back(plate);
                 Epitrochoid3D *epi = new Epitrochoid3D();
+                epi->human_name = "comida";
                 epi->color = new Color3D(.1, 1, 1);
                 epi->a = 0.6;
                 epi->b = 0.2;
@@ -182,6 +189,7 @@ LeftRoomFurn::LeftRoomFurn() {
                         servilleta->RecalculateMesh();
                 _napkin->elements->push_back(servilleta);
                 Cylinder3D *pal_izq = new Cylinder3D(4,0.05,0.05,true,true);
+                        pal_izq->human_name = "Palillo izquierdo";
                         pal_izq->color = new Color3D(0,0,0);
                         pal_izq->translation->x = -2;
                         pal_izq->translation->y = -0.5;
@@ -190,6 +198,7 @@ LeftRoomFurn::LeftRoomFurn() {
                         pal_izq->RecalculateMesh();
                 _napkin->elements->push_back(pal_izq);
                 Cylinder3D *pal_der = new Cylinder3D(4,0.05,0.05,true,true);
+                        pal_der->human_name = "Palillo derecho";
                         pal_der->color = new Color3D(0,0,0);
                         pal_der->translation->x = -2;
                         pal_der->translation->y = 0.5;
@@ -198,6 +207,7 @@ LeftRoomFurn::LeftRoomFurn() {
                         pal_der->RecalculateMesh();
                 _napkin->elements->push_back(pal_der);
                 Revolution3D *copa = new Revolution3D();
+                        copa->human_name = "Copa";
                         copa->color = new Color3D(1,1,1);
                         copa->points->push_back(new PV3D(0,0,0.08));
                         copa->points->push_back(new PV3D(0,0,0.08));
