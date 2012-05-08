@@ -7,6 +7,7 @@
 EventHouse::EventHouse() {
     _encendida = false;
     _cerrada = true;
+    _hab_der = false;
 }
 
 void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
@@ -591,5 +592,17 @@ bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD
                                 _scene->Repaint();
                         }
                 }
+        }
+
+        if(key == 67) {
+                if(_hab_der) {
+                        _hab_der = !_hab_der;
+                        _viewport->camera = _viewport->cameras[0];
+                }
+                else {
+                        _hab_der = !_hab_der;
+                        _viewport->camera = _viewport->cameras[1];
+                }
+                _scene->Repaint();
         }
 }

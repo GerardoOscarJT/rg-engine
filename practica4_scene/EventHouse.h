@@ -22,6 +22,8 @@ private:
         Group3D *puerta;
 
         bool _cerrada;
+
+        bool _hab_der;
 };
 
 

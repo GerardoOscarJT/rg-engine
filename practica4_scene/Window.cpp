@@ -90,6 +90,15 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         cam4->perspective = 0;
         _scene->cameras->push_back(cam4);
 
+        Camera3D * cam5 = new Camera3D();
+        cam5->name = "Perspectiva";
+        cam5->eye->x = 950;
+        cam5->eye->y = 500;
+        cam5->eye->z = 400;
+        cam5->inicializa(Panel1->Width, Panel1->Height);
+        cam5->perspective = 0;
+        _scene->cameras->push_back(cam5);
+
         // Agrego 4 puertos de vista vinculados con los 4 paneles
 
         _vp1 = new ViewPort3D(Panel1->Handle, Panel1->Width, Panel1->Height);
@@ -105,6 +114,8 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         _scene->viewports->push_back(_vp3);
 
         _vp4 = new ViewPort3D(Panel4->Handle, Panel4->Width, Panel4->Height);
+        _vp4->cameras[0] = cam4;
+        _vp4->cameras[1] = cam5;
         _vp4->camera = cam4;
         _scene->viewports->push_back(_vp4);
 

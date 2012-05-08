@@ -19,6 +19,7 @@ public:
 
         Camera3D* camera;
 
+        Camera3D** cameras;
 private:
         HDC _hdc;
         HGLRC _hrc;

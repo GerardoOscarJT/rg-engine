@@ -31,6 +31,8 @@ ViewPort3D::ViewPort3D(void * hWnd, int& width, int& height) {
         SetPixelFormat(_hdc, ChoosePixelFormat(_hdc, &pfd), &pfd);        
         _hrc = wglCreateContext(_hdc);
 
+        cameras = new Camera3D*[2];
+
 }
 
 void ViewPort3D::makeCurrent() {
@@ -43,6 +45,7 @@ void ViewPort3D::makeCurrent() {
                 ShowMessage("Could not make ViewPort3D current :·(");        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);                        }
 
 ViewPort3D::~ViewPort3D() {
+        delete cameras;
         wglDeleteContext(_hdc);
 }
 
