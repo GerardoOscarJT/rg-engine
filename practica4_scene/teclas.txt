@@ -1,0 +1,67 @@
+Relación de las teclas usadas en el proyecto de IGR
+
+37->flecha izquierda: girar hacia la izquierda
+
+38->flecha arriba: subir cámara
+
+40->flecha abajo: bajar cámara
+
+39->flecha derecha: girar hacia la derecha
+
+187->+: acercar zoom
+
+189->-: alejar zoom
+
+85 ->u : roll
+
+78 ->j : pitch
+
+74 ->n: yaw
+
+70->f: avanzar por el eje y hacia atras
+
+90->z: avanzar coche hacia adelante
+
+88->x: retroceder coche hacia atrás
+
+68->d: avanzar por el eje y hacia adelante
+
+69->e: avanzar por el eje x hacia adelante
+
+82->r: avanzar por el eje x hacia adelante
+
+67->c: avanzar por el eje z hacia adelante
+
+86->v: avanzar por el eje z hacia atras
+
+79->o: ortogonal
+
+80->p: perspectiva
+
+76->l: mover cámara hacia arriba
+
+192->ñ: mover cámara hacia abajo
+
+65->a: mover cámara a la derecha
+
+83->s: mover cámara a la izquierda
+
+81->q: mover cámara hacia atrás
+
+87->w: mover cámara hacia adelante
+
+(Nota: las siguientes teclas son del teclado normal, no numérico)
+
+49->1: girar por el eje x a la derecha
+
+50->2: girar por el eje x a la izquierda
+
+51->3: girar por el eje y a la derecha 
+
+52->4: girar por el eje x a la izquierda
+
+(Nota: no hay girar por el eje z, son las teclas 37 y 39, porque el efecto de girarZ sería ése)
+
+48->0: oblicua (igual quedaba mejor en la i)
+
+53->5: vista desde la esquina
