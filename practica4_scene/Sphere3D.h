@@ -10,6 +10,7 @@ public:
         int nParallels;
         int nMeridians;
 
+        Sphere3D();
         Sphere3D(double, int, int);
         ~Sphere3D();
 

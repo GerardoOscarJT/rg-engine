@@ -4,6 +4,10 @@
 #include "EventHouse.h"
 #pragma package(smart_init)
 
+EventHouse::EventHouse() {
+    _encendida = false;
+    _cerrada = true;
+}
 
 void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         _house = new Group3D();
@@ -57,19 +61,83 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         Color3D *color_paredes = new Color3D(0,0,0.8);
         Box3D *wall;
 
-        wall = new Box3D(); // Pared 1
+        /*wall = new Box3D(); // Pared 1
         wall->color = color_paredes;
         wall->x = 400;  wall->y = 10; wall->z = 250;
         wall->translation->x = 30;
         wall->translation->y = 0;
         wall->RecalculateMesh();
+        _house->elements->push_back(wall);*/
+
+        wall = new Box3D(); // Pared 1  parte derecha
+        wall->color = color_paredes;
+        wall->x = 170;  wall->y = 10; wall->z = 250;
+        wall->translation->x = 30;
+        wall->translation->y = 0;
+        wall->RecalculateMesh();
         _house->elements->push_back(wall);
 
-        wall = new Box3D(); // Pared 2
+        wall = new Box3D(); // Pared 1 parte izquierda
+        wall->color = color_paredes;
+        wall->x = 170;  wall->y = 10; wall->z = 250;
+        wall->translation->x = 260;
+        wall->translation->y = 0;
+        wall->RecalculateMesh();
+        _house->elements->push_back(wall);
+
+        wall = new Box3D(); // Pared 1 parte inferior
+        wall->color = color_paredes;
+        wall->x = 60;  wall->y = 10; wall->z = 95;
+        wall->translation->x = 200;
+        wall->translation->y = 0;
+        wall->RecalculateMesh();
+        _house->elements->push_back(wall);
+
+        wall = new Box3D(); // Pared 1 parte superior
+        wall->color = color_paredes;
+        wall->x = 60;  wall->y = 10; wall->z = 95;
+        wall->translation->x = 200;
+        wall->translation->z = 155;
+        wall->RecalculateMesh();
+        _house->elements->push_back(wall);
+
+        /*wall = new Box3D(); // Pared 2
         wall->color = color_paredes;
         wall->x = 400;  wall->y = 10; wall->z = 250;
         wall->translation->x = 460;
         wall->translation->y = 0;
+        wall->RecalculateMesh();
+        _house->elements->push_back(wall);*/
+
+        wall = new Box3D(); // Pared 2  parte izquierda
+        wall->color = color_paredes;
+        wall->x = 170;  wall->y = 10; wall->z = 250;
+        wall->translation->x = 460;
+        wall->translation->y = 0;
+        wall->RecalculateMesh();
+        _house->elements->push_back(wall);
+
+        wall = new Box3D(); // Pared 2 parte derecha
+        wall->color = color_paredes;
+        wall->x = 170;  wall->y = 10; wall->z = 250;
+        wall->translation->x = 690;
+        wall->translation->y = 0;
+        wall->RecalculateMesh();
+        _house->elements->push_back(wall);
+
+        wall = new Box3D(); // Pared 2  parte inferior
+        wall->color = color_paredes;
+        wall->x = 60;  wall->y = 10; wall->z = 95;
+        wall->translation->x = 630;
+        wall->translation->y = 0;
+        wall->RecalculateMesh();
+        _house->elements->push_back(wall);
+
+        wall = new Box3D(); // Pared 2 derecha
+        wall->color = color_paredes;
+        wall->x = 60;  wall->y = 10; wall->z = 95;
+        wall->translation->x = 630;
+        wall->translation->z = 155;
         wall->RecalculateMesh();
         _house->elements->push_back(wall);
 
@@ -89,7 +157,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         wall->RecalculateMesh();
         //_house->elements->push_back(wall);
 
-        // Introduzco las paredes especiales
+        //Introduzco las paredes especiales
         wall = new Box3D(); // Pared 5
         wall->color = color_paredes;
         wall->x = 400;  wall->y = 10; wall->z = 250;
@@ -106,11 +174,36 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         wall->RecalculateMesh();
         _house->elements->push_back(wall);
 
-        wall = new Box3D(); // Pared 7
+        /*wall = new Box3D(); // Pared 7
         wall->color = color_paredes;
         wall->x = 10;  wall->y = 400; wall->z = 250;
         wall->translation->x = 440;
         wall->translation->y = 30;
+        wall->RecalculateMesh();
+        _house->elements->push_back(wall);*/
+
+        wall = new Box3D(); // Pared 7   parte izquierda
+        wall->color = color_paredes;
+        wall->x = 10;  wall->y = 160; wall->z = 250;
+        wall->translation->x = 440;
+        wall->translation->y = 30;
+        wall->RecalculateMesh();
+        _house->elements->push_back(wall);
+
+        wall = new Box3D(); // Pared 7   parte derecha
+        wall->color = color_paredes;
+        wall->x = 10;  wall->y = 160; wall->z = 250;
+        wall->translation->x = 440;
+        wall->translation->y = 270;
+        wall->RecalculateMesh();
+        _house->elements->push_back(wall);
+
+        wall = new Box3D(); // Pared 7   parte superior
+        wall->color = color_paredes;
+        wall->x = 10;  wall->y = 80; wall->z = 70;
+        wall->translation->x = 440;
+        wall->translation->y = 190;
+        wall->translation->z = 180;
         wall->RecalculateMesh();
         _house->elements->push_back(wall);
 
@@ -123,7 +216,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         // ESTO LO HACE RUBÉN.
         // LA HABITACIÓN DE LA IZQUIERDA ESTÁ SEÑALADA CON UNA CAJA ROJA EN MEDIO
 
-        Box3D *caja_roja = new Box3D();
+        /*Box3D *caja_roja = new Box3D();
         caja_roja->x = 100;
         caja_roja->y = 100;
         caja_roja->z = 100;
@@ -133,8 +226,63 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         caja_roja->translation->x = 190;
         caja_roja->translation->y = 190;
 
-        _house->elements->push_back(caja_roja);
+        _house->elements->push_back(caja_roja);*/
 
+        Box3D *sueloIzq = new Box3D();
+        sueloIzq->color = new Color3D(0,1,0);
+        sueloIzq->x = 430;
+        sueloIzq->y = 430;
+        sueloIzq->z = 1;
+        sueloIzq->translation->z = -1;
+        sueloIzq->RecalculateMesh();
+        _house->elements->push_back(sueloIzq);
+
+        LeftRoomFurn *roomFurn = new LeftRoomFurn();
+        roomFurn->translation->x = 150;
+        roomFurn->translation->y = 150;
+        _house->elements->push_back(roomFurn);
+
+        /*Box3D *tele = new Box3D();
+        tele->color = new Color3D(0,0,0);
+        tele->x = 120;
+        tele->y = 12;
+        tele->z = 60;
+        tele->translation->x = 250;
+        tele->translation->y = 11;
+        tele->translation->z = 100;
+        tele->RecalculateMesh();*/
+        Group3D *tele = new Group3D();
+            Box3D *carcasa = new Box3D();
+            carcasa->color = new Color3D(0,0,0);
+            carcasa->x = 120;
+            carcasa->y = 12;
+            carcasa->z = 60;
+            carcasa->RecalculateMesh();
+        tele->elements->push_back(carcasa);
+            _pantalla = new Box3D();
+            _pantalla->color = new Color3D(0,0,0);
+            _pantalla->x = 100;
+            _pantalla->y = 0;
+            _pantalla->z = 40;
+            _pantalla->translation->x = 10;
+            _pantalla->translation->y = 12.1;
+            _pantalla->translation->z = 10;
+            _pantalla->RecalculateMesh();
+
+        tele->translation->x = 50;
+        tele->translation->y = 0;
+        tele->translation->z = 100;
+        tele->elements->push_back(_pantalla);
+
+        _house->elements->push_back(tele);
+
+        Cylinder3D *lamp = new Cylinder3D(30, 10, 40, true, false);
+        lamp->color = new Color3D(0,1,0);
+        lamp->translation->x = 200;
+        lamp->translation->y = 200;
+        lamp->translation->z = 250;
+        lamp->RecalculateMesh();
+        _house->elements->push_back(lamp);
 
 
         //                                                                    //
@@ -362,10 +510,86 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         ////////////////////////////////////////////////////////////////////////
 
 
+        /////////////////////////// GRUPO PUERTA ///////////////////////////////
+        puerta = new Group3D();
+                Box3D *madero = new Box3D();
+                madero->color = new Color3D(0.545, 0.27, 0.0745);
+                madero->x = 10;
+                madero->y = 80;
+                madero->z = 180;
+                //madero->translation->x = 440;
+                //madero->translation->y = 190;
+                madero->RecalculateMesh();
+        puerta->elements->push_back(madero);
+                Sphere3D *pomo_izq = new Sphere3D();
+                pomo_izq->color = new Color3D(0,0,0);
+                pomo_izq->radius = 5;
+                pomo_izq->translation->x = 15;
+                pomo_izq->translation->y = 65;
+                pomo_izq->translation->z = 110;
+                pomo_izq->RecalculateMesh();
+        puerta->elements->push_back(pomo_izq);
+                Sphere3D *pomo_der = new Sphere3D();
+                pomo_der->color = new Color3D(0,0,0);
+                pomo_der->radius = 5;
+                pomo_der->translation->x = -5;
+                pomo_der->translation->y = 65;
+                pomo_der->translation->z = 110;
+                pomo_der->RecalculateMesh();
+        puerta->elements->push_back(pomo_der);
+
+                puerta->translation->x = 440;
+                puerta->translation->y = 190;
+        _house->elements->push_back(puerta);
+
         _scene->main_figure->elements->push_back(_house);
         _scene->Repaint();
 }
 
 String EventHouse::getName() {
         return "house";
+}
+
+bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift) {
+        if(key == 84) {
+
+            if(_encendida) {
+                _encendida = !_encendida;
+                 delete _pantalla->color;
+                _pantalla->color = new Color3D(0,0,0);
+                _scene->Repaint();
+            }
+            else{
+                _encendida = !_encendida;
+                delete _pantalla->color;
+                _pantalla->color = new Color3D(0,0,1);
+                _scene->Repaint();
+            }
+        }
+
+        if(key == 80) {
+                //double pi = 4*atan(1);
+                if(_cerrada) {
+                        _cerrada = !_cerrada;
+                        double inc_ang = 9;
+                        for(int i=0; i<=10;i++) {
+                                double ang = i*inc_ang;
+                                /*puerta->rotation->x *= cos(ang);
+                                puerta->rotation->y *= sin(ang);*/
+                                puerta->rotation->z += 9;
+                                _scene->Repaint();
+                        }
+                }
+                else {
+                        _cerrada = !_cerrada;
+                        double inc_ang = 9;
+                        for(int i=0; i<=10;i++) {
+                                double ang = i*inc_ang;
+                                /*puerta->rotation->x *= cos(ang);
+                                puerta->rotation->y *= sin(ang);*/
+                                puerta->rotation->z -= 9;
+                                _scene->Repaint();
+                        }
+                }
+        }
 }

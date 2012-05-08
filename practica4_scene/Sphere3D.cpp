@@ -9,6 +9,15 @@
 
 #pragma package(smart_init)
 
+Sphere3D::Sphere3D() {
+        radius = 20;
+        nParallels = 20;
+        nMeridians = 20;
+
+        points = new list<PV3D*>();
+        n = nMeridians;
+}
+
 Sphere3D::Sphere3D(double _radius, int _nParallels, int _nMeridians) {
 
         radius = _radius;
