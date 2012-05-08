@@ -123,7 +123,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         // ESTO LO HACE RUBÉN.
         // LA HABITACIÓN DE LA IZQUIERDA ESTÁ SEÑALADA CON UNA CAJA ROJA EN MEDIO
 
-        Box3D *caja_roja = new Box3D();
+        /*Box3D *caja_roja = new Box3D();
         caja_roja->x = 100;
         caja_roja->y = 100;
         caja_roja->z = 100;
@@ -133,9 +133,40 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         caja_roja->translation->x = 190;
         caja_roja->translation->y = 190;
 
-        _house->elements->push_back(caja_roja);
+        _house->elements->push_back(caja_roja);*/
 
+        Box3D *sueloIzq = new Box3D();
+        sueloIzq->color = new Color3D(0,1,0);
+        sueloIzq->x = 400;
+        sueloIzq->y = 400;
+        sueloIzq->z = 1;
+        sueloIzq->translation->z = -1;
+        sueloIzq->RecalculateMesh();
+        _house->elements->push_back(sueloIzq);
 
+        LeftRoomFurn *roomFurn = new LeftRoomFurn();
+        roomFurn->translation->x = 150;
+        roomFurn->translation->y = 150;
+        _house->elements->push_back(roomFurn);
+
+        Box3D *tele = new Box3D();
+        tele->color = new Color3D(0,0,0);
+        tele->x = 120;
+        tele->y = 12;
+        tele->z = 60;
+        tele->translation->x = 250;
+        tele->translation->y = 11;
+        tele->translation->z = 100;
+        tele->RecalculateMesh();
+        _house->elements->push_back(tele);
+
+        Cylinder3D *lamp = new Cylinder3D(30, 10, 40, true, false);
+        lamp->color = new Color3D(0,1,0);
+        lamp->translation->x = 200;
+        lamp->translation->y = 200;
+        lamp->translation->z = 250;
+        lamp->RecalculateMesh();
+        _house->elements->push_back(lamp);
 
         //                                                                    //
         //                FIN HABITACIÓN DE LA IZQUIERDA FIN                  //

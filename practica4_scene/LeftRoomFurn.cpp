@@ -245,6 +245,9 @@ LeftRoomFurn::LeftRoomFurn() {
        /*translation->x = 20;
        translation->y = 0;
        translation->z = -50;*/
+       scale->x = 4;
+       scale->y = 4;
+       scale->z = 4;
        elements->push_back(table);
        elements->push_back(chair1);
        elements->push_back(chair2);

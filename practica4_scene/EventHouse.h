@@ -2,6 +2,7 @@
 #define EventHouseH
 
 #include "Event.h"
+#include "LeftRoomFurn.h"
 
 class EventHouse:public Event {
 public:
