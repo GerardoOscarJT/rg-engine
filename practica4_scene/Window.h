@@ -33,7 +33,6 @@ __published:	// IDE-managed Components
         TMenuItem *Camaras1;
         TPanel *MainPanel;
         TToolBar *ToolBar;
-        TToolButton *ToolButton1;
         TToolButton *ToolButton2;
         TPanel *LeftPanel;
         TScrollBox *RightPanel;

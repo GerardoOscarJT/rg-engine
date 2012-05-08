@@ -618,29 +618,26 @@ void __fastcall TForm1::ToolButton1Click(TObject *Sender) {
 }
 
 void __fastcall TForm1::ToolButton2Click(TObject *Sender) {
-        _scene->main_figure->elements->clear();
-        _scene->Repaint();
         Structure->Items->Clear();
         LoadStructure(_scene->main_figure, NULL);
 }
 
 void __fastcall TForm1::ToolButton4Click(TObject *Sender) {
+        /*
                 _epicar->epi->filled = !ToolButton4->Down;
                 _copa->filled = !ToolButton4->Down;
                 _scene->Repaint();
+        */
 }
 
 void __fastcall TForm1::ToolButton5Click(TObject *Sender)
 {
+        /*
         _epicar->epi->showNormals = ToolButton5->Down;
         _copa->showNormals = ToolButton5->Down;
         _scene->Repaint();
+        */
 }
-//---------------------------------------------------------------------------
-
-
-
-
 
 void __fastcall TForm1::TrackBar1Change(TObject *Sender) {
         FocusControl(TrackBar1);
@@ -656,16 +653,6 @@ void __fastcall TForm1::TrackBar1Change(TObject *Sender) {
         }
         FocusControl(TrackBar1);
 }
-//---------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
 
 void __fastcall TForm1::TrackBar1Enter(TObject *Sender)
 {
@@ -762,7 +749,6 @@ void __fastcall TForm1::TrackBar5Change(TObject *Sender)
         }
         FocusControl(TrackBar5);
 }
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::TrackBar6Change(TObject *Sender)
 {
@@ -777,34 +763,29 @@ void __fastcall TForm1::TrackBar6Change(TObject *Sender)
         }
         FocusControl(TrackBar6);
 }
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::TrackBar5Enter(TObject *Sender)
 {
         TrackBar5->Position = 0;
         TrackBar5->Tag = 0;
 }
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::TrackBar5Exit(TObject *Sender) {
         TrackBar5->Tag = 0;
         TrackBar5->Position = 0;
 }
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::TrackBar6Enter(TObject *Sender)
 {
         TrackBar6->Position = 0;
         TrackBar6->Tag = 0;
 }
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::TrackBar6Exit(TObject *Sender)
 {
         TrackBar6->Tag = 0;
         TrackBar6->Position = 0;
 }
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::TrackBar7Chage(TObject *Sender)
 {
@@ -816,8 +797,6 @@ void __fastcall TForm1::TrackBar7Chage(TObject *Sender)
                 _scene->Repaint();
         }
 }
-//---------------------------------------------------------------------------
-
 
 void __fastcall TForm1::TrackBar12Change(TObject *Sender)
 {
@@ -841,7 +820,6 @@ void __fastcall TForm1::TrackBar13Change(TObject *Sender)
                 _scene->Repaint();
         }
 }
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::TrackBar11Change(TObject *Sender)
 {
@@ -853,9 +831,6 @@ void __fastcall TForm1::TrackBar11Change(TObject *Sender)
                 _scene->Repaint();
         }
 }
-//---------------------------------------------------------------------------
-
-
 
 void __fastcall TForm1::TrackBar8Change(TObject *Sender)
 {
@@ -867,7 +842,6 @@ void __fastcall TForm1::TrackBar8Change(TObject *Sender)
                 _scene->Repaint();
         }
 }
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::TrackBar14Change(TObject *Sender)
 {
@@ -879,7 +853,6 @@ void __fastcall TForm1::TrackBar14Change(TObject *Sender)
                 _scene->Repaint();
         }
 }
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::TrackBar15Change(TObject *Sender)
 {
@@ -891,7 +864,6 @@ void __fastcall TForm1::TrackBar15Change(TObject *Sender)
                 _scene->Repaint();
         }
 }
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::TrackBar16Change(TObject *Sender)
 {
@@ -903,7 +875,6 @@ void __fastcall TForm1::TrackBar16Change(TObject *Sender)
                 _scene->Repaint();
         }
 }
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::TrackBar17Change(TObject *Sender)
 {
@@ -915,7 +886,6 @@ void __fastcall TForm1::TrackBar17Change(TObject *Sender)
                 _scene->Repaint();
         }
 }
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::TrackBar18Change(TObject *Sender)
 {
@@ -927,7 +897,6 @@ void __fastcall TForm1::TrackBar18Change(TObject *Sender)
                 _scene->Repaint();
         }
 }
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::Panel4MouseMove(TObject *Sender, TShiftState Shift,
       int X, int Y)
@@ -936,7 +905,6 @@ void __fastcall TForm1::Panel4MouseMove(TObject *Sender, TShiftState Shift,
                 Panel4->SetFocus();
         }*/
 }
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::Panel1MouseMove(TObject *Sender, TShiftState Shift,
       int X, int Y)
@@ -945,6 +913,7 @@ void __fastcall TForm1::Panel1MouseMove(TObject *Sender, TShiftState Shift,
                 Panel1->SetFocus();
         }*/
 }
+
 void __fastcall TForm1::Panel2MouseMove(TObject *Sender, TShiftState Shift,
       int X, int Y)
 {
