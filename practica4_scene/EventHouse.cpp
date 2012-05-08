@@ -87,7 +87,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         wall->translation->x = 30;
         wall->translation->y = 450;
         wall->RecalculateMesh();
-        _house->elements->push_back(wall);
+        //_house->elements->push_back(wall);
 
         // Introduzco las paredes especiales
         wall = new Box3D(); // Pared 5
@@ -96,7 +96,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         wall->translation->x = 460;
         wall->translation->y = 450;
         wall->RecalculateMesh();
-        _house->elements->push_back(wall);
+        //_house->elements->push_back(wall);
 
         wall = new Box3D(); // Pared 6
         wall->color = color_paredes;
@@ -183,6 +183,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         // ESTO LO HACE GERARDO.
         // LA HABITACIÓN DE LA DERECHA ESTÁ SEÑALADA CON UNA CAJA VERDE EN MEDIO
 
+        /*
         Box3D *caja_verde = new Box3D();
         caja_verde->x = 100;
         caja_verde->y = 100;
@@ -194,6 +195,196 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         caja_verde->translation->y = 190;
 
         _house->elements->push_back(caja_verde);
+        */
+
+        // Suelo ///////////////////////////////////////////////////////////////
+        Box3D *suelo = new Box3D();
+        suelo->color = new Color3D(0.7,0.7,0.2);
+        suelo->x = 450;
+        suelo->y = 460;
+        suelo->z = 1;
+        suelo->RecalculateMesh();
+        suelo->translation->x = 440;
+        suelo->translation->z = -1;
+        _house->elements->push_back(suelo);
+
+
+        // Estanteria //////////////////////////////////////////////////////////
+        Group3D *estanteria = new Group3D();
+        estanteria->human_name = "Estantería";
+        estanteria->translation->x = 480;
+        estanteria->translation->y = 420;
+        _house->elements->push_back(estanteria);
+
+        Color3D *color_tabla = new Color3D(0.98,0.98,0.98);
+
+
+        Box3D *tabla;
+
+        tabla = new Box3D();
+        tabla->color = color_tabla;
+        tabla->x = 80;
+        tabla->y = 40;
+        tabla->z = 5;
+        tabla->RecalculateMesh();
+        tabla->translation->x = 0;
+        tabla->translation->y = 0;
+        tabla->translation->z = 0;
+        estanteria->elements->push_back(tabla);
+
+        tabla = new Box3D();
+        tabla->color = color_tabla;
+        tabla->x = 80;
+        tabla->y = 40;
+        tabla->z = 5;
+        tabla->RecalculateMesh();
+        tabla->translation->x = 0;
+        tabla->translation->y = 0;
+        tabla->translation->z = 145;
+        estanteria->elements->push_back(tabla);
+
+        tabla = new Box3D();
+        tabla->color = color_tabla;
+        tabla->x = 5;
+        tabla->y = 40;
+        tabla->z = 140;
+        tabla->RecalculateMesh();
+        tabla->translation->x = 0;
+        tabla->translation->y = 0;
+        tabla->translation->z = 5;
+        estanteria->elements->push_back(tabla);
+
+        tabla = new Box3D();
+        tabla->color = color_tabla;
+        tabla->x = 5;
+        tabla->y = 40;
+        tabla->z = 140;
+        tabla->RecalculateMesh();
+        tabla->translation->x = 75;
+        tabla->translation->y = 0;
+        tabla->translation->z = 5;
+        estanteria->elements->push_back(tabla);
+
+
+
+
+
+
+        // Cama ////////////////////////////////////////////////////////////////
+        Group3D *cama = new Group3D();
+        cama->human_name = "Cama";
+        cama->translation->x = 600;
+        cama->translation->y = 270;
+        _house->elements->push_back(cama);
+
+
+        Group3D *somier = new Group3D();
+        somier->color = new Color3D(0.2,0.2,0.2);
+        somier->human_name = "Somier";
+        cama->elements->push_back(somier);
+
+        // Patas del somier:
+        Box3D *pata;
+
+        // Pata 1
+        pata = new Box3D();
+        pata->x = 5;
+        pata->y = 5;
+        pata->z = 25;
+        pata->RecalculateMesh();
+        pata->translation->x = 0;
+        pata->translation->y = 10;
+        somier->elements->push_back(pata);
+
+        // Pata 2
+        pata = new Box3D();
+        pata->x = 5;
+        pata->y = 5;
+        pata->z = 25;
+        pata->RecalculateMesh();
+        pata->translation->x = 85;
+        pata->translation->y = 10;
+        somier->elements->push_back(pata);
+
+        // Pata 3
+        pata = new Box3D();
+        pata->x = 5;
+        pata->y = 5;
+        pata->z = 25;
+        pata->RecalculateMesh();
+        pata->translation->x = 0;
+        pata->translation->y = 165;
+        somier->elements->push_back(pata);
+
+        // Pata 4
+        pata = new Box3D();
+        pata->x = 5;
+        pata->y = 5;
+        pata->z = 25;
+        pata->RecalculateMesh();
+        pata->translation->x = 85;
+        pata->translation->y = 165;
+        somier->elements->push_back(pata);
+
+        // Esqueleto del somier:
+        pata = new Box3D();
+        pata->x = 90;
+        pata->y = 180;
+        pata->z = 5;
+        pata->RecalculateMesh();
+        pata->translation->x = 0;
+        pata->translation->y = 0;
+        pata->translation->z = 25;
+        somier->elements->push_back(pata);
+
+
+        Box3D *colchon = new Box3D();
+        colchon->x = 86;
+        colchon->y = 176;
+        colchon->z = 20;
+        colchon->RecalculateMesh();
+        colchon->color = new Color3D(0.91,0.9,0.8);
+        colchon->translation->x = 2;
+        colchon->translation->y = 2;
+        colchon->translation->z = 30;
+        cama->elements->push_back(colchon);
+
+
+        Box3D *almohada = new Box3D();
+        almohada->x = 86;
+        almohada->y = 25;
+        almohada->z = 15;
+        almohada->RecalculateMesh();
+        almohada->color = new Color3D(0.8,0.8,0.9);
+        almohada->translation->x = 2;
+        almohada->translation->y = 153;
+        almohada->translation->z = 51;
+        cama->elements->push_back(almohada);
+
+
+        Box3D *cabecero = new Box3D();
+        cabecero->x = 110;
+        cabecero->y = 5;
+        cabecero->z = 110;
+        cabecero->RecalculateMesh();
+        cabecero->color = color_tabla;
+        cabecero->translation->x = -10;
+        cabecero->translation->y = 180;
+        cama->elements->push_back(cabecero);
+
+        Box3D *piecero = new Box3D();
+        piecero->x = 90;
+        piecero->y = 5;
+        piecero->z = 60;
+        piecero->RecalculateMesh();
+        piecero->color = color_tabla;
+        piecero->translation->y = -5;
+        cama->elements->push_back(piecero);
+
+
+
+
+
 
 
 
