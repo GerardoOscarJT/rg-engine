@@ -329,8 +329,9 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         // Estanteria //////////////////////////////////////////////////////////
         Group3D *estanteria = new Group3D();
         estanteria->human_name = "Estantería";
-        estanteria->translation->x = 480;
-        estanteria->translation->y = 420;
+        estanteria->translation->x = 560;
+        estanteria->translation->y = 50;
+        estanteria->rotation->z = 180;
         _house->elements->push_back(estanteria);
 
         Color3D *color_tabla = new Color3D(0.98,0.98,0.98);
@@ -382,6 +383,133 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         tabla->translation->z = 5;
         estanteria->elements->push_back(tabla);
 
+        tabla = new Box3D();
+        tabla->color = color_tabla;
+        tabla->x = 2;
+        tabla->y = 40;
+        tabla->z = 140;
+        tabla->RecalculateMesh();
+        tabla->translation->x = 39;
+        tabla->translation->y = 0;
+        tabla->translation->z = 5;
+        estanteria->elements->push_back(tabla);
+
+
+        tabla = new Box3D();
+        tabla->color = color_tabla;
+        tabla->x = 70;
+        tabla->y = 40;
+        tabla->z = 2;
+        tabla->RecalculateMesh();
+        tabla->translation->x = 5;
+        tabla->translation->y = 0;
+        tabla->translation->z = 38.5;
+        estanteria->elements->push_back(tabla);
+
+        tabla = new Box3D();
+        tabla->color = color_tabla;
+        tabla->x = 70;
+        tabla->y = 40;
+        tabla->z = 2;
+        tabla->RecalculateMesh();
+        tabla->translation->x = 5;
+        tabla->translation->y = 0;
+        tabla->translation->z = 74;
+        estanteria->elements->push_back(tabla);
+
+        tabla = new Box3D();
+        tabla->color = color_tabla;
+        tabla->x = 70;
+        tabla->y = 40;
+        tabla->z = 2;
+        tabla->RecalculateMesh();
+        tabla->translation->x = 5;
+        tabla->translation->y = 0;
+        tabla->translation->z = 109.5;
+        estanteria->elements->push_back(tabla);
+
+
+
+        // Libros sobre la estantería
+
+        Box3D *libro;
+
+        libro = new Box3D();
+        libro->color = new Color3D(1,0,0);
+        libro->human_name = "Linux Kernel Architecture Book";
+        libro->x = 24;
+        libro->y = 19;
+        libro->z = 6;
+        libro->RecalculateMesh();
+        libro->translation->x = 8;
+        libro->translation->y = 0;
+        libro->translation->z = 150;
+        estanteria->elements->push_back(libro);
+
+        libro = new Box3D();
+        libro->color = new Color3D(1,1,1);
+        libro->human_name = "Core Java 2 Vol1";
+        libro->x = 24;
+        libro->y = 17;
+        libro->z = 5;
+        libro->RecalculateMesh();
+        libro->translation->x = 7;
+        libro->translation->y = 0;
+        libro->translation->z = 156;
+        estanteria->elements->push_back(libro);
+
+        libro = new Box3D();
+        libro->color = new Color3D(0.1,0.1,0.1);
+        libro->human_name = "Ecuaciones Diferenciales";
+        libro->x = 24;
+        libro->y = 19;
+        libro->z = 4;
+        libro->RecalculateMesh();
+        libro->translation->x = 8;
+        libro->translation->y = 0;
+        libro->translation->z = 161;
+        estanteria->elements->push_back(libro);
+
+        libro = new Box3D();
+        libro->color = new Color3D(0,0,.5);
+        libro->human_name = "Programming in C++";
+        libro->x = 24;
+        libro->y = 18;
+        libro->z = 6;
+        libro->RecalculateMesh();
+        libro->translation->x = 7;
+        libro->translation->y = 0;
+        libro->translation->z = 165;
+        estanteria->elements->push_back(libro);
+
+        libro = new Box3D();
+        libro->color = new Color3D(0,0.8,0);
+        libro->human_name = "The Green Book";
+        libro->x = 6;
+        libro->y = 18;
+        libro->z = 24;
+        libro->RecalculateMesh();
+        libro->translation->x = 33;
+        libro->translation->y = 0;
+        libro->translation->z = 150;
+        libro->rotation->y = -4;
+        estanteria->elements->push_back(libro);
+
+        libro = new Box3D();
+        libro->color = new Color3D(0.9,0.9,0.4);
+        libro->human_name = "The Yellow Book";
+        libro->x = 6;
+        libro->y = 18;
+        libro->z = 24;
+        libro->RecalculateMesh();
+        libro->translation->x = 39;
+        libro->translation->y = 0;
+        libro->translation->z = 150;
+        libro->rotation->y = -4;
+        estanteria->elements->push_back(libro);
+
+
+
 
 
 
@@ -390,8 +518,9 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         // Cama ////////////////////////////////////////////////////////////////
         Group3D *cama = new Group3D();
         cama->human_name = "Cama";
-        cama->translation->x = 600;
-        cama->translation->y = 270;
+        cama->translation->x = 710;
+        cama->translation->y = 195;
+        cama->rotation->z = 180;
         _house->elements->push_back(cama);
 
 
@@ -482,13 +611,14 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         Box3D *cabecero = new Box3D();
         cabecero->x = 110;
         cabecero->y = 5;
-        cabecero->z = 110;
+        cabecero->z = 80;
         cabecero->RecalculateMesh();
         cabecero->color = color_tabla;
         cabecero->translation->x = -10;
         cabecero->translation->y = 180;
         cama->elements->push_back(cabecero);
 
+        /*
         Box3D *piecero = new Box3D();
         piecero->x = 90;
         piecero->y = 5;
@@ -497,7 +627,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         piecero->color = color_tabla;
         piecero->translation->y = -5;
         cama->elements->push_back(piecero);
-
+        */
 
 
 
@@ -526,7 +656,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
                 pomo_izq->radius = 5;
                 pomo_izq->translation->x = 15;
                 pomo_izq->translation->y = 65;
-                pomo_izq->translation->z = 110;
+                pomo_izq->translation->z = 80;
                 pomo_izq->RecalculateMesh();
         puerta->elements->push_back(pomo_izq);
                 Sphere3D *pomo_der = new Sphere3D();
@@ -534,7 +664,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
                 pomo_der->radius = 5;
                 pomo_der->translation->x = -5;
                 pomo_der->translation->y = 65;
-                pomo_der->translation->z = 110;
+                pomo_der->translation->z = 80;
                 pomo_der->RecalculateMesh();
         puerta->elements->push_back(pomo_der);
 
@@ -565,16 +695,17 @@ bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD
                 _pantalla->color = new Color3D(0,0,1);
                 _scene->Repaint();
             }
+            return true;
         }
 
         if(key == 80) {
                 //double pi = 4*atan(1);
                 if(_cerrada) {
                         _cerrada = !_cerrada;
-                        double inc_ang = 9;
+                        //double inc_ang = 9;
                         for(int i=0; i<=10;i++) {
-                                double ang = i*inc_ang;
-                                /*puerta->rotation->x *= cos(ang);
+                                /*double ang = i*inc_ang;
+                                puerta->rotation->x *= cos(ang);
                                 puerta->rotation->y *= sin(ang);*/
                                 puerta->rotation->z += 9;
                                 _scene->Repaint();
@@ -582,14 +713,16 @@ bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD
                 }
                 else {
                         _cerrada = !_cerrada;
-                        double inc_ang = 9;
+                        //double inc_ang = 9;
                         for(int i=0; i<=10;i++) {
-                                double ang = i*inc_ang;
-                                /*puerta->rotation->x *= cos(ang);
+                                /*double ang = i*inc_ang;
+                                puerta->rotation->x *= cos(ang);
                                 puerta->rotation->y *= sin(ang);*/
                                 puerta->rotation->z -= 9;
                                 _scene->Repaint();
                         }
                 }
+                return true;
         }
+        return false;
 }
