@@ -54,11 +54,11 @@ public:
         void turnX(bool);
         void turnY(bool);
         //Lo que debería ser turnZ es xyRotate
-
+        void recalculateCameraAxis();
+        void setModelViewMatrix();
 private:
 
-        void setModelViewMatrix();
-        void recalculateCameraAxis();
+
         void setView1();
         void setView();
         void setProjection(int, int);

@@ -128,7 +128,9 @@ void Revolution3D::RepaintBSpline3(list<PV3D*>* points) {
 
 void Revolution3D::BSpline3Segment(PV3D* p1, PV3D* p2, PV3D* p3, PV3D* p4, list<PV3D*>* line, bool first) {
         //double n = line->segments;
-        double n = line->size() - 1;
+//        double n = line->size() - 1;
+        double n = 3;
+
 	double t;
 
         for (int i = 0; i<=n; i++) {

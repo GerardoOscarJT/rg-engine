@@ -249,8 +249,8 @@ void Camera3D::setProjection(int width, int height) {
     } else if(perspective == 1){
         glOrtho(L, R, B, T, 0, 200000);
     } else if(perspective == 2) {
-        //oblique(PV3D(3,1.2,34));
-        oblique(PV3D(0, -0.00294, 2));
+        oblique(PV3D(3,1.2,34));
+        //oblique(PV3D(0, -0.00294, 2));
     }
 }
 

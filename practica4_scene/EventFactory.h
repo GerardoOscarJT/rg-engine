@@ -17,7 +17,7 @@
 #include "EventMoveCamera.h"
 #include "EventZRotate.h"
 #include "EventCorner.h"
-
+#include "EventScam.h"
 
 class EventFactory {
 public:

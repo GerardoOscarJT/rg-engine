@@ -34,6 +34,8 @@ Event* EventFactory::createEvent(String name) {
                 return new EventZRotate();
         if(name == "corner")
                 return new EventCorner();
+        if(name == "scam")
+                return new EventScam();
 
         return NULL;
 }
@@ -58,6 +60,7 @@ list<String>* EventFactory::getEvents() {
         registered_events->push_back("move");
         registered_events->push_back("z_rotate");
         registered_events->push_back("corner");
+        registered_events->push_back("scam");
         registered_events->sort();
 
         return registered_events;

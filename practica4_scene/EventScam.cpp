@@ -24,10 +24,11 @@ bool EventScam::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD 
                 );
 
                 if (key == 37) {
-                        ShowMessage(angle);
                         angle -= 0.1;
                         _viewport->camera->eye->x = module_xy*sin(angle);
                         _viewport->camera->eye->y = module_xy*cos(angle);
+                        _viewport->camera->recalculateCameraAxis();
+                        _viewport->camera->setModelViewMatrix();
                         _scene->Repaint();
                         return true;
                 }
@@ -36,18 +37,24 @@ bool EventScam::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD 
                         angle += 0.1;
                         _viewport->camera->eye->x = module_xy*sin(angle);
                         _viewport->camera->eye->y = module_xy*cos(angle);
+                        _viewport->camera->recalculateCameraAxis();
+                        _viewport->camera->setModelViewMatrix();
                         _scene->Repaint();
                         return true;
                 }
 
                 if (key == 38) {
                         _viewport->camera->eye->z += 10;
+                        _viewport->camera->recalculateCameraAxis();
+                        _viewport->camera->setModelViewMatrix();
                         _scene->Repaint();
                         return true;
                 }
 
                 if (key == 40) {
                         _viewport->camera->eye->z -= 10;
+                        _viewport->camera->recalculateCameraAxis();
+                        _viewport->camera->setModelViewMatrix();
                         _scene->Repaint();
                         return true;
                 }

@@ -132,7 +132,7 @@ LeftRoomFurn::LeftRoomFurn() {
         //Grupo de plato. Tiene un plato y una epitrocoide
         Group3D *grupoPlato = new Group3D();
                 grupoPlato->human_name = "Grupo Plato";
-                Disk3D *plate = new Disk3D(0,3,50,1);
+                Disk3D *plate = new Disk3D(0,3,16,1);
                 plate->color = new Color3D(1,1,1);
                 plate->translation->z = 12.2;
                 plate->RecalculateMesh();
