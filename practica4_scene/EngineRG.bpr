@@ -13,7 +13,7 @@
       EventYaw.obj EventHouse.obj EventZoom.obj Sphere3D.obj EventSphere.obj 
       EventOrthogonal.obj EventScam.obj EventZRotate.obj EventAlongAxis.obj 
       EventAroundAxis.obj EventCorner.obj EventMoveCamera.obj EventOblique.obj 
-      EventPerspective.obj EventKine.obj"/>
+      EventPerspective.obj EventKine.obj EventBox.obj"/>
     <RESFILES value="EngineRG.res"/>
     <DEFFILE value=""/>
     <RESDEPEN value="$(RESFILES) Window.dfm Help.dfm"/>

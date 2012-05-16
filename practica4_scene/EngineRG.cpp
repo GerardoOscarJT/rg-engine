@@ -46,6 +46,7 @@ USEUNIT("EventMoveCamera.cpp");
 USEUNIT("EventOblique.cpp");
 USEUNIT("EventPerspective.cpp");
 USEUNIT("EventKine.cpp");
+USEUNIT("EventBox.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
