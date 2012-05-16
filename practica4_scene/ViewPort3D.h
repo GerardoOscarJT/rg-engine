@@ -20,6 +20,8 @@ public:
         Camera3D* camera;
 
         Camera3D** cameras;
+
+        void findCoordinates(int scX, int scY, GLint *colores);
 private:
         HDC _hdc;
         HGLRC _hrc;

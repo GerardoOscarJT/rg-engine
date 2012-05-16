@@ -17,6 +17,7 @@
 #include "EventMoveCamera.h"
 #include "EventZRotate.h"
 #include "EventCorner.h"
+#include "EventBox.h"
 
 
 class EventFactory {

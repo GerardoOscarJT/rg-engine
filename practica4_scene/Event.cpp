@@ -17,3 +17,7 @@ void Event::top(ViewPort3D *_viewport, Scene3D *_scene) {
         
 }
 
+/*bool Event::eventMouse(ViewPort3D *_viewport, Scene3D *_scene, TShiftState shift, int X, int Y) {
+        return false;
+} */
+

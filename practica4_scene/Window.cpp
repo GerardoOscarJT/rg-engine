@@ -380,6 +380,13 @@ void __fastcall TForm1::Panel1MouseDown(TObject *Sender,
         Shape1->Pen->Color = clLime;
 
         _last_viewport = _vp1;
+
+         /*list<Event*>::iterator it;
+                it = _events->begin();
+
+                while (it != _events->end() && !(*it)->eventMouse(_last_viewport, _scene, Shift, X, Y)) {
+                        it++;
+                }*/
 }
 
 void __fastcall TForm1::Panel2MouseDown(TObject *Sender,
@@ -406,6 +413,7 @@ void __fastcall TForm1::Panel3MouseDown(TObject *Sender,
         Shape3->Pen->Color = clLime;
 
         _last_viewport = _vp3;
+
 }
 
 void __fastcall TForm1::Panel4MouseDown(TObject *Sender,
@@ -419,6 +427,34 @@ void __fastcall TForm1::Panel4MouseDown(TObject *Sender,
         Shape4->Pen->Color = clLime;
 
         _last_viewport = _vp4;
+
+        //_last_viewport->findCoordinates(X,Y);
+
+        /*if (Key == 27) {
+                Panel11->Visible = !Panel11->Visible;
+                if (Panel11->Visible) {
+                        Edit1->Text = "";
+                        Edit1->SetFocus();
+                }
+        }*/
+
+        /*if (Panel11->Visible) {
+                // Estoy en modo línea de comandos, cancelo propagación de eventos
+                Key = 0;
+        } else {*/
+                // Estoy en modo editor, propago eventos
+
+                /*list<Event*>::iterator it;
+                it = _events->begin();
+
+                while (it != _events->end() && !(*it)->eventMouse(_last_viewport, _scene, Shift, X, Y)) {
+                        it++;
+                } */
+                //if (it != _events->end())
+                  //      Key = 0;
+        //}
+        
+        
 }
 
 void __fastcall TForm1::FormMouseWheelDown(TObject *Sender,
@@ -970,4 +1006,6 @@ void __fastcall TForm1::Acercade1Click(TObject *Sender)
 {
         ShowMessage("TODO ABOUT BOX");
 }
+
+
 
