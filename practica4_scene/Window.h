@@ -174,6 +174,8 @@ __published:	// IDE-managed Components
           TShiftState Shift);
         void __fastcall Manualdeayuda1Click(TObject *Sender);
         void __fastcall Acercade1Click(TObject *Sender);
+        void __fastcall FormKeyUp(TObject *Sender, WORD &Key,
+          TShiftState Shift);
 private:	// User declarations
 
         Scene3D *_scene;

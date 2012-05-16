@@ -199,9 +199,11 @@ void Camera3D::recalculateCameraAxis() {
 
 void Camera3D::setView1() {
 
+/*
         look->x = 0;
         look->y = 0;
         look->z = -1;
+*/        
 
         up->x = 0;
         up->y = 0;

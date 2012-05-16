@@ -956,8 +956,8 @@ void __fastcall TForm1::Edit1KeyUp(TObject *Sender, WORD &Key,
         if (ListBox1->Items->Count == 1) {
                 // TODO: buscar last_string en la pila, si no existe crearlo
                 // y colocar last_string en la cima de la pila
-                SearchEvent(last_string);
                 Panel11->Visible = false;
+                SearchEvent(last_string);
         }
 
 }
@@ -970,4 +970,23 @@ void __fastcall TForm1::Acercade1Click(TObject *Sender)
 {
         ShowMessage("TODO ABOUT BOX");
 }
+
+
+void __fastcall TForm1::FormKeyUp(TObject *Sender, WORD &Key,
+      TShiftState Shift)
+{
+        if (Panel11->Visible) {
+                // Estoy en modo línea de comandos, cancelo propagación de eventos
+        } else {
+                // Estoy en modo editor, propago eventos
+
+                list<Event*>::iterator it;
+                it = _events->begin();
+
+                while (it != _events->end() && !(*it)->event(_last_viewport, _scene, "KeyUp", Key, Shift)) {
+                        it++;
+                }
+        }
+}
+//---------------------------------------------------------------------------
 
