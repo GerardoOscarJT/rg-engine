@@ -8,6 +8,8 @@ EventHouse::EventHouse() {
     _encendida = false;
     _cerrada = true;
     _hab_der = false;
+    _pers1_cerr = true;
+    _pers2_cerr = true;
 }
 
 void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
@@ -249,6 +251,129 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         caja_roja->translation->y = 190;
 
         _house->elements->push_back(caja_roja);*/
+
+        Group3D *persiana_izq = new Group3D();
+                persiana_izq->human_name = "persianaIzq";
+                Cylinder3D *braz_der = new Cylinder3D(70,3,3,true,true);
+                braz_der->color = new Color3D(1,1,1);
+                braz_der->translation->y = -5;
+                braz_der->RecalculateMesh();
+                persiana_izq->elements->push_back(braz_der);
+                Cylinder3D *braz_izq = new Cylinder3D(70,3,3,true,true);
+                braz_izq->translation->x = 60;
+                braz_izq->translation->y = -5;
+                braz_izq->color = new Color3D(1,1,1);
+                braz_izq->RecalculateMesh();
+                persiana_izq->elements->push_back(braz_izq);
+                pala1_izq = new Box3D();
+                pala1_izq->color = new Color3D(0.8588, 0.5764, 0.4392);
+                pala1_izq->x = 56;
+                pala1_izq->y = 15;
+                pala1_izq->z = 2;
+                pala1_izq->translation->x = 3;
+                pala1_izq->translation->y = -5;
+                pala1_izq->translation->z = 55;
+                pala1_izq->rotation->x = 90;
+                pala1_izq->RecalculateMesh();
+                persiana_izq->elements->push_back(pala1_izq);
+                pala2_izq = new Box3D();
+                pala2_izq->color = new Color3D(0.8588, 0.5764, 0.4392);
+                pala2_izq->x = 56;
+                pala2_izq->y = 15;
+                pala2_izq->z = 2;
+                pala2_izq->translation->x = 3;
+                pala2_izq->translation->y = -5;
+                pala2_izq->translation->z = 40;
+                pala2_izq->rotation->x = 90;
+                pala2_izq->RecalculateMesh();
+                persiana_izq->elements->push_back(pala2_izq);
+                pala3_izq = new Box3D();
+                pala3_izq->color = new Color3D(0.8588, 0.5764, 0.4392);
+                pala3_izq->x = 56;
+                pala3_izq->y = 15;
+                pala3_izq->z = 2;
+                pala3_izq->translation->x = 3;
+                pala3_izq->translation->y = -5;
+                pala3_izq->translation->z = 25;
+                pala3_izq->rotation->x = 90;
+                pala3_izq->RecalculateMesh();
+                persiana_izq->elements->push_back(pala3_izq);
+                pala4_izq = new Box3D();
+                pala4_izq->color = new Color3D(0.8588, 0.5764, 0.4392);
+                pala4_izq->x = 56;
+                pala4_izq->y = 15;
+                pala4_izq->z = 2;
+                pala4_izq->translation->x = 3;
+                pala4_izq->translation->y = -5;
+                pala4_izq->translation->z = 10;
+                pala4_izq->rotation->x = 90;
+                pala4_izq->RecalculateMesh();
+                persiana_izq->elements->push_back(pala4_izq);
+                persiana_izq->translation->x = 200;
+                persiana_izq->translation->z = 90;
+                _house->elements->push_back(persiana_izq);
+
+
+        Group3D *persiana_der = new Group3D();
+                persiana_der->human_name = "persianaDer";
+                Cylinder3D *braz2_der = new Cylinder3D(70,3,3,true,true);
+                braz2_der->color = new Color3D(1,1,1);
+                braz2_der->translation->y = -5;
+                braz2_der->RecalculateMesh();
+                persiana_der->elements->push_back(braz2_der);
+                Cylinder3D *braz2_izq = new Cylinder3D(70,3,3,true,true);
+                braz2_izq->translation->x = 60;
+                braz2_izq->translation->y = -5;
+                braz2_izq->color = new Color3D(1,1,1);
+                braz2_izq->RecalculateMesh();
+                persiana_der->elements->push_back(braz2_izq);
+                pala21_izq = new Box3D();
+                pala21_izq->color = new Color3D(0.8588, 0.5764, 0.4392);
+                pala21_izq->x = 56;
+                pala21_izq->y = 15;
+                pala21_izq->z = 2;
+                pala21_izq->translation->x = 3;
+                pala21_izq->translation->y = -5;
+                pala21_izq->translation->z = 55;
+                pala21_izq->rotation->x = 90;
+                pala21_izq->RecalculateMesh();
+                persiana_der->elements->push_back(pala21_izq);
+                pala22_izq = new Box3D();
+                pala22_izq->color = new Color3D(0.8588, 0.5764, 0.4392);
+                pala22_izq->x = 56;
+                pala22_izq->y = 15;
+                pala22_izq->z = 2;
+                pala22_izq->translation->x = 3;
+                pala22_izq->translation->y = -5;
+                pala22_izq->translation->z = 40;
+                pala22_izq->rotation->x = 90;
+                pala22_izq->RecalculateMesh();
+                persiana_der->elements->push_back(pala22_izq);
+                pala23_izq = new Box3D();
+                pala23_izq->color = new Color3D(0.8588, 0.5764, 0.4392);
+                pala23_izq->x = 56;
+                pala23_izq->y = 15;
+                pala23_izq->z = 2;
+                pala23_izq->translation->x = 3;
+                pala23_izq->translation->y = -5;
+                pala23_izq->translation->z = 25;
+                pala23_izq->rotation->x = 90;
+                pala23_izq->RecalculateMesh();
+                persiana_der->elements->push_back(pala23_izq);
+                pala24_izq = new Box3D();
+                pala24_izq->color = new Color3D(0.8588, 0.5764, 0.4392);
+                pala24_izq->x = 56;
+                pala24_izq->y = 15;
+                pala24_izq->z = 2;
+                pala24_izq->translation->x = 3;
+                pala24_izq->translation->y = -5;
+                pala24_izq->translation->z = 10;
+                pala24_izq->rotation->x = 90;
+                pala24_izq->RecalculateMesh();
+                persiana_der->elements->push_back(pala24_izq);
+                persiana_der->translation->x = 630;
+                persiana_der->translation->z = 90;
+                _house->elements->push_back(persiana_der);
 
         Box3D *sueloIzq = new Box3D();
         sueloIzq->human_name = "Suelo Izquierdo";
@@ -727,6 +852,7 @@ String EventHouse::getName() {
 }
 
 bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift) {
+
         if(key == 84) {
 
             if(_encendida) {
@@ -768,6 +894,7 @@ bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD
                                 _scene->Repaint();
                         }
                 }
+                return true;
         }
 
         if(key == 67) {
@@ -780,6 +907,139 @@ bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD
                         _viewport->camera = _viewport->cameras[1];
                 }
                 _scene->Repaint();
+                return true;
         }
+
+        if(key == 49) {
+                if(_pers1_cerr) {
+                        for(int i = 0; i < 10; i++) {
+                                pala1_izq->rotation->x -= 9;
+                                pala2_izq->rotation->x -= 9;
+                                pala3_izq->rotation->x -= 9;
+                                pala4_izq->rotation->x -= 9;
+                                _scene->Repaint();
+                        }
+
+                        while(pala4_izq->translation->z < 49) {
+
+                                if(pala2_izq->translation->z < 53)
+                                pala2_izq->translation->z += 2;
+
+                                if(pala3_izq->translation->z < 51)
+                                pala3_izq->translation->z += 2;
+
+                                pala4_izq->translation->z += 2;
+
+                                _scene->Repaint();
+                        }
+                        _pers1_cerr = false;
+                }
+                else {
+
+                        while(pala4_izq->translation->z > 10) {
+
+                                if(pala2_izq->translation->z > 40)
+                                pala2_izq->translation->z -= 2;
+
+                                if(pala3_izq->translation->z > 25)
+                                pala3_izq->translation->z -= 2;
+
+                                pala4_izq->translation->z -= 2;
+
+                                _scene->Repaint();
+                        }
+
+                         for(int i = 0; i < 10; i++) {
+                                pala1_izq->rotation->x += 9;
+                                pala2_izq->rotation->x += 9;
+                                pala3_izq->rotation->x += 9;
+                                pala4_izq->rotation->x += 9;
+                                _scene->Repaint();
+                        }
+                        _pers1_cerr = true;
+                }
+                return true;
+        }
+
+        if(key == 50) {
+                if(_pers2_cerr) {
+                        for(int i = 0; i < 10; i++) {
+                                pala21_izq->rotation->x -= 9;
+                                pala22_izq->rotation->x -= 9;
+                                pala23_izq->rotation->x -= 9;
+                                pala24_izq->rotation->x -= 9;
+                                _scene->Repaint();
+                        }
+                        while(pala24_izq->translation->z < 49) {
+
+                                if(pala22_izq->translation->z < 53)
+                                pala22_izq->translation->z += 2;
+
+                                if(pala23_izq->translation->z < 51)
+                                pala23_izq->translation->z += 2;
+
+                                pala24_izq->translation->z += 2;
+
+                                _scene->Repaint();
+                        }
+                        _pers2_cerr = false;
+                }
+                else {
+
+                        while(pala24_izq->translation->z > 10) {
+
+                                if(pala22_izq->translation->z > 40)
+                                pala22_izq->translation->z -= 2;
+
+                                if(pala23_izq->translation->z > 25)
+                                pala23_izq->translation->z -= 2;
+
+                                pala24_izq->translation->z -= 2;
+
+                                _scene->Repaint();
+                        }
+
+                         for(int i = 0; i < 10; i++) {
+                                pala21_izq->rotation->x += 9;
+                                pala22_izq->rotation->x += 9;
+                                pala23_izq->rotation->x += 9;
+                                pala24_izq->rotation->x += 9;
+                                _scene->Repaint();
+                        }
+                        _pers2_cerr = true;
+                }
+                return true;
+        }
+
         return false;
+
 }
+
+//bool EventHouse::eventMouse(ViewPort3D *_viewport, Scene3D *_scene, TShiftState shift, int X, int Y) {
+
+        //GLdouble glX, glY;
+
+        //GLint colores[3];
+        //_viewport->findCoordinates(X,Y, colores);
+        //_scene->color(X, Y, colores);
+
+        /*if((glX > 200 && glX < 280)
+                && (glY > 200 && glY < 280)) {
+                         _pantalla->color = new Color3D(0,0,1);
+                         _scene->Repaint();
+                         return true;
+                }*/
+
+        //double x_obj = (_viewport->camera->eye->x) - glX;
+        //double y_obj = (_viewport->camera->eye->y) - glY;
+
+        /*if((x_obj > 190 && x_obj < 210)
+                && (y_obj > 210 && y_obj < 230)) {
+                         _pantalla->color = new Color3D(0,0,1);
+                         _scene->Repaint();
+                         return true;
+                }*/
+
+        //return false;
+
+//}

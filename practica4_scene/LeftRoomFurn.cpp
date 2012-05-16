@@ -255,6 +255,17 @@ LeftRoomFurn::LeftRoomFurn() {
                 servilleta4->translation->y = -7;
                 servilleta4->rotation->z = 270;
 
+        Box3D *mando = new Box3D();
+                mando->human_name = "mando";
+                mando->color = new Color3D(0.4,0.5,0.6);
+                mando->x=2;
+                mando->y=5;
+                mando->z=0.1;
+                mando->translation->x = -1;
+                mando->translation->y = -2.5;
+                mando->translation->z = 12;
+                mando->RecalculateMesh();
+
        /*translation->x = 20;
        translation->y = 0;
        translation->z = -50;*/
@@ -274,5 +285,6 @@ LeftRoomFurn::LeftRoomFurn() {
        elements->push_back(servilleta2);
        elements->push_back(servilleta3);
        elements->push_back(servilleta4);
+       elements->push_back(mando);
 }
 

@@ -8,7 +8,10 @@ String EventSphere::getName() {
 }
 
 void EventSphere::top(ViewPort3D *_viewport, Scene3D *_scene) {
-        _sphere = new Sphere3D(10,8,8);
+        _sphere = new Sphere3D(20,20,20);
+        _sphere->color = new Color3D(1,1,0);
+        _sphere->filled = true;
+        //_sphere->showNormals = true;
         _sphere->RecalculateMesh();
         _scene->main_figure->elements->push_back(_sphere);
         _scene->Repaint();
