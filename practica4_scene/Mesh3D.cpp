@@ -78,6 +78,7 @@ void Mesh3D::RecalculateNormals() {
                 f->normal->x = nx;
                 f->normal->y = ny;
                 f->normal->z = nz;
+                f->normal->t = 0;
                 f->normal->normalize();
 
         } 

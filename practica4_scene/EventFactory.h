@@ -18,6 +18,7 @@
 #include "EventZRotate.h"
 #include "EventCorner.h"
 #include "EventScam.h"
+#include "EventBox.h"
 #include "EventKine.h"
 
 class EventFactory {

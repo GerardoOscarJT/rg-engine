@@ -64,9 +64,9 @@ void Sphere3D::RecalculateMesh() {
                 for (int j=0; j<n; j++) {
                         Face3D* F = new Face3D(); faces->push_back(F);
                         F->vertices->push_back(V[i][j]);
-                        F->vertices->push_back(V[i][(j+1)%n]);
-                        F->vertices->push_back(V[i+1][(j+1)%n]);
                         F->vertices->push_back(V[i+1][j]);
+                        F->vertices->push_back(V[i+1][(j+1)%n]);
+                        F->vertices->push_back(V[i][(j+1)%n]);
                 }
         }
         RecalculateNormals();

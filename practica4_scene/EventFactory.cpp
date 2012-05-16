@@ -38,7 +38,6 @@ Event* EventFactory::createEvent(String name) {
                 return new EventScam();
         if(name == "kine")
                 return new EventKine();
-
         return NULL;
 }
 
@@ -62,6 +61,7 @@ list<String>* EventFactory::getEvents() {
         registered_events->push_back("move");
         registered_events->push_back("z_rotate");
         registered_events->push_back("corner");
+        registered_events->push_back("box");
         registered_events->push_back("scam");
         registered_events->push_back("kine");
         registered_events->sort();

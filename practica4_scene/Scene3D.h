@@ -27,6 +27,9 @@ public:
         Group3D * main_figure;
 
         void DrawAxis();
+
+        void color(int scX, int scY, GLint *color);
+
 private:
 
         void RepaintViewPort(ViewPort3D*);

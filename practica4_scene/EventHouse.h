@@ -8,6 +8,7 @@
 class EventHouse:public Event {
 public:
         bool event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift);
+        //bool eventMouse(ViewPort3D *_viewport, Scene3D *_scene, TShiftState shift, int X, int Y);
         void top(ViewPort3D *_viewport, Scene3D *_scene);
         String getName();
 
@@ -24,6 +25,20 @@ private:
         bool _cerrada;
 
         bool _hab_der;
+
+        bool _pers1_cerr;
+
+        Box3D *pala1_izq;
+        Box3D *pala2_izq;
+        Box3D *pala3_izq;
+        Box3D *pala4_izq;
+
+        bool _pers2_cerr;
+
+        Box3D *pala21_izq;
+        Box3D *pala22_izq;
+        Box3D *pala23_izq;
+        Box3D *pala24_izq;
 };
 
 
