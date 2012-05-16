@@ -36,6 +36,8 @@ Event* EventFactory::createEvent(String name) {
                 return new EventCorner();
         if(name == "scam")
                 return new EventScam();
+        if(name == "kine")
+                return new EventKine();
 
         return NULL;
 }
@@ -54,13 +56,14 @@ list<String>* EventFactory::getEvents() {
         registered_events->push_back("sphere");
         registered_events->push_back("orthogonal");
         registered_events->push_back("perspective");
-        registered_events->push_back("oblique");        
+        registered_events->push_back("oblique");
         registered_events->push_back("along_axis");
         registered_events->push_back("around_axis");
         registered_events->push_back("move");
         registered_events->push_back("z_rotate");
         registered_events->push_back("corner");
         registered_events->push_back("scam");
+        registered_events->push_back("kine");
         registered_events->sort();
 
         return registered_events;

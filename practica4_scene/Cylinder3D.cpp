@@ -11,6 +11,15 @@
 
 //Y AQUI UNA DE CILINDROS!
 
+Cylinder3D::Cylinder3D() {
+        height = 1;
+        rad_top = 1;
+        rad_bottom = 1;
+        top = true;
+        bottom = true;
+}
+
+
 Cylinder3D::Cylinder3D(double _height, double _rad_top, double _rad_bottom, bool _top, bool _bottom) {
         height = _height;
         rad_top = _rad_top;
