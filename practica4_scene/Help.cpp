@@ -17,6 +17,8 @@ void __fastcall TForm2::FormCreate(TObject *Sender)
 {
 
         char buf[2000];
+        // ATENCIÓN:
+        // SI PETA ESTO, COMPILA OTRA VEZ Y NO PREGUNTES, SON COSAS DEL PUTO BUILDER:
         getcwd(buf, sizeof(buf));
         String cwd = AnsiString(buf);
         String url = "file:///"+cwd+"/help/index.html";
