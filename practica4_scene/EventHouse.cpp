@@ -853,6 +853,9 @@ String EventHouse::getName() {
 
 bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift) {
 
+        if (type == "KeyDown") {
+
+
         if(key == 84) {
 
             if(_encendida) {
@@ -1010,6 +1013,11 @@ bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD
                 }
                 return true;
         }
+
+        }
+
+
+
 
         return false;
 
