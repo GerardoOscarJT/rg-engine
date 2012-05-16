@@ -38,6 +38,8 @@ Event* EventFactory::createEvent(String name) {
                 return new EventScam();
         if(name == "kine")
                 return new EventKine();
+        if(name == "box")
+                return new EventBox();
         return NULL;
 }
 
