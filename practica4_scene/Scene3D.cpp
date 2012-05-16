@@ -114,3 +114,25 @@ void Scene3D::DrawAxis() {
         glEnd();
 
 }
+
+void Scene3D::color(int scX, int scY, GLint *colores) {
+
+        GLint coords[4];
+        glGetIntegerv(GL_VIEWPORT, coords);
+
+        GLdouble mv[16];
+        glGetDoublev(GL_MODELVIEW_MATRIX, mv);
+
+        GLdouble pro[16];
+        glGetDoublev(GL_PROJECTION_MATRIX, pro);
+
+        int glY = coords[3] - scY;
+
+        /*glReadBuffer(GL_FRONT);
+        glReadPixels(scX, glY, 1, 1, GL_RGB, GL_INT, colores);*/
+
+        GLint pick_col[3];
+        glReadPixels(scX , glY , 3 , 3 , GL_RGB , GL_INT , pick_col);
+        
+}
+
