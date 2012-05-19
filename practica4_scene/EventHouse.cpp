@@ -314,67 +314,6 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
                 _house->elements->push_back(persiana_izq);
 
 
-        Group3D *persiana_der = new Group3D();
-                persiana_der->human_name = "persianaDer";
-                Cylinder3D *braz2_der = new Cylinder3D(70,3,3,true,true);
-                braz2_der->color = new Color3D(1,1,1);
-                braz2_der->translation->y = -5;
-                braz2_der->RecalculateMesh();
-                persiana_der->elements->push_back(braz2_der);
-                Cylinder3D *braz2_izq = new Cylinder3D(70,3,3,true,true);
-                braz2_izq->translation->x = 60;
-                braz2_izq->translation->y = -5;
-                braz2_izq->color = new Color3D(1,1,1);
-                braz2_izq->RecalculateMesh();
-                persiana_der->elements->push_back(braz2_izq);
-                pala21_izq = new Box3D();
-                pala21_izq->color = new Color3D(0.8588, 0.5764, 0.4392);
-                pala21_izq->x = 56;
-                pala21_izq->y = 15;
-                pala21_izq->z = 2;
-                pala21_izq->translation->x = 3;
-                pala21_izq->translation->y = -5;
-                pala21_izq->translation->z = 55;
-                pala21_izq->rotation->x = 90;
-                pala21_izq->RecalculateMesh();
-                persiana_der->elements->push_back(pala21_izq);
-                pala22_izq = new Box3D();
-                pala22_izq->color = new Color3D(0.8588, 0.5764, 0.4392);
-                pala22_izq->x = 56;
-                pala22_izq->y = 15;
-                pala22_izq->z = 2;
-                pala22_izq->translation->x = 3;
-                pala22_izq->translation->y = -5;
-                pala22_izq->translation->z = 40;
-                pala22_izq->rotation->x = 90;
-                pala22_izq->RecalculateMesh();
-                persiana_der->elements->push_back(pala22_izq);
-                pala23_izq = new Box3D();
-                pala23_izq->color = new Color3D(0.8588, 0.5764, 0.4392);
-                pala23_izq->x = 56;
-                pala23_izq->y = 15;
-                pala23_izq->z = 2;
-                pala23_izq->translation->x = 3;
-                pala23_izq->translation->y = -5;
-                pala23_izq->translation->z = 25;
-                pala23_izq->rotation->x = 90;
-                pala23_izq->RecalculateMesh();
-                persiana_der->elements->push_back(pala23_izq);
-                pala24_izq = new Box3D();
-                pala24_izq->color = new Color3D(0.8588, 0.5764, 0.4392);
-                pala24_izq->x = 56;
-                pala24_izq->y = 15;
-                pala24_izq->z = 2;
-                pala24_izq->translation->x = 3;
-                pala24_izq->translation->y = -5;
-                pala24_izq->translation->z = 10;
-                pala24_izq->rotation->x = 90;
-                pala24_izq->RecalculateMesh();
-                persiana_der->elements->push_back(pala24_izq);
-                persiana_der->translation->x = 630;
-                persiana_der->translation->z = 90;
-                _house->elements->push_back(persiana_der);
-
         Box3D *sueloIzq = new Box3D();
         sueloIzq->human_name = "Suelo Izquierdo";
         sueloIzq->color = new Color3D(0,1,0);
@@ -404,7 +343,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
                 tele->human_name = "Tele";
                 Box3D *carcasa = new Box3D();
                 carcasa->human_name = "Carcasa";
-                carcasa->color = new Color3D(0,0,0);
+                carcasa->color = new Color3D(0,0.01,0);
                 carcasa->x = 120;
                 carcasa->y = 12;
                 carcasa->z = 60;
@@ -412,7 +351,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         tele->elements->push_back(carcasa);
                 _pantalla = new Box3D();
                 _pantalla->human_name = "Pantalla";
-                _pantalla->color = new Color3D(0,0,0);
+                _pantalla->color = new Color3D(0,0.01,0);
                 _pantalla->x = 100;
                 _pantalla->y = 0;
                 _pantalla->z = 40;
@@ -796,6 +735,66 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         cama->elements->push_back(piecero);
         */
 
+        Group3D *persiana_der = new Group3D();
+                persiana_der->human_name = "persianaDer";
+                Cylinder3D *braz2_der = new Cylinder3D(70,3,3,true,true);
+                braz2_der->color = new Color3D(1,1,1);
+                braz2_der->translation->y = -5;
+                braz2_der->RecalculateMesh();
+                persiana_der->elements->push_back(braz2_der);
+                Cylinder3D *braz2_izq = new Cylinder3D(70,3,3,true,true);
+                braz2_izq->translation->x = 60;
+                braz2_izq->translation->y = -5;
+                braz2_izq->color = new Color3D(1,1,1);
+                braz2_izq->RecalculateMesh();
+                persiana_der->elements->push_back(braz2_izq);
+                pala21_izq = new Box3D();
+                pala21_izq->color = new Color3D(0.8588, 0.5764, 0.4392);
+                pala21_izq->x = 56;
+                pala21_izq->y = 15;
+                pala21_izq->z = 2;
+                pala21_izq->translation->x = 3;
+                pala21_izq->translation->y = -5;
+                pala21_izq->translation->z = 55;
+                pala21_izq->rotation->x = 90;
+                pala21_izq->RecalculateMesh();
+                persiana_der->elements->push_back(pala21_izq);
+                pala22_izq = new Box3D();
+                pala22_izq->color = new Color3D(0.8588, 0.5764, 0.4392);
+                pala22_izq->x = 56;
+                pala22_izq->y = 15;
+                pala22_izq->z = 2;
+                pala22_izq->translation->x = 3;
+                pala22_izq->translation->y = -5;
+                pala22_izq->translation->z = 40;
+                pala22_izq->rotation->x = 90;
+                pala22_izq->RecalculateMesh();
+                persiana_der->elements->push_back(pala22_izq);
+                pala23_izq = new Box3D();
+                pala23_izq->color = new Color3D(0.8588, 0.5764, 0.4392);
+                pala23_izq->x = 56;
+                pala23_izq->y = 15;
+                pala23_izq->z = 2;
+                pala23_izq->translation->x = 3;
+                pala23_izq->translation->y = -5;
+                pala23_izq->translation->z = 25;
+                pala23_izq->rotation->x = 90;
+                pala23_izq->RecalculateMesh();
+                persiana_der->elements->push_back(pala23_izq);
+                pala24_izq = new Box3D();
+                pala24_izq->color = new Color3D(0.8588, 0.5764, 0.4392);
+                pala24_izq->x = 56;
+                pala24_izq->y = 15;
+                pala24_izq->z = 2;
+                pala24_izq->translation->x = 3;
+                pala24_izq->translation->y = -5;
+                pala24_izq->translation->z = 10;
+                pala24_izq->rotation->x = 90;
+                pala24_izq->RecalculateMesh();
+                persiana_der->elements->push_back(pala24_izq);
+                persiana_der->translation->x = 630;
+                persiana_der->translation->z = 90;
+                _house->elements->push_back(persiana_der);
 
 
 
@@ -822,7 +821,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         puerta->elements->push_back(madero);
                 Sphere3D *pomo_izq = new Sphere3D();
                 pomo_izq->human_name = "Pomo izquierdo";
-                pomo_izq->color = new Color3D(0,0,0);
+                pomo_izq->color = new Color3D(0,0.01,0);
                 pomo_izq->radius = 5;
                 pomo_izq->translation->x = 15;
                 pomo_izq->translation->y = 65;
@@ -831,7 +830,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         puerta->elements->push_back(pomo_izq);
                 Sphere3D *pomo_der = new Sphere3D();
                 pomo_der->human_name = "Pomo derecho";
-                pomo_der->color = new Color3D(0,0,0);
+                pomo_der->color = new Color3D(0,0.01,0);
                 pomo_der->radius = 5;
                 pomo_der->translation->x = -5;
                 pomo_der->translation->y = 65;
@@ -851,7 +850,7 @@ String EventHouse::getName() {
         return "house";
 }
 
-bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift) {
+bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift, int X, int Y) {
 
         if (type == "KeyDown") {
 
@@ -1014,6 +1013,27 @@ bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD
                 return true;
         }
 
+        }
+        else if(type == "MouseDown") {
+
+                GLint colores[3];
+                _viewport->findCoordinates(X,Y, colores);
+
+                if((colores[0] == 0) && (colores[1] == 0) && (colores[2] == 0)) {
+                        if(_encendida) {
+                        _encendida = !_encendida;
+                        delete _pantalla->color;
+                        _pantalla->color = new Color3D(0,0,0);
+                        _scene->Repaint();
+                }
+                else{
+                        _encendida = !_encendida;
+                        delete _pantalla->color;
+                        _pantalla->color = new Color3D(0,0,1);
+                        _scene->Repaint();
+                }
+                return true;
+                }
         }
 
 

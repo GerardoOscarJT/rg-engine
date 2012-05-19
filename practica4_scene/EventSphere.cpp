@@ -17,7 +17,7 @@ void EventSphere::top(ViewPort3D *_viewport, Scene3D *_scene) {
         _scene->Repaint();
 }
 
-bool EventSphere::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift) {
+bool EventSphere::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift, int X, int Y) {
 
         if (type=="KeyDown") {
 

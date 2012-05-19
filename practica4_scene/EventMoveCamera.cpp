@@ -13,7 +13,7 @@ String EventMoveCamera::getName() {
         return "move";
 }
 
-bool EventMoveCamera::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift) {
+bool EventMoveCamera::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift, int X, int Y) {
 
         if (type=="KeyDown") {
 

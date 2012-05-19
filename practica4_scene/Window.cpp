@@ -91,7 +91,7 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         _scene->cameras->push_back(cam4);
 
         Camera3D * cam5 = new Camera3D();
-        cam5->name = "Perspectiva";
+        cam5->name = "Perspectiva2";
         cam5->eye->x = 950;
         cam5->eye->y = 500;
         cam5->eye->z = 400;
@@ -195,7 +195,7 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                 list<Event*>::iterator it;
                 it = _events->begin();
 
-                while (it != _events->end() && !(*it)->event(_last_viewport, _scene, "KeyDown", Key, Shift)) {
+                while (it != _events->end() && !(*it)->event(_last_viewport, _scene, "KeyDown", Key, Shift,0,0)) {
                         it++;
                 }
                 if (it != _events->end())
@@ -419,6 +419,15 @@ void __fastcall TForm1::Panel4MouseDown(TObject *Sender,
         Shape4->Pen->Color = clLime;
 
         _last_viewport = _vp4;
+
+        list<Event*>::iterator it;
+        it = _events->begin();
+
+        while (it != _events->end() && !(*it)->event(_last_viewport, _scene, "MouseDown", 0, Shift,X,Y)) {
+                it++;
+        }
+        //if (it != _events->end())
+                //Key = 0;
 }
 
 void __fastcall TForm1::FormMouseWheelDown(TObject *Sender,
@@ -983,10 +992,11 @@ void __fastcall TForm1::FormKeyUp(TObject *Sender, WORD &Key,
                 list<Event*>::iterator it;
                 it = _events->begin();
 
-                while (it != _events->end() && !(*it)->event(_last_viewport, _scene, "KeyUp", Key, Shift)) {
+                while (it != _events->end() && !(*it)->event(_last_viewport, _scene, "KeyUp", Key, Shift,0,0)) {
                         it++;
                 }
         }
 }
 //---------------------------------------------------------------------------
+
 
