@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 413
-  Top = 155
+  Left = -37
+  Top = 85
   AutoScroll = False
   Caption = 'RG Engine'
   ClientHeight = 635
