@@ -20,10 +20,9 @@ void EventBox::top(ViewPort3D *_viewport, Scene3D *_scene) {
         box->x = 40;
         box->y = 40;
         box->z = 40;
-        box->x_div = 4;
-        box->y_div = 4;
-        box->z_div = 4;
-        box->filled = true;
+        box->x_div = 2;
+        box->y_div = 2;
+        box->z_div = 2;
         //box->showNormals = true;
         box->RecalculateMesh();
 

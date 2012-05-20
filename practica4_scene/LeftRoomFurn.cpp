@@ -22,7 +22,6 @@ LeftRoomFurn::LeftRoomFurn() {
                 tabl_mesa->translation->x = -10;
                 tabl_mesa->translation->y = -10;
                 tabl_mesa->translation->z = 10;
-                tabl_mesa->divisiones = 2;
                 tabl_mesa->RecalculateMesh();
 
         Cylinder3D *pata = new Cylinder3D(10, 2, 2, false, true);
@@ -48,7 +47,6 @@ LeftRoomFurn::LeftRoomFurn() {
                         respaldo->z = 12;
                         respaldo->translation->y = 10;
                         respaldo->translation->z = 8;
-                        respaldo->divisiones = 2;
                         respaldo->RecalculateMesh();
                 _chair->elements->push_back(respaldo);
 
@@ -60,7 +58,6 @@ LeftRoomFurn::LeftRoomFurn() {
                         asiento->z = 1;
                         asiento->translation->y = 12;
                         asiento->translation->z = 7; //asiento->showNormals = true;
-                        asiento->divisiones = 2;
                         asiento->RecalculateMesh();
                 _chair->elements->push_back(asiento);
 
@@ -187,7 +184,6 @@ LeftRoomFurn::LeftRoomFurn() {
                         servilleta->translation->x = -2;
                         servilleta->translation->y = -1;
                         servilleta->translation->z = 12.3;
-                        servilleta->divisiones = 2;
                         servilleta->RecalculateMesh();
                 _napkin->elements->push_back(servilleta);
                 Cylinder3D *pal_izq = new Cylinder3D(4,0.05,0.05,true,true);

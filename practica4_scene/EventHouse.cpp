@@ -899,6 +899,7 @@ bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD
                 return true;
         }
 
+        /*
         if(key == 67) {
                 if(_hab_der) {
                         _hab_der = !_hab_der;
@@ -911,6 +912,7 @@ bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD
                 _scene->Repaint();
                 return true;
         }
+        */
 
         if(key == 49) {
                 if(_pers1_cerr) {

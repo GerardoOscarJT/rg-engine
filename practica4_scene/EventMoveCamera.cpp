@@ -26,38 +26,38 @@ bool EventMoveCamera::event(ViewPort3D *_viewport, Scene3D *_scene, String type,
                 }
 
                 if (key==90) { // z
-                        _viewport->camera->move(PV3D(0,0,velocity));
+                        _viewport->getCamera()->move(PV3D(0,0,velocity));
                         _scene->Repaint();
                         return true;
                 }
                 if (key==65) { // a
-                        _viewport->camera->move(PV3D(0,0,-velocity));
+                        _viewport->getCamera()->move(PV3D(0,0,-velocity));
                         _scene->Repaint();
                         return true;
                 }
 
                 if (key==88) { // x
-                        _viewport->camera->move(PV3D(velocity,0,0));
+                        _viewport->getCamera()->move(PV3D(velocity,0,0));
                         _scene->Repaint();
                         return true;
                 }
                 if (key==83) { // s
-                        _viewport->camera->move(PV3D(-velocity,0,0));
+                        _viewport->getCamera()->move(PV3D(-velocity,0,0));
                         _scene->Repaint();
                         return true;
                 }
 
                 if (key==89) { // y
-                        _viewport->camera->move(PV3D(0,velocity,0));
+                        _viewport->getCamera()->move(PV3D(0,velocity,0));
                         _scene->Repaint();
                         return true;
                 }
                 if (key==54) { // 6
-                        _viewport->camera->move(PV3D(0,-velocity,0));
+                        _viewport->getCamera()->move(PV3D(0,-velocity,0));
                         _scene->Repaint();
                         return true;
                 }
         }
         return false;
-        
+
 }

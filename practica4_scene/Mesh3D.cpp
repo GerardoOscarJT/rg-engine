@@ -82,13 +82,7 @@ void Mesh3D::RecalculateNormals() {
                 f->normal->normalize();
 
         } 
-
-
-
-
 }
-
-
 
 void Mesh3D::drawNormals() {
 
@@ -139,6 +133,12 @@ void Mesh3D::drawNormals() {
 void Mesh3D::Repaint() {
         // TODO: completar esto
 
+        PV3D min(99999999,99999999,99999999);
+        PV3D max(-99999999,-99999999,-99999999);
+
+
+
+
 
         glPushMatrix();
 
@@ -166,14 +166,64 @@ void Mesh3D::Repaint() {
                 }
                 if (color != NULL)
                         glColor3f(color->r, color->g, color->b);
+
                 list<Vertex3D*>::iterator itp;
                 Vertex3D *vertex;
                 for (itp = face->vertices->begin(); itp != face->vertices->end(); itp++) {
                         vertex = *itp;
                         glNormal3f(face->normal->x, face->normal->y, face->normal->z);
                         glVertex3f(vertex->x, vertex->y, vertex->z);
-
+                        if (selected) {
+                                if (min.x>vertex->x) min.x = vertex->x;
+                                if (min.y>vertex->y) min.y = vertex->y;
+                                if (min.z>vertex->z) min.z = vertex->z;
+                                if (max.x<vertex->x) max.x = vertex->x;
+                                if (max.y<vertex->y) max.y = vertex->y;
+                                if (max.z<vertex->z) max.z = vertex->z;
+                        }
                 }
+                glEnd();
+        }
+
+        if (selected) {
+                double m = 1;
+                min.x -= m;     min.y -= m;     min.z -= m;
+                max.x += m;     max.y += m;     max.z += m;
+
+                glBegin(GL_LINES);
+                        glColor3f(0,1,0);
+                        glVertex3f(min.x, min.y, min.z);
+                        glVertex3f(max.x, min.y, min.z);
+                        glVertex3f(min.x, min.y, min.z);
+                        glVertex3f(min.x, max.y, min.z);
+                        glVertex3f(min.x, min.y, min.z);
+                        glVertex3f(min.x, min.y, max.z);
+
+                        glVertex3f(max.x, max.y, max.z);
+                        glVertex3f(min.x, max.y, max.z);
+                        glVertex3f(max.x, max.y, max.z);
+                        glVertex3f(max.x, min.y, max.z);
+                        glVertex3f(max.x, max.y, max.z);
+                        glVertex3f(max.x, max.y, min.z);
+
+                        glVertex3f(max.x, max.y, min.z);
+                        glVertex3f(min.x, max.y, min.z);
+                        glVertex3f(max.x, max.y, min.z);
+                        glVertex3f(max.x, min.y, min.z);
+
+                        glVertex3f(min.x, min.y, max.z);
+                        glVertex3f(max.x, min.y, max.z);
+                        glVertex3f(min.x, min.y, max.z);
+                        glVertex3f(min.x, max.y, max.z);
+
+                        glVertex3f(max.x, min.y, min.z);
+                        glVertex3f(max.x, min.y, max.z);
+
+                        glVertex3f(min.x, max.y, min.z);
+                        glVertex3f(min.x, max.y, max.z);
+
+
+
                 glEnd();
         }
 

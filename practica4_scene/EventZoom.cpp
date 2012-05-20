@@ -22,14 +22,14 @@ bool EventZoom::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD 
                 if (key == 187) {
                         // + (acercar zoom)
                         //_viewport->camera->z(-velocity);
-                        _viewport->camera->zoomIn(true);
+                        _viewport->getCamera()->zoomIn(true);
                         _scene->Repaint();
                         return true;
                 }
                 if (key == 189) {
                         // - (alejar zoom)
                         //_viewport->camera->roll(velocity);
-                        _viewport->camera->zoomOut(true);                        
+                        _viewport->getCamera()->zoomOut(true);                        
                         _scene->Repaint();
                         return true;
                 }

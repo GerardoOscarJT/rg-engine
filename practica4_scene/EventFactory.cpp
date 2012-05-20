@@ -40,6 +40,8 @@ Event* EventFactory::createEvent(String name) {
                 return new EventKine();
         if(name == "box")
                 return new EventBox();
+        if(name == "kine-buildings")
+                return new EventKineBuildings();
         return NULL;
 }
 
@@ -66,6 +68,7 @@ list<String>* EventFactory::getEvents() {
         registered_events->push_back("box");
         registered_events->push_back("scam");
         registered_events->push_back("kine");
+        registered_events->push_back("kine-buildings");
         registered_events->sort();
 
         return registered_events;
