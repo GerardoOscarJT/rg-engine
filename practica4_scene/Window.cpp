@@ -133,7 +133,7 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                 list<Event*>::iterator it;
                 it = _events->begin();
 
-                while (it != _events->end() && !(*it)->event(_last_viewport, _scene, "KeyDown", Key, Shift)) {
+                while (it != _events->end() && !(*it)->event(_last_viewport, _scene, "KeyDown", Key, Shift,0,0)) {
                         it++;
                 }
                 if (it != _events->end())
@@ -235,6 +235,15 @@ void __fastcall TForm1::Panel4MouseDown(TObject *Sender,
         Shape4->Pen->Color = clLime;
 
         _last_viewport = _vp4;
+
+        list<Event*>::iterator it;
+        it = _events->begin();
+
+        while (it != _events->end() && !(*it)->event(_last_viewport, _scene, "MouseDown", 0, Shift,X,Y)) {
+                it++;
+        }
+        //if (it != _events->end())
+                //Key = 0;
 }
 
 void __fastcall TForm1::FormMouseWheelDown(TObject *Sender,
@@ -752,7 +761,7 @@ void __fastcall TForm1::FormKeyUp(TObject *Sender, WORD &Key,
                 list<Event*>::iterator it;
                 it = _events->begin();
 
-                while (it != _events->end() && !(*it)->event(_last_viewport, _scene, "KeyUp", Key, Shift)) {
+                while (it != _events->end() && !(*it)->event(_last_viewport, _scene, "KeyUp", Key, Shift,0,0)) {
                         it++;
                 }
         }
@@ -849,4 +858,5 @@ void __fastcall TForm1::CamarasNoneClick(TObject *Sender)
 
 
 //---------------------------------------------------------------------------
+
 

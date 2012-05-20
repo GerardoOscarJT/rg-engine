@@ -253,7 +253,7 @@ LeftRoomFurn::LeftRoomFurn() {
 
         Box3D *mando = new Box3D();
                 mando->human_name = "mando";
-                mando->color = new Color3D(0.4,0.5,0.6);
+                mando->color = new Color3D(0,0,0);
                 mando->x=2;
                 mando->y=5;
                 mando->z=0.1;

@@ -51,7 +51,7 @@ void ViewPort3D::makeCurrent() {
 
 
         if(wglMakeCurrent(_hdc, _hrc) == false)
-                ShowMessage("Could not make ViewPort3D current :·(");        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);                        }
+                ShowMessage("Could not make ViewPort3D current :·(");        //glClearColor(0.0f, 0.001f, 0.0f, 1.0f);        glClearColor(0.0, 0.01, 0.0, 1.0);                       }
 
 ViewPort3D::~ViewPort3D() {
         wglDeleteContext(_hdc);
@@ -70,17 +70,10 @@ void ViewPort3D::findCoordinates(int scX, int scY, GLint *colores) {
         GLint coords[4];
         glGetIntegerv(GL_VIEWPORT, coords);
 
-        GLdouble mv[16];
-        glGetDoublev(GL_MODELVIEW_MATRIX, mv);
-
-        GLdouble pro[16];
-        glGetDoublev(GL_PROJECTION_MATRIX, pro);
-
         int glY = coords[3] - scY;
 
-        GLfloat pick_col[3];
         glReadBuffer(GL_FRONT);
-        glReadPixels(scX , glY , 1 , 1 , GL_RGB , GL_FLOAT , pick_col);
+        glReadPixels(scX , glY , 1 , 1 , GL_RGB , GL_FLOAT , colores);
 
 }
 
