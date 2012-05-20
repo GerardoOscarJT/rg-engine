@@ -5,6 +5,7 @@
 
 
 Figure3D::Figure3D() {
+        selected = false;
         translation = new PV3D();
         rotation = new PV3D();
         scale = new PV3D(1,1,1,1);

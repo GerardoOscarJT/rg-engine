@@ -15,7 +15,7 @@ String EventCorner::getName() {
 
 bool EventCorner::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift) {
         if (key==67) { // c
-                _viewport->camera->corner();
+                _viewport->getCamera()->corner();
                 _scene->Repaint();
                 return true;
         }

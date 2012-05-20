@@ -26,34 +26,34 @@ bool EventAlongAxis::event(ViewPort3D *_viewport, Scene3D *_scene, String type, 
                 }
 
                 if (key==90) { // z
-                         _viewport->camera->alongAxis(2,velocity);
+                         _viewport->getCamera()->alongAxis(2,velocity);
                         _scene->Repaint();
                         return true;
                 }
                 if (key==65) { // a
-                        _viewport->camera->alongAxis(2,-velocity);
+                        _viewport->getCamera()->alongAxis(2,-velocity);
                         _scene->Repaint();
                         return true;
                 }
 
                 if (key==88) { // x
-                        _viewport->camera->alongAxis(0,velocity);
+                        _viewport->getCamera()->alongAxis(0,velocity);
                         _scene->Repaint();
                         return true;
                 }
                 if (key==83) { // s
-                        _viewport->camera->alongAxis(0,-velocity);
+                        _viewport->getCamera()->alongAxis(0,-velocity);
                         _scene->Repaint();
                         return true;
                 }
 
                 if (key==89) { // y
-                        _viewport->camera->alongAxis(1,velocity);
+                        _viewport->getCamera()->alongAxis(1,velocity);
                         _scene->Repaint();
                         return true;
                 }
                 if (key==54) { // 6
-                        _viewport->camera->alongAxis(1,-velocity);
+                        _viewport->getCamera()->alongAxis(1,-velocity);
                         _scene->Repaint();
                         return true;
                 }

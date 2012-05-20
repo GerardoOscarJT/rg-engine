@@ -129,7 +129,6 @@ __published:	// IDE-managed Components
           TShiftState Shift, TPoint &MousePos, bool &Handled);
         void __fastcall FormMouseWheelUp(TObject *Sender,
           TShiftState Shift, TPoint &MousePos, bool &Handled);
-        void __fastcall StructureClick(TObject *Sender);
         void __fastcall ToolButton1Click(TObject *Sender);
         void __fastcall ToolButton2Click(TObject *Sender);
         void __fastcall ToolButton4Click(TObject *Sender);
@@ -176,6 +175,10 @@ __published:	// IDE-managed Components
         void __fastcall Acercade1Click(TObject *Sender);
         void __fastcall FormKeyUp(TObject *Sender, WORD &Key,
           TShiftState Shift);
+        void __fastcall StructureMouseUp(TObject *Sender,
+          TMouseButton Button, TShiftState Shift, int X, int Y);
+        void __fastcall Camaras1Click(TObject *Sender);
+        void __fastcall CamarasNoneClick(TObject *Sender);
 private:	// User declarations
 
         Scene3D *_scene;

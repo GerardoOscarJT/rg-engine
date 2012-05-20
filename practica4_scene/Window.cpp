@@ -41,20 +41,12 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         // TODO: borrar _events en el destructor
         _events = new list<Event*>();
 
-
-
-
-
         _selected_figure = NULL;
         _selected_epitrochoid = NULL;
-        _selected_box = NULL;  
-
+        _selected_box = NULL;
         _last_viewport = NULL;
         _scene = new Scene3D();
-
         _editable_figures = new map<TTreeNode*, Figure3D*>() ;
-
-
 
         // Agregamos 4 vistas básicas de cámara:
         Camera3D * cam1 = new Camera3D();
@@ -62,7 +54,6 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         cam1->eye->x = 0;
         cam1->eye->y = 100;
         cam1->eye->z = 0;
-        cam1->inicializa(Panel1->Width, Panel1->Height);
         _scene->cameras->push_back(cam1);
 
         Camera3D * cam2 = new Camera3D();
@@ -70,7 +61,6 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         cam2->eye->x = 100;
         cam2->eye->y = 0;
         cam2->eye->z = 0;
-        cam2->inicializa(Panel1->Width, Panel1->Height);
         _scene->cameras->push_back(cam2);
 
         Camera3D * cam3 = new Camera3D();
@@ -78,7 +68,6 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         cam3->eye->x = 0;
         cam3->eye->y = 0.1;
         cam3->eye->z = 100;
-        cam3->inicializa(Panel1->Width, Panel1->Height);
         _scene->cameras->push_back(cam3);
 
         Camera3D * cam4 = new Camera3D();
@@ -86,77 +75,26 @@ void __fastcall TForm1::FormCreate(TObject *Sender) {
         cam4->eye->x = 300;
         cam4->eye->y = 400;
         cam4->eye->z = 300;
-        cam4->inicializa(Panel1->Width, Panel1->Height);
         cam4->perspective = 0;
         _scene->cameras->push_back(cam4);
-
-        Camera3D * cam5 = new Camera3D();
-        cam5->name = "Perspectiva";
-        cam5->eye->x = 950;
-        cam5->eye->y = 500;
-        cam5->eye->z = 400;
-        cam5->inicializa(Panel1->Width, Panel1->Height);
-        cam5->perspective = 0;
-        _scene->cameras->push_back(cam5);
 
         // Agrego 4 puertos de vista vinculados con los 4 paneles
 
         _vp1 = new ViewPort3D(Panel1->Handle, Panel1->Width, Panel1->Height);
-        _vp1->camera = cam1;
+        //_vp1->setCamera(cam1);
         _scene->viewports->push_back(_vp1);
 
         _vp2 = new ViewPort3D(Panel2->Handle, Panel2->Width, Panel2->Height);
-        _vp2->camera = cam2;
+        //_vp2->setCamera(cam2);
         _scene->viewports->push_back(_vp2);
 
         _vp3 = new ViewPort3D(Panel3->Handle, Panel3->Width, Panel3->Height);
-        _vp3->camera = cam3;
+        //_vp3->setCamera(cam3);
         _scene->viewports->push_back(_vp3);
 
         _vp4 = new ViewPort3D(Panel4->Handle, Panel4->Width, Panel4->Height);
-        _vp4->cameras[0] = cam4;
-        _vp4->cameras[1] = cam5;
-        _vp4->camera = cam4;
+        _vp4->setCamera(cam4);
         _scene->viewports->push_back(_vp4);
-
-
-/*
-        // ESCENA 1 (coche + epitrocoide) //////////////////////////////////////
-        //_epicar = new EpiCar3D();
-        //_leftRoomFurn = new LeftRoomFurn();
-        sp = new Sphere3D(20,24,24);
-        sp->color = new Color3D(1,1,1);
-        sp->RecalculateMesh();
-
-
-        // ESCENA 2 (copa) /////////////////////////////////////////////////////
-        _copa = new Revolution3D();
-
-        _copa->color = new Color3D(1,1,1);
-
-        _copa->n = 64;
-        //_copa->n = 2;
-
-        _copa->points->push_back(new PV3D(0,0,8));
-        _copa->points->push_back(new PV3D(0,0,8));
-        _copa->points->push_back(new PV3D(0,0,8));
-        _copa->points->push_back(new PV3D(50,0,0));
-        _copa->points->push_back(new PV3D(50,0,2));
-        _copa->points->push_back(new PV3D(4,0,10));
-        _copa->points->push_back(new PV3D(4,0,100));
-        _copa->points->push_back(new PV3D(4,0,100));
-        _copa->points->push_back(new PV3D(100,0,200));
-        _copa->points->push_back(new PV3D(99,0,201));
-        _copa->points->push_back(new PV3D(98,0,200));
-        _copa->points->push_back(new PV3D(0,0,102));
-        _copa->points->push_back(new PV3D(0,0,102));
-
-        _copa->RecalculateMesh();
-        */
-
-        // recargo el panel de estructura
-        Structure->Items->Clear();
-        LoadStructure(_scene->main_figure, NULL);
 
         _scene->Repaint();
         _last_viewport = _vp4;
@@ -202,148 +140,7 @@ void __fastcall TForm1::FormKeyDown(TObject *Sender, WORD &Key, TShiftState Shif
                         Key = 0;
         }
 
-
         Caption = AnsiString(Key);
-/*
-
-
-        if (_last_viewport != NULL) {
-
-                Caption = AnsiString(Key);
-
-                switch (Key) {
-                        case 37:
-                                if(!Structure->Focused()) {
-                                        _last_viewport->camera->xyRotate(false);
-                                }
-                                break;
-                        case 39:
-                                if(!Structure->Focused()) {
-                                        _last_viewport->camera->xyRotate(true);
-                                }
-                                break;
-                        case 38:
-                                if(!Structure->Focused()) {
-                                        _last_viewport->camera->zRotate(true);
-                                }
-                                break;
-                        case 40:
-                                if(!Structure->Focused()) {
-                                        _last_viewport->camera->zRotate(false);
-                                }
-                                break;
-
-                        case 187: // mas
-                                _last_viewport->camera->zoomIn(true);
-                                break;
-                        case 189: // menos
-                                _last_viewport->camera->zoomOut(true);
-                                break;
-                        case 85:
-                                _last_viewport->camera->roll(10);
-                                break;
-                        case 78:
-                                _last_viewport->camera->pitch(10);
-                                break;
-                        case 74:
-                                _last_viewport->camera->yaw(10);
-                                break;
-                        case 70: //Con estos casos movemos el ojo de la cámara
-                                //f
-                                _last_viewport->camera->alongAxis(1,-10);
-                                break;
-                        case 68: //d
-                                _last_viewport->camera->alongAxis(1,10);
-                                break;
-                        case 69:
-                                //e
-                                _last_viewport->camera->alongAxis(0,10);
-                                break;
-                        case 82:
-                                //r
-                                _last_viewport->camera->alongAxis(0,-10);
-                                break;
-                        case 67:
-                                //c
-                                _last_viewport->camera->alongAxis(2,10);
-                                break;
-                        case 86:
-                                //v
-                                _last_viewport->camera->alongAxis(2,-10);
-                                break;
-                        case 79: //o
-                                _last_viewport->camera->perspective = 1;
-                                break;
-                        case 80: //p
-                                _last_viewport->camera->perspective = 0;
-                                break;
-                        case 76: //l
-                                _last_viewport->camera->move(PV3D(0,10,0));
-                                break;
-                        case 192: //ñ
-                                _last_viewport->camera->move(PV3D(0,-10,0));
-                                break;
-                        case 65: //a
-                                _last_viewport->camera->move(PV3D(10,0,0));
-                                break;
-                        case 83: //s
-                                _last_viewport->camera->move(PV3D(-10,0,0));
-                                break;
-                        case 81: //q
-                                _last_viewport->camera->move(PV3D(0,0,10));
-                                break;
-                        case 87: //w
-                                _last_viewport->camera->move(PV3D(0,0,-10));
-                                break;
-                        case 49: //1
-                                _last_viewport->camera->turnX(false);
-                                break;
-                        case 50: //2
-                                _last_viewport->camera->turnX(true);
-                                break;
-                        case 51: //3
-                                _last_viewport->camera->turnY(false);
-                                break;
-                        case 52: //4
-                                _last_viewport->camera->turnY(true);
-                                break;
-                        case 48: //0
-                                _last_viewport->camera->perspective = 2;
-                                break;
-                        case 53: //5
-                                _last_viewport->camera->corner();
-                                break;
-                }
-                _scene->Repaint();
-        }
-
-        if (Key == 90) {
-                // Girar coche a la izquierda
-
-                if (Shift.Contains(ssShift)) {
-                        _epicar->setTime(_epicar->getTime()-0.002);
-                } else if (Shift.Contains(ssCtrl)) {
-                        _epicar->setTime(_epicar->getTime()-0.2);
-                } else {
-                        _epicar->setTime(_epicar->getTime()-0.02);
-                }
-
-                _scene->Repaint();
-        } else if (Key == 88) {
-                // Girar coche a la derecha
-                if (Shift.Contains(ssShift)) {
-                        _epicar->setTime(_epicar->getTime()+0.002);
-                } else if (Shift.Contains(ssCtrl)) {
-                        _epicar->setTime(_epicar->getTime()+0.2);
-                } else {
-                        _epicar->setTime(_epicar->getTime()+0.02);
-                }
-                _scene->Repaint();
-        }
-
-
-        */
-
 }
 
 void __fastcall TForm1::FormPaint(TObject *Sender) {
@@ -360,13 +157,32 @@ void __fastcall TForm1::FormResize(TObject *Sender) {
 void __fastcall TForm1::PopupMenu1Popup(TObject *Sender) {
         Camaras1->Clear();
 
+        TMenuItem * tmi_ninguna = new TMenuItem(Camaras1);
+        tmi_ninguna->Caption = "Ninguna";
+        tmi_ninguna->OnClick = CamarasNoneClick;
+        tmi_ninguna->Checked = true;
+
+
+
+
         list<Camera3D*>::iterator it;
         Camera3D *cam;
         for (it = _scene->cameras->begin();it != _scene->cameras->end(); it++) {
-                TMenuItem * tmi = new TMenuItem(NULL);
+                cam = *it;
+                TMenuItem * tmi = new TMenuItem(Camaras1);
+                tmi->OnClick = Camaras1Click;
                 tmi->Caption = cam->name;
                 Camaras1->Insert(0, tmi);
+                if (_last_viewport->getCamera() != NULL && cam->name == _last_viewport->getCamera()->name) {
+                        tmi->Checked = true;
+                        tmi_ninguna->Checked = false;
+                }
         }
+
+        TMenuItem * tmi_separator = new TMenuItem(Camaras1);
+        tmi_separator->Caption = "-";
+        Camaras1->Add(tmi_separator);
+        Camaras1->Add(tmi_ninguna);
 }
 
 void __fastcall TForm1::Panel1MouseDown(TObject *Sender,
@@ -423,13 +239,13 @@ void __fastcall TForm1::Panel4MouseDown(TObject *Sender,
 
 void __fastcall TForm1::FormMouseWheelDown(TObject *Sender,
       TShiftState Shift, TPoint &MousePos, bool &Handled) {
-      _last_viewport->camera->zoomIn(false);
+      _last_viewport->getCamera()->zoomIn(false);
       _scene->Repaint();
 }
 
 void __fastcall TForm1::FormMouseWheelUp(TObject *Sender,
       TShiftState Shift, TPoint &MousePos, bool &Handled) {
-        _last_viewport->camera->zoomOut(false);
+        _last_viewport->getCamera()->zoomOut(false);
         _scene->Repaint();
 }
 
@@ -545,70 +361,6 @@ void __fastcall TForm1::RecalculateGUI() {
 
 
 }
-
-void __fastcall TForm1::StructureClick(TObject *Sender){
-
-        TTreeNode *sel = Structure->Selected;
-
-        if (sel != NULL) {
-
-        Structure->SetFocus();
-
-        map<TTreeNode*, Figure3D*>::iterator it;
-
-        it = _editable_figures->find(sel);
-
-        AnsiString name = it->second->getName();
-
-        _selected_figure = it->second;
-
-        if (name == "Box") {
-                // Montar paneles de caja, etc.
-                Box3D *box = dynamic_cast<Box3D*>(it->second);
-                _selected_box = box;
-                //Hacemos visible el panel de la caja
-                TrackBar8->Position = box->x;
-                TrackBar14->Position = box->y;
-                TrackBar15->Position = box->z;
-                Panel10->Visible = true;
-                GroupBox3->Visible = false;
-                GroupBox4->Visible = true;
-                GroupBox5->Visible = false;
-        }
-        else if(name == "Cylinder") {
-                Cylinder3D *cylinder = dynamic_cast<Cylinder3D*>(it->second);
-                _selected_cylinder = cylinder;
-                TrackBar16->Position = cylinder->height;
-                TrackBar17->Position = cylinder->rad_top;
-                TrackBar18->Position = cylinder->rad_bottom;
-                Panel10->Visible = true;
-                GroupBox3->Visible = false;
-                GroupBox4->Visible = false;
-                GroupBox5->Visible = true;
-        }
-
-        else if (name == "Epitrochoid") {
-                // Montar paneles de caja, etc.
-                Epitrochoid3D *epitrochoid = dynamic_cast<Epitrochoid3D*>(it->second);
-                _selected_epitrochoid = epitrochoid;
-                TrackBar7->Position = epitrochoid->a;
-                Panel10->Visible = true;
-                //Hacemos visible el panel de la epitrocoide
-                GroupBox3->Visible = true;
-                GroupBox4->Visible = false;
-                GroupBox5->Visible = false;
-        } else {
-                _selected_epitrochoid = NULL;
-                Panel10->Visible = false;
-        }
-
-
-
-
-        _scene->Repaint();
-        }
-}
-
 void __fastcall TForm1::ToolButton1Click(TObject *Sender) {
         _scene->main_figure->elements->clear();
         _scene->main_figure->elements->push_back(_copa);
@@ -933,32 +685,49 @@ void __fastcall TForm1::Panel3MouseMove(TObject *Sender, TShiftState Shift,
 void __fastcall TForm1::Edit1KeyUp(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
-        ListBox1->Clear();
 
-        list<String> *comandos = EventFactory::getEvents();
+        if (Key == 38) { // flecha arriba
+                if (ListBox1->ItemIndex>0)
+                        ListBox1->ItemIndex--;
 
-        list<String>::iterator it;
-        String s;
+                Caption = ListBox1->ItemIndex;
+        } else if (Key == 40) { // Flecha abajo
+                if (ListBox1->ItemIndex<ListBox1->Items->Count-1)
+                        ListBox1->ItemIndex++;
 
-        String last_string = "";
+                Caption = ListBox1->ItemIndex;
+        } else if (Key == 13) {
+                if (ListBox1->Items->Count >1 && (Key==13 || Key==32)) {
+                        Panel11->Visible = false;
+                        SearchEvent(ListBox1->Items->Strings[ListBox1->ItemIndex]);
+                        Caption = AnsiString(ListBox1->Items->Strings[0]);
+                }
+        } else {
+                ListBox1->Clear();
+                list<String> *comandos = EventFactory::getEvents();
 
-        String se = Edit1->Text;  // Search String
-        int len = se.Length();
+                list<String>::iterator it;
+                String s;
+                String se = Edit1->Text;  // Search String
+                int len = se.Length();
 
-        for (it = comandos->begin(); it!=comandos->end(); it++) {
-                s = *it;
-                if (s.SubString(1,len) == se) {
-                        ListBox1->Items->Add(s);
-                        last_string = s;
+                for (it = comandos->begin(); it!=comandos->end(); it++) {
+                        s = *it;
+                        if (s.SubString(1,len) == se) {
+                                ListBox1->Items->Add(s);
+                        }
+                }
+                ListBox1->ItemIndex = 0;
+                if (ListBox1->Items->Count == 1) {
+                        // TODO: buscar last_string en la pila, si no existe crearlo
+                        // y colocar last_string en la cima de la pila
+                        Panel11->Visible = false;
+                        SearchEvent(ListBox1->Items->Strings[0]);
                 }
         }
 
-        if (ListBox1->Items->Count == 1) {
-                // TODO: buscar last_string en la pila, si no existe crearlo
-                // y colocar last_string en la cima de la pila
-                Panel11->Visible = false;
-                SearchEvent(last_string);
-        }
+
+
 
 }
 void __fastcall TForm1::Manualdeayuda1Click(TObject *Sender)
@@ -988,5 +757,96 @@ void __fastcall TForm1::FormKeyUp(TObject *Sender, WORD &Key,
                 }
         }
 }
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::StructureMouseUp(TObject *Sender,
+      TMouseButton Button, TShiftState Shift, int X, int Y)
+{
+        if (_selected_figure != NULL && !Shift.Contains(ssCtrl)) {
+                _selected_figure->selected = false;
+                _selected_figure = NULL;
+        }
+
+
+        TTreeNode *sel = Structure->Selected;
+
+        if (sel != NULL) {
+                Structure->SetFocus();
+                map<TTreeNode*, Figure3D*>::iterator it;
+                it = _editable_figures->find(sel);
+                AnsiString name = it->second->getName();
+                _selected_figure = it->second;
+                if (name == "Box") {
+                        // Montar paneles de caja, etc.
+                        Box3D *box = dynamic_cast<Box3D*>(it->second);
+                        _selected_box = box;
+                        //Hacemos visible el panel de la caja
+                        TrackBar8->Position = box->x;
+                        TrackBar14->Position = box->y;
+                        TrackBar15->Position = box->z;
+                        Panel10->Visible = true;
+                        GroupBox3->Visible = false;
+                        GroupBox4->Visible = true;
+                        GroupBox5->Visible = false;
+                } else if(name == "Cylinder") {
+                        Cylinder3D *cylinder = dynamic_cast<Cylinder3D*>(it->second);
+                        _selected_cylinder = cylinder;
+                        TrackBar16->Position = cylinder->height;
+                        TrackBar17->Position = cylinder->rad_top;
+                        TrackBar18->Position = cylinder->rad_bottom;
+                        Panel10->Visible = true;
+                        GroupBox3->Visible = false;
+                        GroupBox4->Visible = false;
+                        GroupBox5->Visible = true;
+                } else if (name == "Epitrochoid") {
+                        // Montar paneles de caja, etc.
+                        Epitrochoid3D *epitrochoid = dynamic_cast<Epitrochoid3D*>(it->second);
+                        _selected_epitrochoid = epitrochoid;
+                        TrackBar7->Position = epitrochoid->a;
+                        Panel10->Visible = true;
+                        //Hacemos visible el panel de la epitrocoide
+                        GroupBox3->Visible = true;
+                        GroupBox4->Visible = false;
+                        GroupBox5->Visible = false;
+                } else {
+                        _selected_epitrochoid = NULL;
+                        Panel10->Visible = false;
+                }
+
+                if (_selected_figure != NULL)
+                        _selected_figure->selected = true;
+
+                _scene->Repaint();
+        }        
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Camaras1Click(TObject *Sender)
+{
+
+        TMenuItem* tmi = dynamic_cast<TMenuItem*> (Sender);
+
+        list<Camera3D*>::iterator it;
+        Camera3D *cam;
+        for (it = _scene->cameras->begin();it != _scene->cameras->end(); it++) {
+                cam = *it;
+                if (cam->name == tmi->Caption) {
+                        _last_viewport->setCamera(cam);
+                }
+        }
+
+        _scene->Repaint();
+
+}
+
+void __fastcall TForm1::CamarasNoneClick(TObject *Sender)
+{
+        _last_viewport->setCamera(NULL);
+        _scene->Repaint();
+}
+
+
 //---------------------------------------------------------------------------
 

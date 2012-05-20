@@ -19,13 +19,13 @@ bool EventPitch::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD
 
                 if (key == 38) {
                         // Flecha arriba
-                        _viewport->camera->pitch(-velocity);
+                        _viewport->getCamera()->pitch(-velocity);
                         _scene->Repaint();
                         return true;
                 }
                 if (key == 40) {
                         // Flecha abajo
-                        _viewport->camera->pitch(velocity);
+                        _viewport->getCamera()->pitch(velocity);
                         _scene->Repaint();
                         return true;
                 }

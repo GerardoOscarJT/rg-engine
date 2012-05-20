@@ -10,6 +10,18 @@ Camera3D::Camera3D() {
         eye = new PV3D();
         up = new PV3D();
 
+        n = new PV3D();
+        u = new PV3D();
+        v = new PV3D();
+        
+        
+        perspective = 1;
+
+        up->x = 0;
+        up->y = 0;
+        up->z = 1;
+        up->t = 0;
+        
 }
 
 void Camera3D::inicializa(int width, int height) {
@@ -43,7 +55,7 @@ void Camera3D::inicializa(int width, int height) {
 
         setView();
 
-        perspective = 1;
+
         setProjection(width, height);
 }
 
@@ -58,7 +70,7 @@ Camera3D::~Camera3D() {
 }
 
 void Camera3D::oblique(PV3D& p) {
-        glMatrixMode(GL_PROJECTION); 
+        glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         glOrtho(L, R, B, T, 0, 200000);
         if(p.z != 0 && p != PV3D(0,0,1)) {
@@ -151,17 +163,9 @@ void Camera3D::setModelViewMatrix() {
         mm[13] = -(eye->dotProduct(*v));
         mm[14] = -(eye->dotProduct(*n));
         mm[15] = 1;
-        
+
         delete eyeM;
 
-        /*GLfloat c[16];
-        glGetFloatv(GL_MODELVIEW_MATRIX, c);
-        glLoadMatrixf(m);
-        glMultMatrixf(c);
-        glGetFloatv(GL_MODELVIEW_MATRIX, c);
-        glLoadMatrixf(mm);
-        glMultMatrixf(c);
-        glGetFloatv(GL_MODELVIEW_MATRIX, c);*/
         setM();
 
 }
@@ -199,27 +203,9 @@ void Camera3D::recalculateCameraAxis() {
 
 void Camera3D::setView1() {
 
-/*
-        look->x = 0;
-        look->y = 0;
-        look->z = -1;
-*/        
-
-        up->x = 0;
-        up->y = 0;
-        up->z = 1;
-        up->t = 0;
-
-        n = new PV3D();
-        u = new PV3D();
-        v = new PV3D();
-        
         recalculateCameraAxis();
 
         setM();
-
-
-
 }
 
 void Camera3D::setView() {
@@ -247,7 +233,7 @@ void Camera3D::setProjection(int width, int height) {
 
 
     if (perspective == 0) {
-        glFrustum(L/64,R/64,B/64,T/64,10,20000);
+        glFrustum(L/32,R/32,B/32,T/32,10,20000);
     } else if(perspective == 1){
         glOrtho(L, R, B, T, 0, 200000);
     } else if(perspective == 2) {
@@ -271,57 +257,6 @@ void Camera3D::move(PV3D& del) {
 
         setModelViewMatrix(); 
 }
-
-//void Camera3D::changeAtrib(int atrib, int pos, int value) { //Unusued
-        /*
-        Explicación de los parámetros:
-                * atrib es el atributo. Es 0 para eye, 1 para look y 2 para up
-                * pos es la posición dentro del atributo. Es 0 para x, 1 para y y
-                2 para z
-                * value es el valor a sumar a la posición del atributo
-        */
-  /*      switch(atrib) {
-                case 0: //se trata de eye
-                        if(pos == 0) {
-                                eye->x += value;
-                        }
-                        else if(pos == 1) {
-                                eye->y += value;
-                        }
-                        else {
-                                eye->z += value;
-                        }
-                        break;
-                case 1: //se trata de look
-                        if(pos == 0) {
-                                look->x += value;
-                        }
-                        else if(pos == 1) {
-                                look->y += value;
-                        }
-                        else {
-                                look->z += value;
-                        }
-                        break;
-                case 2: //se trata de up
-                        if(pos == 0) {
-                                up->x += value;
-                        }
-                        else if(pos == 1) {
-                                up->y += value;
-                        }
-                        else {
-                                up->z += value;
-                        }
-                        break;
-        }
-        *n = *eye - *look; n->normalize();
-        *u = up->crossProduct(*n); u->normalize();
-        *v = n->crossProduct(*u); //v->normalize();
-
-        setM();
-        setModelViewMatrix();
-}   */
 
 void Camera3D::zoomIn(bool select) {
 

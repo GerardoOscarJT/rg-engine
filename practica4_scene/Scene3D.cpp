@@ -42,7 +42,8 @@ void Scene3D::Repaint() {
         ViewPort3D * vp;
         for (it = viewports->begin(); it != viewports->end(); it++) {
                 vp = *it;
-                RepaintViewPort(vp);
+                if (vp->getCamera() != NULL)
+                        RepaintViewPort(vp);
         }
 }
 

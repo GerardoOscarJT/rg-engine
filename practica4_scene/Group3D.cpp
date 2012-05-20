@@ -16,36 +16,12 @@ Group3D::~Group3D() {
         delete elements;
         if (color != NULL)
                 delete color;
-        //Figure3D* f3d;
 
-        /*if(elements->size() > 0) {
-                list<Figure3D*>::iterator it_lf;
-                Figure3D* f3d;
-
-                for(it_lf = elements->begin(); it_lf != elements->end(); it_lf++) {
-                        f3d = *it_lf;
-                        delete f3d;
-                }
-        }
-
-        delete figures;*/
 
 }
-
-/*
-void Group3D::addFigure(Figure3D *&f) {
-        figures->push_back(f);
-}
-*/
 
 void Group3D::Repaint() {
         glPushMatrix();
-        //list<Figure3D*>::iterator it_lf;
-        //Figure3D* f3d;
-        /*for(it_lf = figures->begin(); it_lf != figures->end(); it_lf++) {
-                f3d = *it_lf;
-                f3d->Repaint();
-        }*/
 
         glTranslated(translation->x, translation->y, translation->z);
 
@@ -64,48 +40,15 @@ void Group3D::Repaint() {
 
         for (it = elements->begin(); it != elements->end(); it++) {
                 figure = *it;
+                bool status = figure->selected;
+                figure->selected |= selected;
                 figure->Repaint();
+
+                figure->selected = status;
         }
 
         glPopMatrix();
 }
-
-
-/**
-
-
-void Mesh3D::Repaint() {
-        // TODO: completar esto
-
-
-
-
-
-
-        list<Face3D*>::iterator it;
-        Face3D *face;
-
-        for (it=faces->begin(); it != faces->end(); it++) {
-                face = *it;
-                glBegin(GL_POLYGON);
-                //glBegin(GL_LINE_LOOP);
-                glColor3f(0,1,1);
-                list<Vertex3D*>::iterator itp;
-                Vertex3D *vertex;
-                for (itp = face->vertices->begin(); itp != face->vertices->end(); itp++) {
-                        vertex = *itp;
-                        glNormal3f(face->normal->x, face->normal->y, face->normal->z);
-                        glVertex3f(vertex->x, vertex->y, vertex->z);
-
-                }
-                glEnd();
-        }
-
-
-
-
-}
-*/
 
 
 

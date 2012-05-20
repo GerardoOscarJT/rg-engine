@@ -18,13 +18,13 @@ bool EventYaw::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD k
 
                 if (key == 39) {
                         // Flecha derecha
-                        _viewport->camera->yaw(-velocity);
+                        _viewport->getCamera()->yaw(-velocity);
                         _scene->Repaint();
                         return true;
                 }
                 if (key == 37) {
                         // Flecha izquierda
-                        _viewport->camera->yaw(velocity);
+                        _viewport->getCamera()->yaw(velocity);
                         _scene->Repaint();
                         return true;
                 }

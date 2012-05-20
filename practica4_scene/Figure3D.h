@@ -16,7 +16,7 @@ public:
 
         AnsiString human_name;
 
-
+        bool selected;
 private:
 
 

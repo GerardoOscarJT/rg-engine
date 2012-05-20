@@ -28,34 +28,34 @@ bool EventAroundAxis::event(ViewPort3D *_viewport, Scene3D *_scene, String type,
                 */
 
                 if (key==90) { // z
-                        _viewport->camera->xyRotate(true);
+                        _viewport->getCamera()->xyRotate(true);
                         _scene->Repaint();
                         return true;
                 }
                 if (key==65) { // a
-                        _viewport->camera->xyRotate(false);
+                        _viewport->getCamera()->xyRotate(false);
                         _scene->Repaint();
                         return true;
                 }
 
                 if (key==88) { // x
-                        _viewport->camera->turnX(true);
+                        _viewport->getCamera()->turnX(true);
                         _scene->Repaint();
                         return true;
                 }
                 if (key==83) { // s
-                        _viewport->camera->turnX(false);
+                        _viewport->getCamera()->turnX(false);
                         _scene->Repaint();
                         return true;
                 }
 
                 if (key==89) { // y
-                        _viewport->camera->turnY(true);
+                        _viewport->getCamera()->turnY(true);
                         _scene->Repaint();
                         return true;
                 }
                 if (key==54) { // 6
-                        _viewport->camera->turnY(false);
+                        _viewport->getCamera()->turnY(false);
                         _scene->Repaint();
                         return true;
                 }

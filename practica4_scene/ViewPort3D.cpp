@@ -4,10 +4,10 @@
 #pragma package(smart_init)
 
 ViewPort3D::ViewPort3D(void * hWnd, int& width, int& height) {
+        _hdc = GetDC(hWnd);
         _width = &width;
         _height = &height;
-
-        _hdc = GetDC(hWnd);
+        _camera = NULL;
 
         PIXELFORMATDESCRIPTOR pfd = {
                 sizeof(PIXELFORMATDESCRIPTOR),
@@ -31,8 +31,17 @@ ViewPort3D::ViewPort3D(void * hWnd, int& width, int& height) {
         SetPixelFormat(_hdc, ChoosePixelFormat(_hdc, &pfd), &pfd);        
         _hrc = wglCreateContext(_hdc);
 
-        cameras = new Camera3D*[2];
+}
 
+
+Camera3D* ViewPort3D::getCamera() {
+        return _camera;
+}
+
+void ViewPort3D::setCamera(Camera3D* cam) {
+        _camera = cam;
+        if (cam != NULL)
+                _camera->inicializa(*_width, *_height);
 }
 
 void ViewPort3D::makeCurrent() {
@@ -45,7 +54,6 @@ void ViewPort3D::makeCurrent() {
                 ShowMessage("Could not make ViewPort3D current :·(");        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);                        }
 
 ViewPort3D::~ViewPort3D() {
-        delete cameras;
         wglDeleteContext(_hdc);
 }
 
@@ -54,13 +62,10 @@ void ViewPort3D::swapBuffers(){
 }
 
 void ViewPort3D::RecalculateViewport() {
-        //camera->recalculateCamera();        //projection();        //view();        camera->recalculateCamera(*_width, *_height);        // Puerto de vista        glViewport(0, 0, *_width, *_height);
+        _camera->recalculateCamera(*_width, *_height);        // Puerto de vista        glViewport(0, 0, *_width, *_height);
 }
 
 void ViewPort3D::findCoordinates(int scX, int scY, GLint *colores) {
-
-        /*glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();*/
 
         GLint coords[4];
         glGetIntegerv(GL_VIEWPORT, coords);
@@ -73,59 +78,10 @@ void ViewPort3D::findCoordinates(int scX, int scY, GLint *colores) {
 
         int glY = coords[3] - scY;
 
-        //int glZ;
-        /*GLdouble glZ = 1;
-
-        glReadPixels(scX, glY, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &glZ);*/
-
-        //glFinish();
-
-        /*unsigned char color[3];
-        glReadBuffer(GL_FRONT);
-        glReadPixels(scX, glY, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, colores);*/
-
         GLfloat pick_col[3];
         glReadBuffer(GL_FRONT);
         glReadPixels(scX , glY , 1 , 1 , GL_RGB , GL_FLOAT , pick_col);
 
-        //GLdouble x,y,z;
-        //GLdouble z;
-
-        //GLdouble r1,r2,r3;
-
-        //gluUnProject(scX,glY,0.0,mv,pro,coords,&x,&y,&z);
-        //gluUnProject(scX,glY,1.0,mv,pro,coords,&r1,&r2,&r3);
-
-        /*GLdouble nx, ny, nz;
-        gluProject(0,0,0,mv,pro,coords,&nx,&ny,&nz);
-        ShowMessage("Pantalla: " + AnsiString(nx) + AnsiString(ny) + AnsiString(nz));*/
-
 }
 
-/*
-void ViewPort3D::view() {
-        glMatrixMode(GL_MODELVIEW);
 
-	glLoadIdentity();
-
-        gluLookAt(
-                camera->eye->x, camera->eye->y, camera->eye->z,                camera->look->x, camera->look->y, camera->look->z,                camera->up->x, camera->up->y, camera->up->z                );
-}
-
-void ViewPort3D::projection() {
-        glMatrixMode(GL_PROJECTION);
-
-	glLoadIdentity();
-        double L = -*_width/2;
-        double R = *_width/2;
-        double B = -*_height/2;
-        double T = *_height/2;
-
-
-        if (camera->perspective) {
-                glFrustum(L/64,R/64,B/64,T/64,10,20000);
-        } else {
-                glOrtho(L, R, B, T, 0, 200000);
-        }
-}
-*/

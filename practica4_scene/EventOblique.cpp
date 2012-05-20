@@ -10,7 +10,7 @@
 #pragma package(smart_init)
 
 void EventOblique::top(ViewPort3D *_viewport, Scene3D *_scene) {
-        _viewport->camera->perspective = 2;
+        _viewport->getCamera()->perspective = 2;
         _scene->Repaint();
 }
 

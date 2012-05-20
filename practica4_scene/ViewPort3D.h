@@ -13,13 +13,11 @@ public:
         void makeCurrent();
 
 
+        Camera3D* getCamera();
+        void setCamera(Camera3D* cam);
         void RecalculateViewport();
-
         void swapBuffers();
 
-        Camera3D* camera;
-
-        Camera3D** cameras;
 
         void findCoordinates(int scX, int scY, GLint *colores);
 private:
@@ -27,6 +25,7 @@ private:
         HGLRC _hrc;
         int *_width;
         int *_height;
+        Camera3D* _camera;
 
         void view();
         void projection();

@@ -1,6 +1,6 @@
 object Form1: TForm1
-  Left = 413
-  Top = 155
+  Left = 403
+  Top = 168
   AutoScroll = False
   Caption = 'RG Engine'
   ClientHeight = 635
@@ -67,10 +67,10 @@ object Form1: TForm1
       Color = clBlack
       TabOrder = 0
       object Shape1: TShape
-        Left = 112
-        Top = 112
-        Width = 137
-        Height = 105
+        Left = 40
+        Top = 72
+        Width = 209
+        Height = 145
         Brush.Style = bsClear
         Pen.Color = clGreen
       end
@@ -103,7 +103,9 @@ object Form1: TForm1
         Top = 96
         Width = 81
         Height = 25
-        Caption = 'Panel1'
+        BevelOuter = bvNone
+        Color = clBlack
+        PopupMenu = PopupMenu1
         TabOrder = 0
         OnMouseDown = Panel1MouseDown
         OnMouseMove = Panel1MouseMove
@@ -113,7 +115,9 @@ object Form1: TForm1
         Top = 160
         Width = 81
         Height = 25
-        Caption = 'Panel3'
+        BevelOuter = bvNone
+        Color = clBlack
+        PopupMenu = PopupMenu1
         TabOrder = 1
         OnMouseDown = Panel3MouseDown
         OnMouseMove = Panel3MouseMove
@@ -123,17 +127,21 @@ object Form1: TForm1
         Top = 128
         Width = 81
         Height = 25
-        Caption = 'Panel2'
+        BevelOuter = bvNone
+        Color = clBlack
+        PopupMenu = PopupMenu1
         TabOrder = 2
         OnMouseDown = Panel2MouseDown
         OnMouseMove = Panel2MouseMove
       end
       object Panel4: TPanel
-        Left = 120
-        Top = 128
+        Left = 112
+        Top = 120
         Width = 81
         Height = 57
-        Caption = 'Panel4'
+        BevelOuter = bvNone
+        Color = clBlack
+        PopupMenu = PopupMenu1
         TabOrder = 3
         OnMouseDown = Panel4MouseDown
         OnMouseMove = Panel4MouseMove
@@ -222,11 +230,7 @@ object Form1: TForm1
           ParentColor = True
           TabOrder = 0
           TabStop = False
-          OnClick = StructureClick
-          Items.Data = {
-            01000000200000000000000000000000FFFFFFFFFFFFFFFF0000000001000000
-            076578616D706C651D0000000000000000000000FFFFFFFFFFFFFFFF00000000
-            00000000046F74726F}
+          OnMouseUp = StructureMouseUp
         end
       end
       object Panel6: TPanel
@@ -891,6 +895,9 @@ object Form1: TForm1
     end
   end
   object PopupMenu1: TPopupMenu
+    AutoHotkeys = maManual
+    MenuAnimation = [maLeftToRight, maRightToLeft, maTopToBottom, maBottomToTop]
+    OnPopup = PopupMenu1Popup
     Left = 8
     Top = 32
     object Camaras1: TMenuItem

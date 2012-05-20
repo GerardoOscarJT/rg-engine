@@ -28,12 +28,12 @@ bool EventZRotate::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WO
                 */
 
                 if (key==38) { // flecha arriba
-                        _viewport->camera->zRotate(true);
+                        _viewport->getCamera()->zRotate(true);
                         _scene->Repaint();
                         return true;
                 }
                 if (key==40) { // flecha abajo
-                        _viewport->camera->zRotate(false);
+                        _viewport->getCamera()->zRotate(false);
                         _scene->Repaint();
                         return true;
                 }

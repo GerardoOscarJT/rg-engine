@@ -14,13 +14,9 @@ public:
         double y;
         double z;
 
-        int divisiones;
-
         void RecalculateMesh();
 
         AnsiString getName();
-
-
 
         int x_div;
         int y_div;

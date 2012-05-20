@@ -15,7 +15,7 @@ String EventOrthogonal::getName() {
 
 void EventOrthogonal::top(ViewPort3D *_viewport, Scene3D *_scene) {
 
-        _viewport->camera->perspective = 1;
+        _viewport->getCamera()->perspective = 1;
         _scene->Repaint();
 
 }

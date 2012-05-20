@@ -20,6 +20,7 @@
 #include "EventScam.h"
 #include "EventBox.h"
 #include "EventKine.h"
+#include "EventKineBuildings.h"
 
 class EventFactory {
 public:

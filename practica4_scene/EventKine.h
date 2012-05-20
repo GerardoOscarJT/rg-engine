@@ -4,6 +4,7 @@
 
 #include "Event.h"
 #include "Sphere3D.h"
+#include "Flat3D.h"
 
 
 class EventKine:public Event {
@@ -42,6 +43,9 @@ private:
         int key_break;
         int key_left;
         int key_right;
+
+        Camera3D *cam_back;
+        Camera3D *cam_top;
 
         ViewPort3D *_last_viewport;
 };
