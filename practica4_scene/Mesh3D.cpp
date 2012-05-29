@@ -11,6 +11,7 @@ Mesh3D::Mesh3D() {
         mode = 2;
         vertices = new list<Vertex3D*>();
         faces = new list<Face3D*>();
+        textura = -1;
 }
 
 Mesh3D::~Mesh3D() {
@@ -129,6 +130,142 @@ void Mesh3D::drawNormals() {
 }
 
 
+/*
+void Mesh3D::Repaint() {
+        // TODO: completar esto
+
+        PV3D min(99999999,99999999,99999999);
+        PV3D max(-99999999,-99999999,-99999999);
+
+
+
+
+
+        glPushMatrix();
+
+        glTranslated(translation->x, translation->y, translation->z);
+
+        glRotated(rotation->x, 1,0,0);
+        glRotated(rotation->y, 0,1,0);
+        glRotated(rotation->z, 0,0,1);
+
+        glScaled(scale->x, scale->y, scale->z);
+
+
+        if(this->textura != -1){
+                glEnable(GL_TEXTURE_2D);
+                glBindTexture(GL_TEXTURE_2D, this->textura);
+        }
+
+
+        list<Face3D*>::iterator it;
+        Face3D *face;
+
+        int i=0;
+        for (it=faces->begin(); it != faces->end(); it++) {
+                face = *it;
+                if(filled) {
+                        glBegin(GL_POLYGON);
+                }
+                else {
+                        glBegin(GL_LINE_LOOP);
+                }
+                if (color != NULL)
+                        glColor3f(color->r, color->g, color->b);
+
+                list<Vertex3D*>::iterator itp;
+                Vertex3D *vertex;
+                int j=0;
+                for (itp = face->vertices->begin(); itp != face->vertices->end(); itp++) {
+                        vertex = *itp;
+                        glNormal3f(face->normal->x, face->normal->y, face->normal->z);
+                        if(((this->textura == 1))
+                           || (i == 0 && (this->textura == 2))
+                           || ((i >= 64 && i <= 79) && (this->textura == 3))){
+                                switch(j) {
+                                        case 0: glTexCoord2f(0.0,0.0);
+                                                break;
+                                        case 1: glTexCoord2f(1.0,0.0);
+                                                break;
+                                        case 2: glTexCoord2f(1.0,1.0);
+                                                break;
+                                        case 3: glTexCoord2f(0.0,1.0);
+                                                break;
+                                }
+                        }
+                        glVertex3f(vertex->x, vertex->y, vertex->z);
+                        if (selected) {
+                                if (min.x>vertex->x) min.x = vertex->x;
+                                if (min.y>vertex->y) min.y = vertex->y;
+                                if (min.z>vertex->z) min.z = vertex->z;
+                                if (max.x<vertex->x) max.x = vertex->x;
+                                if (max.y<vertex->y) max.y = vertex->y;
+                                if (max.z<vertex->z) max.z = vertex->z;
+                        }
+                        j++;
+                }
+                i++;
+                glEnd();
+        }
+
+        if(textura != -1)
+                    glDisable(GL_TEXTURE_2D);
+
+
+        if (selected) {
+                double m = 1;
+                min.x -= m;     min.y -= m;     min.z -= m;
+                max.x += m;     max.y += m;     max.z += m;
+
+                glBegin(GL_LINES);
+                        glColor3f(0,1,0);
+                        glVertex3f(min.x, min.y, min.z);
+                        glVertex3f(max.x, min.y, min.z);
+                        glVertex3f(min.x, min.y, min.z);
+                        glVertex3f(min.x, max.y, min.z);
+                        glVertex3f(min.x, min.y, min.z);
+                        glVertex3f(min.x, min.y, max.z);
+
+                        glVertex3f(max.x, max.y, max.z);
+                        glVertex3f(min.x, max.y, max.z);
+                        glVertex3f(max.x, max.y, max.z);
+                        glVertex3f(max.x, min.y, max.z);
+                        glVertex3f(max.x, max.y, max.z);
+                        glVertex3f(max.x, max.y, min.z);
+
+                        glVertex3f(max.x, max.y, min.z);
+                        glVertex3f(min.x, max.y, min.z);
+                        glVertex3f(max.x, max.y, min.z);
+                        glVertex3f(max.x, min.y, min.z);
+
+                        glVertex3f(min.x, min.y, max.z);
+                        glVertex3f(max.x, min.y, max.z);
+                        glVertex3f(min.x, min.y, max.z);
+                        glVertex3f(min.x, max.y, max.z);
+
+                        glVertex3f(max.x, min.y, min.z);
+                        glVertex3f(max.x, min.y, max.z);
+
+                        glVertex3f(min.x, max.y, min.z);
+                        glVertex3f(min.x, max.y, max.z);
+
+
+
+                glEnd();
+        }
+
+        if(showNormals) {
+                drawNormals();
+        }
+
+
+        glPopMatrix();
+
+}
+*/
+
+
+
 
 void Mesh3D::Repaint() {
         // TODO: completar esto
@@ -151,11 +288,15 @@ void Mesh3D::Repaint() {
         glScaled(scale->x, scale->y, scale->z);
 
 
-
-
         list<Face3D*>::iterator it;
         Face3D *face;
 
+        if(this->textura != -1){
+                glEnable(GL_TEXTURE_2D);
+                glBindTexture(GL_TEXTURE_2D, this->textura);
+        }
+
+        int i = 0;
         for (it=faces->begin(); it != faces->end(); it++) {
                 face = *it;
                 if(filled) {
@@ -169,9 +310,24 @@ void Mesh3D::Repaint() {
 
                 list<Vertex3D*>::iterator itp;
                 Vertex3D *vertex;
+                int j = 0;
                 for (itp = face->vertices->begin(); itp != face->vertices->end(); itp++) {
                         vertex = *itp;
                         glNormal3f(face->normal->x, face->normal->y, face->normal->z);
+                        if((/*i == 1 && */(this->textura == 1))
+                           || (i == 0 && (this->textura == 2))
+                           || ((i >= 64 && i <= 79) && (this->textura == 3))){
+                                switch(j) {
+                                        case 0: glTexCoord2f(0.0,0.0);
+                                                break;
+                                        case 1: glTexCoord2f(1.0,0.0);
+                                                break;
+                                        case 2: glTexCoord2f(1.0,1.0);
+                                                break;
+                                        case 3: glTexCoord2f(0.0,1.0);
+                                                break;
+                                }
+                        }
                         glVertex3f(vertex->x, vertex->y, vertex->z);
                         if (selected) {
                                 if (min.x>vertex->x) min.x = vertex->x;
@@ -181,9 +337,14 @@ void Mesh3D::Repaint() {
                                 if (max.y<vertex->y) max.y = vertex->y;
                                 if (max.z<vertex->z) max.z = vertex->z;
                         }
+                        j++;
                 }
+                i++;
                 glEnd();
         }
+        if(textura != -1) {
+                    glDisable(GL_TEXTURE_2D);
+                }
 
         if (selected) {
                 double m = 1;

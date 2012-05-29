@@ -25,6 +25,8 @@ public:
         void Repaint();
         String getName();
 
+        int textura;        
+
 protected:
         void clearLists();
 

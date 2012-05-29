@@ -16,7 +16,7 @@
       EventPerspective.obj EventKine.obj EventBox.obj Flat3D.obj 
       EventKineBuildings.obj Light3D.obj EventToggleLighting.obj 
       EventToggleMaterialing.obj EventToggleLightModelAmbient.obj EventFog.obj 
-      EventToggleFog.obj"/>
+      EventToggleFog.obj UBmpRGBA.obj"/>
     <RESFILES value="EngineRG.res"/>
     <DEFFILE value=""/>
     <RESDEPEN value="$(RESFILES) Window.dfm Help.dfm"/>

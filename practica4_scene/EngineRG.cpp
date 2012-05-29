@@ -55,6 +55,7 @@ USEUNIT("EventToggleMaterialing.cpp");
 USEUNIT("EventToggleLightModelAmbient.cpp");
 USEUNIT("EventFog.cpp");
 USEUNIT("EventToggleFog.cpp");
+USEUNIT("UBmpRGBA.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
