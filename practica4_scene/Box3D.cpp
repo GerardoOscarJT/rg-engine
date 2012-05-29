@@ -9,10 +9,11 @@ Box3D::Box3D() : Mesh3D() {
         x = 1;
         y = 1;
         z = 1;
-        x_div = 2;
-        y_div = 2;
-        z_div = 2;
+        x_div = 4;
+        y_div = 4;
+        z_div = 4;
 
+        divisiones = 2;
         RecalculateMesh();
 }
 
@@ -22,6 +23,11 @@ Box3D::~Box3D(){
 
 void Box3D::RecalculateMesh() {
 
+        if(x_div < 1 || y_div < 1 || z_div < 1){
+                ShowMessage("El valor de x_div, y_div y z_div debe ser mayor o igual a 1");
+                return;
+        }
+
         clearLists();
 
         double divX = x/x_div;
@@ -30,107 +36,125 @@ void Box3D::RecalculateMesh() {
         double separacion;
 
         Vertex3D * v1 = new Vertex3D(x,0,z); vertices->push_back(v1);
+        Vertex3D * v2 = new Vertex3D(x,y,z); vertices->push_back(v2);
+        Vertex3D * v3 = new Vertex3D(0,y,z); vertices->push_back(v3);
+        Vertex3D * v4 = new Vertex3D(0,0,z); vertices->push_back(v4);
+        Vertex3D * v5 = new Vertex3D(x,0,0); vertices->push_back(v5);
+        Vertex3D * v6 = new Vertex3D(x,y,0); vertices->push_back(v6);
+        Vertex3D * v7 = new Vertex3D(0,y,0); vertices->push_back(v7);
+        Vertex3D * v8 = new Vertex3D(0,0,0); vertices->push_back(v8);
 
-        Vertex3D **v12 = new Vertex3D*[y_div-1];
+        Vertex3D **v12 = new Vertex3D*[y_div + 1];
+        v12[0] = v1;
+        v12[y_div] = v2;
         separacion = divY;
-        for(int i = 0; i < y_div-1; i++) {
-                v12[i] = new Vertex3D(x,(i+1)*separacion,z);
+        for(int i = 1; i < y_div; i++) {
+                v12[i] = new Vertex3D(x,i*separacion,z);
                 vertices->push_back(v12[i]);
         }
 
-        Vertex3D * v2 = new Vertex3D(x,y,z); vertices->push_back(v2);
-
-        Vertex3D **v23 = new Vertex3D*[x_div-1];
+        Vertex3D **v23 = new Vertex3D*[x_div + 1];
+        v23[0] = v3;
+        v23[x_div] = v2;
         separacion = divX;
-        for(int i = 0; i < x_div-1; i++) {
-                v23[i] = new Vertex3D((i+1)*separacion,y,z);
+        for(int i = 1; i < x_div; i++) {
+                v23[i] = new Vertex3D(i*separacion,y,z);
                 vertices->push_back(v23[i]);
         }
 
-        Vertex3D * v3 = new Vertex3D(0,y,z);vertices->push_back(v3);
-
-        Vertex3D **v34 = new Vertex3D*[y_div-1];
+        Vertex3D **v34 = new Vertex3D*[y_div + 1];
+        v34[0] = v4;
+        v34[y_div] = v3;
         separacion = divY;
-        for(int i = 0; i < y_div-1; i++) {
-                v34[i] = new Vertex3D(0,(i+1)*separacion,z);
+        for(int i = 1; i < y_div; i++) {
+                v34[i] = new Vertex3D(0,i*separacion,z);
                 vertices->push_back(v34[i]);
         }
 
-        Vertex3D * v4 = new Vertex3D(0,0,z); vertices->push_back(v4);
-
-        Vertex3D **v41 = new Vertex3D*[x_div-1];
+        Vertex3D **v41 = new Vertex3D*[x_div + 1];
+        v41[0] = v4;
+        v41[x_div] = v1;
         separacion = divX;
-        for(int i = 0; i < x_div-1; i++) {
-                v41[i] = new Vertex3D((i+1)*separacion,0,z);
+        for(int i = 1; i < x_div; i++) {
+                v41[i] = new Vertex3D(i*separacion,0,z);
                 vertices->push_back(v41[i]);
         }
 
-        Vertex3D * v5 = new Vertex3D(x,0,0); vertices->push_back(v5);
-
-        Vertex3D **v56 = new Vertex3D*[y_div-1];
+        Vertex3D **v56 = new Vertex3D*[y_div + 1];
+        v56[0] = v5;
+        v56[y_div] = v6;
         separacion = divY;
-        for(int i = 0; i < y_div-1; i++) {
-                v56[i] = new Vertex3D(x,(i+1)*separacion,0);
+        for(int i = 1; i < y_div; i++) {
+                v56[i] = new Vertex3D(x,i*separacion,0);
                 vertices->push_back(v56[i]);
         }
 
-        Vertex3D * v6 = new Vertex3D(x,y,0); vertices->push_back(v6);
-
-        Vertex3D **v67 = new Vertex3D*[x_div-1];
+        Vertex3D **v67 = new Vertex3D*[x_div + 1];
+        v67[0] = v7;
+        v67[x_div] = v6;
         separacion = divX; //v[7]->x = 0, v6->x - 0 = v6->x
-        for(int i = 0; i < x_div-1; i++) {
-                v67[i] = new Vertex3D((i+1)*separacion,y,0);
+        for(int i = 1; i < x_div; i++) {
+                v67[i] = new Vertex3D(i*separacion,y,0);
                 vertices->push_back(v67[i]);
         }
 
-        Vertex3D * v7 = new Vertex3D(0,y,0);vertices->push_back(v7);
-
-        Vertex3D **v78 = new Vertex3D*[y_div-1];
+        Vertex3D **v78 = new Vertex3D*[y_div + 1];
+        v78[0] = v8;
+        v78[y_div] = v7;
         separacion = divY;
         //separacion = divX;
-        for(int i = 0; i < y_div-1; i++) {
-                v78[i] = new Vertex3D(0,(i+1)*separacion,0);
+        for(int i = 1; i < y_div; i++) {
+                v78[i] = new Vertex3D(0,i*separacion,0);
                 //v78[i] = new Vertex3D((i+1)*separacion,0,0);
                 vertices->push_back(v78[i]);
         }
 
-        Vertex3D * v8 = new Vertex3D(0,0,0); vertices->push_back(v8);
 
-        Vertex3D **v85 = new Vertex3D*[x_div-1];
+        Vertex3D **v85 = new Vertex3D*[x_div + 1];
+        v85[0] = v8;
+        v85[x_div] = v5;
         separacion = divX;
         //separacion = divY;
-        for(int i = 0; i < x_div-1; i++) {
-                v85[i] = new Vertex3D((i+1)*separacion,0,0);
+        for(int i = 1; i < x_div; i++) {
+                v85[i] = new Vertex3D(i*separacion,0,0);
                 //v85[i-1] = new Vertex3D(0,i*separacion,0);
                 vertices->push_back(v85[i]);
         }
 
         //División de la dimensión z
-        Vertex3D **v51 = new Vertex3D*[z_div-1];
+        Vertex3D **v51 = new Vertex3D*[z_div + 1];
+        v51[0] = v5;
+        v51[z_div] = v1;
         separacion = divZ;
-        for(int i = 0; i < z_div-1; i++) {
-                v51[i] = new Vertex3D(x,0,(i+1)*separacion);
+        for(int i = 1; i < z_div; i++) {
+                v51[i] = new Vertex3D(x,0,i*separacion);
                 vertices->push_back(v51[i]);
         }
 
-        Vertex3D **v62 = new Vertex3D*[z_div-1];
+        Vertex3D **v62 = new Vertex3D*[z_div + 1];
+        v62[0] = v6;
+        v62[z_div] = v2;
         separacion = divZ;
-        for(int i = 0; i < z_div-1; i++) {
-                v62[i] = new Vertex3D(x,y,(i+1)*separacion);
+        for(int i = 1; i < z_div; i++) {
+                v62[i] = new Vertex3D(x,y,i*separacion);
                 vertices->push_back(v62[i]);
         }
 
-        Vertex3D **v73 = new Vertex3D*[z_div-1];
+        Vertex3D **v73 = new Vertex3D*[z_div + 1];
+        v73[0] = v7;
+        v73[z_div] = v3;
         separacion = divZ;
-        for(int i = 0; i < z_div-1; i++) {
-                v73[i] = new Vertex3D(0,y,(i+1)*separacion);
+        for(int i = 1; i < z_div; i++) {
+                v73[i] = new Vertex3D(0,y,i*separacion);
                 vertices->push_back(v73[i]);
         }
 
-        Vertex3D **v84 = new Vertex3D*[z_div-1];
+        Vertex3D **v84 = new Vertex3D*[z_div + 1];
+        v84[0] = v8;
+        v84[z_div] = v4;
         separacion = divZ;
-        for(int i = 0; i < z_div-1; i++) {
-                v84[i] = new Vertex3D(0,0,(i+1)*separacion);
+        for(int i = 1; i < z_div; i++) {
+                v84[i] = new Vertex3D(0,0,i*separacion);
                 vertices->push_back(v84[i]);
         }
 
@@ -154,23 +178,94 @@ void Box3D::RecalculateMesh() {
                 }
         }
 
-         //Fila Superior
+        if(x_div == 1 && z_div == 1) {
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->y = 1;
+                f->normal->t = 0;
+                f->vertices->push_back(v23[0]);
+                f->vertices->push_back(v23[x_div]);
+                f->vertices->push_back(v67[x_div]);
+                f->vertices->push_back(v67[0]);
+        }
+        else if(x_div == 1 && z_div > 1){
+
+                Face3D *f1 = new Face3D(); faces->push_back(f1);
+                f1->normal->y = 1;
+                f1->normal->t = 0;
+                f1->vertices->push_back(v73[0]);
+                f1->vertices->push_back(v73[1]);
+                f1->vertices->push_back(v62[1]);
+                f1->vertices->push_back(v62[0]);
+
+                Face3D *f2 = new Face3D(); faces->push_back(f2);
+                f2->normal->y = 1;
+                f2->normal->t = 0;
+                f2->vertices->push_back(v62[z_div-1]);
+                f2->vertices->push_back(v73[z_div-1]);
+                f2->vertices->push_back(v73[z_div]);
+                f2->vertices->push_back(v62[z_div]);
+
+
+                for(int i= 1; i < z_div-1; i++){
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->y = 1;
+                f->normal->t = 0;
+                f->vertices->push_back(v73[i]);
+                f->vertices->push_back(v73[i+1]);
+                f->vertices->push_back(v62[i+1]);
+                f->vertices->push_back(v62[i]);
+                }
+
+        }
+        else if(x_div > 1 && z_div == 1){
+
+                Face3D *f1 = new Face3D(); faces->push_back(f1);
+                f1->normal->y = 1;
+                f1->normal->t = 0;
+                f1->vertices->push_back(v23[x_div-1]);
+                f1->vertices->push_back(v23[x_div]);
+                f1->vertices->push_back(v67[x_div]);
+                f1->vertices->push_back(v67[x_div-1]);
+
+                Face3D *f2 = new Face3D(); faces->push_back(f2);
+                f2->normal->y = 1;
+                f2->normal->t = 0;
+                f2->vertices->push_back(v67[1]);
+                f2->vertices->push_back(v67[0]);
+                f2->vertices->push_back(v23[0]);
+                f2->vertices->push_back(v23[1]);
+
+
+                for(int i= 1; i < x_div-1; i++){
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->y = 1;
+                f->normal->t = 0;
+                f->vertices->push_back(v23[i+1]);
+                f->vertices->push_back(v67[i+1]);
+                f->vertices->push_back(v67[i]);
+                f->vertices->push_back(v23[i]);
+                }
+
+        }
+
+        else if(x_div > 1 && z_div > 1) {
+                //Fila Superior
          Face3D *fDerSupIzq = new Face3D(); faces->push_back(fDerSupIzq);
          fDerSupIzq->normal->y = 1;
          fDerSupIzq->normal->t = 0;
          fDerSupIzq->vertices->push_back(v2);
-         fDerSupIzq->vertices->push_back(v62[z_div-2]);
+         fDerSupIzq->vertices->push_back(v62[z_div-1]);
          fDerSupIzq->vertices->push_back(mDerAux[z_div-2][x_div-2]);
-         fDerSupIzq->vertices->push_back(v23[x_div-2]);
+         fDerSupIzq->vertices->push_back(v23[x_div-1]);
 
-         for(int i = 0; i < x_div-2; i++) {
+         for(int i = 1; i < x_div-1; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->y = 1;
                 f->normal->t = 0;
                 f->vertices->push_back(v23[i]);
                 f->vertices->push_back(v23[i+1]);
-                f->vertices->push_back(mDerAux[z_div-2][i+1]);
                 f->vertices->push_back(mDerAux[z_div-2][i]);
+                f->vertices->push_back(mDerAux[z_div-2][i-1]);
          }
 
          //Columna Derecha
@@ -178,17 +273,17 @@ void Box3D::RecalculateMesh() {
          fDerSupDer->normal->y = 1;
          fDerSupDer->normal->t = 0;
          fDerSupDer->vertices->push_back(v3);
-         fDerSupDer->vertices->push_back(v23[0]);
+         fDerSupDer->vertices->push_back(v23[1]);
          fDerSupDer->vertices->push_back(mDerAux[z_div-2][0]);
-         fDerSupDer->vertices->push_back(v73[z_div-2]);
+         fDerSupDer->vertices->push_back(v73[z_div-1]);
 
-         for(int i = 0; i < z_div-2; i++) {
+         for(int i = 1; i < z_div-1; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->y = 1;
                 f->normal->t = 0;
                 f->vertices->push_back(v73[i+1]);
-                f->vertices->push_back(mDerAux[i+1][0]);
                 f->vertices->push_back(mDerAux[i][0]);
+                f->vertices->push_back(mDerAux[i-1][0]);
                 f->vertices->push_back(v73[i]);
          }
 
@@ -206,44 +301,45 @@ void Box3D::RecalculateMesh() {
          }
 
          //Fila Inferior
-         for(int i = 0; i < x_div-2; i++) {
+         for(int i = 1; i < x_div-1; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->y = 1;
                 f->normal->t = 0;
-                f->vertices->push_back(v67[i]);
+                f->vertices->push_back(mDerAux[0][i-1]);
                 f->vertices->push_back(mDerAux[0][i]);
-                f->vertices->push_back(mDerAux[0][i+1]);
                 f->vertices->push_back(v67[i+1]);
+                f->vertices->push_back(v67[i]);
          }
 
          Face3D *fDerInfIzq = new Face3D(); faces->push_back(fDerInfIzq);
          fDerInfIzq->normal->y = 1;
          fDerInfIzq->normal->t = 0;
          fDerInfIzq->vertices->push_back(v6);
-         fDerInfIzq->vertices->push_back(v67[x_div-2]);
+         fDerInfIzq->vertices->push_back(v67[x_div-1]);
          fDerInfIzq->vertices->push_back(mDerAux[0][x_div-2]);
-         fDerInfIzq->vertices->push_back(v62[0]);
+         fDerInfIzq->vertices->push_back(v62[1]);
 
          //Columna Izquierda
-         for(int i = 0; i < z_div-2; i++) {
+         for(int i = 1; i < z_div-1; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->y = 1;
                 f->normal->t = 0;
                 f->vertices->push_back(v62[i+1]);
                 f->vertices->push_back(v62[i]);
+                f->vertices->push_back(mDerAux[i-1][x_div-2]);
                 f->vertices->push_back(mDerAux[i][x_div-2]);
-                f->vertices->push_back(mDerAux[i+1][x_div-2]);
          }
 
          Face3D *fDerInfDer = new Face3D(); faces->push_back(fDerInfDer);
          fDerInfDer->normal->y = 1;
          fDerInfDer->normal->t = 0;
          fDerInfDer->vertices->push_back(v7);
-         fDerInfDer->vertices->push_back(v73[0]);
+         fDerInfDer->vertices->push_back(v73[1]);
          fDerInfDer->vertices->push_back(mDerAux[0][0]);
-         fDerInfDer->vertices->push_back(v67[0]);
+         fDerInfDer->vertices->push_back(v67[1]);
 
-
+        }
+        
          for(int i = 0; i < z_div-1; i++) {
                 delete[] mDerAux[i];
          }
@@ -270,22 +366,93 @@ void Box3D::RecalculateMesh() {
                 }
         }
 
-         //Fila Superior
+        if(y_div == 1 && z_div == 1) {
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->x = 1;
+                f->normal->t = 0;
+                f->vertices->push_back(v12[y_div]);
+                f->vertices->push_back(v12[0]);
+                f->vertices->push_back(v56[0]);
+                f->vertices->push_back(v56[y_div]);
+        }
+        else if(y_div == 1 && z_div > 1){
+
+                Face3D *f1 = new Face3D(); faces->push_back(f1);
+                f1->normal->x = 1;
+                f1->normal->t = 0;
+                f1->vertices->push_back(v62[0]);
+                f1->vertices->push_back(v62[1]);
+                f1->vertices->push_back(v51[1]);
+                f1->vertices->push_back(v51[0]);
+
+                Face3D *f2 = new Face3D(); faces->push_back(f2);
+                f2->normal->x = 1;
+                f2->normal->t = 0;
+                f2->vertices->push_back(v62[z_div-1]);
+                f2->vertices->push_back(v62[z_div]);
+                f2->vertices->push_back(v51[z_div]);
+                f2->vertices->push_back(v51[z_div-1]);
+
+
+                for(int i= 1; i < z_div-1; i++){
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->x = 1;
+                f->normal->t = 0;
+                f->vertices->push_back(v62[i]);
+                f->vertices->push_back(v62[i+1]);
+                f->vertices->push_back(v51[i+1]);
+                f->vertices->push_back(v51[i]);
+                }
+
+        }
+        else if(y_div > 1 && z_div == 1){
+
+                Face3D *f1 = new Face3D(); faces->push_back(f1);
+                f1->normal->x = 1;
+                f1->normal->t = 0;
+                f1->vertices->push_back(v56[0]);
+                f1->vertices->push_back(v56[1]);
+                f1->vertices->push_back(v12[1]);
+                f1->vertices->push_back(v12[0]);
+
+                Face3D *f2 = new Face3D(); faces->push_back(f2);
+                f2->normal->x = 1;
+                f2->normal->t = 0;
+                f2->vertices->push_back(v56[y_div-1]);
+                f2->vertices->push_back(v56[y_div]);
+                f2->vertices->push_back(v12[y_div]);
+                f2->vertices->push_back(v12[y_div-1]);
+
+
+                for(int i= 1; i < y_div-1; i++){
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->x = 1;
+                f->normal->t = 0;
+                f->vertices->push_back(v56[i]);
+                f->vertices->push_back(v56[i+1]);
+                f->vertices->push_back(v12[i+1]);
+                f->vertices->push_back(v12[i]);
+                }
+
+        }
+
+        else if(y_div > 1 && z_div > 1) {
+        //Fila Superior
          Face3D *fFronSupIzq = new Face3D(); faces->push_back(fFronSupIzq);
          fFronSupIzq->normal->x = 1;
          fFronSupIzq->normal->t = 0;
          fFronSupIzq->vertices->push_back(v1);
-         fFronSupIzq->vertices->push_back(v51[z_div-2]);
+         fFronSupIzq->vertices->push_back(v51[z_div-1]);
          fFronSupIzq->vertices->push_back(mFronAux[z_div-2][0]);
-         fFronSupIzq->vertices->push_back(v12[0]);
+         fFronSupIzq->vertices->push_back(v12[1]);
 
-         for(int i = 0; i < y_div-2; i++) {
+         for(int i = 1; i < y_div-1; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->x = 1;
                 f->normal->t = 0;
                 f->vertices->push_back(v12[i]);
+                f->vertices->push_back(mFronAux[z_div-2][i-1]);
                 f->vertices->push_back(mFronAux[z_div-2][i]);
-                f->vertices->push_back(mFronAux[z_div-2][i+1]);
                 f->vertices->push_back(v12[i+1]);
          }
 
@@ -294,18 +461,18 @@ void Box3D::RecalculateMesh() {
          fFronSupDer->normal->x = 1;
          fFronSupDer->normal->t = 0;
          fFronSupDer->vertices->push_back(v2);
-         fFronSupDer->vertices->push_back(v12[y_div-2]);
+         fFronSupDer->vertices->push_back(v12[y_div-1]);
          fFronSupDer->vertices->push_back(mFronAux[z_div-2][y_div-2]);
-         fFronSupDer->vertices->push_back(v62[z_div-2]);
+         fFronSupDer->vertices->push_back(v62[z_div-1]);
 
-         for(int i = 0; i < z_div-2; i++) {
+         for(int i = 1; i < z_div-1; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->x = 1;
                 f->normal->t = 0;
                 f->vertices->push_back(v62[i]);
                 f->vertices->push_back(v62[i+1]);
-                f->vertices->push_back(mFronAux[i+1][y_div-2]);
                 f->vertices->push_back(mFronAux[i][y_div-2]);
+                f->vertices->push_back(mFronAux[i-1][y_div-2]);
          }
 
          //Entramado
@@ -322,32 +489,32 @@ void Box3D::RecalculateMesh() {
          }
 
          //Fila Inferior
-         for(int i = 0; i < y_div-2; i++) {
+         for(int i = 1; i < y_div-1; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->x = 1;
                 f->normal->t = 0;
                 f->vertices->push_back(v56[i]);
                 f->vertices->push_back(v56[i+1]);
-                f->vertices->push_back(mFronAux[0][i+1]);
                 f->vertices->push_back(mFronAux[0][i]);
+                f->vertices->push_back(mFronAux[0][i-1]);
          }
 
          Face3D *fFronInfIzq = new Face3D(); faces->push_back(fFronInfIzq);
          fFronInfIzq->normal->x = 1;
          fFronInfIzq->normal->t = 0;
          fFronInfIzq->vertices->push_back(v5);
-         fFronInfIzq->vertices->push_back(v56[0]);
+         fFronInfIzq->vertices->push_back(v56[1]);
          fFronInfIzq->vertices->push_back(mFronAux[0][0]);
-         fFronInfIzq->vertices->push_back(v51[0]);
+         fFronInfIzq->vertices->push_back(v51[1]);
 
          //Columna Izquierda
-         for(int i = 0; i < z_div-2; i++) {
+         for(int i = 1; i < z_div-1; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->x = 1;
                 f->normal->t = 0;
                 f->vertices->push_back(v51[i]);
+                f->vertices->push_back(mFronAux[i-1][0]);
                 f->vertices->push_back(mFronAux[i][0]);
-                f->vertices->push_back(mFronAux[i+1][0]);
                 f->vertices->push_back(v51[i+1]);
          }
 
@@ -355,11 +522,11 @@ void Box3D::RecalculateMesh() {
          fFronInfDer->normal->x = 1;
          fFronInfDer->normal->t = 0;
          fFronInfDer->vertices->push_back(v6);
-         fFronInfDer->vertices->push_back(v62[0]);
+         fFronInfDer->vertices->push_back(v62[1]);
          fFronInfDer->vertices->push_back(mFronAux[0][y_div-2]);
-         fFronInfDer->vertices->push_back(v56[y_div-2]);
-
-
+         fFronInfDer->vertices->push_back(v56[y_div-1]);
+        }
+        
          for(int i = 0; i < z_div-1; i++) {
                 delete[] mFronAux[i];
          }
@@ -386,23 +553,94 @@ void Box3D::RecalculateMesh() {
                 }
         }
 
-         //Fila Superior
-         Face3D *fIzqSupIzq = new Face3D(); faces->push_back(fIzqSupIzq);
-         fIzqSupIzq->normal->y = -1;
-         fIzqSupIzq->normal->t = 0;
-         fIzqSupIzq->vertices->push_back(v1);
-         fIzqSupIzq->vertices->push_back(v51[z_div-2]);
-         fIzqSupIzq->vertices->push_back(mIzqAux[z_div-2][x_div-2]);
-         fIzqSupIzq->vertices->push_back(v41[x_div-2]);
+        if(x_div == 1 && z_div == 1) {
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->y = -1;
+                f->normal->t = 0;
+                f->vertices->push_back(v1);
+                f->vertices->push_back(v4);
+                f->vertices->push_back(v8);
+                f->vertices->push_back(v5);
+        }
+        else if(x_div == 1 && z_div > 1){
 
-         for(int i = 0; i < x_div-2; i++) {
+                Face3D *f1 = new Face3D(); faces->push_back(f1);
+                f1->normal->y = -1;
+                f1->normal->t = 0;
+                f1->vertices->push_back(v84[0]);
+                f1->vertices->push_back(v84[1]);
+                f1->vertices->push_back(v51[1]);
+                f1->vertices->push_back(v51[0]);
+
+                Face3D *f2 = new Face3D(); faces->push_back(f2);
+                f2->normal->y = -1;
+                f2->normal->t = 0;
+                f2->vertices->push_back(v84[z_div-1]);
+                f2->vertices->push_back(v84[z_div]);
+                f2->vertices->push_back(v51[z_div]);
+                f2->vertices->push_back(v51[z_div-1]);
+
+
+                for(int i= 1; i < z_div-1; i++){
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->y = -1;
+                f->normal->t = 0;
+                f->vertices->push_back(v84[i]);
+                f->vertices->push_back(v84[i+1]);
+                f->vertices->push_back(v51[i+1]);
+                f->vertices->push_back(v51[i]);
+                }
+
+        }
+        else if(x_div > 1 && z_div == 1){
+
+                Face3D *f1 = new Face3D(); faces->push_back(f1);
+                f1->normal->y = -1;
+                f1->normal->t = 0;
+                f1->vertices->push_back(v41[0]);
+                f1->vertices->push_back(v41[1]);
+                f1->vertices->push_back(v85[1]);
+                f1->vertices->push_back(v85[0]);
+
+                Face3D *f2 = new Face3D(); faces->push_back(f2);
+                f2->normal->y = -1;
+                f2->normal->t = 0;
+                f2->vertices->push_back(v41[x_div-1]);
+                f2->vertices->push_back(v41[x_div]);
+                f2->vertices->push_back(v85[x_div]);
+                f2->vertices->push_back(v85[x_div-1]);
+
+
+                for(int i= 1; i < x_div-1; i++){
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->y = -1;
                 f->normal->t = 0;
                 f->vertices->push_back(v41[i]);
                 f->vertices->push_back(v41[i+1]);
-                f->vertices->push_back(mIzqAux[z_div-2][i+1]);
+                f->vertices->push_back(v85[i+1]);
+                f->vertices->push_back(v85[i]);
+                }
+
+        }
+
+        else if(x_div > 1 && z_div > 1) {
+         //Fila Superior
+         Face3D *fIzqSupIzq = new Face3D(); faces->push_back(fIzqSupIzq);
+         fIzqSupIzq->normal->y = -1;
+         fIzqSupIzq->normal->t = 0;
+         fIzqSupIzq->vertices->push_back(v1);
+         fIzqSupIzq->vertices->push_back(v51[z_div-1]);
+         fIzqSupIzq->vertices->push_back(mIzqAux[z_div-2][x_div-2]);
+         fIzqSupIzq->vertices->push_back(v41[x_div-1]);
+
+         for(int i = 1; i < x_div-1; i++) {
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->y = -1;
+                f->normal->t = 0;
+                f->vertices->push_back(v41[i]);
+                f->vertices->push_back(v41[i+1]);
                 f->vertices->push_back(mIzqAux[z_div-2][i]);
+                f->vertices->push_back(mIzqAux[z_div-2][i-1]);
          }
 
          //Columna Derecha
@@ -410,18 +648,18 @@ void Box3D::RecalculateMesh() {
          fIzqSupDer->normal->y = -1;
          fIzqSupDer->normal->t = 0;
          fIzqSupDer->vertices->push_back(v4);
-         fIzqSupDer->vertices->push_back(v41[0]);
+         fIzqSupDer->vertices->push_back(v41[1]);
          fIzqSupDer->vertices->push_back(mIzqAux[z_div-2][0]);
-         fIzqSupDer->vertices->push_back(v84[z_div-2]);
+         fIzqSupDer->vertices->push_back(v84[z_div-1]);
 
-         for(int i = 0; i < z_div-2; i++) {
+         for(int i = 1; i < z_div-1; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->y = -1;
                 f->normal->t = 0;
                 f->vertices->push_back(v84[i]);
                 f->vertices->push_back(v84[i+1]);
-                f->vertices->push_back(mIzqAux[i+1][0]);
                 f->vertices->push_back(mIzqAux[i][0]);
+                f->vertices->push_back(mIzqAux[i-1][0]);
          }
 
          //Entramado
@@ -438,13 +676,13 @@ void Box3D::RecalculateMesh() {
          }
 
          //Fila Inferior
-         for(int i = 0; i < x_div-2; i++) {
+         for(int i = 1; i < x_div-1; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->y = -1;
                 f->normal->t = 0;
                 f->vertices->push_back(v85[i]);
+                f->vertices->push_back(mIzqAux[0][i-1]);
                 f->vertices->push_back(mIzqAux[0][i]);
-                f->vertices->push_back(mIzqAux[0][i+1]);
                 f->vertices->push_back(v85[i+1]);
          }
 
@@ -452,18 +690,18 @@ void Box3D::RecalculateMesh() {
          fIzqInfIzq->normal->y = -1;
          fIzqInfIzq->normal->t = 0;
          fIzqInfIzq->vertices->push_back(v5);
-         fIzqInfIzq->vertices->push_back(v85[x_div-2]);
+         fIzqInfIzq->vertices->push_back(v85[x_div-1]);
          fIzqInfIzq->vertices->push_back(mIzqAux[0][x_div-2]);
-         fIzqInfIzq->vertices->push_back(v51[0]);
+         fIzqInfIzq->vertices->push_back(v51[1]);
 
          //Columna Izquierda
-         for(int i = 0; i < z_div-2; i++) {
+         for(int i = 1; i < z_div-1; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->y = -1;
                 f->normal->t = 0;
                 f->vertices->push_back(v51[i]);
+                f->vertices->push_back(mIzqAux[i-1][x_div-2]);
                 f->vertices->push_back(mIzqAux[i][x_div-2]);
-                f->vertices->push_back(mIzqAux[i+1][x_div-2]);
                 f->vertices->push_back(v51[i+1]);
          }
 
@@ -471,11 +709,11 @@ void Box3D::RecalculateMesh() {
          fIzqInfDer->normal->y = -1;
          fIzqInfDer->normal->t = 0;
          fIzqInfDer->vertices->push_back(v8);
-         fIzqInfDer->vertices->push_back(v84[0]);
+         fIzqInfDer->vertices->push_back(v84[1]);
          fIzqInfDer->vertices->push_back(mIzqAux[0][0]);
-         fIzqInfDer->vertices->push_back(v85[0]);
-
-
+         fIzqInfDer->vertices->push_back(v85[1]);
+        }
+        
          for(int i = 0; i < z_div-1; i++) {
                 delete[] mIzqAux[i];
          }
@@ -502,22 +740,93 @@ void Box3D::RecalculateMesh() {
                 }
         }
 
-         //Fila Superior
-         Face3D *fPostSupIzq = new Face3D(); faces->push_back(fPostSupIzq);
-         fPostSupIzq->normal->x = -1;
-         fPostSupIzq->normal->t = 0;
-         fPostSupIzq->vertices->push_back(v4);
-         fPostSupIzq->vertices->push_back(v84[z_div-2]);
-         fPostSupIzq->vertices->push_back(mPostAux[z_div-2][0]);
-         fPostSupIzq->vertices->push_back(v34[0]);
+        if(y_div == 1 && z_div == 1) {
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->x = -1;
+                f->normal->t = 0;
+                f->vertices->push_back(v4);
+                f->vertices->push_back(v3);
+                f->vertices->push_back(v7);
+                f->vertices->push_back(v8);
+        }
+        else if(y_div == 1 && z_div > 1){
 
-         for(int i = 0; i < y_div-2; i++) {
+                Face3D *f1 = new Face3D(); faces->push_back(f1);
+                f1->normal->x = -1;
+                f1->normal->t = 0;
+                f1->vertices->push_back(v73[0]);
+                f1->vertices->push_back(v73[1]);
+                f1->vertices->push_back(v84[1]);
+                f1->vertices->push_back(v84[0]);
+
+                Face3D *f2 = new Face3D(); faces->push_back(f2);
+                f2->normal->x = -1;
+                f2->normal->t = 0;
+                f2->vertices->push_back(v73[z_div-1]);
+                f2->vertices->push_back(v73[z_div]);
+                f2->vertices->push_back(v84[z_div]);
+                f2->vertices->push_back(v84[z_div-1]);
+
+
+                for(int i= 1; i < z_div-1; i++){
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->x = -1;
+                f->normal->t = 0;
+                f->vertices->push_back(v73[i]);
+                f->vertices->push_back(v73[i+1]);
+                f->vertices->push_back(v84[i+1]);
+                f->vertices->push_back(v84[i]);
+                }
+
+        }
+        else if(y_div > 1 && z_div == 1){
+
+                Face3D *f1 = new Face3D(); faces->push_back(f1);
+                f1->normal->x = -1;
+                f1->normal->t = 0;
+                f1->vertices->push_back(v78[0]);
+                f1->vertices->push_back(v78[1]);
+                f1->vertices->push_back(v34[1]);
+                f1->vertices->push_back(v34[0]);
+
+                Face3D *f2 = new Face3D(); faces->push_back(f2);
+                f2->normal->x = -1;
+                f2->normal->t = 0;
+                f2->vertices->push_back(v78[y_div-1]);
+                f2->vertices->push_back(v78[y_div]);
+                f2->vertices->push_back(v34[y_div]);
+                f2->vertices->push_back(v34[y_div-1]);
+
+
+                for(int i= 1; i < y_div-1; i++){
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->x = -1;
                 f->normal->t = 0;
                 f->vertices->push_back(v34[i]);
+                f->vertices->push_back(v34[i+1]);
+                f->vertices->push_back(v78[i+1]);
+                f->vertices->push_back(v78[i]);
+                }
+
+        }
+
+        else if(y_div > 1 && z_div > 1) {
+        //Fila Superior
+        Face3D *fPostSupIzq = new Face3D(); faces->push_back(fPostSupIzq);
+         fPostSupIzq->normal->x = -1;
+         fPostSupIzq->normal->t = 0;
+         fPostSupIzq->vertices->push_back(v4);
+         fPostSupIzq->vertices->push_back(v84[z_div-1]);
+         fPostSupIzq->vertices->push_back(mPostAux[z_div-2][0]);
+         fPostSupIzq->vertices->push_back(v34[1]);
+
+         for(int i = 1; i < y_div-1; i++) {
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->x = -1;
+                f->normal->t = 0;
+                f->vertices->push_back(v34[i]);
+                f->vertices->push_back(mPostAux[z_div-2][i-1]);
                 f->vertices->push_back(mPostAux[z_div-2][i]);
-                f->vertices->push_back(mPostAux[z_div-2][i+1]);
                 f->vertices->push_back(v34[i+1]);
          }
 
@@ -526,18 +835,18 @@ void Box3D::RecalculateMesh() {
          fPostSupDer->normal->x = -1;
          fPostSupDer->normal->t = 0;
          fPostSupDer->vertices->push_back(v3);
-         fPostSupDer->vertices->push_back(v34[y_div-2]);
+         fPostSupDer->vertices->push_back(v34[y_div-1]);
          fPostSupDer->vertices->push_back(mPostAux[z_div-2][y_div-2]);
-         fPostSupDer->vertices->push_back(v73[z_div-2]);
+         fPostSupDer->vertices->push_back(v73[z_div-1]);
 
-         for(int i = 0; i < z_div-2; i++) {
+         for(int i = 1; i < z_div-1; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->x = -1;
                 f->normal->t = 0;
                 f->vertices->push_back(v73[i]);
                 f->vertices->push_back(v73[i+1]);
-                f->vertices->push_back(mPostAux[i+1][y_div-2]);
                 f->vertices->push_back(mPostAux[i][y_div-2]);
+                f->vertices->push_back(mPostAux[i-1][y_div-2]);
          }
 
          //Entramado
@@ -554,32 +863,32 @@ void Box3D::RecalculateMesh() {
          }
 
          //Fila Inferior
-         for(int i = 0; i < y_div-2; i++) {
+         for(int i = 1; i < y_div-1; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->x = -1;
                 f->normal->t = 0;
                 f->vertices->push_back(v78[i]);
                 f->vertices->push_back(v78[i+1]);
-                f->vertices->push_back(mPostAux[0][i+1]);
                 f->vertices->push_back(mPostAux[0][i]);
+                f->vertices->push_back(mPostAux[0][i-1]);
          }
 
          Face3D *fPostInfIzq = new Face3D(); faces->push_back(fPostInfIzq);
          fPostInfIzq->normal->x = -1;
          fPostInfIzq->normal->t = 0;
          fPostInfIzq->vertices->push_back(v8);
-         fPostInfIzq->vertices->push_back(v78[0]);
+         fPostInfIzq->vertices->push_back(v78[1]);
          fPostInfIzq->vertices->push_back(mPostAux[0][0]);
-         fPostInfIzq->vertices->push_back(v84[0]);
+         fPostInfIzq->vertices->push_back(v84[1]);
 
          //Columna Izquierda
-         for(int i = 0; i < z_div-2; i++) {
+         for(int i = 1; i < z_div-1; i++) {
                 Face3D *f = new Face3D(); faces->push_back(f);
                 f->normal->x = -1;
                 f->normal->t = 0;
                 f->vertices->push_back(v84[i]);
+                f->vertices->push_back(mPostAux[i-1][0]);
                 f->vertices->push_back(mPostAux[i][0]);
-                f->vertices->push_back(mPostAux[i+1][0]);
                 f->vertices->push_back(v84[i+1]);
          }
 
@@ -587,10 +896,11 @@ void Box3D::RecalculateMesh() {
          fPostInfDer->normal->x = -1;
          fPostInfDer->normal->t = 0;
          fPostInfDer->vertices->push_back(v7);
-         fPostInfDer->vertices->push_back(v73[0]);
+         fPostInfDer->vertices->push_back(v73[1]);
          fPostInfDer->vertices->push_back(mPostAux[0][y_div-2]);
-         fPostInfDer->vertices->push_back(v78[y_div-2]);
+         fPostInfDer->vertices->push_back(v78[y_div-1]);
 
+        }
 
          for(int i = 0; i < z_div-1; i++) {
                 delete[] mPostAux[i];
@@ -618,22 +928,93 @@ void Box3D::RecalculateMesh() {
                         }
                 }
 
+        if(x_div == 1 && y_div == 1) {
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->z = 1;
+                f->normal->t = 0;
+                f->vertices->push_back(v1);
+                f->vertices->push_back(v2);
+                f->vertices->push_back(v3);
+                f->vertices->push_back(v4);
+        }
+        else if(y_div == 1 && x_div > 1){
+                Face3D *f1 = new Face3D(); faces->push_back(f1);
+                f1->normal->z = 1;
+                f1->normal->t = 0;
+                f1->vertices->push_back(v41[0]);
+                f1->vertices->push_back(v41[1]);
+                f1->vertices->push_back(v23[1]);
+                f1->vertices->push_back(v23[0]);
+
+                Face3D *f2 = new Face3D(); faces->push_back(f2);
+                f2->normal->z = 1;
+                f2->normal->t = 0;
+                f2->vertices->push_back(v41[x_div-1]);
+                f2->vertices->push_back(v41[x_div]);
+                f2->vertices->push_back(v23[x_div]);
+                f2->vertices->push_back(v23[x_div-1]);
+
+
+                for(int i= 1; i < x_div-1; i++){
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->z = 1;
+                f->normal->t = 0;
+                f->vertices->push_back(v41[i]);
+                f->vertices->push_back(v41[i+1]);
+                f->vertices->push_back(v23[i+1]);
+                f->vertices->push_back(v23[i]);
+                }
+
+        }
+        else if(y_div > 1 && x_div == 1){
+
+                Face3D *f1 = new Face3D(); faces->push_back(f1);
+                f1->normal->z = 1;
+                f1->normal->t = 0;
+                f1->vertices->push_back(v34[1]);
+                f1->vertices->push_back(v34[0]);
+                f1->vertices->push_back(v12[0]);
+                f1->vertices->push_back(v12[1]);
+
+                Face3D *f2 = new Face3D(); faces->push_back(f2);
+                f2->normal->z = 1;
+                f2->normal->t = 0;
+                f2->vertices->push_back(v34[y_div]);
+                f2->vertices->push_back(v34[y_div-1]);
+                f2->vertices->push_back(v12[y_div-1]);
+                f2->vertices->push_back(v12[y_div]);
+
+
+                for(int i= 1; i < y_div-1; i++){
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->z = 1;
+                f->normal->t = 0;
+                f->vertices->push_back(v34[i+1]);
+                f->vertices->push_back(v34[i]);
+                f->vertices->push_back(v12[i]);
+                f->vertices->push_back(v12[i+1]);
+                }
+
+        }
+
+        else if(y_div > 1 && x_div > 1) {
+
                 //Fila Superior
                 Face3D *fSupIzq = new Face3D(); faces->push_back(fSupIzq);
                 fSupIzq->normal->z = 1;
                 fSupIzq->normal->t = 0;
                 fSupIzq->vertices->push_back(v4);
-                fSupIzq->vertices->push_back(v41[0]);
+                fSupIzq->vertices->push_back(v41[1]);
                 fSupIzq->vertices->push_back(m1Aux[0][0]);
-                fSupIzq->vertices->push_back(v34[0]);
+                fSupIzq->vertices->push_back(v34[1]);
 
-                for(int i = 0; i < y_div-2; i++) {
+                for(int i = 1; i < y_div-1; i++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->z = 1;
                         f->normal->t = 0;
                         f->vertices->push_back(v34[i]);
+                        f->vertices->push_back(m1Aux[0][i-1]);
                         f->vertices->push_back(m1Aux[0][i]);
-                        f->vertices->push_back(m1Aux[0][i+1]);
                         f->vertices->push_back(v34[i+1]);
                 }
 
@@ -642,17 +1023,17 @@ void Box3D::RecalculateMesh() {
                 fSupDer->normal->z = 1;
                 fSupDer->normal->t = 0;
                 fSupDer->vertices->push_back(v3);
-                fSupDer->vertices->push_back(v34[y_div-2]);
+                fSupDer->vertices->push_back(v34[y_div-1]);
                 fSupDer->vertices->push_back(m1Aux[0][y_div-2]);
-                fSupDer->vertices->push_back(v23[0]);
+                fSupDer->vertices->push_back(v23[1]);
 
-                for(int i = 0; i < x_div-2; i++) {
+                for(int i = 1; i < x_div-1; i++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->z = 1;
                         f->normal->t = 0;
                         f->vertices->push_back(v23[i]);
+                        f->vertices->push_back(m1Aux[i-1][y_div-2]);
                         f->vertices->push_back(m1Aux[i][y_div-2]);
-                        f->vertices->push_back(m1Aux[i+1][y_div-2]);
                         f->vertices->push_back(v23[i+1]);
                 }
 
@@ -670,47 +1051,48 @@ void Box3D::RecalculateMesh() {
                 }
 
                 //Fila Inferior
-                for(int i = 0; i < y_div-2; i++) {
+                for(int i = 1; i < y_div-1; i++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->z = 1;
                         f->normal->t = 0;
                         f->vertices->push_back(v12[i]);
                         f->vertices->push_back(v12[i+1]);
-                        f->vertices->push_back(m1Aux[x_div-2][i+1]);
                         f->vertices->push_back(m1Aux[x_div-2][i]);
+                        f->vertices->push_back(m1Aux[x_div-2][i-1]);
                 }
 
                 Face3D *fInfIzq = new Face3D(); faces->push_back(fInfIzq);
                 fInfIzq->normal->z = 1;
                 fInfIzq->normal->t = 0;
                 fInfIzq->vertices->push_back(v1);
-                fInfIzq->vertices->push_back(v12[0]);
+                fInfIzq->vertices->push_back(v12[1]);
                 fInfIzq->vertices->push_back(m1Aux[x_div-2][0]);
-                fInfIzq->vertices->push_back(v41[x_div-2]);
+                fInfIzq->vertices->push_back(v41[x_div-1]);
 
                 //Columna Izquierda
-                for(int i = 0; i < x_div-2; i++) {
+                for(int i = 1; i < x_div-1; i++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->z = 1;
                         f->normal->t = 0;
                         f->vertices->push_back(v41[i]);
                         f->vertices->push_back(v41[i+1]);
-                        f->vertices->push_back(m1Aux[i+1][0]);
                         f->vertices->push_back(m1Aux[i][0]);
+                        f->vertices->push_back(m1Aux[i-1][0]);
                 }
 
                 Face3D *fInfDer = new Face3D(); faces->push_back(fInfDer);
                 fInfDer->normal->z = 1;
                 fInfDer->normal->t = 0;
                 fInfDer->vertices->push_back(v2);
-                fInfDer->vertices->push_back(v23[x_div-2]);
+                fInfDer->vertices->push_back(v23[x_div-1]);
                 fInfDer->vertices->push_back(m1Aux[x_div-2][y_div-2]);
-                fInfDer->vertices->push_back(v12[y_div-2]);
+                fInfDer->vertices->push_back(v12[y_div-1]);
 
+        }
 
-                for(int i = 0; i < x_div-1; i++) {
-                        delete[] m1Aux[i];
-                }
+        for(int i = 0; i < x_div-1; i++) {
+                delete[] m1Aux[i];
+        }
                 delete[] m1Aux;
 
         //------------Fin Cara Superior-------------------------------
@@ -734,22 +1116,93 @@ void Box3D::RecalculateMesh() {
                         }
                 }
 
+        if(x_div == 1 && y_div == 1) {
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->z = -1;
+                f->normal->t = 0;
+                f->vertices->push_back(v8);
+                f->vertices->push_back(v7);
+                f->vertices->push_back(v6);
+                f->vertices->push_back(v5);
+        }
+        else if(y_div == 1 && x_div > 1){
+                Face3D *f1 = new Face3D(); faces->push_back(f1);
+                f1->normal->z = -1;
+                f1->normal->t = 0;
+                f1->vertices->push_back(v85[1]);
+                f1->vertices->push_back(v85[0]);
+                f1->vertices->push_back(v67[0]);
+                f1->vertices->push_back(v67[1]);
+
+                Face3D *f2 = new Face3D(); faces->push_back(f2);
+                f2->normal->z = -1;
+                f2->normal->t = 0;
+                f2->vertices->push_back(v85[x_div]);
+                f2->vertices->push_back(v85[x_div-1]);
+                f2->vertices->push_back(v67[x_div-1]);
+                f2->vertices->push_back(v67[x_div]);
+
+
+                for(int i= 1; i < x_div-1; i++){
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->z = -1;
+                f->normal->t = 0;
+                f->vertices->push_back(v85[i]);
+                f->vertices->push_back(v85[i+1]);
+                f->vertices->push_back(v67[i+1]);
+                f->vertices->push_back(v67[i]);
+                }
+
+        }
+        else if(y_div > 1 && x_div == 1){
+
+                Face3D *f1 = new Face3D(); faces->push_back(f1);
+                f1->normal->z = -1;
+                f1->normal->t = 0;
+                f1->vertices->push_back(v78[0]);
+                f1->vertices->push_back(v78[1]);
+                f1->vertices->push_back(v56[1]);
+                f1->vertices->push_back(v56[0]);
+
+                Face3D *f2 = new Face3D(); faces->push_back(f2);
+                f2->normal->z = -1;
+                f2->normal->t = 0;
+                f2->vertices->push_back(v78[y_div-1]);
+                f2->vertices->push_back(v78[y_div]);
+                f2->vertices->push_back(v56[y_div]);
+                f2->vertices->push_back(v56[y_div-1]);
+
+
+                for(int i= 1; i < y_div-1; i++){
+                Face3D *f = new Face3D(); faces->push_back(f);
+                f->normal->z = -1;
+                f->normal->t = 0;
+                f->vertices->push_back(v78[i]);
+                f->vertices->push_back(v78[i+1]);
+                f->vertices->push_back(v56[i+1]);
+                f->vertices->push_back(v56[i]);
+                }
+
+        }
+
+        else if(y_div > 1 && x_div > 1) {
+
                 //Fila Superior
                 Face3D *fInfSupIzq = new Face3D(); faces->push_back(fInfSupIzq);
                 fInfSupIzq->normal->z = -1;
                 fInfSupIzq->normal->t = 0;
                 fInfSupIzq->vertices->push_back(v5);
-                fInfSupIzq->vertices->push_back(v85[x_div-2]);
+                fInfSupIzq->vertices->push_back(v85[x_div-1]);
                 fInfSupIzq->vertices->push_back(mInfAux[x_div-2][0]);
-                fInfSupIzq->vertices->push_back(v56[0]);
+                fInfSupIzq->vertices->push_back(v56[1]);
 
-                for(int i = 0; i < y_div-2; i++) {
+                for(int i = 1; i < y_div-1; i++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->z = -1;
                         f->normal->t = 0;
                         f->vertices->push_back(v56[i]);
+                        f->vertices->push_back(mInfAux[x_div-2][i-1]);
                         f->vertices->push_back(mInfAux[x_div-2][i]);
-                        f->vertices->push_back(mInfAux[x_div-2][i+1]);
                         f->vertices->push_back(v56[i+1]);
                 }
 
@@ -758,18 +1211,18 @@ void Box3D::RecalculateMesh() {
                 fInfSupDer->normal->z = -1;
                 fInfSupDer->normal->t = 0;
                 fInfSupDer->vertices->push_back(v6);
-                fInfSupDer->vertices->push_back(v56[y_div-2]);
+                fInfSupDer->vertices->push_back(v56[y_div-1]);
                 fInfSupDer->vertices->push_back(mInfAux[x_div-2][y_div-2]);
-                fInfSupDer->vertices->push_back(v67[x_div-2]);
+                fInfSupDer->vertices->push_back(v67[x_div-1]);
 
-                for(int i = 0; i < x_div-2; i++) {
+                for(int i = 1; i < x_div-1; i++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->z = -1;
                         f->normal->t = 0;
                         f->vertices->push_back(v67[i]);
                         f->vertices->push_back(v67[i+1]);
-                        f->vertices->push_back(mInfAux[i+1][y_div-2]);
                         f->vertices->push_back(mInfAux[i][y_div-2]);
+                        f->vertices->push_back(mInfAux[i-1][y_div-2]);
                 }
 
                 //Entramado
@@ -786,46 +1239,48 @@ void Box3D::RecalculateMesh() {
                 }
 
                 //Fila Inferior
-                for(int i = 0; i < y_div-2; i++) {
+                for(int i = 1; i < y_div-1; i++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->z = -1;
                         f->normal->t = 0;
                         f->vertices->push_back(v78[i]);
                         f->vertices->push_back(v78[i+1]);
-                        f->vertices->push_back(mInfAux[0][i+1]);
                         f->vertices->push_back(mInfAux[0][i]);
+                        f->vertices->push_back(mInfAux[0][i-1]);
                 }
 
                 Face3D *fInfInfDer = new Face3D(); faces->push_back(fInfInfDer);
                 fInfInfDer->normal->z = -1;
                 fInfInfDer->normal->t = 0;
                 fInfInfDer->vertices->push_back(v7);
-                fInfInfDer->vertices->push_back(v67[0]);
+                fInfInfDer->vertices->push_back(v67[1]);
                 fInfInfDer->vertices->push_back(mInfAux[0][y_div-2]);
-                fInfInfDer->vertices->push_back(v78[y_div-2]);
+                fInfInfDer->vertices->push_back(v78[y_div-1]);
 
                 //Columna Izquierda
-                for(int i = 0; i < x_div-2; i++) {
+                for(int i = 1; i < x_div-1; i++) {
                         Face3D *f = new Face3D(); faces->push_back(f);
                         f->normal->z = -1;
                         f->normal->t = 0;
                         f->vertices->push_back(v85[i+1]);
                         f->vertices->push_back(v85[i]);
+                        f->vertices->push_back(mInfAux[i-1][0]);
                         f->vertices->push_back(mInfAux[i][0]);
-                        f->vertices->push_back(mInfAux[i+1][0]);
                 }
 
                 Face3D *fInfInfIzq = new Face3D(); faces->push_back(fInfInfIzq);
                 fInfInfIzq->normal->z = -1;
                 fInfInfIzq->normal->t = 0;
                 fInfInfIzq->vertices->push_back(v8);
-                fInfInfIzq->vertices->push_back(v78[0]);
+                fInfInfIzq->vertices->push_back(v78[1]);
                 fInfInfIzq->vertices->push_back(mInfAux[0][0]);
-                fInfInfIzq->vertices->push_back(v85[0]);
+                fInfInfIzq->vertices->push_back(v85[1]);
 
-                for(int i = 0; i < x_div-1; i++) {
-                        delete[] mInfAux[i];
-                }
+        }
+
+        for(int i = 0; i < x_div-1; i++) {
+                delete[] mInfAux[i];
+        }
                 delete[] mInfAux; 
 
         //------------Fin Cara Inferior-------------------------------
