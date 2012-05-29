@@ -16,11 +16,12 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         _house = new Group3D();
 
         luz_direccional = new Light3D();
-        luz_direccional->translation->z = 400;
+        luz_direccional->translation->x = -1;
+        luz_direccional->translation->y = -1;
+        luz_direccional->translation->z = -1;
+        luz_direccional->translation->t = 0;
+        luz_direccional->cut_off = 180;
         _house->elements->push_back(luz_direccional);
-        luz_direccional->Enable();
-
-
 
         //_house->rotation->z = 180;
 
@@ -268,13 +269,15 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         lampara->translation->z = 250;
         _house->elements->push_back(lampara);
 
-        Cylinder3D *pantalla = new Cylinder3D(30, 10, 40, true, false);
+        pantalla = new Cylinder3D(30, 10, 40, true, false);
         pantalla->human_name = "Pantalla";
-        pantalla->color = new Color3D(0,1,0);
+        pantalla->color = new Color3D(0,0.5,0);
         pantalla->RecalculateMesh();
         lampara->elements->push_back(pantalla);
 
         bombilla = new Light3D();
+        bombilla->human_name = "Bombilla";
+        bombilla->cut_off = 60;
         lampara->elements->push_back(bombilla);
 
 
@@ -878,12 +881,25 @@ bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD
 
         if (type == "KeyDown") {
 
-        // Para la lámpara:
+        // Para la lámpara (s):
         if (key == 83) {
                 if (bombilla->isEnabled()) {
                         bombilla->Disable();
+                        pantalla->color->g = 0.5;
+
                 } else {
                         bombilla->Enable();
+                        pantalla->color->g = 1;
+                }
+                _scene->Repaint();
+        }
+
+        // Para la luz remota (r):
+        if (key == 82) {
+                if (luz_direccional->isEnabled()) {
+                        luz_direccional->Disable();
+                } else {
+                        luz_direccional->Enable();
                 }
                 _scene->Repaint();
         }

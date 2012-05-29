@@ -39,6 +39,8 @@ private:
         Box3D *pala23_izq;
         Box3D *pala24_izq;
 
+        Cylinder3D *pantalla;
+
         Light3D *bombilla;
 
         Light3D *luz_direccional;
