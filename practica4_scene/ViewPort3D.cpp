@@ -50,8 +50,8 @@ void ViewPort3D::makeCurrent() {
         glEnable(GL_FRONT_AND_BACK);
 
 
-        if(wglMakeCurrent(_hdc, _hrc) == false)
-                ShowMessage("Could not make ViewPort3D current :·(");        //glClearColor(0.0f, 0.001f, 0.0f, 1.0f);        glClearColor(0.0, 0.01, 0.0, 1.0);                       }
+        if(wglMakeCurrent(_hdc, _hrc) == false) {
+                //ShowMessage("Could not make ViewPort3D current :·(");        }        //glClearColor(0.0f, 0.001f, 0.0f, 1.0f);        glClearColor(0.0, 0.01, 0.0, 1.0);                       }
 
 ViewPort3D::~ViewPort3D() {
         wglDeleteContext(_hdc);

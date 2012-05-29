@@ -109,6 +109,18 @@ __published:	// IDE-managed Components
         TMenuItem *Manualdeayuda1;
         TMenuItem *Acercade1;
         TMenuItem *N1;
+        TPanel *Panel12;
+        TGroupBox *GroupBox6;
+        TLabel *Label25;
+        TLabel *Label26;
+        TLabel *Label27;
+        TPanel *Panel13;
+        TLabel *Label28;
+        TLabel *Label29;
+        TLabel *Label30;
+        TTrackBar *TrackBar19;
+        TTrackBar *TrackBar20;
+        TTrackBar *TrackBar21;
         void __fastcall FormCreate(TObject *Sender);
         void __fastcall FormDestroy(TObject *Sender);
         void __fastcall Button3Click(TObject *Sender);
@@ -150,7 +162,7 @@ __published:	// IDE-managed Components
         void __fastcall TrackBar5Enter(TObject *Sender);
         void __fastcall TrackBar5Exit(TObject *Sender);
         void __fastcall TrackBar6Enter(TObject *Sender);
-        void __fastcall TrackBar6Exit(TObject *Sender);
+        void __fastcall Trackar6Exit(TObject *Sender);
         void __fastcall TrackBar7Chage(TObject *Sender);
         void __fastcall TrackBar12Change(TObject *Sender);
         void __fastcall TrackBar13Change(TObject *Sender);
@@ -179,6 +191,15 @@ __published:	// IDE-managed Components
           TMouseButton Button, TShiftState Shift, int X, int Y);
         void __fastcall Camaras1Click(TObject *Sender);
         void __fastcall CamarasNoneClick(TObject *Sender);
+        void __fastcall TrackBar19Change(TObject *Sender);
+        void __fastcall TrackBar20Change(TObject *Sender);
+        void __fastcall TrackBar21Change(TObject *Sender);
+        void __fastcall TrackBar19Enter(TObject *Sender);
+        void __fastcall TrackBar20Enter(TObject *Sender);
+        void __fastcall TrackBar21Enter(TObject *Sender);
+        void __fastcall TrackBar19Exit(TObject *Sender);
+        void __fastcall TrackBar20Exit(TObject *Sender);
+        void __fastcall TrackBar21Exit(TObject *Sender);
 private:	// User declarations
 
         Scene3D *_scene;

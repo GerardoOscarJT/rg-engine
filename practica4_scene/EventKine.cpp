@@ -76,6 +76,15 @@ bool EventKine::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD 
 
 void EventKine::top(ViewPort3D *_viewport, Scene3D *_scene) {
         _last_viewport = _viewport;
+
+        _light_main = new Light3D();
+        _light_main->translation->x = 0;
+        _light_main->translation->z = 2500;
+        _scene->main_figure->elements->push_back(_light_main);
+
+        _light_main->Enable();
+
+
         _scene->main_figure->elements->push_back(buildFloor());
         buildKine();
         _scene->main_figure->elements->push_back(_kine);
@@ -91,6 +100,8 @@ void EventKine::top(ViewPort3D *_viewport, Scene3D *_scene) {
         cam_top->name = "Kine:top";
         cam_top->perspective = 0;
         _scene->cameras->push_back(cam_top);
+
+
 
         Sleep(200);
 
@@ -124,15 +135,15 @@ void EventKine::Step() {
 
 
         if (key_right)
-                _kine->rotation->z-= 10;
+                _kine->rotation->z-= 4;
 
         if (key_left)
-                _kine->rotation->z+= 10;
+                _kine->rotation->z+= 4;
 
 
 
         double velocity_max = 33;
-        double velocity_min = 0;
+        double velocity_min = -5;
 
         kine_position_velocity += kine_position_acceleration;
         if (kine_position_velocity < velocity_min)
@@ -187,7 +198,7 @@ void EventKine::Step() {
         // ANIMACIÓN DE LA CÁMARA TOP /////////////////
         ///////////////////////////////////////////////
 
-        
+
         cam = cam_top;
 
         cam->look->x = _kine->translation->x;
@@ -196,10 +207,17 @@ void EventKine::Step() {
 
         cam->eye->x = _kine->translation->x-1;
         cam->eye->y = _kine->translation->y;
-        cam->eye->z = 500+1600*(kine_position_velocity/velocity_max);
+        cam->eye->z = 200+400*(kine_position_velocity/velocity_max);
 
         cam->recalculateCameraAxis();
         cam->setModelViewMatrix();
+
+        ///////////////////////////////////////////////
+        // ANIMACIÓN LA LUZ /////////////////
+        ///////////////////////////////////////////////
+        _light_main->translation->x = _kine->translation->x;
+        _light_main->translation->y = _kine->translation->y;
+
 
 }
 

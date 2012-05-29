@@ -21,6 +21,11 @@
 #include "EventBox.h"
 #include "EventKine.h"
 #include "EventKineBuildings.h"
+#include "EventToggleLighting.h"
+#include "EventToggleMaterialing.h"
+#include "EventToggleLightModelAmbient.h"
+#include "EventFog.h"
+#include "EventToggleFog.h"
 
 class EventFactory {
 public:

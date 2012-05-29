@@ -5,6 +5,7 @@
 #include "Event.h"
 #include "Sphere3D.h"
 #include "Flat3D.h"
+#include "Light3D.h"
 
 
 class EventKine:public Event {
@@ -25,6 +26,7 @@ private:
         void buildKine();
         Group3D * buildFloor();
 
+        Light3D *_light_main;
 
 
         double kine_position_velocity;

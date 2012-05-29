@@ -49,6 +49,12 @@ USEUNIT("EventKine.cpp");
 USEUNIT("EventBox.cpp");
 USEUNIT("Flat3D.cpp");
 USEUNIT("EventKineBuildings.cpp");
+USEUNIT("Light3D.cpp");
+USEUNIT("EventToggleLighting.cpp");
+USEUNIT("EventToggleMaterialing.cpp");
+USEUNIT("EventToggleLightModelAmbient.cpp");
+USEUNIT("EventFog.cpp");
+USEUNIT("EventToggleFog.cpp");
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {

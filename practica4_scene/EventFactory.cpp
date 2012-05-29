@@ -42,6 +42,17 @@ Event* EventFactory::createEvent(String name) {
                 return new EventBox();
         if(name == "kine-buildings")
                 return new EventKineBuildings();
+        if(name == "toggle-lighting")
+                return new EventToggleLighting();
+        if(name == "toggle-materialing")
+                return new EventToggleMaterialing();
+        if (name == "toggle-light-model-ambient")
+                return new EventToggleLightModelAmbient();
+        if (name == "fog")
+                return new EventFog();
+        if (name == "toggle-fog")
+                return new EventToggleFog();
+
         return NULL;
 }
 
@@ -69,6 +80,11 @@ list<String>* EventFactory::getEvents() {
         registered_events->push_back("scam");
         registered_events->push_back("kine");
         registered_events->push_back("kine-buildings");
+        registered_events->push_back("toggle-lighting");
+        registered_events->push_back("toggle-materialing");
+        registered_events->push_back("toggle-light-model-ambient");
+        registered_events->push_back("fog");
+        registered_events->push_back("toggle-fog");
         registered_events->sort();
 
         return registered_events;

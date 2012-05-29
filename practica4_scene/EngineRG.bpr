@@ -14,7 +14,9 @@
       EventOrthogonal.obj EventScam.obj EventZRotate.obj EventAlongAxis.obj 
       EventAroundAxis.obj EventCorner.obj EventMoveCamera.obj EventOblique.obj 
       EventPerspective.obj EventKine.obj EventBox.obj Flat3D.obj 
-      EventKineBuildings.obj"/>
+      EventKineBuildings.obj Light3D.obj EventToggleLighting.obj 
+      EventToggleMaterialing.obj EventToggleLightModelAmbient.obj EventFog.obj 
+      EventToggleFog.obj"/>
     <RESFILES value="EngineRG.res"/>
     <DEFFILE value=""/>
     <RESDEPEN value="$(RESFILES) Window.dfm Help.dfm"/>

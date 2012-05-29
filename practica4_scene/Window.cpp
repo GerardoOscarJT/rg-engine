@@ -542,7 +542,7 @@ void __fastcall TForm1::TrackBar6Enter(TObject *Sender)
         TrackBar6->Tag = 0;
 }
 
-void __fastcall TForm1::TrackBar6Exit(TObject *Sender)
+void __fastcall TForm1::Trackar6Exit(TObject *Sender)
 {
         TrackBar6->Tag = 0;
         TrackBar6->Position = 0;
@@ -859,4 +859,93 @@ void __fastcall TForm1::CamarasNoneClick(TObject *Sender)
 
 //---------------------------------------------------------------------------
 
+
+
+
+void __fastcall TForm1::TrackBar19Change(TObject *Sender)
+{
+        TrackBar19->SelStart = min(0, TrackBar19->Position);
+        TrackBar19->SelEnd = max(0, TrackBar19->Position);
+
+        if (_selected_figure != NULL) {
+                _selected_figure->scale->x += (double) (TrackBar19->Position - TrackBar19->Tag) / (double) 100;
+                TrackBar19->Tag = TrackBar19->Position;
+                Label27->Caption = "Delta X "+AnsiString(TrackBar19->Position)+"º";
+                _scene->Repaint();
+        }
+        FocusControl(TrackBar19);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar20Change(TObject *Sender)
+{
+        TrackBar20->SelStart = min(0, TrackBar20->Position);
+        TrackBar20->SelEnd = max(0, TrackBar20->Position);
+
+        if (_selected_figure != NULL) {
+                _selected_figure->scale->y += (double)(TrackBar20->Position - TrackBar20->Tag)/(double)100;
+                TrackBar20->Tag = TrackBar20->Position;
+                Label27->Caption = "Delta Y "+AnsiString(TrackBar20->Position)+"";
+                _scene->Repaint();
+        }
+        FocusControl(TrackBar20);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar21Change(TObject *Sender)
+{
+        TrackBar21->SelStart = min(0, TrackBar21->Position);
+        TrackBar21->SelEnd = max(0, TrackBar21->Position);
+
+        if (_selected_figure != NULL) {
+                _selected_figure->scale->z += (double) (TrackBar21->Position - TrackBar21->Tag) / (double) 100;
+                TrackBar21->Tag = TrackBar21->Position;
+                Label27->Caption = "Delta Z "+AnsiString(TrackBar21->Position)+"º";
+                _scene->Repaint();
+        }
+        FocusControl(TrackBar21);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar19Enter(TObject *Sender)
+{
+        TrackBar19->Position = 0;
+        TrackBar19->Tag = 0;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar20Enter(TObject *Sender)
+{
+        TrackBar20->Position = 0;
+        TrackBar20->Tag = 0;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar21Enter(TObject *Sender)
+{
+        TrackBar21->Position = 0;
+        TrackBar21->Tag = 0;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar19Exit(TObject *Sender)
+{
+        TrackBar19->Tag = 0;
+        TrackBar19->Position = 0;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar20Exit(TObject *Sender)
+{
+        TrackBar20->Tag = 0;
+        TrackBar20->Position = 0;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::TrackBar21Exit(TObject *Sender)
+{
+        TrackBar21->Tag = 0;
+        TrackBar21->Position = 0;
+}
+//---------------------------------------------------------------------------
 

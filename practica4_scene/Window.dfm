@@ -504,16 +504,16 @@ object Form1: TForm1
               TickStyle = tsAuto
               OnChange = TrackBar6Change
               OnEnter = TrackBar6Enter
-              OnExit = TrackBar6Exit
+              OnExit = Trackar6Exit
             end
           end
         end
       end
       object Panel10: TPanel
         Left = 0
-        Top = 603
+        Top = 771
         Width = 281
-        Height = 330
+        Height = 233
         BevelOuter = bvNone
         TabOrder = 3
         object GroupBox3: TGroupBox
@@ -816,6 +816,143 @@ object Form1: TForm1
             TickMarks = tmBottomRight
             TickStyle = tsAuto
             OnChange = TrackBar18Change
+          end
+        end
+      end
+      object Panel12: TPanel
+        Left = 0
+        Top = 606
+        Width = 281
+        Height = 160
+        BevelOuter = bvNone
+        TabOrder = 4
+        object GroupBox6: TGroupBox
+          Left = 8
+          Top = 8
+          Width = 265
+          Height = 145
+          Caption = 'Scalation'
+          TabOrder = 0
+          object Label25: TLabel
+            Left = 8
+            Top = 16
+            Width = 25
+            Height = 13
+            Alignment = taCenter
+            AutoSize = False
+            Caption = 'Abs'
+          end
+          object Label26: TLabel
+            Left = 40
+            Top = 16
+            Width = 25
+            Height = 13
+            Alignment = taCenter
+            AutoSize = False
+            Caption = 'Rel'
+            Color = clLime
+            ParentColor = False
+          end
+          object Label27: TLabel
+            Left = 254
+            Top = 16
+            Width = 3
+            Height = 13
+            Alignment = taRightJustify
+          end
+          object Panel13: TPanel
+            Left = 8
+            Top = 32
+            Width = 249
+            Height = 105
+            TabOrder = 0
+            object Label28: TLabel
+              Left = 16
+              Top = 13
+              Width = 7
+              Height = 13
+              Caption = 'X'
+            end
+            object Label29: TLabel
+              Left = 16
+              Top = 45
+              Width = 7
+              Height = 13
+              Caption = 'Y'
+            end
+            object Label30: TLabel
+              Left = 16
+              Top = 77
+              Width = 7
+              Height = 13
+              Caption = 'Z'
+            end
+            object TrackBar19: TTrackBar
+              Left = 24
+              Top = 8
+              Width = 217
+              Height = 25
+              BorderWidth = 1
+              LineSize = 0
+              Max = 360
+              Min = -360
+              Orientation = trHorizontal
+              PageSize = 1
+              Frequency = 1
+              Position = 0
+              SelEnd = 0
+              SelStart = 0
+              TabOrder = 0
+              TickMarks = tmBottomRight
+              TickStyle = tsAuto
+              OnChange = TrackBar19Change
+              OnEnter = TrackBar19Enter
+              OnExit = TrackBar19Exit
+            end
+            object TrackBar20: TTrackBar
+              Left = 24
+              Top = 40
+              Width = 217
+              Height = 25
+              BorderWidth = 1
+              LineSize = 0
+              Max = 360
+              Min = -360
+              Orientation = trHorizontal
+              PageSize = 1
+              Frequency = 1
+              Position = 0
+              SelEnd = 0
+              SelStart = 0
+              TabOrder = 1
+              TickMarks = tmBottomRight
+              TickStyle = tsAuto
+              OnChange = TrackBar20Change
+              OnEnter = TrackBar20Enter
+              OnExit = TrackBar20Exit
+            end
+            object TrackBar21: TTrackBar
+              Left = 24
+              Top = 72
+              Width = 217
+              Height = 25
+              BorderWidth = 1
+              LineSize = 0
+              Max = 360
+              Min = -360
+              Orientation = trHorizontal
+              PageSize = 1
+              Frequency = 1
+              Position = 0
+              SelEnd = 0
+              SelStart = 0
+              TabOrder = 2
+              TickMarks = tmBottomRight
+              TickStyle = tsAuto
+              OnChange = TrackBar21Change
+              OnEnter = TrackBar21Enter
+              OnExit = TrackBar21Exit
+            end
           end
         end
       end

@@ -12,6 +12,7 @@
 #include "Epitrochoid3D.h"
 
 #include "Box3D.h"
+#include "Light3D.h"
 
 
 class Scene3D {
@@ -30,13 +31,21 @@ public:
 
         void color(int scX, int scY, GLint *color);
 
+        bool lighting_enabled;
+        bool materialing_enabled;
+
+        // FOG:
+        bool fog_enabled;
+        float fog_density;
+        float fog_start;
+        float fog_end;
+        int fog_mode;
+
+
+
 private:
 
         void RepaintViewPort(ViewPort3D*);
-        GLfloat PosicionLuz0[4];
-
-
-
 
 };
 

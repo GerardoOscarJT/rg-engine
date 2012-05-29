@@ -15,6 +15,13 @@ EventHouse::EventHouse() {
 void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         _house = new Group3D();
 
+        luz_direccional = new Light3D();
+        luz_direccional->translation->z = 400;
+        _house->elements->push_back(luz_direccional);
+        luz_direccional->Enable();
+
+
+
         //_house->rotation->z = 180;
 
         // Introduzco las 6 columnas
@@ -164,6 +171,8 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         wall->x = 10;  wall->y = 400; wall->z = 250;
         wall->translation->x = 0;
         wall->translation->y = 30;
+        wall->y_div = 16;
+        wall->z_div = 16;
         wall->RecalculateMesh();
         _house->elements->push_back(wall);
 
@@ -252,6 +261,25 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
 
         _house->elements->push_back(caja_roja);*/
 
+        Group3D *lampara = new Group3D();
+        lampara->human_name = "Lampara";
+        lampara->translation->x = 200;
+        lampara->translation->y = 200;
+        lampara->translation->z = 250;
+        _house->elements->push_back(lampara);
+
+        Cylinder3D *pantalla = new Cylinder3D(30, 10, 40, true, false);
+        pantalla->human_name = "Pantalla";
+        pantalla->color = new Color3D(0,1,0);
+        pantalla->RecalculateMesh();
+        lampara->elements->push_back(pantalla);
+
+        bombilla = new Light3D();
+        lampara->elements->push_back(bombilla);
+
+
+
+
         Group3D *persiana_izq = new Group3D();
                 persiana_izq->human_name = "persianaIzq";
                 Cylinder3D *braz_der = new Cylinder3D(70,3,3,true,true);
@@ -321,6 +349,9 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         sueloIzq->y = 460;
         sueloIzq->z = 1;
         sueloIzq->translation->z = -1;
+        sueloIzq->x_div = 16;
+        sueloIzq->y_div = 16;
+        sueloIzq->z_div = 2;
         sueloIzq->RecalculateMesh();
         _house->elements->push_back(sueloIzq);
 
@@ -367,14 +398,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
 
         _house->elements->push_back(tele);
 
-        Cylinder3D *lamp = new Cylinder3D(30, 10, 40, true, false);
-        lamp->human_name = "Lampara";
-        lamp->color = new Color3D(0,1,0);
-        lamp->translation->x = 200;
-        lamp->translation->y = 200;
-        lamp->translation->z = 250;
-        lamp->RecalculateMesh();
-        _house->elements->push_back(lamp);
+
 
 
         //                                                                    //
@@ -853,6 +877,16 @@ String EventHouse::getName() {
 bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD key, TShiftState shift, int X, int Y) {
 
         if (type == "KeyDown") {
+
+        // Para la lámpara:
+        if (key == 83) {
+                if (bombilla->isEnabled()) {
+                        bombilla->Disable();
+                } else {
+                        bombilla->Enable();
+                }
+                _scene->Repaint();
+        }
 
 
         if(key == 84) {

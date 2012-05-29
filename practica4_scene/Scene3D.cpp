@@ -12,7 +12,16 @@ Scene3D::Scene3D() {
         main_figure = new Group3D();
         main_figure->human_name = "Escena principal";
 
-        // TODO: Quitar stubs:
+        lighting_enabled = true;
+        materialing_enabled = true;
+        fog_enabled = false;
+        fog_mode = GL_EXP2;
+        fog_density = 0.001;
+        fog_start = 0.01;
+        fog_end = 0.99;
+
+        Light3D::initializeLights();
+
 }
 
 Scene3D::~Scene3D() {
@@ -55,26 +64,48 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
 
         glClearColor(0.6,0.7,0.8,1.0);
 
-        glEnable(GL_LIGHTING);
-        glEnable(GL_LIGHT0);
 
-        //Luz0
-        glEnable(GL_LIGHT0);
-        GLfloat LuzDifusa[]={1.0,1.0,1.0,1.0};
-        glLightfv(GL_LIGHT0,GL_DIFFUSE,LuzDifusa);
-        GLfloat LuzAmbiente[]={0.3,0.3,0.3,1.0};
-        glLightfv(GL_LIGHT0,GL_AMBIENT,LuzAmbiente);
-        PosicionLuz0[0]=25.0; PosicionLuz0[1]=25.0;
-        PosicionLuz0[2]=0.0; PosicionLuz0[3]=1.0;
-        glLightfv(GL_LIGHT0, GL_POSITION, PosicionLuz0);
 
-        glEnable(GL_COLOR_MATERIAL);
+        if (materialing_enabled) {
+                glEnable(GL_COLOR_MATERIAL);
+        } else {
+                glDisable(GL_COLOR_MATERIAL);
+        }
+
+        if (fog_enabled) {
+                glEnable(GL_FOG);
+
+                glFogi(GL_FOG_MODE, fog_mode);
+                glFogf(GL_FOG_START, 0.01);
+                glFogf(GL_FOG_END, 0.99);
+                glFogf(GL_FOG_DENSITY, fog_density);
+
+                GLfloat c[] = {0.8,0.8,0.8,1};
+                glFogfv(GL_FOG_COLOR,c);
+        } else {
+                glDisable(GL_FOG);
+        }
+
+        if (lighting_enabled) {
+                glEnable(GL_LIGHTING);
+        } else {
+                glDisable(GL_LIGHTING);
+        }
+
+
+
+/*
+        glShadeModel(GL_SMOOTH);   //Defecto
         glMaterialf(GL_FRONT, GL_SHININESS, 0.1);
         glEnable(GL_DEPTH_TEST);
-        glEnable(GL_NORMALIZE);
+//        glEnable(GL_NORMALIZE);
         glShadeModel(GL_SMOOTH);   //Defecto
 
         glLightfv(GL_LIGHT0,GL_POSITION,PosicionLuz0);
+        
+        */
+
+
 
         DrawAxis();
 

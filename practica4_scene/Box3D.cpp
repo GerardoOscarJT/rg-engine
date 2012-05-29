@@ -13,9 +13,7 @@ Box3D::Box3D() : Mesh3D() {
         y_div = 2;
         z_div = 2;
 
-
         RecalculateMesh();
-
 }
 
 Box3D::~Box3D(){

@@ -38,6 +38,10 @@ private:
         Box3D *pala22_izq;
         Box3D *pala23_izq;
         Box3D *pala24_izq;
+
+        Light3D *bombilla;
+
+        Light3D *luz_direccional;
 };
 
 
