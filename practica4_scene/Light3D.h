@@ -26,6 +26,9 @@ public:
         static void initializeLights();
 
         static Light3D* lights[8];
+
+        double cut_off;
+
 private:
         bool _enabled;
         int _gl_index;

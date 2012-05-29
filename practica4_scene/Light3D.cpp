@@ -12,6 +12,7 @@ Light3D::Light3D() {
         diffuse = new Color3D(0.7,0.7,0.7);
         specular = new Color3D(0.7,0.7,0.7);
         ambient = new Color3D(0.7,0.7,0.7);
+        cut_off = 180;        
 }
 
 void Light3D::initializeLights() {
@@ -83,7 +84,7 @@ void Light3D::Repaint() {
                 glEnable(GL_LIGHT);
 
 
-                GLfloat p[] = {this->translation->x, this->translation->y, this->translation->z, 1};
+                GLfloat p[] = {this->translation->x, this->translation->y, this->translation->z, this->translation->t};
                 GLfloat sd[] = {0,0,-1, 0};
 
 
@@ -98,13 +99,13 @@ void Light3D::Repaint() {
                 glLightfv(GL_LIGHT, GL_AMBIENT, a);
 
                 glLightf(GL_LIGHT, GL_CONSTANT_ATTENUATION, 1);
-                //glLightf(GL_LIGHT, GL_LINEAR_ATTENUATION, 1);
-
 
                 // Para cono:
-                glLightf(GL_LIGHT, GL_SPOT_CUTOFF, 60);
+
+                glLightf(GL_LIGHT, GL_SPOT_CUTOFF, cut_off);
                 glLightf(GL_LIGHT, GL_SPOT_EXPONENT, 32);
                 glLightfv(GL_LIGHT, GL_SPOT_DIRECTION, sd);
+                
         }
 }
 

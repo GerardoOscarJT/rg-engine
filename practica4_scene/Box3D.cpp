@@ -9,11 +9,10 @@ Box3D::Box3D() : Mesh3D() {
         x = 1;
         y = 1;
         z = 1;
-        x_div = 4;
-        y_div = 4;
-        z_div = 4;
+        x_div = 2;
+        y_div = 2;
+        z_div = 2;
 
-        divisiones = 2;
         RecalculateMesh();
 }
 
