@@ -13,6 +13,102 @@ EventHouse::EventHouse() {
 }
 
 void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
+        BMPRGBA *im = new BMPRGBA();
+        GLuint text;
+        if(im->cargaBMP("mad2.bmp")){
+                glGenTextures(1, &text);
+                glBindTexture(GL_TEXTURE_2D, text);
+
+                int cols = im->getCols();
+                int fils = im->getRows();
+
+                /*gluBuild2DMipmaps (
+                        GL_TEXTURE_2D, GL_RGBA, cols, fils, GL_RGBA,
+                        GL_UNSIGNED_BYTE, im
+                        );*/
+
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+                                GL_LINEAR);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+                                GL_LINEAR);
+
+                glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+                //GLfloat micolor[] = {1.0,1.0,0.0,1.0};
+                //glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, micolor);
+
+                glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, cols, fils,
+                                0, GL_RGB, GL_UNSIGNED_BYTE, im->getBMP());
+        }
+        else return;
+
+        BMPRGBA *im2 = new BMPRGBA();
+
+        if(im2->cargaBMP("bulkypix.bmp")){
+                glGenTextures(1, &text2);
+                glBindTexture(GL_TEXTURE_2D, text2);
+
+                int cols = im2->getCols();
+                int fils = im2->getRows();
+
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, cols, fils,
+                                0, GL_RGB, GL_UNSIGNED_BYTE, im2->getBMP());
+
+                /*gluBuild2DMipmaps (
+                        GL_TEXTURE_2D, GL_RGBA, cols, fils, GL_RGBA,
+                        GL_UNSIGNED_BYTE, im
+                        );*/
+
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+                                GL_LINEAR);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+                                GL_LINEAR);
+
+                glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+                //GLfloat micolor[] = {1.0,1.0,0.0,1.0};
+                //glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, micolor);
+
+                glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+        }
+        else return;
+
+        BMPRGBA *im3 = new BMPRGBA();
+        GLuint text3;
+        if(im3->cargaBMP("suelo.bmp")){
+                glGenTextures(1, &text3);
+                glBindTexture(GL_TEXTURE_2D, text3);
+
+                int cols = im3->getCols();
+                int fils = im3->getRows();
+
+                /*gluBuild2DMipmaps (
+                        GL_TEXTURE_2D, GL_RGB, cols, fils, GL_RGB,
+                        GL_UNSIGNED_BYTE, im3
+                        ); */
+
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+                                GL_LINEAR);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+                                GL_LINEAR);
+
+                glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+                glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+                //GLfloat micolor[] = {0.545,0.27,0.0,0.074};
+                //glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, micolor);
+
+                glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, cols, fils,
+                                0, GL_RGB, GL_UNSIGNED_BYTE, im3->getBMP());
+        }
+        else return;
+
         _house = new Group3D();
 
         luz_direccional = new Light3D();
@@ -22,6 +118,29 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         luz_direccional->translation->t = 0;
         luz_direccional->cut_off = 180;
         _house->elements->push_back(luz_direccional);
+
+
+
+
+        Group3D *lampara = new Group3D();
+        lampara->human_name = "Lampara";
+        lampara->translation->x = 200;
+        lampara->translation->y = 200;
+        lampara->translation->z = 250;
+        _house->elements->push_back(lampara);
+
+        pantalla = new Cylinder3D(30, 10, 40, true, false);
+        pantalla->human_name = "Pantalla";
+        pantalla->color = new Color3D(0,0.5,0);
+        pantalla->RecalculateMesh();
+        lampara->elements->push_back(pantalla);
+
+        bombilla = new Light3D();
+        bombilla->human_name = "Bombilla";
+        bombilla->cut_off = 60;
+        lampara->elements->push_back(bombilla);
+
+        
 
         //_house->rotation->z = 180;
 
@@ -262,24 +381,6 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
 
         _house->elements->push_back(caja_roja);*/
 
-        Group3D *lampara = new Group3D();
-        lampara->human_name = "Lampara";
-        lampara->translation->x = 200;
-        lampara->translation->y = 200;
-        lampara->translation->z = 250;
-        _house->elements->push_back(lampara);
-
-        pantalla = new Cylinder3D(30, 10, 40, true, false);
-        pantalla->human_name = "Pantalla";
-        pantalla->color = new Color3D(0,0.5,0);
-        pantalla->RecalculateMesh();
-        lampara->elements->push_back(pantalla);
-
-        bombilla = new Light3D();
-        bombilla->human_name = "Bombilla";
-        bombilla->cut_off = 60;
-        lampara->elements->push_back(bombilla);
-
 
 
 
@@ -352,9 +453,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         sueloIzq->y = 460;
         sueloIzq->z = 1;
         sueloIzq->translation->z = -1;
-        sueloIzq->x_div = 16;
-        sueloIzq->y_div = 16;
-        sueloIzq->z_div = 2;
+        sueloIzq->textura = text3;        
         sueloIzq->RecalculateMesh();
         _house->elements->push_back(sueloIzq);
 
@@ -389,6 +488,9 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
                 _pantalla->x = 100;
                 _pantalla->y = 0;
                 _pantalla->z = 40;
+                _pantalla->x_div = 1;
+                _pantalla->y_div = 1;
+                _pantalla->z_div = 1;
                 _pantalla->translation->x = 10;
                 _pantalla->translation->y = 12.1;
                 _pantalla->translation->z = 10;
@@ -440,6 +542,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         suelo->x = 450;
         suelo->y = 460;
         suelo->z = 1;
+        suelo->textura = text3;        
         suelo->RecalculateMesh();
         suelo->translation->x = 440;
         suelo->translation->z = -1;
@@ -832,8 +935,7 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
         //                FIN HABITACIÓN DE LA DERECHA FIN                    //
         ////////////////////////////////////////////////////////////////////////
 
-
-        /////////////////////////// GRUPO PUERTA ///////////////////////////////
+      /////////////////////////// GRUPO PUERTA ///////////////////////////////
         puerta = new Group3D();
                 puerta->human_name = "Puerta";
                 Box3D *madero = new Box3D();
@@ -842,8 +944,10 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
                 madero->x = 10;
                 madero->y = 80;
                 madero->z = 180;
-                //madero->translation->x = 440;
-                //madero->translation->y = 190;
+                madero->x_div = 1;
+                madero->y_div = 1;
+                madero->z_div = 1;
+                madero->textura = text;
                 madero->RecalculateMesh();
         puerta->elements->push_back(madero);
                 Sphere3D *pomo_izq = new Sphere3D();
@@ -868,6 +972,8 @@ void EventHouse::top(ViewPort3D *_viewport, Scene3D *_scene) {
                 puerta->translation->x = 440;
                 puerta->translation->y = 190;
         _house->elements->push_back(puerta);
+
+        
 
         _scene->main_figure->elements->push_back(_house);
         _scene->Repaint();
@@ -911,12 +1017,14 @@ bool EventHouse::event(ViewPort3D *_viewport, Scene3D *_scene, String type, WORD
                 _encendida = !_encendida;
                  delete _pantalla->color;
                 _pantalla->color = new Color3D(0,0,0);
+                _pantalla->textura = -1;
                 _scene->Repaint();
             }
             else{
                 _encendida = !_encendida;
                 delete _pantalla->color;
                 _pantalla->color = new Color3D(0,0,1);
+                _pantalla->textura = text2;
                 _scene->Repaint();
             }
             return true;

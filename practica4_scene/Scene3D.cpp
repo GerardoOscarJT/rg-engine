@@ -64,8 +64,6 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
 
         glClearColor(0.6,0.7,0.8,1.0);
 
-
-
         if (materialing_enabled) {
                 glEnable(GL_COLOR_MATERIAL);
         } else {
@@ -92,6 +90,11 @@ void Scene3D::RepaintViewPort(ViewPort3D* vp) {
                 glDisable(GL_LIGHTING);
         }
 
+        glMaterialf(GL_FRONT, GL_SHININESS, 0.1);
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_NORMALIZE);
+        glShadeModel(GL_SMOOTH);   //Defecto
+        
 
 
 /*

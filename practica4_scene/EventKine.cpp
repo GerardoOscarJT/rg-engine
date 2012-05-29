@@ -80,6 +80,7 @@ void EventKine::top(ViewPort3D *_viewport, Scene3D *_scene) {
         _light_main = new Light3D();
         _light_main->translation->x = 0;
         _light_main->translation->z = 2500;
+        _light_main->cut_off = 60;
         _scene->main_figure->elements->push_back(_light_main);
 
         _light_main->Enable();

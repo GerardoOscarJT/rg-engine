@@ -1,6 +1,7 @@
 #ifndef EventHouseH
 #define EventHouseH
 
+#include "UBmpRGBA.h"
 #include "Event.h"
 #include "LeftRoomFurn.h"
 #include "Sphere3D.h"
@@ -44,6 +45,9 @@ private:
         Light3D *bombilla;
 
         Light3D *luz_direccional;
+
+
+        GLuint text2;        
 };
 
 
